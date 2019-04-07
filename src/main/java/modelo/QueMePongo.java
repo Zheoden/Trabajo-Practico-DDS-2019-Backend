@@ -2,17 +2,15 @@ package modelo;
 
 
 
+
+
 public class QueMePongo {
 	
-	
-	public static void main(String[] args) {
-		 	
-	}
-	
 
-	public String prendasSugeridasPara(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
+	public Atuendo prendasSugeridasPara(Usuario usuario) {
+	    //lo dejo asi por ahora hasta que se haga el metodo en guardaRopas
+		return new Atuendo();
+		//usuario.getGuardaRopas().obteneAtuendo();
 	}
 
 }

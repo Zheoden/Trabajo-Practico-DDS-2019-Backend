@@ -22,7 +22,7 @@ public class Usuario {
 		this.guardaRopas = guardaRopas;
 	}
 	
-	public String sugerimePrendas(QueMePongo queMePongo)
+	public Atuendo sugerimePrendas(QueMePongo queMePongo)
 	{
 		return queMePongo.prendasSugeridasPara(this);
 	}
