@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 public class Usuario {
 	
-	ArrayList <GuardaRopas> guardaRopas = new ArrayList <GuardaRopas>();
+	ArrayList<GuardaRropas> guardaRopas = new ArrayList<GuardaRropas>();
 	
 	
-	public Usuario(ArrayList <GuardaRopas> guardaRopas)
-	{
+	public Usuario(ArrayList <GuardaRopas> guardaRopas) {
 		this.setGuardaRopas(guardaRopas);
 	}
-
 
 	public ArrayList<GuardaRopas> getGuardaRopas() {
 		return guardaRopas;
@@ -22,8 +20,7 @@ public class Usuario {
 		this.guardaRopas = guardaRopas;
 	}
 	
-	public Atuendo sugerimePrendas(QueMePongo queMePongo)
-	{
+	public Atuendo sugerimePrendas(QueMePongo queMePongo) {
 		return queMePongo.prendasSugeridasPara(this);
 	}
 }
