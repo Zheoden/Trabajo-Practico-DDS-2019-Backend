@@ -7,10 +7,8 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import modelo.ClasesUtilsPrendas;
 import modelo.Guardarropas;
 import modelo.Prenda;
-import modelo.Tipo;
 import modelo.Usuario;
 
 public class PrendasTest {
@@ -27,12 +25,26 @@ public class PrendasTest {
 		Assert.assertEquals(pepe.getClass(), Usuario.class);
 	}
 */
+	
+//Duda con respecto a por qué rompe. Me falta agregar algo más?
 	@Test
 	public void obtenerCategoriaDeUnTipo() {
 	
-		Prenda prenda = new Prenda(Tipo.Tipos.AROS, ClasesUtilsPrendas.Color.AMARILLO);
-		Assert.assertEquals(Tipo.getCategoria(prenda.getTipo()), Tipo.Categoria.ACCESORIO);
+		Prenda prenda = new Prenda(Prenda.Tipo.AROS, Prenda.Color.AMARILLO);		
+		Assert.assertEquals(prenda.getTipo(), Prenda.Categoria.ACCESORIO);
 		
 	}
 	
+	@Test
+	public void obtenerTipodeTela() {
+		
+		Prenda prenda = new Prenda(Prenda.Tipo.REMERACORTA,Prenda.Tela.ALGODON, Prenda.Color.ROSA);		
+		Assert.assertEquals(prenda.getTela(), Prenda.Tela.ALGODON);
+		
+		
+	}
+	
+	
+	
 }
+

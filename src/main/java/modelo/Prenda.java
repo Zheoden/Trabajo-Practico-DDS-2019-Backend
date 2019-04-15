@@ -117,5 +117,5 @@ public class Prenda {
 		this.tela = tela;
 	}
 
-	
+
 }
