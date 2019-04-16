@@ -31,7 +31,7 @@ public class PrendasTest {
 	public void obtenerCategoriaDeUnTipo() {
 	
 		Prenda prenda = new Prenda(Prenda.Tipo.AROS, Prenda.Color.AMARILLO);		
-		Assert.assertEquals(prenda.getTipo(), Prenda.Categoria.ACCESORIO);
+		Assert.assertEquals(prenda.Categoria(), Prenda.Categoria.ACCESORIO);
 		
 	}
 	
