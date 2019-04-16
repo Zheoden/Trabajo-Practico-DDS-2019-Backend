@@ -3,10 +3,10 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuardaRropas {
+public class Guardarropas {
 	private ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 
-	public GuardaRropas(ArrayList<Prenda> prendas) {
+	public Guardarropas(ArrayList<Prenda> prendas) {
 		this.setPrendas(prendas);
 	}
 
