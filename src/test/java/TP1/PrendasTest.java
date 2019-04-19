@@ -12,21 +12,7 @@ import modelo.Prenda;
 import modelo.Usuario;
 
 public class PrendasTest {
-/*
-	@Test
-	public void crearUsuarioCorrectamente() {
-		
-		Guardarropas guardaRopa1 = new Guardarropas(new ArrayList<Prenda>());
-		Guardarropas guardaRopa2 = new Guardarropas(new ArrayList<Prenda>());
-		ArrayList <Guardarropas> guardaRopas = new ArrayList <Guardarropas>();
-		guardaRopas.add(guardaRopa1);
-		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas);
-		Assert.assertEquals(pepe.getClass(), Usuario.class);
-	}
-*/
-	
-//Duda con respecto a por qué rompe. Me falta agregar algo más?
+
 	@Test
 	public void obtenerCategoriaDeUnTipo() {
 	
@@ -44,6 +30,23 @@ public class PrendasTest {
 		
 	}
 	
+	
+	@Test
+	public void obtenerColorPrimarioDeLaPrenda() {
+		
+		Prenda prenda = new Prenda(Prenda.Tipo.PANTALON,Prenda.Tela.JEAN, Prenda.Color.AZUL);		
+		Assert.assertEquals(prenda.getColorPrimario(), Prenda.Color.AZUL);
+		
+		
+	}
+	
+	@Test
+	public void obtenerColorSecundarioDeLaPrenda() {
+		
+		Prenda prenda = new Prenda(Prenda.Tipo.CAMISA,Prenda.Tela.LINO, Prenda.Color.ROSA, Prenda.Color.BLANCO);		
+		Assert.assertEquals(prenda.getColorSecundario(), Prenda.Color.BLANCO);
+				
+	}
 	
 	
 }

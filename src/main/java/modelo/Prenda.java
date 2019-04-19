@@ -32,13 +32,14 @@ public class Prenda {
 	Color colorPrimario;
 	Color colorSecundario;
 	
-	public Prenda(Tipo tipo, Tela tela, Color colorPrimario, Color colorSecundario) throws Exception {
+	public Prenda(Tipo tipo, Tela tela, Color colorPrimario, Color colorSecundario) {
 		this.setTipo(tipo);
+		/*
 		if(validarTela(tela)) {
 			this.setTela(tela);
 		}else {
 			throw new Exception("Esta combinacion de prenda y tela no es valida");
-		}
+		} */
 		this.setTela(tela);
 		this.setColorPrimario(colorPrimario);
 		this.setColorSecundario(colorSecundario);
