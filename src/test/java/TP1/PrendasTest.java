@@ -15,39 +15,19 @@ public class PrendasTest {
 
 	@Test
 	public void obtenerCategoriaDeUnTipo() {
-	
-		Prenda prenda = new Prenda(Prenda.Tipo.AROS, Prenda.Color.AMARILLO);		
-		Assert.assertEquals(prenda.Categoria(), Prenda.Categoria.ACCESORIO);
-		
-	}
-	
-	@Test
-	public void obtenerTipodeTela() {
-		
-		Prenda prenda = new Prenda(Prenda.Tipo.REMERACORTA,Prenda.Tela.ALGODON, Prenda.Color.ROSA);		
-		Assert.assertEquals(prenda.getTela(), Prenda.Tela.ALGODON);
-		
-		
-	}
-	
-	
-	@Test
-	public void obtenerColorPrimarioDeLaPrenda() {
-		
-		Prenda prenda = new Prenda(Prenda.Tipo.PANTALON,Prenda.Tela.JEAN, Prenda.Color.AZUL);		
-		Assert.assertEquals(prenda.getColorPrimario(), Prenda.Color.AZUL);
-		
-		
-	}
-	
-	@Test
-	public void obtenerColorSecundarioDeLaPrenda() {
-		
-		Prenda prenda = new Prenda(Prenda.Tipo.CAMISA,Prenda.Tela.LINO, Prenda.Color.ROSA, Prenda.Color.BLANCO);		
-		Assert.assertEquals(prenda.getColorSecundario(), Prenda.Color.BLANCO);
-				
-	}
-	
-	
-}
 
+		Prenda prenda = new Prenda(Prenda.Tipo.AROS, Prenda.Color.AMARILLO);
+		Assert.assertEquals(prenda.Categoria(), Prenda.Categoria.ACCESORIO);
+
+	}
+
+	@Test
+	public void constructorPrenda() {
+
+		Prenda prenda = new Prenda(Prenda.Tipo.REMERACORTA, Prenda.Tela.ALGODON, Prenda.Color.AZUL, Prenda.Color.ROJO);
+		Assert.assertEquals(prenda.getColorPrimario(), Prenda.Color.AZUL);
+		Assert.assertEquals(prenda.getColorSecundario(), Prenda.Color.ROJO);
+		Assert.assertEquals(prenda.getTela(), Prenda.Tela.ALGODON);
+
+	}
+}
