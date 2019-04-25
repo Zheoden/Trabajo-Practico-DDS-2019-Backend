@@ -6,8 +6,8 @@ public class Atuendo {
 	
 	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 	
-	public Atuendo (ArrayList<Prenda> ListaDePrendas) {
-		this.prendas = ListaDePrendas;
+	public Atuendo (ArrayList<Prenda> prendas) {
+		this.prendas = prendas;
 	}	
 	
 	public ArrayList<Prenda> getPrendas() {
