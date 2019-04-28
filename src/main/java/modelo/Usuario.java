@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 public class Usuario {
 	
-	ArrayList<GuardaRropas> guardaRopas = new ArrayList<GuardaRropas>();
+	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
 	
-	public Usuario(ArrayList <GuardaRopas> guardaRopas) {
+	public Usuario(ArrayList <Guardarropas> guardaRopas) {
 		this.setGuardaRopas(guardaRopas);
 	}
 
-	public ArrayList<GuardaRopas> getGuardaRopas() {
-		return guardaRopas;
+	public ArrayList<Guardarropas> getGuardaRopas() {
+		return guardarropas;
 	}
 
 
-	public void setGuardaRopas(ArrayList<GuardaRopas> guardaRopas) {
-		this.guardaRopas = guardaRopas;
+	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
+		this.guardarropas = guardaRopas;
 	}
 	
 	public Atuendo sugerimePrendas(QueMePongo queMePongo) {

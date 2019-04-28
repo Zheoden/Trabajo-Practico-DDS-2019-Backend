@@ -1,10 +1,16 @@
 package modelo;
 
-import modelo.Prenda;
+import java.util.ArrayList;
 
 public class Atuendo {
-    Prenda parteSuperior;
-    Prenda parteInferior;
-    Prenda calzado;
-    Prenda accesorio;
+	
+	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+	
+	public Atuendo (ArrayList<Prenda> prendas) {
+		this.prendas = prendas;
+	}	
+	
+	public ArrayList<Prenda> getPrendas() {
+		return prendas;
+	}
 }

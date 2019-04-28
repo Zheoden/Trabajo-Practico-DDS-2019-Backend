@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3ac9cee-d47a-46a9-a59a-0dda2c02c541" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/TP1/AtuendoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TP1/PrendasTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelo/Atuendo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelo/Atuendo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelo/GuardaRropas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelo/Guardarropas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelo/Prenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelo/Prenda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelo/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelo/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TP1/UsuarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TP1/UsuarioTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -13,7 +20,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/modelo/Prenda.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -32,9 +49,9 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="260" />
-    <option name="y" value="20" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1688" />
+    <option name="y" value="25" />
     <option name="width" value="1399" />
     <option name="height" value="1000" />
   </component>
@@ -113,9 +130,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="260" y="20" width="1399" height="1000" extended-state="0" />
+    <frame x="-1688" y="25" width="1696" height="1026" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26885736" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31601468" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -150,10 +168,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/GuardaRopas.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Usuario.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Prenda.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/modelo/GuardaRopas.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/modelo/QueMePongo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="102">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -164,17 +182,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/modelo/QueMePongo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/modelo/GuardaRopas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/modelo/Prenda.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -182,6 +193,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/modelo/Prenda.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
