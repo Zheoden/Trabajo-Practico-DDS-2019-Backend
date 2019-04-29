@@ -2,9 +2,13 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+
+import modelo.enums.*;
 
 public class Guardarropas {
-	private ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 
 	public Guardarropas(ArrayList<Prenda> prendas) {
 		this.setPrendas(prendas);
@@ -20,5 +24,17 @@ public class Guardarropas {
 
 	public ArrayList<Prenda> getPrendas() {
 		return this.prendas;
+	}
+	
+	public Prenda getRandomPrendaByType(Categoria categoria) {
+		Random rand = new Random();
+		List<Prenda> aux = this.prendas.stream().filter( e -> e.isCategoria(categoria) ).collect(Collectors.toList());
+		int n = rand.nextInt(aux.size());
+		
+		return aux.get(n);
+	}
+	
+	public boolean existPrendaByType(Categoria categoria) {
+		return this.prendas.stream().anyMatch(e -> e.isCategoria(categoria));
 	}
 }

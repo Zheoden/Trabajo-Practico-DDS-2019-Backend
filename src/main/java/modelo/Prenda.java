@@ -1,31 +1,10 @@
 package modelo;
 
+import modelo.enums.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Prenda {
-	
-	public enum Tela{
-		TWEED, GABARDINA, LINO, FRANELA, CREPE, ENCAJE, OXFORD, CUERO, JEAN, SEDA, LYCRA, POLAR,
-		TERCIOPELO, ALGODON
-	}
-
-	public enum Tipo{
-		REMERACORTA, REMERALARGA, BUZO, SWEATER, CAMPERA, CAMISA, SACO,
-		SHORTS, JOGGINGS, JEANS, BERMUDAS, PANTALON,
-		ZAPATILLAS, ZAPATOS, ZAPATOSDETACON, OJOTAS,
-		BUFANDA, ANTEOJOS, GORRA, COLLAR, LENTES, AROS,
-		VESTIDO, SMOKING, TRAJE
-	}
-		
-	public enum Categoria{
-		PARTESUPERIOR, PARTEINFERIOR, CALZADO, ACCESORIO, NULL
-	}
-	
-	public enum Color{
-		BLANCO, NEGRO, AZUL, ROJO, VERDE, AMARILLO, VIOLETA, ROSA, SALMON, MARRON, GRIS, NARANJA, 
-		CELESTE, BORDO, BEIGE, CAQUI, CARMESI, TURQUESA, NULL
-	}
 	
 	Tipo tipo;
 	Tela tela;
@@ -60,6 +39,7 @@ public class Prenda {
 		//this.prenda
 		return false;
 	}
+	
 	public Categoria Categoria() {
 		ArrayList<Tipo> partesSuperiores = new ArrayList<Tipo>(Arrays.asList(Tipo.REMERACORTA, Tipo.REMERALARGA,
 				Tipo.BUZO, Tipo.SWEATER, Tipo.CAMPERA, Tipo.CAMISA, Tipo.SACO));
@@ -118,5 +98,8 @@ public class Prenda {
 		this.tela = tela;
 	}
 
+	public boolean isCategoria(Categoria categoria) {
+		return categoria == this.Categoria();
+	}
 
 }

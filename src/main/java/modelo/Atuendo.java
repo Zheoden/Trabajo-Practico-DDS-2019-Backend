@@ -13,4 +13,8 @@ public class Atuendo {
 	public ArrayList<Prenda> getPrendas() {
 		return prendas;
 	}
+	
+	public void addPrenda(Prenda unaPrenda) {
+		this.prendas.add(unaPrenda);
+	}
 }
