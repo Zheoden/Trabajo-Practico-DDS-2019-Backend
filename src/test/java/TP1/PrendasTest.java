@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import modelo.enums.*;
 import modelo.Guardarropas;
 import modelo.Prenda;
 import modelo.Usuario;
@@ -15,19 +16,16 @@ public class PrendasTest {
 
 	@Test
 	public void obtenerCategoriaDeUnTipo() {
-
-		Prenda prenda = new Prenda(Prenda.Tipo.AROS, Prenda.Color.AMARILLO);
-		Assert.assertEquals(prenda.Categoria(), Prenda.Categoria.ACCESORIO);
-
+		Prenda prenda = new Prenda(Tipo.AROS, Color.AMARILLO);
+		Assert.assertEquals(prenda.Categoria(), Categoria.ACCESORIO);
 	}
 
 	@Test
 	public void constructorPrenda() {
-
-		Prenda prenda = new Prenda(Prenda.Tipo.REMERACORTA, Prenda.Tela.ALGODON, Prenda.Color.AZUL, Prenda.Color.ROJO);
-		Assert.assertEquals(prenda.getColorPrimario(), Prenda.Color.AZUL);
-		Assert.assertEquals(prenda.getColorSecundario(), Prenda.Color.ROJO);
-		Assert.assertEquals(prenda.getTela(), Prenda.Tela.ALGODON);
+		Prenda prenda = new Prenda(Tipo.REMERACORTA, Tela.ALGODON, Color.AZUL, Color.ROJO);
+		Assert.assertEquals(prenda.getColorPrimario(), Color.AZUL);
+		Assert.assertEquals(prenda.getColorSecundario(), Color.ROJO);
+		Assert.assertEquals(prenda.getTela(), Tela.ALGODON);
 
 	}
 }
