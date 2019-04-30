@@ -26,7 +26,7 @@ public class Guardarropas {
 		return this.prendas;
 	}
 	
-	public Prenda getRandomPrendaByType(Categoria categoria) {
+	public Prenda getRandomPrendaByCategoria(Categoria categoria) {
 		Random rand = new Random();
 		List<Prenda> aux = this.prendas.stream().filter( e -> e.isCategoria(categoria) ).collect(Collectors.toList());
 		int n = rand.nextInt(aux.size());
@@ -34,7 +34,7 @@ public class Guardarropas {
 		return aux.get(n);
 	}
 	
-	public boolean existPrendaByType(Categoria categoria) {
+	public boolean existPrendaByCategoria(Categoria categoria) {
 		return this.prendas.stream().anyMatch(e -> e.isCategoria(categoria));
 	}
 }

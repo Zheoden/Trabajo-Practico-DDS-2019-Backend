@@ -21,20 +21,20 @@ public class GuardarropasTest {
 		prendas.add(prenda2);
 		Guardarropas guardaRopa = new Guardarropas(prendas);
 		
-		Assert.assertEquals(guardaRopa.getRandomPrendaByType(Categoria.PARTESUPERIOR), prenda);
-		Assert.assertEquals(guardaRopa.getRandomPrendaByType(Categoria.PARTEINFERIOR), prenda1);
-		Assert.assertEquals(guardaRopa.getRandomPrendaByType(Categoria.CALZADO), prenda2);
+		Assert.assertEquals(guardaRopa.getRandomPrendaByCategoria(Categoria.PARTESUPERIOR), prenda);
+		Assert.assertEquals(guardaRopa.getRandomPrendaByCategoria(Categoria.PARTEINFERIOR), prenda1);
+		Assert.assertEquals(guardaRopa.getRandomPrendaByCategoria(Categoria.CALZADO), prenda2);
 	}
 	
 	@Test
-	public void existPrendaByTypeFalse() {
+	public void existPrendaByCategoriaFalse() {
 		ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 		Guardarropas guardaRopa = new Guardarropas(prendas);
-		Assert.assertEquals(guardaRopa.existPrendaByType(Categoria.PARTESUPERIOR), false);
+		Assert.assertEquals(guardaRopa.existPrendaByCategoria(Categoria.PARTESUPERIOR), false);
 	}
 	
 	@Test
-	public void existPrendaByTypeTrue() {
+	public void existPrendaByCategoriaTrue() {
 		Prenda prenda = new Prenda(Tipo.REMERACORTA, Tela.ALGODON, Color.AZUL);
 		Prenda prenda1 = new Prenda(Tipo.PANTALON, Tela.ALGODON, Color.AZUL);
 		Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Tela.ALGODON, Color.AZUL);
@@ -44,9 +44,9 @@ public class GuardarropasTest {
 		prendas.add(prenda2);
 		Guardarropas guardaRopa = new Guardarropas(prendas);
 		
-		Assert.assertEquals(guardaRopa.existPrendaByType(Categoria.PARTESUPERIOR), true);
-		Assert.assertEquals(guardaRopa.existPrendaByType(Categoria.PARTEINFERIOR), true);
-		Assert.assertEquals(guardaRopa.existPrendaByType(Categoria.CALZADO), true);
+		Assert.assertEquals(guardaRopa.existPrendaByCategoria(Categoria.PARTESUPERIOR), true);
+		Assert.assertEquals(guardaRopa.existPrendaByCategoria(Categoria.PARTEINFERIOR), true);
+		Assert.assertEquals(guardaRopa.existPrendaByCategoria(Categoria.CALZADO), true);
 	}
 
 }
