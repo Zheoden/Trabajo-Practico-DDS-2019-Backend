@@ -15,13 +15,19 @@ public class AtuendoTest {
 
 	@Test
 	public void atuendoCreadoCorrectamente() {
+		Atuendo atuendo = new Atuendo(new ArrayList<Prenda>());
+		Assert.assertEquals(atuendo.getClass(), Atuendo.class);
+	}
+	
+	
+	@Test
+	public void agregarPrendasAlAtuendo() {
 		Prenda prenda1 = new Prenda(Tipo.AROS, Color.AMARILLO);
 		Prenda prenda2 = new Prenda(Tipo.REMERACORTA,Tela.ALGODON, Color.ROSA);		
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		prendas.add(prenda1);
 		prendas.add(prenda2);
 		Atuendo atuendo = new Atuendo(prendas);
-		Assert.assertEquals(atuendo.getClass(), Atuendo.class);
-		
+		Assert.assertEquals(atuendo.getPrendas(), prendas);
 	}
 }
