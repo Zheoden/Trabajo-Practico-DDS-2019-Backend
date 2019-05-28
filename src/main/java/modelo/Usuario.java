@@ -11,7 +11,6 @@ public class Usuario {
 	
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
-	
 	public Usuario(ArrayList <Guardarropas> guardaRopas) {
 		this.setGuardaRopas(guardaRopas);
 	}
