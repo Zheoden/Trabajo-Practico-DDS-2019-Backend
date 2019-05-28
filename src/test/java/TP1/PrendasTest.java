@@ -1,16 +1,10 @@
 package TP1;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 import modelo.enums.*;
-import modelo.Guardarropas;
 import modelo.Prenda;
-import modelo.Usuario;
 
 public class PrendasTest {
 

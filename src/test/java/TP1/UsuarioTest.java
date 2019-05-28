@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.Before;
 
 import modelo.Atuendo;
 import modelo.Guardarropas;

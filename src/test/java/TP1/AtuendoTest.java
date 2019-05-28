@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import modelo.Prenda;
-import modelo.Usuario;
 import modelo.Atuendo;
 import modelo.enums.*;
 
