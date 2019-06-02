@@ -16,7 +16,7 @@ public class Usuario {
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
 	public Usuario(ArrayList <Guardarropas> guardaRopas) {
-		get("/user/create", new Route() {
+		get("/user", new Route() {
 		@Override
 		public Object handle(Request request, Response response) {
 		// process requesta
