@@ -12,22 +12,23 @@ public class Prenda {
 	Color colorSecundario;
 	
 	public Prenda(Tipo tipo, Tela tela, Color colorPrimario, Color colorSecundario) {
-		this.setTipo(tipo);
-		/* TODO: descomentar una vez que se realice la función de validez prenda con la tela (ejemplo, prohibir remera de cuero)
+		this(tipo, tela, colorPrimario);
+		if (colorPrimario != colorSecundario) {
+			this.setColorSecundario(colorSecundario);
+		} else {
+			System.out.print("Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
+		}
+		/* TODO: descomentar una vez que se realice la funciï¿½n de validez prenda con la tela (ejemplo, prohibir remera de cuero)
 		if(validarTela(tela)) {
 			this.setTela(tela);
 		}else {
 			throw new Exception("Esta combinacion de prenda y tela no es valida");
 		} */
-		this.setTela(tela);
-		this.setColorPrimario(colorPrimario);
-		this.setColorSecundario(colorSecundario);
 	}
 	
 	public Prenda(Tipo tipo, Tela tela, Color colorPrimario) {
-		this.setTipo(tipo);
+		this(tipo, colorPrimario);
 		this.setTela(tela);
-		this.setColorPrimario(colorPrimario);
 	}
 
 	public Prenda(Tipo tipo, Color colorPrimario) {
