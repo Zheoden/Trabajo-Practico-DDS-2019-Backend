@@ -9,9 +9,12 @@ import modelo.Prenda;
 public class PrendasTest {
 
 	@Test
-	public void obtenerCategoriaDeUnTipo() {
-		Prenda prenda = new Prenda(Tipo.AROS, Color.AMARILLO);
-		Assert.assertEquals(prenda.Categoria(), Categoria.ACCESORIO);
+	public void validarPrendasConMismoColorPrimarioYSecundario() {
+		Prenda prenda = new Prenda(Tipo.PANTALON, Tela.JEAN, Color.AMARILLO, Color.AMARILLO);
+		Assert.assertEquals(prenda.getColorPrimario(), Color.AMARILLO);
+		Assert.assertEquals(prenda.getTela(), Tela.JEAN);
+		Assert.assertEquals(prenda.Categoria(), Categoria.PARTEINFERIOR);
+		Assert.assertEquals(prenda.getColorSecundario(), null);
 	}
 
 	@Test
@@ -20,6 +23,6 @@ public class PrendasTest {
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AZUL);
 		Assert.assertEquals(prenda.getColorSecundario(), Color.ROJO);
 		Assert.assertEquals(prenda.getTela(), Tela.ALGODON);
-
+		Assert.assertEquals(prenda.Categoria(), Categoria.PARTESUPERIOR);
 	}
 }
