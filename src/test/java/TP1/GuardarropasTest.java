@@ -48,5 +48,18 @@ public class GuardarropasTest {
 		Assert.assertEquals(guardaRopa.existPrendaByCategoria(Categoria.PARTEINFERIOR), true);
 		Assert.assertEquals(guardaRopa.existPrendaByCategoria(Categoria.CALZADO), true);
 	}
+	
+	@Test
+	public void agregarPrendaConImagenAlGuardarropa() {
+		
+		ArrayList <Prenda> prendas = new ArrayList <Prenda>();
+		Imagen objetoImagen = new Imagen();
+		Prenda prenda = new Prenda(Tipo.ZAPATILLAS, Tela.CUERO, Color.ROJO, Color.BLANCO);
+		prenda.setDireccionImagen("ImgPrendas/zapas.jpg");
+		prendas.add(prenda);
+		Guardarropas unGuardarropa = new Guardarropas(prendas);	
+		objetoImagen.normalizarImagen(unGuardarropa.getPrendas().get(0).getDireccionImagen());
+		Assert.assertEquals(objetoImagen.getImagenRenderizada().getHeight(), 800);
+	}
 
 }

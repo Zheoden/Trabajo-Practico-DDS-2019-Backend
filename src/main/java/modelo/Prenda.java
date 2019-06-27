@@ -1,11 +1,16 @@
 package modelo;
 
-import modelo.enums.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import modelo.enums.Categoria;
+import modelo.enums.Color;
+import modelo.enums.Tela;
+import modelo.enums.Tipo;
+
 public class Prenda {
 	
+	String direccionImagen;
 	Tipo tipo;
 	Tela tela;
 	Color colorPrimario;
@@ -102,5 +107,12 @@ public class Prenda {
 	public boolean isCategoria(Categoria categoria) {
 		return categoria == this.Categoria();
 	}
+	
+	public String getDireccionImagen() {
+		return direccionImagen;
+	}
 
+	public void setDireccionImagen(String direccionImagen) {
+		this.direccionImagen = direccionImagen;
+	}
 }
