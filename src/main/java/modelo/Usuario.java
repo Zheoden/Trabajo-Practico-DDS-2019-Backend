@@ -9,7 +9,12 @@ import modelo.enums.*;
 
 public class Usuario {
 	
+	Suscripcion suscripcion;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
+	
+	public boolean listaDeGuardarropasValida(ArrayList<Guardarropas> guardaRopas) {
+		return guardaRopas.stream().allMatch(unGuardarropa -> unGuardarropa.tamanioGuardarropas() <= suscripcion.cantidadPrendasPermitidas());
+	}
 	
 	public Usuario(ArrayList <Guardarropas> guardaRopas) {
 		this.setGuardaRopas(guardaRopas);
@@ -20,7 +25,12 @@ public class Usuario {
 	}
 
 	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
-		this.guardarropas = guardaRopas;
+		if(this.listaDeGuardarropasValida(guardaRopas)) {
+		this.guardarropas = guardaRopas; 
+		}
+		else {
+			this.guardarropas = null;
+		}
 	}
 	
 	public boolean verificarGuardarropas(Categoria categoria) {
