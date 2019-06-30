@@ -47,29 +47,7 @@ public class Prenda {
 	}
 	
 	public Categoria Categoria() {
-		ArrayList<Tipo> partesSuperiores = new ArrayList<Tipo>(Arrays.asList(Tipo.REMERACORTA, Tipo.REMERALARGA,
-				Tipo.BUZO, Tipo.SWEATER, Tipo.CAMPERA, Tipo.CAMISA, Tipo.SACO));
-		ArrayList<Tipo> partesInferiores = new ArrayList<Tipo>(Arrays.asList(Tipo.SHORTS, Tipo.JOGGINGS,
-				Tipo.JEANS, Tipo.BERMUDAS, Tipo.PANTALON));
-		ArrayList<Tipo> partesCalzados = new ArrayList<Tipo>(Arrays.asList(Tipo.ZAPATILLAS, Tipo.ZAPATOS,
-				Tipo.ZAPATOSDETACON, Tipo.OJOTAS));
-		ArrayList<Tipo> partesAccesorios = new ArrayList<Tipo>(Arrays.asList(Tipo.ANTEOJOS, Tipo.BUFANDA,
-				Tipo.GORRA, Tipo.COLLAR, Tipo.LENTES, Tipo.AROS));
-			
-		if(partesSuperiores.contains(this.tipo)) {//elemento en lista es de PARTE SUPERIOR){
-			return Categoria.PARTESUPERIOR;
-		}
-		if(partesInferiores.contains(this.tipo)){//elemento en lista es de PARTE SUPERIOR){
-			return Categoria.PARTEINFERIOR;
-		}
-		if(partesCalzados.contains(this.tipo)) {//elemento en lista es de PARTE SUPERIOR){
-			return Categoria.CALZADO;
-		}
-		if(partesAccesorios.contains(this.tipo)) {//elemento en lista es de PARTE SUPERIOR){
-			return Categoria.ACCESORIO;
-		}
-		
-		return Categoria.NULL;
+		return tipo.categoria();
 	}
 
 	public Tipo getTipo() {
