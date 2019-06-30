@@ -9,7 +9,7 @@ public enum TipoSuperior implements TipoPrenda {
 	BUZO {
 		@Override
 		public boolean esMaterialValido(Material material) {
-			return Arrays.asList(Material.CUERO, Material.SEDA, Material.JEAN).contains(material);
+			return !Arrays.asList(Material.CUERO, Material.SEDA, Material.JEAN, Material.GABARDINA, Material.TERCIOPELO).contains(material);
 		}
 
 		@Override
@@ -20,7 +20,7 @@ public enum TipoSuperior implements TipoPrenda {
 	CAMISA {
 		@Override
 		public boolean esMaterialValido(Material material) {
-			return true;
+			return !Arrays.asList(Material.CUERO, Material.TERCIOPELO, Material.POLAR, Material.LYCRA).contains(material);
 		}
 
 		@Override
@@ -30,11 +30,6 @@ public enum TipoSuperior implements TipoPrenda {
 	},
 	CAMPERA {
 		@Override
-		public boolean esMaterialValido(Material material) {
-			return true;
-		}
-
-		@Override
 		public int nivelDeCapa() {
 			return 5;
 		}
@@ -42,7 +37,7 @@ public enum TipoSuperior implements TipoPrenda {
 	REMERACORTA {
 		@Override
 		public boolean esMaterialValido(Material material) {
-			return true;
+			return !Arrays.asList(Material.CUERO, Material.TERCIOPELO, Material.JEAN).contains(material);
 		}
 
 		@Override
@@ -53,13 +48,13 @@ public enum TipoSuperior implements TipoPrenda {
 	REMERALARGA {
 		@Override
 		public boolean esMaterialValido(Material material) {
-			return true;
+			return !Arrays.asList(Material.CUERO, Material.TERCIOPELO, Material.JEAN).contains(material);
 		}		
 	},
 	SWEATER {
 		@Override
 		public boolean esMaterialValido(Material material) {
-			return true;
+			return !Arrays.asList(Material.CUERO, Material.SEDA, Material.JEAN, Material.GABARDINA, Material.TERCIOPELO).contains(material);
 		}
 
 		@Override
