@@ -1,17 +1,27 @@
 package modelo.clases;
 
+import static spark.Spark.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-
-import modelo.enums.Categoria;
+import modelo.enums.*;
+import spark.Request;
+import spark.Response;
+import spark.Route;
 
 public class Usuario {
 	
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
 	public Usuario(ArrayList <Guardarropas> guardaRopas) {
+		get("/user", new Route() {
+		@Override
+		public Object handle(Request request, Response response) {
+		// process requesta
+			return "{users:[Atuendo: Pantalon,Remera,Zapatillas]}";
+		}
+		});
 		this.setGuardaRopas(guardaRopas);
 	}
 	
