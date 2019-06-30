@@ -1,34 +1,39 @@
 package modelo.enums.comportamiento;
 
-import java.util.List;
-
+import java.util.Arrays;
 import modelo.enums.Categoria;
 import modelo.enums.Material;
 import modelo.interfaces.TipoPrenda;
 
 public enum TipoCalzado implements TipoPrenda {
-	ZAPATILLAS, ZAPATOS, ZAPATOSDETACON, OJOTAS,
+	ZAPATILLAS {
+		@Override
+		public boolean esMaterialValido(Material material) {
+			return !Arrays.asList(Material.GABARDINA, Material.LYCRA, Material.OXFORD, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
+		}
+	},
+	ZAPATOS {
+	},
+	ZAPATOSDETACON {
+	},
+	OJOTAS {
+		@Override
+		public boolean esMaterialValido(Material material) {
+			return !Arrays.asList(Material.ALGODON, Material.GABARDINA, Material.JEAN, Material.LINO, Material.LYCRA, Material.OXFORD, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
+		}
+	};
 
 	public Categoria categoria() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Material> materialesValidos() {
-		// TODO Auto-generated method stub
-		return null;
+		return Categoria.CALZADO;
 	}
 
 	@Override
 	public int nivelDeCapa() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int nivelDeAbrigo() {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean esMaterialValido(Material material) {
+		return !Arrays.asList(Material.GABARDINA, Material.JEAN, Material.LINO, Material.LYCRA, Material.OXFORD, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
 	}
 }
