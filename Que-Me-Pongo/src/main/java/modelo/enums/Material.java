@@ -1,6 +1,6 @@
 package modelo.enums;
 
-public enum Tela{
+public enum Material {
 	TWEED, GABARDINA, LINO, FRANELA, CREPE, ENCAJE, OXFORD, CUERO, JEAN, SEDA, LYCRA, POLAR,
 	TERCIOPELO, ALGODON;
 }

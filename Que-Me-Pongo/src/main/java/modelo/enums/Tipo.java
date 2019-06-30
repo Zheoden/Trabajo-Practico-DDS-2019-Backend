@@ -5,13 +5,14 @@ public enum Tipo{
 		public int nivelAbrigo() {
 			return 1;
 		}
-	}, REMERALARGA{
-		
+	}, 
+	
+	REMERALARGA{
 		public int nivelAbrigo() {
 			return 1;
 		}
 		
-		public boolean tipoValido(Tela Tela) {
+		public boolean tipoValido(Material Material) {
 			return true;
 		}
 		
@@ -19,7 +20,8 @@ public enum Tipo{
 			return Categoria.PARTESUPERIOR;
 		}
 		
-	}, BUZO, SWEATER, CAMPERA, CAMISA, SACO,
+	}, 
+	BUZO, SWEATER, CAMPERA, CAMISA, SACO,
 	SHORTS, JOGGINGS, JEANS, BERMUDAS, PANTALON,
 	ZAPATILLAS, ZAPATOS, ZAPATOSDETACON, OJOTAS,
 	BUFANDA, ANTEOJOS, GORRA, COLLAR, LENTES, AROS,

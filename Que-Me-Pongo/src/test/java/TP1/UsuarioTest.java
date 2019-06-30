@@ -5,23 +5,23 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import modelo.Atuendo;
-import modelo.Guardarropas;
-import modelo.Prenda;
-import modelo.Usuario;
+import modelo.clases.Atuendo;
+import modelo.clases.Guardarropas;
+import modelo.clases.Prenda;
+import modelo.clases.Usuario;
 import modelo.enums.Categoria;
 import modelo.enums.Color;
-import modelo.enums.Tela;
+import modelo.enums.Material;
 import modelo.enums.Tipo;
 
 public class UsuarioTest {
 	
-	Prenda prenda = new Prenda(Tipo.REMERACORTA, Tela.ALGODON, Color.AZUL);
-	Prenda prenda1 = new Prenda(Tipo.PANTALON, Tela.ALGODON, Color.AZUL);
-	Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Tela.ALGODON, Color.AZUL);
-	Prenda prenda3 = new Prenda(Tipo.REMERACORTA, Tela.ALGODON, Color.ROJO);
-	Prenda prenda4 = new Prenda(Tipo.PANTALON, Tela.ALGODON, Color.ROJO);
-	Prenda prenda5 = new Prenda(Tipo.ZAPATILLAS, Tela.ALGODON, Color.ROJO);
+	Prenda prenda = new Prenda(Tipo.REMERACORTA, Material.ALGODON, Color.AZUL);
+	Prenda prenda1 = new Prenda(Tipo.PANTALON, Material.ALGODON, Color.AZUL);
+	Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Material.ALGODON, Color.AZUL);
+	Prenda prenda3 = new Prenda(Tipo.REMERACORTA, Material.ALGODON, Color.ROJO);
+	Prenda prenda4 = new Prenda(Tipo.PANTALON, Material.ALGODON, Color.ROJO);
+	Prenda prenda5 = new Prenda(Tipo.ZAPATILLAS, Material.ALGODON, Color.ROJO);
 	ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 	ArrayList <Prenda> prendas1 = new ArrayList <Prenda>();
 

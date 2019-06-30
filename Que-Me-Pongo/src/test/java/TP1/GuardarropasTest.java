@@ -2,7 +2,7 @@ package TP1;
 
 import java.util.ArrayList;
 
-import modelo.*;
+import modelo.clases.*;
 import modelo.enums.*;
 
 import org.junit.Assert;
@@ -12,9 +12,9 @@ public class GuardarropasTest {
 	
 	@Test
 	public void getPrenda() {
-		Prenda prenda = new Prenda(Tipo.REMERACORTA, Tela.ALGODON, Color.AZUL);
-		Prenda prenda1 = new Prenda(Tipo.PANTALON, Tela.ALGODON, Color.AZUL);
-		Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Tela.ALGODON, Color.AZUL);
+		Prenda prenda = new Prenda(Tipo.REMERACORTA, Material.ALGODON, Color.AZUL);
+		Prenda prenda1 = new Prenda(Tipo.PANTALON, Material.ALGODON, Color.AZUL);
+		Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Material.ALGODON, Color.AZUL);
 		ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 		prendas.add(prenda);
 		prendas.add(prenda1);
@@ -35,9 +35,9 @@ public class GuardarropasTest {
 	
 	@Test
 	public void existPrendaByCategoriaTrue() {
-		Prenda prenda = new Prenda(Tipo.REMERACORTA, Tela.ALGODON, Color.AZUL);
-		Prenda prenda1 = new Prenda(Tipo.PANTALON, Tela.ALGODON, Color.AZUL);
-		Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Tela.ALGODON, Color.AZUL);
+		Prenda prenda = new Prenda(Tipo.REMERACORTA, Material.ALGODON, Color.AZUL);
+		Prenda prenda1 = new Prenda(Tipo.PANTALON, Material.ALGODON, Color.AZUL);
+		Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Material.ALGODON, Color.AZUL);
 		ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 		prendas.add(prenda);
 		prendas.add(prenda1);
@@ -54,7 +54,7 @@ public class GuardarropasTest {
 		
 		ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 		Imagen objetoImagen = new Imagen();
-		Prenda prenda = new Prenda(Tipo.ZAPATILLAS, Tela.CUERO, Color.ROJO, Color.BLANCO);
+		Prenda prenda = new Prenda(Tipo.ZAPATILLAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 		prenda.setDireccionImagen("ImgPrendas/zapas.jpg");
 		prendas.add(prenda);
 		Guardarropas unGuardarropa = new Guardarropas(prendas);	

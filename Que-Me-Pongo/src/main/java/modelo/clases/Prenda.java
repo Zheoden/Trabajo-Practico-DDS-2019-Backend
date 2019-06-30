@@ -1,23 +1,23 @@
-package modelo;
+package modelo.clases;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import modelo.enums.Categoria;
 import modelo.enums.Color;
-import modelo.enums.Tela;
+import modelo.enums.Material;
 import modelo.enums.Tipo;
 
 public class Prenda {
 	
 	String direccionImagen;
 	Tipo tipo;
-	Tela tela;
+	Material material;
 	Color colorPrimario;
 	Color colorSecundario;
 	
-	public Prenda(Tipo tipo, Tela tela, Color colorPrimario, Color colorSecundario) {
-		this(tipo, tela, colorPrimario);
+	public Prenda(Tipo tipo, Material material, Color colorPrimario, Color colorSecundario) {
+		this(tipo, material, colorPrimario);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
@@ -31,9 +31,9 @@ public class Prenda {
 		} */
 	}
 	
-	public Prenda(Tipo tipo, Tela tela, Color colorPrimario) {
+	public Prenda(Tipo tipo, Material material, Color colorPrimario) {
 		this(tipo, colorPrimario);
-		this.setTela(tela);
+		this.setTela(material);
 	}
 
 	public Prenda(Tipo tipo, Color colorPrimario) {
@@ -41,7 +41,7 @@ public class Prenda {
 		this.setColorPrimario(colorPrimario);
 	}
 	
-	public boolean validarTela(Tela tela) {
+	public boolean validarTela(Material material) {
 		//this.prenda
 		return false;
 	}
@@ -74,12 +74,12 @@ public class Prenda {
 		this.colorSecundario = colorSecundario;
 	}
 
-	public Tela getTela() {
-		return tela;
+	public Material getTela() {
+		return material;
 	}
 
-	public void setTela(Tela tela) {
-		this.tela = tela;
+	public void setTela(Material material) {
+		this.material = material;
 	}
 
 	public boolean isCategoria(Categoria categoria) {
