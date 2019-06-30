@@ -16,7 +16,7 @@ public class Usuario {
 		return guardaRopas.stream().allMatch(unGuardarropa -> unGuardarropa.tamanioGuardarropas() <= suscripcion.cantidadPrendasPermitidas());
 	}
 	
-	public Usuario(ArrayList <Guardarropas> guardaRopas) {
+	public Usuario(ArrayList <Guardarropas> guardaRopas) throws Exception  {
 		this.setGuardaRopas(guardaRopas);
 	}
 
@@ -24,12 +24,12 @@ public class Usuario {
 		return guardarropas;
 	}
 
-	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
+	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) throws Exception {
 		if(this.listaDeGuardarropasValida(guardaRopas)) {
 		this.guardarropas = guardaRopas; 
 		}
 		else {
-			this.guardarropas = null;
+			throw new Exception("La lista ingresada no cumple con los requisitos permitidos por la Suscripcion del usuario");
 		}
 	}
 	
