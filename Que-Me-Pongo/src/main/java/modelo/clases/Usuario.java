@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import modelo.enums.*;
+import modelo.enums.Categoria;
 
 public class Usuario {
 	
@@ -14,14 +14,7 @@ public class Usuario {
 	public Usuario(ArrayList <Guardarropas> guardaRopas) {
 		this.setGuardaRopas(guardaRopas);
 	}
-
-	public ArrayList<Guardarropas> getGuardaRopas() {
-		return guardarropas;
-	}
-
-	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
-		this.guardarropas = guardaRopas;
-	}
+	
 	
 	public boolean verificarGuardarropas(Categoria categoria) {
 		return this.guardarropas.stream().anyMatch(e -> e.existPrendaByCategoria(categoria) );
@@ -51,5 +44,13 @@ public class Usuario {
 	
 	public Prenda getRandomPrendaByType(Categoria categoria) {
 		return this.getGuardarropasConPrenda(categoria).getRandomPrendaByCategoria(categoria);
+	}
+	
+	public ArrayList<Guardarropas> getGuardaRopas() {
+		return guardarropas;
+	}
+
+	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
+		this.guardarropas = guardaRopas;
 	}
 }

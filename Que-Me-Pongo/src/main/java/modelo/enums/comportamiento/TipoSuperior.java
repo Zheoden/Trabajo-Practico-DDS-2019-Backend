@@ -65,7 +65,7 @@ public enum TipoSuperior implements TipoPrenda {
 
 	public Categoria categoria() {
 		// TODO Auto-generated method stub
-		return Categoria.PARTESUPERIOR;
+		return Categoria.PARTE_SUPERIOR;
 	}
 
 	@Override

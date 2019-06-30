@@ -39,7 +39,7 @@ public enum TipoInferior implements TipoPrenda {
 	};
 
 	public Categoria categoria() {
-		return Categoria.PARTEINFERIOR;
+		return Categoria.PARTE_INFERIOR;
 	}
 
 	@Override

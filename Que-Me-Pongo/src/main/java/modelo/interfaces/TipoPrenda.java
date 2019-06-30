@@ -14,8 +14,4 @@ public interface TipoPrenda {
 	//SI TIENE 0 SE SUPERPONE CON CUALQUIERA
 	//MAXIMO NIVEL DE CAPA: 5
 	int nivelDeCapa();
-
-	default Boolean sePuedePonerJuntoA(TipoPrenda tipoPrenda) {
-		return true;
-	}
 }

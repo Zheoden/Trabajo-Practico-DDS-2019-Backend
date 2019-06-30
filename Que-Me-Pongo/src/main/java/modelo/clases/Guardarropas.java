@@ -3,6 +3,7 @@ package modelo.clases;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -14,18 +15,24 @@ public class Guardarropas {
 	public Guardarropas(ArrayList<Prenda> prendas) {
 		this.setPrendas(prendas);
 	}
-
-	public void addPrenda(Prenda unaPrenda) {
-		this.prendas.add(unaPrenda);
+	
+	public Set<Prenda> obtenerPrendasSuperiores() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_SUPERIOR).collect(Collectors.toSet());
 	}
 
-	public void setPrendas(ArrayList<Prenda> prendasNuevas) {
-		this.prendas = prendasNuevas;
+	public Set<Prenda> obtenerPrendasInferiores() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_INFERIOR).collect(Collectors.toSet());
 	}
 
-	public ArrayList<Prenda> getPrendas() {
-		return this.prendas;
+	public Set<Prenda> obtenerCalzados() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.CALZADO).collect(Collectors.toSet());
 	}
+
+	public Set<Prenda> obtenerAccesorios() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.ACCESORIO).collect(Collectors.toSet());
+	}
+	
+	
 	
 	public Prenda getRandomPrendaByCategoria(Categoria categoria) {
 		Random rand = new Random();
@@ -37,6 +44,18 @@ public class Guardarropas {
 	
 	public boolean existPrendaByCategoria(Categoria categoria) {
 		return this.prendas.stream().anyMatch(e -> e.isCategoria(categoria));
+	}
+	
+	public void addPrenda(Prenda unaPrenda) {
+		this.prendas.add(unaPrenda);
+	}
+
+	public void setPrendas(ArrayList<Prenda> prendasNuevas) {
+		this.prendas = prendasNuevas;
+	}
+
+	public ArrayList<Prenda> getPrendas() {
+		return this.prendas;
 	}
 	
 }

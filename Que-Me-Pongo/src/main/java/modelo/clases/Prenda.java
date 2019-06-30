@@ -1,61 +1,63 @@
 package modelo.clases;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import modelo.enums.Categoria;
 import modelo.enums.Color;
 import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoSuperior;
+import modelo.interfaces.TipoPrenda;
 
 public class Prenda {
 	
 	String direccionImagen;
-	TipoSuperior tipoSuperior;
+	TipoPrenda tipo;
 	Material material;
 	Color colorPrimario;
 	Color colorSecundario;
 	
-	public Prenda(TipoSuperior tipoSuperior, Material material, Color colorPrimario, Color colorSecundario) {
-		this(tipoSuperior, material, colorPrimario);
+	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
+		this(tipo, material, colorPrimario);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
 			System.out.print("Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
 		}
-		/* TODO: descomentar una vez que se realice la funci�n de validez prenda con la tela (ejemplo, prohibir remera de cuero)
-		if(validarTela(tela)) {
-			this.setTela(tela);
-		}else {
-			throw new Exception("Esta combinacion de prenda y tela no es valida");
-		} */
 	}
 	
-	public Prenda(TipoSuperior tipoSuperior, Material material, Color colorPrimario) {
-		this(tipoSuperior, colorPrimario);
-		this.setTela(material);
+	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario) {
+		this(tipo, colorPrimario);
+		if (this.esMaterialValido(tipo, material)) {
+			this.setTela(material);
+		} else {
+			System.out.print("Se intento crear una prenda con una combinacion Tipo - Material invalida. Se dejo el material como nulo.");
+		}
 	}
 
-	public Prenda(TipoSuperior tipoSuperior, Color colorPrimario) {
-		this.setTipo(tipoSuperior);
+	public Prenda(TipoPrenda tipo, Color colorPrimario) {
+		this.setTipo(tipo);
 		this.setColorPrimario(colorPrimario);
 	}
 	
-	public boolean validarTela(Material material) {
-		//this.prenda
-		return false;
+	public boolean esMaterialValido(TipoPrenda tipo, Material material) {
+		return tipo.esMaterialValido(material);
+	}
+	
+	public boolean isCategoria(Categoria categoria) {
+		return categoria == this.Categoria();
+	}
+	
+	public Boolean sePuedePonerJuntoA(TipoPrenda tipo) {
+		return this.tipo.nivelDeCapa() < tipo.nivelDeCapa();
 	}
 	
 	public Categoria Categoria() {
-		return tipoSuperior.categoria();
+		return tipo.categoria();
 	}
 
-	public TipoSuperior getTipo() {
-		return tipoSuperior;
+	public TipoPrenda getTipo() {
+		return tipo;
 	}
 
-	public void setTipo(TipoSuperior tipoSuperior) {
-		this.tipoSuperior = tipoSuperior;
+	public void setTipo(TipoPrenda tipo) {
+		this.tipo = tipo;
 	}
 
 	public Color getColorPrimario() {
@@ -80,10 +82,6 @@ public class Prenda {
 
 	public void setTela(Material material) {
 		this.material = material;
-	}
-
-	public boolean isCategoria(Categoria categoria) {
-		return categoria == this.Categoria();
 	}
 	
 	public String getDireccionImagen() {
