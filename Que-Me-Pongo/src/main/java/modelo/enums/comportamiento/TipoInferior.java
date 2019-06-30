@@ -1,37 +1,54 @@
 package modelo.enums.comportamiento;
 
-import java.util.List;
+import java.util.Arrays;
 
 import modelo.enums.Categoria;
 import modelo.enums.Material;
 import modelo.interfaces.TipoPrenda;
 
 public enum TipoInferior implements TipoPrenda {
-	SHORTS, JOGGINGS, JEANS, BERMUDAS, PANTALON,
-	ZAPATILLAS, ZAPATOS, ZAPATOSDETACON, OJOTAS,
-	BUFANDA, ANTEOJOS, GORRA, COLLAR, LENTES, AROS,
-	VESTIDO, SMOKING, TRAJE;
+	BERMUDAS {
+		@Override
+		public boolean esMaterialValido(Material material) {
+			return !Arrays.asList(Material.CUERO, Material.LYCRA, Material.OXFORD, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
+		}
+	},
+	CALZAS {
+		@Override
+		public int nivelDeCapa() {
+			return 0;
+		}
+		@Override
+		public boolean esMaterialValido(Material material) {
+			return !Arrays.asList(Material.CUERO, Material.OXFORD, Material.SEDA, Material.TERCIOPELO).contains(material);
+		}
+	},
+	PANTALON {
+	},
+	POLLERA {
+		@Override
+		public boolean esMaterialValido(Material material) {
+			return !Arrays.asList(Material.LYCRA, Material.POLAR).contains(material);
+		}
+	},
+	SHORTS {
+		@Override
+		public boolean esMaterialValido(Material material) {
+			return !Arrays.asList(Material.CUERO, Material.JEAN, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
+		}
+	};
 
 	public Categoria categoria() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Material> materialesValidos() {
-		// TODO Auto-generated method stub
-		return null;
+		return Categoria.PARTEINFERIOR;
 	}
 
 	@Override
 	public int nivelDeCapa() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
-	public int nivelDeAbrigo() {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean esMaterialValido(Material material) {
+		return true;
 	}
 }
