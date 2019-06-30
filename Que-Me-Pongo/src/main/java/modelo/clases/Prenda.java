@@ -6,18 +6,18 @@ import java.util.Arrays;
 import modelo.enums.Categoria;
 import modelo.enums.Color;
 import modelo.enums.Material;
-import modelo.enums.Tipo;
+import modelo.enums.comportamiento.TipoSuperior;
 
 public class Prenda {
 	
 	String direccionImagen;
-	Tipo tipo;
+	TipoSuperior tipoSuperior;
 	Material material;
 	Color colorPrimario;
 	Color colorSecundario;
 	
-	public Prenda(Tipo tipo, Material material, Color colorPrimario, Color colorSecundario) {
-		this(tipo, material, colorPrimario);
+	public Prenda(TipoSuperior tipoSuperior, Material material, Color colorPrimario, Color colorSecundario) {
+		this(tipoSuperior, material, colorPrimario);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
@@ -31,13 +31,13 @@ public class Prenda {
 		} */
 	}
 	
-	public Prenda(Tipo tipo, Material material, Color colorPrimario) {
-		this(tipo, colorPrimario);
+	public Prenda(TipoSuperior tipoSuperior, Material material, Color colorPrimario) {
+		this(tipoSuperior, colorPrimario);
 		this.setTela(material);
 	}
 
-	public Prenda(Tipo tipo, Color colorPrimario) {
-		this.setTipo(tipo);
+	public Prenda(TipoSuperior tipoSuperior, Color colorPrimario) {
+		this.setTipo(tipoSuperior);
 		this.setColorPrimario(colorPrimario);
 	}
 	
@@ -47,15 +47,15 @@ public class Prenda {
 	}
 	
 	public Categoria Categoria() {
-		return tipo.categoria();
+		return tipoSuperior.categoria();
 	}
 
-	public Tipo getTipo() {
-		return tipo;
+	public TipoSuperior getTipo() {
+		return tipoSuperior;
 	}
 
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
+	public void setTipo(TipoSuperior tipoSuperior) {
+		this.tipoSuperior = tipoSuperior;
 	}
 
 	public Color getColorPrimario() {

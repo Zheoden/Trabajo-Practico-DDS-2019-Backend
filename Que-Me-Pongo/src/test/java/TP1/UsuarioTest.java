@@ -12,16 +12,16 @@ import modelo.clases.Usuario;
 import modelo.enums.Categoria;
 import modelo.enums.Color;
 import modelo.enums.Material;
-import modelo.enums.Tipo;
+import modelo.enums.comportamiento.TipoSuperior;
 
 public class UsuarioTest {
 	
-	Prenda prenda = new Prenda(Tipo.REMERACORTA, Material.ALGODON, Color.AZUL);
-	Prenda prenda1 = new Prenda(Tipo.PANTALON, Material.ALGODON, Color.AZUL);
-	Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Material.ALGODON, Color.AZUL);
-	Prenda prenda3 = new Prenda(Tipo.REMERACORTA, Material.ALGODON, Color.ROJO);
-	Prenda prenda4 = new Prenda(Tipo.PANTALON, Material.ALGODON, Color.ROJO);
-	Prenda prenda5 = new Prenda(Tipo.ZAPATILLAS, Material.ALGODON, Color.ROJO);
+	Prenda prenda = new Prenda(TipoSuperior.REMERACORTA, Material.ALGODON, Color.AZUL);
+	Prenda prenda1 = new Prenda(TipoSuperior.PANTALON, Material.ALGODON, Color.AZUL);
+	Prenda prenda2 = new Prenda(TipoSuperior.ZAPATILLAS, Material.ALGODON, Color.AZUL);
+	Prenda prenda3 = new Prenda(TipoSuperior.REMERACORTA, Material.ALGODON, Color.ROJO);
+	Prenda prenda4 = new Prenda(TipoSuperior.PANTALON, Material.ALGODON, Color.ROJO);
+	Prenda prenda5 = new Prenda(TipoSuperior.ZAPATILLAS, Material.ALGODON, Color.ROJO);
 	ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 	ArrayList <Prenda> prendas1 = new ArrayList <Prenda>();
 

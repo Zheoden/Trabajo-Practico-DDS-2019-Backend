@@ -1,6 +1,5 @@
 package modelo.interfaces;
 
-import java.util.List;
 import modelo.enums.Categoria;
 import modelo.enums.Material;
 
@@ -9,19 +8,14 @@ public interface TipoPrenda {
 	Categoria categoria();
 
 	//CADA TIPO DE PRENDA CONOCE A SUS MATERIALES CON LOS QUE ES COMPATIBLE
-	List<Material> materialesValidos();
+	boolean esMaterialValido(Material material);
 
 	//CADA TIPO DE PRENDA TIENE SU "CAPA" QUE DEFINE CUANDO SE PUEDE SUPERPONER CON OTRA PRENDA DEL MISMO TIPO
 	//SI TIENE 0 SE SUPERPONE CON CUALQUIERA
-	Integer nivelDeCapa();
-
-	//CADA TIPO DE PRENDA TIENE SU NIVEL DE ABRIGO
-	//SI TIENE 0 NO IMPORTA EL ABRIGO, POR EJ ALGUNOS CALZADO Y ACCESORIOS
-	Integer nivelDeAbrigo();
+	//MAXIMO NIVEL DE CAPA: 5
+	int nivelDeCapa();
 
 	default Boolean sePuedePonerJuntoA(TipoPrenda tipoPrenda) {
-		return this.nivelDeCapa() != tipoPrenda.nivelDeCapa() ||
-				this.categoria() != tipoPrenda.categoria() ||
-				this.nivelDeCapa() == 0;
+		return true;
 	}
 }

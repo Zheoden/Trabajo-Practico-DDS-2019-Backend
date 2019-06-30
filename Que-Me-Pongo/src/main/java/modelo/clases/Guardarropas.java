@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+
 import modelo.enums.*;
 
 public class Guardarropas {
@@ -37,4 +38,5 @@ public class Guardarropas {
 	public boolean existPrendaByCategoria(Categoria categoria) {
 		return this.prendas.stream().anyMatch(e -> e.isCategoria(categoria));
 	}
+	
 }

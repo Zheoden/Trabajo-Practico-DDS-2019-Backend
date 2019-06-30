@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import modelo.clases.*;
 import modelo.enums.*;
+import modelo.enums.comportamiento.TipoSuperior;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,9 +13,9 @@ public class GuardarropasTest {
 	
 	@Test
 	public void getPrenda() {
-		Prenda prenda = new Prenda(Tipo.REMERACORTA, Material.ALGODON, Color.AZUL);
-		Prenda prenda1 = new Prenda(Tipo.PANTALON, Material.ALGODON, Color.AZUL);
-		Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Material.ALGODON, Color.AZUL);
+		Prenda prenda = new Prenda(TipoSuperior.REMERACORTA, Material.ALGODON, Color.AZUL);
+		Prenda prenda1 = new Prenda(TipoSuperior.PANTALON, Material.ALGODON, Color.AZUL);
+		Prenda prenda2 = new Prenda(TipoSuperior.ZAPATILLAS, Material.ALGODON, Color.AZUL);
 		ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 		prendas.add(prenda);
 		prendas.add(prenda1);
@@ -35,9 +36,9 @@ public class GuardarropasTest {
 	
 	@Test
 	public void existPrendaByCategoriaTrue() {
-		Prenda prenda = new Prenda(Tipo.REMERACORTA, Material.ALGODON, Color.AZUL);
-		Prenda prenda1 = new Prenda(Tipo.PANTALON, Material.ALGODON, Color.AZUL);
-		Prenda prenda2 = new Prenda(Tipo.ZAPATILLAS, Material.ALGODON, Color.AZUL);
+		Prenda prenda = new Prenda(TipoSuperior.REMERACORTA, Material.ALGODON, Color.AZUL);
+		Prenda prenda1 = new Prenda(TipoSuperior.PANTALON, Material.ALGODON, Color.AZUL);
+		Prenda prenda2 = new Prenda(TipoSuperior.ZAPATILLAS, Material.ALGODON, Color.AZUL);
 		ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 		prendas.add(prenda);
 		prendas.add(prenda1);
@@ -54,7 +55,7 @@ public class GuardarropasTest {
 		
 		ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 		Imagen objetoImagen = new Imagen();
-		Prenda prenda = new Prenda(Tipo.ZAPATILLAS, Material.CUERO, Color.ROJO, Color.BLANCO);
+		Prenda prenda = new Prenda(TipoSuperior.ZAPATILLAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 		prenda.setDireccionImagen("ImgPrendas/zapas.jpg");
 		prendas.add(prenda);
 		Guardarropas unGuardarropa = new Guardarropas(prendas);	
