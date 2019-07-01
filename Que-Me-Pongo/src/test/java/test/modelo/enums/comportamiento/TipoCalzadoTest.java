@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 
 import modelo.enums.Categoria;
 import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoAccesorio;
 import modelo.enums.comportamiento.TipoCalzado;
 import modelo.interfaces.TipoPrenda;
 
@@ -38,7 +37,6 @@ public class TipoCalzadoTest {
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void esMaterialValido() {
-		
 		Assert.assertTrue(zapatillas.esMaterialValido(Material.ALGODON));
 		Assert.assertTrue(zapatillas.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(zapatillas.esMaterialValido(Material.JEAN));
@@ -82,8 +80,6 @@ public class TipoCalzadoTest {
 		Assert.assertFalse(ojotas.esMaterialValido(Material.POLAR));
 		Assert.assertFalse(ojotas.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(ojotas.esMaterialValido(Material.TERCIOPELO));
-        
-		
 	}
 	
 	@Test

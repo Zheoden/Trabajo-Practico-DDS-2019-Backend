@@ -34,21 +34,18 @@ public class PrendasTest {
 	}
 	
 	@Test
-	@DisplayName("Test para verificar la creacion de prendas con tipo valido")
-	public void validarCreacionValida() {
-		
-	}
-	
-	@Test
 	@DisplayName("Test para verificar la creacion de prendas con tipo invalido")
 	public void validarCreacionInvalida() {
-		
+		Prenda prenda = new Prenda(TipoSuperior.REMERACORTA, Material.CUERO, Color.AMARILLO, Color.ROJO);
+		Assert.assertEquals(prenda.getColorPrimario(), Color.AMARILLO);
+		Assert.assertEquals(prenda.getTela(), null);
+		Assert.assertEquals(prenda.Categoria(), Categoria.PARTE_SUPERIOR);
+		Assert.assertEquals(prenda.getColorSecundario(), Color.ROJO);
 	}
 	
 	@Test
 	@DisplayName("Test para normalizar las imagenes")
 	public void renderizarImagen() {
-		
 		Imagen objetoImagen = new Imagen();
 		
 		Prenda prenda = new Prenda(TipoInferior.PANTALON, Material.JEAN, Color.AZUL, Color.CELESTE);

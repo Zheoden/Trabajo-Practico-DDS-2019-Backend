@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 
 import modelo.enums.Categoria;
 import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoAccesorio;
 import modelo.enums.comportamiento.TipoInferior;
 import modelo.interfaces.TipoPrenda;
 
@@ -19,7 +18,6 @@ public class TipoInferiorTest {
 	TipoPrenda pollera = TipoInferior.POLLERA;
 	TipoPrenda shorts = TipoInferior.SHORTS;
 	
-	
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void categoria() {
@@ -28,7 +26,7 @@ public class TipoInferiorTest {
 		Assert.assertEquals(pantalon.categoria(), Categoria.PARTE_INFERIOR);
 		Assert.assertEquals(pollera.categoria(), Categoria.PARTE_INFERIOR);
 		Assert.assertEquals(shorts.categoria(), Categoria.PARTE_INFERIOR);
-			}
+	}
 
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
@@ -38,7 +36,6 @@ public class TipoInferiorTest {
 		Assert.assertEquals(pantalon.nivelDeCapa(), 0);
 		Assert.assertEquals(pollera.nivelDeCapa(), 0);
 		Assert.assertEquals(shorts.nivelDeCapa(), 0);
-		
 	}
 
 	@Test

@@ -23,7 +23,6 @@ public class AtuendoTest {
 		Assert.assertEquals(atuendo.getClass(), Atuendo.class);
 	}
 	
-	
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void agregarPrendasAlAtuendo() {

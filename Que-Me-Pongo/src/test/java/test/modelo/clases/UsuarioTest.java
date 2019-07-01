@@ -1,10 +1,13 @@
 package test.modelo.clases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+
+import modelo.clases.Atuendo;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.Suscripcion;
@@ -19,7 +22,6 @@ import modelo.enums.comportamiento.TipoSuperior;
 
 @DisplayName("Tests para los Usuarios")
 public class UsuarioTest {
-	
 	Prenda prenda = new Prenda(TipoSuperior.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda1 = new Prenda(TipoSuperior.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda2 = new Prenda(TipoSuperior.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
@@ -56,7 +58,29 @@ public class UsuarioTest {
 	@Test
 	@DisplayName("Solicitar a todos los guardarropas todos los conjuntos que pueden armar y unificarlos")
 	public void todosPosiblesAtuendosPorGuardarropa() {
+		prendas.add(prenda);
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		prendas.add(prenda5);
+		prendas.add(prenda6);
+		prendas.add(prenda10);
+		prendas.add(prenda11);
 		
+		prendas1.add(prenda4);
+		prendas1.add(prenda3);
+		prendas1.add(prenda7);
+		prendas1.add(prenda8);
+		prendas1.add(prenda10);
+		prendas1.add(prenda11);
+
+		Guardarropas guardaRopa1 = new Guardarropas(prendas);
+		Guardarropas guardaRopa2 = new Guardarropas(prendas1);
+		ArrayList <Guardarropas> guardaRopas = new ArrayList <Guardarropas>();
+		guardaRopas.add(guardaRopa1);
+		guardaRopas.add(guardaRopa2);
+		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium());
+		List<Atuendo> atuendos = pepe.todosPosiblesAtuendosPorGuardarropa();
+		Assert.assertEquals(atuendos.size(), 1);
 	}
 	
 	@Test

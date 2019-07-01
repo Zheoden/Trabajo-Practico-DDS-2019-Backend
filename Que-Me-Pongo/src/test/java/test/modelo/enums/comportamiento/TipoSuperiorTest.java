@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 
 import modelo.enums.Categoria;
 import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoAccesorio;
 import modelo.enums.comportamiento.TipoSuperior;
 import modelo.interfaces.TipoPrenda;
 
@@ -18,7 +17,6 @@ public class TipoSuperiorTest {
 	TipoPrenda remeracorta = TipoSuperior.REMERACORTA;
 	TipoPrenda remeralarga = TipoSuperior.REMERALARGA;
 	TipoPrenda sweater = TipoSuperior.SWEATER;
-	
 	
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")

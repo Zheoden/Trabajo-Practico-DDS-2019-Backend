@@ -11,14 +11,12 @@ import modelo.interfaces.TipoPrenda;
 
 @DisplayName("Tests para los Accesorios")
 public class TipoAccesorioTest {
-	
 	TipoPrenda anteojos = TipoAccesorio.ANTEOJOS;
 	TipoPrenda aros = TipoAccesorio.AROS;
 	TipoPrenda bufanda = TipoAccesorio.BUFANDA;
 	TipoPrenda gorra = TipoAccesorio.GORRA;
 	TipoPrenda collar = TipoAccesorio.COLLAR;
 	TipoPrenda lentes = TipoAccesorio.LENTES;
-	
 	
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")

@@ -1,6 +1,7 @@
 package test.modelo.clases;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 
@@ -19,7 +20,6 @@ import org.junit.jupiter.api.DisplayName;
 
 @DisplayName("Tests para los Guardarropas")
 public class GuardarropasTest {
-	
 	ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 	Prenda prenda = new Prenda(TipoSuperior.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda1 = new Prenda(TipoSuperior.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
@@ -70,19 +70,32 @@ public class GuardarropasTest {
 	@Test
 	@DisplayName("Tests para obtener prendas de partes inferiores")
 	public void obtenerPrendasInferiores() {
+		prendas.add(prenda5);
+		prendas.add(prenda6);
+		prendas.add(prenda7);
+		prendas.add(prenda8);
+		prendas.add(prenda9);
 
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Assert.assertEquals(unGuardarropa.obtenerPrendasInferiores(),this.prendas.stream().collect(Collectors.toSet()));
 	}
 	
 	@Test
 	@DisplayName("Tests para obtener prendas de partes calzados")
 	public void obtenerCalzados() {
-		
+		prendas.add(prenda10);
+
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Assert.assertEquals(unGuardarropa.obtenerCalzados(),this.prendas.stream().collect(Collectors.toSet()));
 	}
 	
 	@Test
 	@DisplayName("Tests para obtener prendas de partes accesorios")
 	public void obtenerAccesorios() {
-		
+		prendas.add(prenda11);
+
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Assert.assertEquals(unGuardarropa.obtenerAccesorios(),this.prendas.stream().collect(Collectors.toSet()));	
 	}
 	
 	@Test
@@ -101,7 +114,6 @@ public class GuardarropasTest {
 		prendas.add(prenda10);
 		prendas.add(prenda11);
 
-		
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
 		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0);
 		Atuendo atuendoRandom = unGuardarropa.obtenerAtuendoRandom(atuendos);
@@ -154,7 +166,6 @@ public class GuardarropasTest {
 	@Test
 	@DisplayName("ESTE TEST ES UN EJEMPLO, BORRAR DESPUES")
 	public void testGuava() {
-		
 		prendas.add(prenda);
 		prendas.add(prenda1);
 		prendas.add(prenda2);
@@ -168,7 +179,6 @@ public class GuardarropasTest {
 		prendas.add(prenda10);
 		prendas.add(prenda11);
 
-		
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
 		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(7.0);
 		Assert.assertEquals(atuendos.size(), 4);
