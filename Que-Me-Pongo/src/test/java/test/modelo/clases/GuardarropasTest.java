@@ -151,9 +151,6 @@ public class GuardarropasTest {
 		
 	}
 	
-	
-	
-	
 	@Test
 	@DisplayName("ESTE TEST ES UN EJEMPLO, BORRAR DESPUES")
 	public void testGuava() {

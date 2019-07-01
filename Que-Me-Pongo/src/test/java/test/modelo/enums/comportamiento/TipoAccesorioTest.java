@@ -44,7 +44,7 @@ public class TipoAccesorioTest {
 
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
-	public void esMaterialValido(Material material) {
+	public void esMaterialValido() {
 		Assert.assertTrue(anteojos.esMaterialValido(Material.ALGODON));
 		Assert.assertTrue(anteojos.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(anteojos.esMaterialValido(Material.GABARDINA));
