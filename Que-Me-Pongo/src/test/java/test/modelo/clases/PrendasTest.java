@@ -1,7 +1,8 @@
-package TP1;
+package test.modelo.clases;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import modelo.clases.Imagen;
 import modelo.clases.Prenda;
@@ -9,9 +10,11 @@ import modelo.enums.*;
 import modelo.enums.comportamiento.TipoInferior;
 import modelo.enums.comportamiento.TipoSuperior;
 
+@DisplayName("Tests para las Prendas")
 public class PrendasTest {
 
 	@Test
+	@DisplayName("Test para validar la creacion de prendas con mismo color primario y secundario")
 	public void validarPrendasConMismoColorPrimarioYSecundario() {
 		Prenda prenda = new Prenda(TipoInferior.PANTALON, Material.JEAN, Color.AMARILLO, Color.AMARILLO);
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AMARILLO);
@@ -21,6 +24,7 @@ public class PrendasTest {
 	}
 
 	@Test
+	@DisplayName("Test para verificar la creacion de las prendas")
 	public void constructorPrenda() {
 		Prenda prenda = new Prenda(TipoSuperior.REMERACORTA, Material.ALGODON, Color.AZUL, Color.ROJO);
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AZUL);
@@ -30,6 +34,19 @@ public class PrendasTest {
 	}
 	
 	@Test
+	@DisplayName("Test para verificar la creacion de prendas con tipo valido")
+	public void validarCreacionValida() {
+		
+	}
+	
+	@Test
+	@DisplayName("Test para verificar la creacion de prendas con tipo invalido")
+	public void validarCreacionInvalida() {
+		
+	}
+	
+	@Test
+	@DisplayName("Test para normalizar las imagenes")
 	public void renderizarImagen() {
 		
 		Imagen objetoImagen = new Imagen();

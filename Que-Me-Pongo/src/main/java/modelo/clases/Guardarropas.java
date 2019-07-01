@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import modelo.clases.Abrigo;
 
 import static com.google.common.collect.Sets.cartesianProduct;
