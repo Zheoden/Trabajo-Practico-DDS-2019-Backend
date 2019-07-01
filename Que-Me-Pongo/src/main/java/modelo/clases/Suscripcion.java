@@ -1,4 +1,4 @@
-package modelo;
+package modelo.clases;
 
 public abstract class Suscripcion {
 	

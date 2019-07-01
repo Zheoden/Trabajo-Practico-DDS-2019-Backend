@@ -1,4 +1,4 @@
-package modelo.enums;
+package modelo.clases;
 
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
