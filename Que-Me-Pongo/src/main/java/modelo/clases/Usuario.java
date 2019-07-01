@@ -3,10 +3,15 @@ package modelo.clases;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
+public class Usuario implements Job {
 	
 	Suscripcion suscripcion;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
+	ArrayList<Evento> eventos = new ArrayList<Evento>();
 	
 	public Usuario(ArrayList <Guardarropas> guardaRopas, Suscripcion unaSuscripcion) throws Exception  {
 		this.setGuardaRopas(guardaRopas);
@@ -37,5 +42,40 @@ public class Usuario {
 
 	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
 		this.guardarropas = guardaRopas;
+	}
+	
+	public ArrayList<Evento> getEventos() {
+		return eventos;
+	}
+	
+	public void cargarEvento(Evento unEvento)
+	{
+	this.eventos.add(unEvento);	
+	unEvento.recordatorio();
+	}
+	
+	public void irAEventos()
+	{
+	this.eventos.forEach(evento -> evento.iniciar());	
+	}
+	
+	
+	public void irAElEvento(Evento unEvento) throws Exception 
+	{
+	if(this.eventos.contains(unEvento))
+	{
+    unEvento.iniciar();
+	}
+	else
+	{
+	throw new Exception("No estas inivitado al evento " + unEvento.getNombre());	
+	}
+	}
+	
+	@Override
+	public void execute(JobExecutionContext context) throws JobExecutionException {
+		this.getGuardaRopas().forEach(guarda-> System.out.println("Me sugirieron "+ 
+	    guarda.atuendosValidosParaAhora().toString()));
+		
 	}
 }
