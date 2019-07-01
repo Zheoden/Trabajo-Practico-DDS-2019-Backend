@@ -17,10 +17,6 @@ public enum TipoCalzado implements TipoPrenda {
 	ZAPATOSDETACON {
 	},
 	OJOTAS {
-		@Override
-		public boolean esMaterialValido(Material material) {
-			return !Arrays.asList(Material.ALGODON, Material.GABARDINA, Material.JEAN, Material.LINO, Material.LYCRA, Material.OXFORD, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
-		}
 	};
 
 	public Categoria categoria() {
@@ -34,7 +30,7 @@ public enum TipoCalzado implements TipoPrenda {
 
 	@Override
 	public boolean esMaterialValido(Material material) {
-		return !Arrays.asList(Material.GABARDINA, Material.JEAN, Material.LINO, Material.LYCRA, Material.OXFORD, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
+		return !Arrays.asList(Material.ALGODON, Material.GABARDINA, Material.JEAN, Material.LINO, Material.LYCRA, Material.OXFORD, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
 	}
 	
 	@Override
