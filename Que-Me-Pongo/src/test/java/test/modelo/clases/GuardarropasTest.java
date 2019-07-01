@@ -1,7 +1,6 @@
 package test.modelo.clases;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 
@@ -122,50 +121,58 @@ public class GuardarropasTest {
 	}
 	
 	@Test
-	@DisplayName("Tests para verificar que NO se puedan generar atuendos validos")
+	@DisplayName("Tests para verificar que NO se puedan generar atuendos incompletos")
 	public void generarSugerenciasVacio() {
-		
+		prendas.add(prenda5);
+		prendas.add(prenda6);
+		prendas.add(prenda7);
+		prendas.add(prenda8);
+		prendas.add(prenda9);
+		prendas.add(prenda11);
+
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0);
+		Assert.assertEquals(atuendos.size(), 0);
 	}
 	
 	@Test
 	@DisplayName("Tests para verificar que se puedan generar atuendos validos")
 	public void generarSugerenciasLleno() {
+		prendas.add(prenda);
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		prendas.add(prenda3);
+		prendas.add(prenda4);
+		prendas.add(prenda5);
+		prendas.add(prenda6);
+		prendas.add(prenda7);
+		prendas.add(prenda8);
+		prendas.add(prenda9);
+		prendas.add(prenda10);
+		prendas.add(prenda11);
 		
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0);
+		Assert.assertEquals(atuendos.size(), 15);		
 	}
 	
 	@Test
 	@DisplayName("Tests para verificar que NO se puedan generar atuendos validos en base al clima actual")
 	public void atuendosValidosParaAhoraVacio() {
-		
+		prendas.add(prenda3); //remera corta
+		prendas.add(prenda4); //remera larga
+		prendas.add(prenda5);//bermudas
+		prendas.add(prenda10);
+		prendas.add(prenda11);
+
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora();
+		Assert.assertEquals(atuendos.size(), 0);
 	}
 	
 	@Test
 	@DisplayName("Tests para verificar que se puedan generar atuendos validos en base al clima actual")
 	public void atuendosValidosParaAhoraLleno() {
-		
-	}
-	
-	@Test
-	@DisplayName("Tests para verificar los puntos de abrigo de un cierto conjunto de prendas")
-	public void obtenerPuntosDeAbrigo() {
-		
-	}
-	
-	@Test
-	@DisplayName("Tests para verificar que ciertas NO prendas se puedan superponer")
-	public void prendasTienenNivelesDeCapaValidosFalse() {
-		
-	}
-	
-	@Test
-	@DisplayName("Tests para verificar que ciertas prendas se puedan superponer")
-	public void prendasTienenNivelesDeCapaValidosTrue() {
-		
-	}
-	
-	@Test
-	@DisplayName("ESTE TEST ES UN EJEMPLO, BORRAR DESPUES")
-	public void testGuava() {
 		prendas.add(prenda);
 		prendas.add(prenda1);
 		prendas.add(prenda2);
@@ -180,8 +187,44 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(7.0);
+		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora();
 		Assert.assertEquals(atuendos.size(), 4);
 	}
-
+	
+	@Test
+	@DisplayName("Tests para verificar los puntos de abrigo de un cierto conjunto de prendas")
+	public void obtenerPuntosDeAbrigo() {
+		prendas.add(prenda);
+		prendas.add(prenda3);
+		prendas.add(prenda6);
+		prendas.add(prenda7);
+		prendas.add(prenda10);
+		prendas.add(prenda11);
+		
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		int sumatoriaPrendas = unGuardarropa.obtenerPuntosDeAbrigo(prendas.stream().collect(Collectors.toSet()));
+		Assert.assertEquals(sumatoriaPrendas, 4);
+	}
+	
+	@Test
+	@DisplayName("Tests para verificar que ciertas NO prendas se puedan superponer")
+	public void prendasTienenNivelesDeCapaValidosFalse() {
+		prendas.add(prenda3);
+		prendas.add(prenda4);
+				
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		boolean esValido = unGuardarropa.prendasTienenNivelesDeCapaValidos(prendas.stream().collect(Collectors.toSet()));
+		Assert.assertFalse(esValido);
+	}
+	
+	@Test
+	@DisplayName("Tests para verificar que ciertas prendas se puedan superponer")
+	public void prendasTienenNivelesDeCapaValidosTrue() {
+		prendas.add(prenda);
+		prendas.add(prenda4);
+				
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		boolean esValido = unGuardarropa.prendasTienenNivelesDeCapaValidos(prendas.stream().collect(Collectors.toSet()));
+		Assert.assertTrue(esValido);		
+	}
 }
