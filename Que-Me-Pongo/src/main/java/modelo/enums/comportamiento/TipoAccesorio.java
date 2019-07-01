@@ -5,7 +5,7 @@ import modelo.enums.Material;
 import modelo.interfaces.TipoPrenda;
 
 public enum TipoAccesorio implements TipoPrenda {
-	BUFANDA, ANTEOJOS, GORRA, COLLAR, LENTES, AROS;
+	ANTEOJOS, BUFANDA, GORRA, COLLAR, LENTES, AROS;
 
 	public Categoria categoria() {
 		return Categoria.ACCESORIO;

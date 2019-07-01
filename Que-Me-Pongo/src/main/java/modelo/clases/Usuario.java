@@ -8,7 +8,7 @@ public class Usuario {
 	Suscripcion suscripcion;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
-	public Usuario(ArrayList <Guardarropas> guardaRopas, Suscripcion unaSuscripcion) throws Exception  {
+	public Usuario(ArrayList <Guardarropas> guardaRopas, Suscripcion unaSuscripcion) {
 		this.setGuardaRopas(guardaRopas);
 		this.setSuscripcion(unaSuscripcion);
 	}
