@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
+import modelo.clases.Abrigo;
 
 import static com.google.common.collect.Sets.cartesianProduct;
 import static com.google.common.collect.Sets.powerSet;
@@ -42,7 +43,7 @@ public class Guardarropas {
 		return combinaciones.get(0);
 	}
 	
-	public List<Atuendo> generarSugerencias(int temperatura) {
+	public List<Atuendo> generarSugerencias(Double temperatura) {
 		Set<Set<Prenda>> calzados = obtenerCombinacionesNoVacias(obtenerCalzados(), temperatura);
 		Set<Set<Prenda>> prendasInferiores = obtenerCombinacionesNoVacias(obtenerPrendasInferiores(), temperatura);
 		Set<Set<Prenda>> prendasSuperiores = obtenerCombinacionesNoVacias(obtenerPrendasSuperiores(), temperatura);
@@ -73,22 +74,20 @@ public class Guardarropas {
 //		return this.obtenerAtuendoRandom(this.atuendosValidosParaAhora());
 //	}
 	
-	private Set<Set<Prenda>> obtenerCombinacionesDePrenda(Set<Prenda> prendas, int temperatura) {
+	private Set<Set<Prenda>> obtenerCombinacionesDePrenda(Set<Prenda> prendas, Double temperatura) {
 		return powerSet(prendas).stream().filter(this::prendasTienenNivelesDeCapaValidos)
 				.filter(conjuntoDePrendas -> this.prendasTienenNivelesDeAbrigoValidos(conjuntoDePrendas, temperatura))
 				.collect(Collectors.toSet());
 	}
 	
-	//Recibe conjunto de prendas y dice si es valido para la temperatura indicada.
-	private Boolean prendasTienenNivelesDeAbrigoValidos(Set<Prenda> conjuntoDePrendas, int temperatura) {
-		return true;
-//		return conjuntoDePrendas.stream().anyMatch(prenda -> prenda.getTipo().nivelDeAbrigo().equals(0)) ||
-//				Abrigo.obtenerNivelesDeAbrigo(temperatura).contains(this.obtenerPuntosDeAbrigo(conjuntoDePrendas));
+	private Boolean prendasTienenNivelesDeAbrigoValidos(Set<Prenda> conjuntoDePrendas, Double temperatura) {
+		return conjuntoDePrendas.stream().anyMatch(prenda -> prenda.getTipo().nivelDeAbrigo() == 0 ) ||
+				Abrigo.obtenerNivelesDeAbrigo(temperatura).contains(this.obtenerPuntosDeAbrigo(conjuntoDePrendas));
 	}
 	
-//	private Integer obtenerPuntosDeAbrigo(Set<Prenda> prendas) {
-//		return prendas.stream().mapToInt(prenda -> prenda.getTipo().nivelDeAbrigo()).sum();
-//	}
+	private int obtenerPuntosDeAbrigo(Set<Prenda> prendas) {
+		return prendas.stream().mapToInt(prenda -> prenda.getTipo().nivelDeAbrigo()).sum();
+	}
 	
 	private Boolean prendasTienenNivelesDeCapaValidos(Set<Prenda> conjuntoDePrendas) {
 		List<Integer> nivelesDeCapa =
@@ -96,10 +95,10 @@ public class Guardarropas {
 						.map(prenda -> prenda.getTipo().nivelDeCapa())
 						.collect(Collectors.toList());
 
-		return nivelesDeCapa.size() == nivelesDeCapa.stream().distinct().collect(Collectors.toList()).size();
+		return  nivelesDeCapa.contains(0) && nivelesDeCapa.size() == nivelesDeCapa.stream().distinct().collect(Collectors.toList()).size();
 	}
 	
-	private Set<Set<Prenda>> obtenerCombinacionesNoVacias(Set<Prenda> prendas, int temperatura) {
+	private Set<Set<Prenda>> obtenerCombinacionesNoVacias(Set<Prenda> prendas, Double temperatura) {
 		return obtenerCombinacionesDePrenda(prendas, temperatura).stream().filter(set -> !set.isEmpty()).collect(Collectors.toSet());
 	}
 	

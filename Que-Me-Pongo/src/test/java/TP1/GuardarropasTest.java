@@ -85,16 +85,8 @@ public class GuardarropasTest {
 		Prenda prenda9 = new Prenda(TipoInferior.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 		
 		Prenda prenda10 = new Prenda(TipoCalzado.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
-		Prenda prenda13 = new Prenda(TipoCalzado.ZAPATILLAS, Material.CUERO, Color.ROJO, Color.BLANCO);
-		Prenda prenda14 = new Prenda(TipoCalzado.ZAPATILLAS, Material.CUERO, Color.ROJO, Color.BLANCO);
-		Prenda prenda11 = new Prenda(TipoCalzado.ZAPATOS, Material.CUERO, Color.ROJO, Color.BLANCO);
-		Prenda prenda12 = new Prenda(TipoCalzado.ZAPATOSDETACON, Material.CUERO, Color.ROJO, Color.BLANCO);
 
-		Prenda prenda15 = new Prenda(TipoAccesorio.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
-		Prenda prenda16 = new Prenda(TipoAccesorio.AROS, Material.CUERO, Color.ROJO, Color.BLANCO);
-		Prenda prenda17 = new Prenda(TipoAccesorio.BUFANDA, Material.CUERO, Color.ROJO, Color.BLANCO);
-		Prenda prenda18 = new Prenda(TipoAccesorio.COLLAR, Material.CUERO, Color.ROJO, Color.BLANCO);
-		Prenda prenda19 = new Prenda(TipoAccesorio.GORRA, Material.CUERO, Color.ROJO, Color.BLANCO);
+		Prenda prenda11 = new Prenda(TipoAccesorio.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
 		
 		prendas.add(prenda);
 		prendas.add(prenda1);
@@ -108,18 +100,11 @@ public class GuardarropasTest {
 		prendas.add(prenda9);
 		prendas.add(prenda10);
 		prendas.add(prenda11);
-		prendas.add(prenda12);
-		prendas.add(prenda13);
-		prendas.add(prenda14);
-		prendas.add(prenda15);
-		prendas.add(prenda16);
-		prendas.add(prenda17);
-		prendas.add(prenda18);
-		prendas.add(prenda19);
+
 		
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(7);
-		Assert.assertEquals(atuendos.size(), 8);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(7.0);
+		Assert.assertEquals(atuendos.size(), 4);
 	}
 
 }

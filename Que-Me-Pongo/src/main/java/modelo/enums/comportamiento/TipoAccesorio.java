@@ -20,4 +20,9 @@ public enum TipoAccesorio implements TipoPrenda {
 	public boolean esMaterialValido(Material material) {
 		return true;
 	}
+	
+	@Override
+	public int nivelDeAbrigo() {
+		return 0;
+	}
 }

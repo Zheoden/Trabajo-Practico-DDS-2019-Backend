@@ -36,4 +36,9 @@ public enum TipoCalzado implements TipoPrenda {
 	public boolean esMaterialValido(Material material) {
 		return !Arrays.asList(Material.GABARDINA, Material.JEAN, Material.LINO, Material.LYCRA, Material.OXFORD, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
 	}
+	
+	@Override
+	public int nivelDeAbrigo() {
+		return 0;
+	}
 }

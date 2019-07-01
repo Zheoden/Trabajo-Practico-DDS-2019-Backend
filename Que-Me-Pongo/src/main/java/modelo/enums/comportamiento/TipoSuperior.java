@@ -14,7 +14,12 @@ public enum TipoSuperior implements TipoPrenda {
 
 		@Override
 		public int nivelDeCapa() {
-			return 4;
+			return 1;
+		}
+		
+		@Override
+		public int nivelDeAbrigo() {
+			return 3;
 		}
 	}, 
 	CAMISA {
@@ -22,15 +27,20 @@ public enum TipoSuperior implements TipoPrenda {
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.TERCIOPELO, Material.POLAR, Material.LYCRA).contains(material);
 		}
-
+		
 		@Override
-		public int nivelDeCapa() {
+		public int nivelDeAbrigo() {
 			return 2;
 		}
 	},
 	CAMPERA {
 		@Override
 		public int nivelDeCapa() {
+			return 2;
+		}
+		
+		@Override
+		public int nivelDeAbrigo() {
 			return 5;
 		}
 	}, 
@@ -39,9 +49,9 @@ public enum TipoSuperior implements TipoPrenda {
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.TERCIOPELO, Material.JEAN).contains(material);
 		}
-
+		
 		@Override
-		public int nivelDeCapa() {
+		public int nivelDeAbrigo() {
 			return 1;
 		}
 	}, 
@@ -49,7 +59,12 @@ public enum TipoSuperior implements TipoPrenda {
 		@Override
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.TERCIOPELO, Material.JEAN).contains(material);
-		}		
+		}
+		
+		@Override
+		public int nivelDeAbrigo() {
+			return 2;
+		}
 	},
 	SWEATER {
 		@Override
@@ -59,6 +74,11 @@ public enum TipoSuperior implements TipoPrenda {
 
 		@Override
 		public int nivelDeCapa() {
+			return 1;
+		}
+		
+		@Override
+		public int nivelDeAbrigo() {
 			return 3;
 		}
 	};

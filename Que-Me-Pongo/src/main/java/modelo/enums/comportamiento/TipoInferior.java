@@ -12,12 +12,13 @@ public enum TipoInferior implements TipoPrenda {
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.LYCRA, Material.OXFORD, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
 		}
+		
+		@Override
+		public int nivelDeAbrigo() {
+			return 2;
+		}
 	},
 	CALZAS {
-		@Override
-		public int nivelDeCapa() {
-			return 0;
-		}
 		@Override
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.OXFORD, Material.SEDA, Material.TERCIOPELO).contains(material);
@@ -30,11 +31,21 @@ public enum TipoInferior implements TipoPrenda {
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.LYCRA, Material.POLAR).contains(material);
 		}
+		
+		@Override
+		public int nivelDeAbrigo() {
+			return 2;
+		}
 	},
 	SHORTS {
 		@Override
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.JEAN, Material.POLAR, Material.SEDA, Material.TERCIOPELO).contains(material);
+		}
+		
+		@Override
+		public int nivelDeAbrigo() {
+			return 2;
 		}
 	};
 
@@ -44,11 +55,16 @@ public enum TipoInferior implements TipoPrenda {
 
 	@Override
 	public int nivelDeCapa() {
-		return 1;
+		return 0;
 	}
 
 	@Override
 	public boolean esMaterialValido(Material material) {
 		return true;
+	}
+	
+	@Override
+	public int nivelDeAbrigo() {
+		return 0;
 	}
 }
