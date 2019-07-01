@@ -45,10 +45,10 @@ public class TipoInferiorTest {
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void esMaterialValido() {
 		Assert.assertTrue(bermudas.esMaterialValido(Material.ALGODON));
-		Assert.assertFalse(bermudas.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(bermudas.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(bermudas.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(bermudas.esMaterialValido(Material.LINO));
+		Assert.assertFalse(bermudas.esMaterialValido(Material.CUERO));		
 		Assert.assertFalse(bermudas.esMaterialValido(Material.LYCRA));
 		Assert.assertFalse(bermudas.esMaterialValido(Material.OXFORD));
 		Assert.assertFalse(bermudas.esMaterialValido(Material.POLAR));
@@ -56,13 +56,13 @@ public class TipoInferiorTest {
 		Assert.assertFalse(bermudas.esMaterialValido(Material.TERCIOPELO));
 		
 		Assert.assertTrue(calzas.esMaterialValido(Material.ALGODON));
-		Assert.assertFalse(calzas.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(calzas.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(calzas.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(calzas.esMaterialValido(Material.LINO));
 		Assert.assertTrue(calzas.esMaterialValido(Material.LYCRA));
-		Assert.assertFalse(calzas.esMaterialValido(Material.OXFORD));
-		Assert.assertTrue(calzas.esMaterialValido(Material.POLAR));
+		Assert.assertTrue(calzas.esMaterialValido(Material.POLAR));		
+		Assert.assertFalse(calzas.esMaterialValido(Material.CUERO));		
+		Assert.assertFalse(calzas.esMaterialValido(Material.OXFORD));		
 		Assert.assertFalse(calzas.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(calzas.esMaterialValido(Material.TERCIOPELO));
 		
@@ -80,18 +80,18 @@ public class TipoInferiorTest {
 		Assert.assertTrue(pollera.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(pollera.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(pollera.esMaterialValido(Material.LINO));
-		Assert.assertFalse(pollera.esMaterialValido(Material.LYCRA));
 		Assert.assertTrue(pollera.esMaterialValido(Material.OXFORD));
-		Assert.assertFalse(pollera.esMaterialValido(Material.POLAR));
 		Assert.assertTrue(pollera.esMaterialValido(Material.SEDA));
 		Assert.assertTrue(pollera.esMaterialValido(Material.TERCIOPELO));
-
-        Assert.assertFalse(shorts.esMaterialValido(Material.CUERO));
+		Assert.assertFalse(pollera.esMaterialValido(Material.LYCRA));
+		Assert.assertFalse(pollera.esMaterialValido(Material.POLAR));
+		
 		Assert.assertTrue(shorts.esMaterialValido(Material.GABARDINA));
-		Assert.assertFalse(shorts.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(shorts.esMaterialValido(Material.LINO));
 		Assert.assertTrue(shorts.esMaterialValido(Material.LYCRA));
 		Assert.assertTrue(shorts.esMaterialValido(Material.OXFORD));
+        Assert.assertFalse(shorts.esMaterialValido(Material.CUERO));		
+		Assert.assertFalse(shorts.esMaterialValido(Material.JEAN));		
 		Assert.assertFalse(shorts.esMaterialValido(Material.POLAR));
 		Assert.assertFalse(shorts.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(shorts.esMaterialValido(Material.TERCIOPELO));
