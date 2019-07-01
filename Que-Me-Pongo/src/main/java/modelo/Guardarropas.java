@@ -9,6 +9,10 @@ import modelo.enums.*;
 
 public class Guardarropas {
 	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+	
+	public int tamanioGuardarropas() {
+		return prendas.size();
+	}
 
 	public Guardarropas(ArrayList<Prenda> prendas) {
 		this.setPrendas(prendas);
