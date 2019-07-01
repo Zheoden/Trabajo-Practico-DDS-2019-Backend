@@ -20,6 +20,10 @@ public class Guardarropas {
 		this.setPrendas(prendas);
 	}
 	
+	public int tamanioGuardarropas() {
+		return prendas.size();
+	}
+	
 	public Set<Prenda> obtenerPrendasSuperiores() {
 		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_SUPERIOR).collect(Collectors.toSet());
 	}
