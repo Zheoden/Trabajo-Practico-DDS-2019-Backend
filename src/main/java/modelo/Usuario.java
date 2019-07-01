@@ -12,12 +12,21 @@ public class Usuario {
 	Suscripcion suscripcion;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
+	public Suscripcion getSuscripcion() {
+		return suscripcion;
+	}
+	
+	public void setSuscripcion(Suscripcion unaSuscripcion) {
+		suscripcion = unaSuscripcion;
+	}
+	
 	public boolean listaDeGuardarropasValida(ArrayList<Guardarropas> guardaRopas) {
 		return guardaRopas.stream().allMatch(unGuardarropa -> unGuardarropa.tamanioGuardarropas() <= suscripcion.cantidadPrendasPermitidas());
 	}
 	
-	public Usuario(ArrayList <Guardarropas> guardaRopas) throws Exception  {
+	public Usuario(ArrayList <Guardarropas> guardaRopas, Suscripcion unaSuscripcion) throws Exception  {
 		this.setGuardaRopas(guardaRopas);
+		this.setSuscripcion(unaSuscripcion);
 	}
 
 	public ArrayList<Guardarropas> getGuardaRopas() {

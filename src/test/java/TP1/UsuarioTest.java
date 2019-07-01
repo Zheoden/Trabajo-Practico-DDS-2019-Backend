@@ -8,6 +8,8 @@ import org.junit.Test;
 import modelo.Atuendo;
 import modelo.Guardarropas;
 import modelo.Prenda;
+import modelo.Suscripcion;
+import modelo.SuscripcionPremium;
 import modelo.Usuario;
 import modelo.enums.Categoria;
 import modelo.enums.Color;
@@ -24,20 +26,22 @@ public class UsuarioTest {
 	Prenda prenda5 = new Prenda(Tipo.ZAPATILLAS, Tela.ALGODON, Color.ROJO);
 	ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 	ArrayList <Prenda> prendas1 = new ArrayList <Prenda>();
+	
 
 	@Test
-	public void crearUsuarioCorrectamente() {
+	public void crearUsuarioCorrectamente() throws Exception {
 		Guardarropas guardaRopa1 = new Guardarropas(new ArrayList<Prenda>());
 		Guardarropas guardaRopa2 = new Guardarropas(new ArrayList<Prenda>());
 		ArrayList <Guardarropas> guardaRopas = new ArrayList <Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas);
+		Suscripcion SuscripcionPremium = new SuscripcionPremium();
+		Usuario pepe = new Usuario(guardaRopas,SuscripcionPremium);
 		Assert.assertEquals(pepe.getClass(), Usuario.class);
 	}
 	
 	@Test
-	public void verificarGuardarropasTrue() {
+	public void verificarGuardarropasTrue() throws Exception {
 
 		Guardarropas guardaRopa1 = new Guardarropas(prendas);
 
@@ -49,12 +53,13 @@ public class UsuarioTest {
 		ArrayList <Guardarropas> guardaRopas = new ArrayList <Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas);
+		Suscripcion SuscripcionPremium = new SuscripcionPremium();
+		Usuario pepe = new Usuario(guardaRopas,SuscripcionPremium);
 		Assert.assertEquals(pepe.verificarGuardarropas(Categoria.PARTEINFERIOR), true);
 	}
 	
 	@Test
-	public void verificarGuardarropasFalse() {
+	public void verificarGuardarropasFalse() throws Exception {
 		prendas.add(prenda);
 		prendas.add(prenda1);
 		prendas.add(prenda2);
@@ -68,12 +73,13 @@ public class UsuarioTest {
 		ArrayList <Guardarropas> guardaRopas = new ArrayList <Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas);
+		Suscripcion SuscripcionPremium = new SuscripcionPremium();
+		Usuario pepe = new Usuario(guardaRopas,SuscripcionPremium);
 		Assert.assertEquals(pepe.verificarGuardarropas(Categoria.ACCESORIO), false);
 	}
 	
 	@Test
-	public void getGuardarropasConPrenda() {
+	public void getGuardarropasConPrenda() throws Exception {
 		prendas.add(prenda);
 		prendas.add(prenda2);
 		Guardarropas guardaRopa1 = new Guardarropas(prendas);
@@ -85,7 +91,8 @@ public class UsuarioTest {
 		ArrayList <Guardarropas> guardaRopas = new ArrayList <Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas);
+		Suscripcion SuscripcionPremium = new SuscripcionPremium();
+		Usuario pepe = new Usuario(guardaRopas,SuscripcionPremium);
 		Assert.assertEquals(pepe.getGuardarropasConPrenda(Categoria.PARTESUPERIOR), guardaRopa1);
 		Assert.assertEquals(pepe.getGuardarropasConPrenda(Categoria.PARTEINFERIOR), guardaRopa2);
 	}
@@ -105,7 +112,8 @@ public class UsuarioTest {
 		ArrayList <Guardarropas> guardaRopas = new ArrayList <Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas);
+		Suscripcion SuscripcionPremium = new SuscripcionPremium();
+		Usuario pepe = new Usuario(guardaRopas,SuscripcionPremium);
 		
 		ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 		categorias.add(Categoria.PARTEINFERIOR);
@@ -133,7 +141,8 @@ public class UsuarioTest {
 		ArrayList <Guardarropas> guardaRopas = new ArrayList <Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas);
+		Suscripcion SuscripcionPremium = new SuscripcionPremium();
+		Usuario pepe = new Usuario(guardaRopas,SuscripcionPremium);
 		
 		ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 		categorias.add(Categoria.PARTEINFERIOR);
@@ -147,7 +156,8 @@ public class UsuarioTest {
 	@Test(expected = Exception.class)
 	public void generarAtuendoError() throws Exception {
 		ArrayList <Guardarropas> guardaRopas = new ArrayList <Guardarropas>();
-		Usuario pepe = new Usuario(guardaRopas);
+		Suscripcion SuscripcionPremium = new SuscripcionPremium();
+		Usuario pepe = new Usuario(guardaRopas,SuscripcionPremium);
 		pepe.sugerirAtuendo(new ArrayList<Categoria>());
 	}
 
