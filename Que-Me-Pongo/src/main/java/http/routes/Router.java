@@ -14,5 +14,6 @@ public class Router {
     	get("/prenda", (req,res) -> "Get Prenda");
     	get("/guardarropas", (req,res) -> "Get Guardarropas");
     	get("/guardarropas/create", (req,res) -> "Create Guardarropas");
+    	get("/Atuendos", (req,res) -> "Atuendos");
     }
 }

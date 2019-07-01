@@ -9,8 +9,7 @@ public class AdministrarProveedores {
 	
 	Set<Proveedores> proveedores;
 	
-	public AdministrarProveedores(Set<Proveedores> proveedores) {
-		this.setProveedores(proveedores);
+	public AdministrarProveedores() {
 	}
 	
 	public int obtenerTemperatura(Date fecha) {
@@ -20,6 +19,8 @@ public class AdministrarProveedores {
 	public int obtenerTemperaturaActual() {
 		return 7;
 	}
+	
+	
 	
 	public void addProveedores(Proveedores proveedores) {
 		this.proveedores.add(proveedores);
