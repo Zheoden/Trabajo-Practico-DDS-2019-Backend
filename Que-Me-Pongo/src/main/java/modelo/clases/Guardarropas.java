@@ -1,10 +1,8 @@
 package modelo.clases;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 import modelo.clases.Abrigo;
@@ -61,11 +59,11 @@ public class Guardarropas {
 //	public List<Atuendo> atuendosValidosParaEvento(Evento evento) {
 //		return generarSugerencias(this.administrarProveedores.obtenerTemperatura(evento.getFecha()));
 //	}
-//
-//	public List<Atuendo> atuendosValidosParaAhora() {
-//		return generarSugerencias(this.administrarProveedores.obtenerTemperaturaActual());
-//	}
-//
+
+	public List<Atuendo> atuendosValidosParaAhora() {
+		return generarSugerencias(this.administrarProveedores.obtenerTemperaturaActual());
+	}
+
 //	public Atuendo generarSugerenciaParaEvento(Evento evento) {
 //		return this.obtenerAtuendoRandom(atuendosValidosParaEvento(evento));
 //	}
@@ -100,29 +98,6 @@ public class Guardarropas {
 	
 	private Set<Set<Prenda>> obtenerCombinacionesNoVacias(Set<Prenda> prendas, Double temperatura) {
 		return obtenerCombinacionesDePrenda(prendas, temperatura).stream().filter(set -> !set.isEmpty()).collect(Collectors.toSet());
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public Prenda getRandomPrendaByCategoria(Categoria categoria) {
-		Random rand = new Random();
-		List<Prenda> aux = this.prendas.stream().filter( e -> e.isCategoria(categoria) ).collect(Collectors.toList());
-		int n = rand.nextInt(aux.size());
-		
-		return aux.get(n);
-	}
-	
-	public boolean existPrendaByCategoria(Categoria categoria) {
-		return this.prendas.stream().anyMatch(e -> e.isCategoria(categoria));
 	}
 	
 	public void addPrenda(Prenda unaPrenda) {

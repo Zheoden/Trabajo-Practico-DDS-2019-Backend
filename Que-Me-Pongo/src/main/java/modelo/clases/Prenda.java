@@ -40,14 +40,6 @@ public class Prenda {
 		return tipo.esMaterialValido(material);
 	}
 	
-	public boolean isCategoria(Categoria categoria) {
-		return categoria == this.Categoria();
-	}
-	
-	public Boolean sePuedePonerJuntoA(TipoPrenda tipo) {
-		return this.tipo.nivelDeCapa() < tipo.nivelDeCapa();
-	}
-	
 	public Categoria Categoria() {
 		return tipo.categoria();
 	}

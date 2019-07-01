@@ -12,15 +12,13 @@ public class AdministrarProveedores {
 	public AdministrarProveedores() {
 	}
 	
-	public int obtenerTemperatura(Date fecha) {
-		return 7;
+	public Double obtenerTemperatura(Date fecha) {
+		return 7.0;
 	}
 	
-	public int obtenerTemperaturaActual() {
-		return 7;
+	public Double obtenerTemperaturaActual() {
+		return 7.0;
 	}
-	
-	
 	
 	public void addProveedores(Proveedores proveedores) {
 		this.proveedores.add(proveedores);
