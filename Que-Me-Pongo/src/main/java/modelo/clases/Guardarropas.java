@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import modelo.clases.Abrigo;
 
 import static com.google.common.collect.Sets.cartesianProduct;
@@ -76,22 +77,22 @@ public class Guardarropas {
 //		return this.obtenerAtuendoRandom(this.atuendosValidosParaAhora());
 //	}
 	
-	private Set<Set<Prenda>> obtenerCombinacionesDePrenda(Set<Prenda> prendas, Double temperatura) {
+	public Set<Set<Prenda>> obtenerCombinacionesDePrenda(Set<Prenda> prendas, Double temperatura) {
 		return powerSet(prendas).stream().filter(this::prendasTienenNivelesDeCapaValidos)
 				.filter(conjuntoDePrendas -> this.prendasTienenNivelesDeAbrigoValidos(conjuntoDePrendas, temperatura))
 				.collect(Collectors.toSet());
 	}
 	
-	private Boolean prendasTienenNivelesDeAbrigoValidos(Set<Prenda> conjuntoDePrendas, Double temperatura) {
+	public Boolean prendasTienenNivelesDeAbrigoValidos(Set<Prenda> conjuntoDePrendas, Double temperatura) {
 		return conjuntoDePrendas.stream().anyMatch(prenda -> prenda.getTipo().nivelDeAbrigo() == 0 ) ||
 				Abrigo.obtenerNivelesDeAbrigo(temperatura).contains(this.obtenerPuntosDeAbrigo(conjuntoDePrendas));
 	}
 	
-	private int obtenerPuntosDeAbrigo(Set<Prenda> prendas) {
+	public int obtenerPuntosDeAbrigo(Set<Prenda> prendas) {
 		return prendas.stream().mapToInt(prenda -> prenda.getTipo().nivelDeAbrigo()).sum();
 	}
 	
-	private Boolean prendasTienenNivelesDeCapaValidos(Set<Prenda> conjuntoDePrendas) {
+	public Boolean prendasTienenNivelesDeCapaValidos(Set<Prenda> conjuntoDePrendas) {
 		List<Integer> nivelesDeCapa =
 				conjuntoDePrendas.stream()
 						.map(prenda -> prenda.getTipo().nivelDeCapa())
@@ -100,7 +101,7 @@ public class Guardarropas {
 		return  nivelesDeCapa.contains(0) && nivelesDeCapa.size() == nivelesDeCapa.stream().distinct().collect(Collectors.toList()).size();
 	}
 	
-	private Set<Set<Prenda>> obtenerCombinacionesNoVacias(Set<Prenda> prendas, Double temperatura) {
+	public Set<Set<Prenda>> obtenerCombinacionesNoVacias(Set<Prenda> prendas, Double temperatura) {
 		return obtenerCombinacionesDePrenda(prendas, temperatura).stream().filter(set -> !set.isEmpty()).collect(Collectors.toSet());
 	}
 	
