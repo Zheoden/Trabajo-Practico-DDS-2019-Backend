@@ -9,18 +9,37 @@ import modelo.enums.*;
 
 public class Usuario {
 	
+	Suscripcion suscripcion;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
-	public Usuario(ArrayList <Guardarropas> guardaRopas) {
+	public Suscripcion getSuscripcion() {
+		return suscripcion;
+	}
+	
+	public void setSuscripcion(Suscripcion unaSuscripcion) {
+		suscripcion = unaSuscripcion;
+	}
+	
+	public boolean listaDeGuardarropasValida(ArrayList<Guardarropas> guardaRopas) {
+		return guardaRopas.stream().allMatch(unGuardarropa -> unGuardarropa.tamanioGuardarropas() <= suscripcion.cantidadPrendasPermitidas());
+	}
+	
+	public Usuario(ArrayList <Guardarropas> guardaRopas, Suscripcion unaSuscripcion) throws Exception  {
 		this.setGuardaRopas(guardaRopas);
+		this.setSuscripcion(unaSuscripcion);
 	}
 
 	public ArrayList<Guardarropas> getGuardaRopas() {
 		return guardarropas;
 	}
 
-	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
-		this.guardarropas = guardaRopas;
+	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) throws Exception {
+		if(this.listaDeGuardarropasValida(guardaRopas)) {
+		this.guardarropas = guardaRopas; 
+		}
+		else {
+			throw new Exception("La lista ingresada no cumple con los requisitos permitidos por la Suscripcion del usuario");
+		}
 	}
 	
 	public boolean verificarGuardarropas(Categoria categoria) {
