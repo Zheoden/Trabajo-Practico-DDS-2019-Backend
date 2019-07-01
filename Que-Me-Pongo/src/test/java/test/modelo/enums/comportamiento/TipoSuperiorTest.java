@@ -7,114 +7,115 @@ import org.junit.jupiter.api.DisplayName;
 import modelo.enums.Categoria;
 import modelo.enums.Material;
 import modelo.enums.comportamiento.TipoAccesorio;
+import modelo.enums.comportamiento.TipoSuperior;
 import modelo.interfaces.TipoPrenda;
 
 @DisplayName("Tests para los Atuendos")
 public class TipoSuperiorTest {
-	TipoPrenda anteojos = TipoAccesorio.ANTEOJOS;
-	TipoPrenda aros = TipoAccesorio.AROS;
-	TipoPrenda bufanda = TipoAccesorio.BUFANDA;
-	TipoPrenda gorra = TipoAccesorio.GORRA;
-	TipoPrenda collar = TipoAccesorio.COLLAR;
-	TipoPrenda lentes = TipoAccesorio.LENTES;
+	TipoPrenda buzo = TipoSuperior.BUZO;
+	TipoPrenda camisa = TipoSuperior.CAMISA;
+	TipoPrenda campera = TipoSuperior.CAMPERA;
+	TipoPrenda remeracorta = TipoSuperior.REMERACORTA;
+	TipoPrenda remeralarga = TipoSuperior.REMERALARGA;
+	TipoPrenda sweater = TipoSuperior.SWEATER;
 	
 	
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void categoria() {
-		Assert.assertEquals(anteojos.categoria(), Categoria.ACCESORIO);
-		Assert.assertEquals(aros.categoria(), Categoria.ACCESORIO);
-		Assert.assertEquals(bufanda.categoria(), Categoria.ACCESORIO);
-		Assert.assertEquals(gorra.categoria(), Categoria.ACCESORIO);
-		Assert.assertEquals(collar.categoria(), Categoria.ACCESORIO);
-		Assert.assertEquals(lentes.categoria(), Categoria.ACCESORIO);
+		Assert.assertEquals(buzo.categoria(), Categoria.PARTE_SUPERIOR);
+		Assert.assertEquals(camisa.categoria(), Categoria.PARTE_SUPERIOR);
+		Assert.assertEquals(campera.categoria(), Categoria.PARTE_SUPERIOR);
+		Assert.assertEquals(remeracorta.categoria(), Categoria.PARTE_SUPERIOR);
+		Assert.assertEquals(remeralarga.categoria(), Categoria.PARTE_SUPERIOR);
+		Assert.assertEquals(sweater.categoria(), Categoria.PARTE_SUPERIOR);
 	}
 
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void nivelDeCapa() {
-		Assert.assertEquals(anteojos.nivelDeCapa(), 0);
-		Assert.assertEquals(aros.nivelDeCapa(), 0);
-		Assert.assertEquals(bufanda.nivelDeCapa(), 0);
-		Assert.assertEquals(gorra.nivelDeCapa(), 0);
-		Assert.assertEquals(collar.nivelDeCapa(), 0);
-		Assert.assertEquals(lentes.nivelDeCapa(), 0);
+		Assert.assertEquals(buzo.nivelDeCapa(), 1);
+		Assert.assertEquals(camisa.nivelDeCapa(), 0);
+		Assert.assertEquals(campera.nivelDeCapa(), 2);
+		Assert.assertEquals(remeracorta.nivelDeCapa(), 0);
+		Assert.assertEquals(remeralarga.nivelDeCapa(), 0);
+		Assert.assertEquals(sweater.nivelDeCapa(), 1);
 	}
 
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void esMaterialValido() {
-		Assert.assertTrue(anteojos.esMaterialValido(Material.ALGODON));
-		Assert.assertTrue(anteojos.esMaterialValido(Material.CUERO));
-		Assert.assertTrue(anteojos.esMaterialValido(Material.GABARDINA));
-		Assert.assertTrue(anteojos.esMaterialValido(Material.JEAN));
-		Assert.assertTrue(anteojos.esMaterialValido(Material.LINO));
-		Assert.assertTrue(anteojos.esMaterialValido(Material.LYCRA));
-		Assert.assertTrue(anteojos.esMaterialValido(Material.OXFORD));
-		Assert.assertTrue(anteojos.esMaterialValido(Material.POLAR));
-		Assert.assertTrue(anteojos.esMaterialValido(Material.SEDA));
-		Assert.assertTrue(anteojos.esMaterialValido(Material.TERCIOPELO));
+		Assert.assertFalse(buzo.esMaterialValido(Material.CUERO));
+		Assert.assertFalse(buzo.esMaterialValido(Material.GABARDINA));
+		Assert.assertFalse(buzo.esMaterialValido(Material.JEAN));
+		Assert.assertTrue(buzo.esMaterialValido(Material.LINO));
+		Assert.assertTrue(buzo.esMaterialValido(Material.LYCRA));
+		Assert.assertTrue(buzo.esMaterialValido(Material.OXFORD));
+		Assert.assertTrue(buzo.esMaterialValido(Material.POLAR));
+		Assert.assertFalse(buzo.esMaterialValido(Material.SEDA));
+		Assert.assertFalse(buzo.esMaterialValido(Material.TERCIOPELO));
 		
-		Assert.assertTrue(aros.esMaterialValido(Material.ALGODON));
-		Assert.assertTrue(aros.esMaterialValido(Material.CUERO));
-		Assert.assertTrue(aros.esMaterialValido(Material.GABARDINA));
-		Assert.assertTrue(aros.esMaterialValido(Material.JEAN));
-		Assert.assertTrue(aros.esMaterialValido(Material.LINO));
-		Assert.assertTrue(aros.esMaterialValido(Material.LYCRA));
-		Assert.assertTrue(aros.esMaterialValido(Material.OXFORD));
-		Assert.assertTrue(aros.esMaterialValido(Material.POLAR));
-		Assert.assertTrue(aros.esMaterialValido(Material.SEDA));
-		Assert.assertTrue(aros.esMaterialValido(Material.TERCIOPELO));
+		Assert.assertTrue(camisa.esMaterialValido(Material.ALGODON));
+		Assert.assertFalse(camisa.esMaterialValido(Material.CUERO));
+		Assert.assertTrue(camisa.esMaterialValido(Material.GABARDINA));
+		Assert.assertTrue(camisa.esMaterialValido(Material.JEAN));
+		Assert.assertTrue(camisa.esMaterialValido(Material.LINO));
+		Assert.assertFalse(camisa.esMaterialValido(Material.LYCRA));
+		Assert.assertTrue(camisa.esMaterialValido(Material.OXFORD));
+		Assert.assertFalse(camisa.esMaterialValido(Material.POLAR));
+		Assert.assertTrue(camisa.esMaterialValido(Material.SEDA));
+		Assert.assertFalse(camisa.esMaterialValido(Material.TERCIOPELO));
 		
-		Assert.assertTrue(bufanda.esMaterialValido(Material.CUERO));
-		Assert.assertTrue(bufanda.esMaterialValido(Material.GABARDINA));
-		Assert.assertTrue(bufanda.esMaterialValido(Material.JEAN));
-		Assert.assertTrue(bufanda.esMaterialValido(Material.LINO));
-		Assert.assertTrue(bufanda.esMaterialValido(Material.LYCRA));
-		Assert.assertTrue(bufanda.esMaterialValido(Material.OXFORD));
-		Assert.assertTrue(bufanda.esMaterialValido(Material.POLAR));
-		Assert.assertTrue(bufanda.esMaterialValido(Material.SEDA));
-		Assert.assertTrue(bufanda.esMaterialValido(Material.TERCIOPELO));
+		Assert.assertTrue(campera.esMaterialValido(Material.ALGODON));
+		Assert.assertTrue(campera.esMaterialValido(Material.CUERO));
+		Assert.assertTrue(campera.esMaterialValido(Material.GABARDINA));
+		Assert.assertTrue(campera.esMaterialValido(Material.JEAN));
+		Assert.assertTrue(campera.esMaterialValido(Material.LINO));
+		Assert.assertTrue(campera.esMaterialValido(Material.LYCRA));
+		Assert.assertTrue(campera.esMaterialValido(Material.OXFORD));
+		Assert.assertTrue(campera.esMaterialValido(Material.POLAR));
+		Assert.assertTrue(campera.esMaterialValido(Material.SEDA));
+		Assert.assertTrue(campera.esMaterialValido(Material.TERCIOPELO));
+		
+		Assert.assertFalse(remeracorta.esMaterialValido(Material.CUERO));
+		Assert.assertTrue(remeracorta.esMaterialValido(Material.GABARDINA));
+		Assert.assertFalse(remeracorta.esMaterialValido(Material.JEAN));
+		Assert.assertTrue(remeracorta.esMaterialValido(Material.LINO));
+		Assert.assertTrue(remeracorta.esMaterialValido(Material.LYCRA));
+		Assert.assertTrue(remeracorta.esMaterialValido(Material.OXFORD));
+		Assert.assertTrue(remeracorta.esMaterialValido(Material.POLAR));
+		Assert.assertTrue(remeracorta.esMaterialValido(Material.SEDA));
+		Assert.assertFalse(remeracorta.esMaterialValido(Material.TERCIOPELO));
 
-        Assert.assertTrue(gorra.esMaterialValido(Material.CUERO));
-		Assert.assertTrue(gorra.esMaterialValido(Material.GABARDINA));
-		Assert.assertTrue(gorra.esMaterialValido(Material.JEAN));
-		Assert.assertTrue(gorra.esMaterialValido(Material.LINO));
-		Assert.assertTrue(gorra.esMaterialValido(Material.LYCRA));
-		Assert.assertTrue(gorra.esMaterialValido(Material.OXFORD));
-		Assert.assertTrue(gorra.esMaterialValido(Material.POLAR));
-		Assert.assertTrue(gorra.esMaterialValido(Material.SEDA));
-		Assert.assertTrue(gorra.esMaterialValido(Material.TERCIOPELO));
+        Assert.assertFalse(remeralarga.esMaterialValido(Material.CUERO));
+		Assert.assertTrue(remeralarga.esMaterialValido(Material.GABARDINA));
+		Assert.assertFalse(remeralarga.esMaterialValido(Material.JEAN));
+		Assert.assertTrue(remeralarga.esMaterialValido(Material.LINO));
+		Assert.assertTrue(remeralarga.esMaterialValido(Material.LYCRA));
+		Assert.assertTrue(remeralarga.esMaterialValido(Material.OXFORD));
+		Assert.assertTrue(remeralarga.esMaterialValido(Material.POLAR));
+		Assert.assertTrue(remeralarga.esMaterialValido(Material.SEDA));
+		Assert.assertFalse(remeralarga.esMaterialValido(Material.TERCIOPELO));
 
-        Assert.assertTrue(collar.esMaterialValido(Material.CUERO));
-		Assert.assertTrue(collar.esMaterialValido(Material.GABARDINA));
-		Assert.assertTrue(collar.esMaterialValido(Material.JEAN));
-		Assert.assertTrue(collar.esMaterialValido(Material.LINO));
-		Assert.assertTrue(collar.esMaterialValido(Material.LYCRA));
-		Assert.assertTrue(collar.esMaterialValido(Material.OXFORD));
-		Assert.assertTrue(collar.esMaterialValido(Material.POLAR));
-		Assert.assertTrue(collar.esMaterialValido(Material.SEDA));
-		Assert.assertTrue(collar.esMaterialValido(Material.TERCIOPELO));
-
-        Assert.assertTrue(lentes.esMaterialValido(Material.CUERO));
-		Assert.assertTrue(lentes.esMaterialValido(Material.GABARDINA));
-		Assert.assertTrue(lentes.esMaterialValido(Material.JEAN));
-		Assert.assertTrue(lentes.esMaterialValido(Material.LINO));
-		Assert.assertTrue(lentes.esMaterialValido(Material.LYCRA));
-		Assert.assertTrue(lentes.esMaterialValido(Material.OXFORD));
-		Assert.assertTrue(lentes.esMaterialValido(Material.POLAR));
-		Assert.assertTrue(lentes.esMaterialValido(Material.SEDA));
-		Assert.assertTrue(lentes.esMaterialValido(Material.TERCIOPELO));
+        Assert.assertFalse(sweater.esMaterialValido(Material.CUERO));
+		Assert.assertFalse(sweater.esMaterialValido(Material.GABARDINA));
+		Assert.assertFalse(sweater.esMaterialValido(Material.JEAN));
+		Assert.assertTrue(sweater.esMaterialValido(Material.LINO));
+		Assert.assertTrue(sweater.esMaterialValido(Material.LYCRA));
+		Assert.assertTrue(sweater.esMaterialValido(Material.OXFORD));
+		Assert.assertTrue(sweater.esMaterialValido(Material.POLAR));
+		Assert.assertFalse(sweater.esMaterialValido(Material.SEDA));
+		Assert.assertFalse(sweater.esMaterialValido(Material.TERCIOPELO));
 	}
 	
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void nivelDeAbrigo() {
-		Assert.assertEquals(anteojos.nivelDeAbrigo(), 0);
-		Assert.assertEquals(aros.nivelDeAbrigo(), 0);
-		Assert.assertEquals(bufanda.nivelDeAbrigo(), 0);
-		Assert.assertEquals(gorra.nivelDeAbrigo(), 0);
-		Assert.assertEquals(collar.nivelDeAbrigo(), 0);
-		Assert.assertEquals(lentes.nivelDeAbrigo(), 0);
+		Assert.assertEquals(buzo.nivelDeAbrigo(), 3);
+		Assert.assertEquals(camisa.nivelDeAbrigo(), 2);
+		Assert.assertEquals(campera.nivelDeAbrigo(), 5);
+		Assert.assertEquals(remeracorta.nivelDeAbrigo(), 1);
+		Assert.assertEquals(remeralarga.nivelDeAbrigo(), 2);
+		Assert.assertEquals(sweater.nivelDeAbrigo(), 3);
 	}
 }
