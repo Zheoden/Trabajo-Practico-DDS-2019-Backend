@@ -27,12 +27,15 @@ public class Usuario {
 	public void setSuscripcion(Suscripcion unaSuscripcion) {
 		suscripcion = unaSuscripcion;
 	}
-
-	public boolean listaDeGuardarropasValida(ArrayList<Guardarropas> guardaRopas) {
-		return guardaRopas.stream().allMatch(
-				unGuardarropa -> unGuardarropa.tamanioGuardarropas() <= suscripcion.cantidadPrendasPermitidas());
+	
+	public void agregarAGuardaRopas(Prenda unaPrenda, Guardarropas guardaRopas) throws Exception {
+		if(suscripcion.cantidadPrendasPermitidas(guardaRopas.tamanioGuardarropas())) {
+			guardaRopas.addPrenda(unaPrenda);
+		} else {
+			throw new Exception("El guardaRopas posee la cantidad maxima de prendas permitidas por la suscripcion del ususario");
+		}
 	}
-
+	
 	public ArrayList<Guardarropas> getGuardaRopas() {
 		return guardarropas;
 	}
