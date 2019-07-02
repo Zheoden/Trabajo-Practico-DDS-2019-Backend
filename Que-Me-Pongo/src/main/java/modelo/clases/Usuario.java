@@ -32,7 +32,7 @@ public class Usuario {
 	}
 	
 	public void agregarAGuardaRopas(Prenda unaPrenda, Guardarropas guardaRopas) {
-		if(suscripcion.cantidadPrendasPermitidas(guardaRopas.tamanioGuardarropas())) {
+		if(this.suscripcion.cantidadPrendasPermitidas(guardaRopas.tamanioGuardarropas())) {
 			guardaRopas.addPrenda(unaPrenda);
 		} else {
 			System.out.println("El guardaRopas posee la cantidad maxima de prendas permitidas por la suscripcion del ususario");
