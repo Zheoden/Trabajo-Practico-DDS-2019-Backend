@@ -87,12 +87,6 @@ public class UsuarioTest {
 	}
 
 	@Test
-	@DisplayName("Verificar que todos los guardarropas del usuario sean acorde a su suscripcion")
-	public void listaDeGuardarropasValida() {
-
-	}
-
-	@Test
 	@DisplayName("Agregar mas prendas de la permitida por la suscripcion del usuario")
 	public void agregarPrendaAGuardaRopa() {
 		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
