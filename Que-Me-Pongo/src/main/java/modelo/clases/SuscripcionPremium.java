@@ -1,8 +1,11 @@
 package modelo.clases;
 
-public class SuscripcionPremium extends Suscripcion {
+import modelo.interfaces.Suscripcion;
 
-	public boolean cantidadSegunTipo(int unNumero) {
+public class SuscripcionPremium implements Suscripcion {
+
+	@Override
+	public boolean cantidadPrendasPermitidas(int unNumero) {
 		return true;
 	}
 

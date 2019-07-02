@@ -1,13 +1,10 @@
 package modelo.clases;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import modelo.interfaces.Suscripcion;
 
 public class Usuario {
 
@@ -34,11 +31,11 @@ public class Usuario {
 		suscripcion = unaSuscripcion;
 	}
 	
-	public void agregarAGuardaRopas(Prenda unaPrenda, Guardarropas guardaRopas) throws Exception {
+	public void agregarAGuardaRopas(Prenda unaPrenda, Guardarropas guardaRopas) {
 		if(suscripcion.cantidadPrendasPermitidas(guardaRopas.tamanioGuardarropas())) {
 			guardaRopas.addPrenda(unaPrenda);
 		} else {
-			throw new Exception("El guardaRopas posee la cantidad maxima de prendas permitidas por la suscripcion del ususario");
+			System.out.println("El guardaRopas posee la cantidad maxima de prendas permitidas por la suscripcion del ususario");
 		}
 	}
 	

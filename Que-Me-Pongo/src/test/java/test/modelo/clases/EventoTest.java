@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import modelo.enums.Color;
 import modelo.enums.comportamiento.TipoPrenda;
+import modelo.interfaces.Suscripcion;
 
 public class EventoTest {
 

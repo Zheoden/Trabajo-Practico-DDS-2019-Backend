@@ -10,12 +10,12 @@ import org.junit.jupiter.api.DisplayName;
 import modelo.clases.Atuendo;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
-import modelo.clases.Suscripcion;
 import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
 import modelo.enums.Color;
 import modelo.enums.Material;
 import modelo.enums.comportamiento.TipoPrenda;
+import modelo.interfaces.Suscripcion;
 
 @DisplayName("Tests para los Usuarios")
 public class UsuarioTest {
