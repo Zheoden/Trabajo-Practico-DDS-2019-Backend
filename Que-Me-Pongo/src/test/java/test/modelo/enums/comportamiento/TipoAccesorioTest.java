@@ -1,6 +1,5 @@
 package test.modelo.enums.comportamiento;
 
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +15,7 @@ public class TipoAccesorioTest {
 	TipoPrenda gorra = TipoPrenda.GORRA;
 	TipoPrenda collar = TipoPrenda.COLLAR;
 	TipoPrenda lentes = TipoPrenda.LENTES;
-	
+
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void categoria() {
@@ -52,7 +51,7 @@ public class TipoAccesorioTest {
 		Assert.assertTrue(anteojos.esMaterialValido(Material.POLAR));
 		Assert.assertTrue(anteojos.esMaterialValido(Material.SEDA));
 		Assert.assertTrue(anteojos.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(aros.esMaterialValido(Material.ALGODON));
 		Assert.assertTrue(aros.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(aros.esMaterialValido(Material.GABARDINA));
@@ -63,7 +62,7 @@ public class TipoAccesorioTest {
 		Assert.assertTrue(aros.esMaterialValido(Material.POLAR));
 		Assert.assertTrue(aros.esMaterialValido(Material.SEDA));
 		Assert.assertTrue(aros.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(bufanda.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(bufanda.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(bufanda.esMaterialValido(Material.JEAN));
@@ -74,7 +73,7 @@ public class TipoAccesorioTest {
 		Assert.assertTrue(bufanda.esMaterialValido(Material.SEDA));
 		Assert.assertTrue(bufanda.esMaterialValido(Material.TERCIOPELO));
 
-        Assert.assertTrue(gorra.esMaterialValido(Material.CUERO));
+		Assert.assertTrue(gorra.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(gorra.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(gorra.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(gorra.esMaterialValido(Material.LINO));
@@ -84,7 +83,7 @@ public class TipoAccesorioTest {
 		Assert.assertTrue(gorra.esMaterialValido(Material.SEDA));
 		Assert.assertTrue(gorra.esMaterialValido(Material.TERCIOPELO));
 
-        Assert.assertTrue(collar.esMaterialValido(Material.CUERO));
+		Assert.assertTrue(collar.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(collar.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(collar.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(collar.esMaterialValido(Material.LINO));
@@ -94,7 +93,7 @@ public class TipoAccesorioTest {
 		Assert.assertTrue(collar.esMaterialValido(Material.SEDA));
 		Assert.assertTrue(collar.esMaterialValido(Material.TERCIOPELO));
 
-        Assert.assertTrue(lentes.esMaterialValido(Material.CUERO));
+		Assert.assertTrue(lentes.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(lentes.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(lentes.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(lentes.esMaterialValido(Material.LINO));
@@ -104,7 +103,7 @@ public class TipoAccesorioTest {
 		Assert.assertTrue(lentes.esMaterialValido(Material.SEDA));
 		Assert.assertTrue(lentes.esMaterialValido(Material.TERCIOPELO));
 	}
-	
+
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void nivelDeAbrigo() {

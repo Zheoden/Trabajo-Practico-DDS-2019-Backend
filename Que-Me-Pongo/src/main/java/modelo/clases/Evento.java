@@ -52,24 +52,16 @@ public class Evento {
 
 	public void recordatorio() {
 
-		  //Se ejecutaria 1 vez antes de 5 minutos del evento
-		  ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-				  ScheduledFuture<?> future = scheduler.scheduleAtFixedRate(
-					        () -> System.out.println("Recordatorio de evento " +this.getNombre()),
-					        0,
-					        5, TimeUnit.MINUTES);
-					    scheduler.schedule(
-					        () -> {
-					            future.cancel(true);
-					            scheduler.shutdown();
-					        }, 1, TimeUnit.MINUTES);
-					    scheduler.shutdown();
+		// Se ejecutaria 1 vez antes de 5 minutos del evento
+		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+		ScheduledFuture<?> future = scheduler.scheduleAtFixedRate(
+				() -> System.out.println("Recordatorio de evento " + this.getNombre()), 0, 5, TimeUnit.MINUTES);
+		scheduler.schedule(() -> {
+			future.cancel(true);
+			scheduler.shutdown();
+		}, 1, TimeUnit.MINUTES);
+		scheduler.shutdown();
 	}
-
-			
-
-
-	
 
 	public void iniciar() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

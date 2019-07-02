@@ -6,21 +6,20 @@ import java.util.Set;
 import com.google.common.collect.Lists;
 
 public class Atuendo {
-	
+
 	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
-	
-	public Atuendo (ArrayList<Prenda> prendas) {
+
+	public Atuendo(ArrayList<Prenda> prendas) {
 		this.prendas = prendas;
-	}	
-	
-	public Atuendo (Prenda superior, Prenda inferior, Prenda calzado, Prenda accesorio) {
+	}
+
+	public Atuendo(Prenda superior, Prenda inferior, Prenda calzado, Prenda accesorio) {
 		this.addPrenda(superior);
 		this.addPrenda(inferior);
 		this.addPrenda(calzado);
 		this.addPrenda(accesorio);
-	}	
+	}
 
-	
 	public Atuendo(Set<Prenda> superior, Set<Prenda> inferior, Set<Prenda> calzado, Set<Prenda> accesorio) {
 		this.addListPrenda(Lists.newArrayList(superior));
 		this.addListPrenda(Lists.newArrayList(inferior));
@@ -31,11 +30,11 @@ public class Atuendo {
 	public ArrayList<Prenda> getPrendas() {
 		return prendas;
 	}
-	
+
 	public void addPrenda(Prenda unaPrenda) {
 		this.prendas.add(unaPrenda);
 	}
-	
+
 	public void addListPrenda(List<Prenda> prendas) {
 		this.prendas.addAll(prendas);
 	}

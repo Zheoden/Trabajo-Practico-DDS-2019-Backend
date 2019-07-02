@@ -14,7 +14,7 @@ public class TipoCalzadoTest {
 	TipoPrenda zapatos = TipoPrenda.ZAPATOS;
 	TipoPrenda zapatosDeTacon = TipoPrenda.ZAPATOSDETACON;
 	TipoPrenda ojotas = TipoPrenda.OJOTAS;
-	
+
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void categoria() {
@@ -46,9 +46,9 @@ public class TipoCalzadoTest {
 		Assert.assertFalse(zapatillas.esMaterialValido(Material.POLAR));
 		Assert.assertFalse(zapatillas.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(zapatillas.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(zapatos.esMaterialValido(Material.CUERO));
-		Assert.assertFalse(zapatos.esMaterialValido(Material.ALGODON));		
+		Assert.assertFalse(zapatos.esMaterialValido(Material.ALGODON));
 		Assert.assertFalse(zapatos.esMaterialValido(Material.GABARDINA));
 		Assert.assertFalse(zapatos.esMaterialValido(Material.JEAN));
 		Assert.assertFalse(zapatos.esMaterialValido(Material.LINO));
@@ -57,9 +57,9 @@ public class TipoCalzadoTest {
 		Assert.assertFalse(zapatos.esMaterialValido(Material.POLAR));
 		Assert.assertFalse(zapatos.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(zapatos.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(zapatosDeTacon.esMaterialValido(Material.CUERO));
-		Assert.assertFalse(zapatosDeTacon.esMaterialValido(Material.ALGODON));		
+		Assert.assertFalse(zapatosDeTacon.esMaterialValido(Material.ALGODON));
 		Assert.assertFalse(zapatosDeTacon.esMaterialValido(Material.GABARDINA));
 		Assert.assertFalse(zapatosDeTacon.esMaterialValido(Material.JEAN));
 		Assert.assertFalse(zapatosDeTacon.esMaterialValido(Material.LINO));
@@ -68,7 +68,7 @@ public class TipoCalzadoTest {
 		Assert.assertFalse(zapatosDeTacon.esMaterialValido(Material.POLAR));
 		Assert.assertFalse(zapatosDeTacon.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(zapatosDeTacon.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(ojotas.esMaterialValido(Material.CUERO));
 		Assert.assertFalse(ojotas.esMaterialValido(Material.ALGODON));
 		Assert.assertFalse(ojotas.esMaterialValido(Material.GABARDINA));
@@ -80,7 +80,7 @@ public class TipoCalzadoTest {
 		Assert.assertFalse(ojotas.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(ojotas.esMaterialValido(Material.TERCIOPELO));
 	}
-	
+
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void nivelDeAbrigo() {
@@ -89,5 +89,5 @@ public class TipoCalzadoTest {
 		Assert.assertEquals(zapatosDeTacon.nivelDeAbrigo(), 0);
 		Assert.assertEquals(ojotas.nivelDeAbrigo(), 0);
 	}
-	
+
 }

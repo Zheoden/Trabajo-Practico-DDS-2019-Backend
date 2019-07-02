@@ -13,7 +13,7 @@ public class Imagen {
 	private static int MAX_HEIGHT = 800;
 	private static int MAX_WIDTH = 600;
 	private BufferedImage imagenRenderizada;
-	
+
 	public BufferedImage getImagenRenderizada() {
 		return imagenRenderizada;
 	}
@@ -22,19 +22,19 @@ public class Imagen {
 		this.imagenRenderizada = imagenRenderizada;
 	}
 
-	//Funcion Para Redimensionar El Tamanio De La Prenda Al Maximo Establecido
+	// Funcion Para Redimensionar El Tamanio De La Prenda Al Maximo Establecido
 	public BufferedImage normalizarImagen(String url) {
-		
-		 BufferedImage imageBuffer = cargarImagen(url);
-		 
-		 imageBuffer = redimensionarImagen(imageBuffer, imageBuffer.getWidth(), MAX_HEIGHT);
-		 imageBuffer = redimensionarImagen(imageBuffer, MAX_WIDTH, imageBuffer.getHeight());
-		 
-		 guardarImagen(imageBuffer, url);	
-		 this.setImagenRenderizada(imageBuffer);
-		 return imageBuffer;
+
+		BufferedImage imageBuffer = cargarImagen(url);
+
+		imageBuffer = redimensionarImagen(imageBuffer, imageBuffer.getWidth(), MAX_HEIGHT);
+		imageBuffer = redimensionarImagen(imageBuffer, MAX_WIDTH, imageBuffer.getHeight());
+
+		guardarImagen(imageBuffer, url);
+		this.setImagenRenderizada(imageBuffer);
+		return imageBuffer;
 	}
-	
+
 	// Funcion Para Cargar La Imagen De Su Url
 	public BufferedImage cargarImagen(String url) {
 		BufferedImage imageBuffer = null;
@@ -46,20 +46,20 @@ public class Imagen {
 		}
 		return imageBuffer;
 	}
-    
-	//Funcion Que Redimensiona La Imagen
-    public BufferedImage redimensionarImagen(BufferedImage bufferedImage, int nuevoAncho, int nuevaAltura) {
-        int width = bufferedImage.getWidth();
-        int height = bufferedImage.getHeight();
-        BufferedImage bufim = new BufferedImage(nuevoAncho, nuevaAltura, bufferedImage.getType());
-        Graphics2D g = bufim.createGraphics();
-        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g.drawImage(bufferedImage, 0, 0, nuevoAncho, nuevaAltura, 0, 0, width, height, null);
-        g.dispose();
-        return bufim;
-    }
-    
-    //Sobeescribe La Imagen Con El Tamanio Especificado
+
+	// Funcion Que Redimensiona La Imagen
+	public BufferedImage redimensionarImagen(BufferedImage bufferedImage, int nuevoAncho, int nuevaAltura) {
+		int width = bufferedImage.getWidth();
+		int height = bufferedImage.getHeight();
+		BufferedImage bufim = new BufferedImage(nuevoAncho, nuevaAltura, bufferedImage.getType());
+		Graphics2D g = bufim.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g.drawImage(bufferedImage, 0, 0, nuevoAncho, nuevaAltura, 0, 0, width, height, null);
+		g.dispose();
+		return bufim;
+	}
+
+	// Sobeescribe La Imagen Con El Tamanio Especificado
 	public void guardarImagen(BufferedImage bufferedImage, String url) {
 		try {
 			String format = (url.endsWith(".png")) ? "png" : "jpg";

@@ -8,7 +8,6 @@ import modelo.enums.Categoria;
 import modelo.enums.Material;
 import modelo.enums.comportamiento.TipoPrenda;
 
-
 @DisplayName("Tests para los Atuendos")
 public class TipoInferiorTest {
 	TipoPrenda bermudas = TipoPrenda.BERMUDAS;
@@ -16,7 +15,7 @@ public class TipoInferiorTest {
 	TipoPrenda pantalon = TipoPrenda.PANTALON;
 	TipoPrenda pollera = TipoPrenda.POLLERA;
 	TipoPrenda shorts = TipoPrenda.SHORTS;
-	
+
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void categoria() {
@@ -44,24 +43,24 @@ public class TipoInferiorTest {
 		Assert.assertTrue(bermudas.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(bermudas.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(bermudas.esMaterialValido(Material.LINO));
-		Assert.assertFalse(bermudas.esMaterialValido(Material.CUERO));		
+		Assert.assertFalse(bermudas.esMaterialValido(Material.CUERO));
 		Assert.assertFalse(bermudas.esMaterialValido(Material.LYCRA));
 		Assert.assertFalse(bermudas.esMaterialValido(Material.OXFORD));
 		Assert.assertFalse(bermudas.esMaterialValido(Material.POLAR));
 		Assert.assertFalse(bermudas.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(bermudas.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(calzas.esMaterialValido(Material.ALGODON));
 		Assert.assertTrue(calzas.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(calzas.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(calzas.esMaterialValido(Material.LINO));
 		Assert.assertTrue(calzas.esMaterialValido(Material.LYCRA));
-		Assert.assertTrue(calzas.esMaterialValido(Material.POLAR));		
-		Assert.assertFalse(calzas.esMaterialValido(Material.CUERO));		
-		Assert.assertFalse(calzas.esMaterialValido(Material.OXFORD));		
+		Assert.assertTrue(calzas.esMaterialValido(Material.POLAR));
+		Assert.assertFalse(calzas.esMaterialValido(Material.CUERO));
+		Assert.assertFalse(calzas.esMaterialValido(Material.OXFORD));
 		Assert.assertFalse(calzas.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(calzas.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(pantalon.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(pantalon.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(pantalon.esMaterialValido(Material.JEAN));
@@ -72,7 +71,7 @@ public class TipoInferiorTest {
 		Assert.assertTrue(pantalon.esMaterialValido(Material.SEDA));
 		Assert.assertTrue(pantalon.esMaterialValido(Material.TERCIOPELO));
 
-        Assert.assertTrue(pollera.esMaterialValido(Material.CUERO));
+		Assert.assertTrue(pollera.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(pollera.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(pollera.esMaterialValido(Material.JEAN));
 		Assert.assertTrue(pollera.esMaterialValido(Material.LINO));
@@ -81,18 +80,18 @@ public class TipoInferiorTest {
 		Assert.assertTrue(pollera.esMaterialValido(Material.TERCIOPELO));
 		Assert.assertFalse(pollera.esMaterialValido(Material.LYCRA));
 		Assert.assertFalse(pollera.esMaterialValido(Material.POLAR));
-		
+
 		Assert.assertTrue(shorts.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(shorts.esMaterialValido(Material.LINO));
 		Assert.assertTrue(shorts.esMaterialValido(Material.LYCRA));
 		Assert.assertTrue(shorts.esMaterialValido(Material.OXFORD));
-        Assert.assertFalse(shorts.esMaterialValido(Material.CUERO));		
-		Assert.assertFalse(shorts.esMaterialValido(Material.JEAN));		
+		Assert.assertFalse(shorts.esMaterialValido(Material.CUERO));
+		Assert.assertFalse(shorts.esMaterialValido(Material.JEAN));
 		Assert.assertFalse(shorts.esMaterialValido(Material.POLAR));
 		Assert.assertFalse(shorts.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(shorts.esMaterialValido(Material.TERCIOPELO));
 	}
-	
+
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void nivelDeAbrigo() {
@@ -101,6 +100,6 @@ public class TipoInferiorTest {
 		Assert.assertEquals(pantalon.nivelDeAbrigo(), 0);
 		Assert.assertEquals(pollera.nivelDeAbrigo(), 2);
 		Assert.assertEquals(shorts.nivelDeAbrigo(), 2);
-		
+
 	}
 }

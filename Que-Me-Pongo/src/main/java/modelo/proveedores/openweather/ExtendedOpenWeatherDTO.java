@@ -12,5 +12,5 @@ public class ExtendedOpenWeatherDTO {
 	public void setList(List<ExtendedMain> list) {
 		this.list = list;
 	}
-	
+
 }

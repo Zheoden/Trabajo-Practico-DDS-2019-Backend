@@ -31,7 +31,8 @@ public class Abrigo {
 	}
 
 	public static List<Integer> obtenerNivelesDeAbrigo(Double clima) {
-		List<Abrigo> abrigos = asList(NIVEL_1, NIVEL_2, NIVEL_3, NIVEL_4, NIVEL_5, NIVEL_6, NIVEL_7, NIVEL_8, NIVEL_9, NIVEL_10);
+		List<Abrigo> abrigos = asList(NIVEL_1, NIVEL_2, NIVEL_3, NIVEL_4, NIVEL_5, NIVEL_6, NIVEL_7, NIVEL_8, NIVEL_9,
+				NIVEL_10);
 		return abrigos.stream().filter(abrigo -> abrigo.esNivelParaElClima(clima)).findFirst().get().nivelesDeAbrigo;
 	}
 

@@ -10,9 +10,9 @@ public class OpenWeatherDTO {
 	public void setMain(Main main) {
 		this.main = main;
 	}
-	
+
 	public Double getTemp() {
 		return this.main.getTemp();
 	}
-	
+
 }

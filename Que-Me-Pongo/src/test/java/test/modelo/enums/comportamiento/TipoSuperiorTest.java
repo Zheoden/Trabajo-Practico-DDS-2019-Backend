@@ -16,7 +16,7 @@ public class TipoSuperiorTest {
 	TipoPrenda remeracorta = TipoPrenda.REMERACORTA;
 	TipoPrenda remeralarga = TipoPrenda.REMERALARGA;
 	TipoPrenda sweater = TipoPrenda.SWEATER;
-	
+
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void categoria() {
@@ -45,13 +45,13 @@ public class TipoSuperiorTest {
 		Assert.assertTrue(buzo.esMaterialValido(Material.LINO));
 		Assert.assertTrue(buzo.esMaterialValido(Material.LYCRA));
 		Assert.assertTrue(buzo.esMaterialValido(Material.OXFORD));
-		Assert.assertTrue(buzo.esMaterialValido(Material.POLAR));		
+		Assert.assertTrue(buzo.esMaterialValido(Material.POLAR));
 		Assert.assertFalse(buzo.esMaterialValido(Material.CUERO));
 		Assert.assertFalse(buzo.esMaterialValido(Material.GABARDINA));
-		Assert.assertFalse(buzo.esMaterialValido(Material.JEAN));		
+		Assert.assertFalse(buzo.esMaterialValido(Material.JEAN));
 		Assert.assertFalse(buzo.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(buzo.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(camisa.esMaterialValido(Material.ALGODON));
 		Assert.assertTrue(camisa.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(camisa.esMaterialValido(Material.JEAN));
@@ -59,10 +59,10 @@ public class TipoSuperiorTest {
 		Assert.assertTrue(camisa.esMaterialValido(Material.OXFORD));
 		Assert.assertFalse(camisa.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(camisa.esMaterialValido(Material.SEDA));
-		Assert.assertFalse(camisa.esMaterialValido(Material.LYCRA));		
-		Assert.assertFalse(camisa.esMaterialValido(Material.POLAR));		
+		Assert.assertFalse(camisa.esMaterialValido(Material.LYCRA));
+		Assert.assertFalse(camisa.esMaterialValido(Material.POLAR));
 		Assert.assertFalse(camisa.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(campera.esMaterialValido(Material.ALGODON));
 		Assert.assertTrue(campera.esMaterialValido(Material.CUERO));
 		Assert.assertTrue(campera.esMaterialValido(Material.GABARDINA));
@@ -73,7 +73,7 @@ public class TipoSuperiorTest {
 		Assert.assertTrue(campera.esMaterialValido(Material.POLAR));
 		Assert.assertTrue(campera.esMaterialValido(Material.SEDA));
 		Assert.assertTrue(campera.esMaterialValido(Material.TERCIOPELO));
-		
+
 		Assert.assertTrue(remeracorta.esMaterialValido(Material.ALGODON));
 		Assert.assertTrue(remeracorta.esMaterialValido(Material.GABARDINA));
 		Assert.assertTrue(remeracorta.esMaterialValido(Material.LINO));
@@ -81,8 +81,8 @@ public class TipoSuperiorTest {
 		Assert.assertTrue(remeracorta.esMaterialValido(Material.OXFORD));
 		Assert.assertTrue(remeracorta.esMaterialValido(Material.POLAR));
 		Assert.assertTrue(remeracorta.esMaterialValido(Material.SEDA));
-		Assert.assertFalse(remeracorta.esMaterialValido(Material.CUERO));		
-		Assert.assertFalse(remeracorta.esMaterialValido(Material.JEAN));		
+		Assert.assertFalse(remeracorta.esMaterialValido(Material.CUERO));
+		Assert.assertFalse(remeracorta.esMaterialValido(Material.JEAN));
 		Assert.assertFalse(remeracorta.esMaterialValido(Material.TERCIOPELO));
 
 		Assert.assertTrue(remeralarga.esMaterialValido(Material.ALGODON));
@@ -92,22 +92,22 @@ public class TipoSuperiorTest {
 		Assert.assertTrue(remeralarga.esMaterialValido(Material.OXFORD));
 		Assert.assertTrue(remeralarga.esMaterialValido(Material.POLAR));
 		Assert.assertTrue(remeralarga.esMaterialValido(Material.SEDA));
-        Assert.assertFalse(remeralarga.esMaterialValido(Material.CUERO));		
-		Assert.assertFalse(remeralarga.esMaterialValido(Material.JEAN));		
+		Assert.assertFalse(remeralarga.esMaterialValido(Material.CUERO));
+		Assert.assertFalse(remeralarga.esMaterialValido(Material.JEAN));
 		Assert.assertFalse(remeralarga.esMaterialValido(Material.TERCIOPELO));
 
 		Assert.assertTrue(sweater.esMaterialValido(Material.ALGODON));
 		Assert.assertTrue(sweater.esMaterialValido(Material.LINO));
 		Assert.assertTrue(sweater.esMaterialValido(Material.LYCRA));
 		Assert.assertTrue(sweater.esMaterialValido(Material.OXFORD));
-		Assert.assertTrue(sweater.esMaterialValido(Material.POLAR));		
-        Assert.assertFalse(sweater.esMaterialValido(Material.CUERO));
+		Assert.assertTrue(sweater.esMaterialValido(Material.POLAR));
+		Assert.assertFalse(sweater.esMaterialValido(Material.CUERO));
 		Assert.assertFalse(sweater.esMaterialValido(Material.GABARDINA));
-		Assert.assertFalse(sweater.esMaterialValido(Material.JEAN));		
+		Assert.assertFalse(sweater.esMaterialValido(Material.JEAN));
 		Assert.assertFalse(sweater.esMaterialValido(Material.SEDA));
 		Assert.assertFalse(sweater.esMaterialValido(Material.TERCIOPELO));
 	}
-	
+
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void nivelDeAbrigo() {

@@ -1,6 +1,5 @@
 package test.modelo.clases;
 
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -21,12 +20,12 @@ public class AtuendoTest {
 		Atuendo atuendo = new Atuendo(new ArrayList<Prenda>());
 		Assert.assertEquals(atuendo.getClass(), Atuendo.class);
 	}
-	
+
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void agregarPrendasAlAtuendo() {
 		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
-		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA,Material.ALGODON, Color.ROSA);		
+		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		prendas.add(prenda1);
 		prendas.add(prenda2);

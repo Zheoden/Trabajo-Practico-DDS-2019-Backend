@@ -6,28 +6,30 @@ import modelo.enums.Material;
 import modelo.enums.comportamiento.TipoPrenda;
 
 public class Prenda {
-	
+
 	String direccionImagen;
 	TipoPrenda tipo;
 	Material material;
 	Color colorPrimario;
 	Color colorSecundario;
-	
+
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
 		this(tipo, material, colorPrimario);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
-			System.out.print("Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
+			System.out
+					.print("Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
 		}
 	}
-	
+
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario) {
 		this(tipo, colorPrimario);
 		if (this.esMaterialValido(tipo, material)) {
 			this.setTela(material);
 		} else {
-			System.out.print("Se intento crear una prenda con una combinacion Tipo - Material invalida. Se dejo el material como nulo.");
+			System.out.print(
+					"Se intento crear una prenda con una combinacion Tipo - Material invalida. Se dejo el material como nulo.");
 		}
 	}
 
@@ -35,11 +37,11 @@ public class Prenda {
 		this.setTipo(tipo);
 		this.setColorPrimario(colorPrimario);
 	}
-	
+
 	public boolean esMaterialValido(TipoPrenda tipo, Material material) {
 		return tipo.esMaterialValido(material);
 	}
-	
+
 	public Categoria Categoria() {
 		return tipo.categoria();
 	}
@@ -75,7 +77,7 @@ public class Prenda {
 	public void setTela(Material material) {
 		this.material = material;
 	}
-	
+
 	public String getDireccionImagen() {
 		return direccionImagen;
 	}

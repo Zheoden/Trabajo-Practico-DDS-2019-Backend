@@ -11,7 +11,7 @@ public class ExtendedMain {
 	public void setMain(Main main) {
 		this.main = main;
 	}
-	
+
 	public String getDt_txt() {
 		return dt_txt;
 	}

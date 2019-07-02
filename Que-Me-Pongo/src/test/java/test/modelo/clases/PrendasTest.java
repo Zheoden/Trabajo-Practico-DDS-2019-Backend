@@ -31,7 +31,7 @@ public class PrendasTest {
 		Assert.assertEquals(prenda.getTela(), Material.ALGODON);
 		Assert.assertEquals(prenda.Categoria(), Categoria.PARTE_SUPERIOR);
 	}
-	
+
 	@Test
 	@DisplayName("Test para verificar la creacion de prendas con tipo invalido")
 	public void validarCreacionInvalida() {
@@ -41,17 +41,17 @@ public class PrendasTest {
 		Assert.assertEquals(prenda.Categoria(), Categoria.PARTE_SUPERIOR);
 		Assert.assertEquals(prenda.getColorSecundario(), Color.ROJO);
 	}
-	
+
 	@Test
 	@DisplayName("Test para normalizar las imagenes")
 	public void renderizarImagen() {
 		Imagen objetoImagen = new Imagen();
-		
+
 		Prenda prenda = new Prenda(TipoPrenda.PANTALON, Material.JEAN, Color.AZUL, Color.CELESTE);
 		prenda.setDireccionImagen("ImgPrendas/jeans.jpg");
 		objetoImagen.normalizarImagen(prenda.getDireccionImagen());
 		Assert.assertEquals(objetoImagen.getImagenRenderizada().getHeight(), 800);
-		
+
 		Prenda otraPrenda = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.BLANCO, Color.AZUL);
 		otraPrenda.setDireccionImagen("ImgPrendas/remeraCorta.jpg");
 		objetoImagen.normalizarImagen(otraPrenda.getDireccionImagen());
