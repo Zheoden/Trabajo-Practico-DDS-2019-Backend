@@ -23,6 +23,9 @@ public class OpenWeather implements Proveedores {
 	private static final String pronosticoActualUrl = "http://api.openweathermap.org/data/2.5/weather"; //Clima ahora mismo
 	private static final String pronosticoPorHoraUrl = "http://api.openweathermap.org/data/2.5/forecast"; //Todos los climas cada 3 horas
 
+	public OpenWeather() {}
+	
+	@Override
 	public OpenWeatherDTO obtenerPronosticoActual() {
 		client = Client.create();
 		WebResource webResource = client.resource(pronosticoActualUrl).queryParam("id", "3433955").queryParam("appid", key);
@@ -32,6 +35,7 @@ public class OpenWeather implements Proveedores {
 		});
 	}
 
+	@Override
 	public ExtendedOpenWeatherDTO obtenerPronosticoExtendido() {
 		client = Client.create();
 		WebResource webResource = client.resource(pronosticoPorHoraUrl).queryParam("id", "3433955").queryParam("appid", key);
@@ -41,6 +45,7 @@ public class OpenWeather implements Proveedores {
 		});
 	}
 
+	@Override
 	public Double obtenerTemperaturATalDia(LocalDate fecha) { //EL FORMATO DE LA FECHA PASADO DEBE SER dd/mm/aaaa
 		ExtendedOpenWeatherDTO pronosticoExtendido = obtenerPronosticoExtendido();
 		List<ExtendedMain> pronosticoDelDiaCadaTresHoras =
@@ -53,6 +58,7 @@ public class OpenWeather implements Proveedores {
 		return pronosticoDelDia.getTemp();
 	}
 
+	@Override
 	public Boolean esElClimaDeLaFecha(ExtendedMain clima, LocalDate fecha) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		LocalDate fechaDelClima = LocalDate.parse(clima.getDt_txt(), formatter);
@@ -60,6 +66,7 @@ public class OpenWeather implements Proveedores {
 		return fecha.equals(fechaDelClima);
 	}
 
+	@Override
 	public Boolean estaActivo() {
 		return true;
 	}
