@@ -1,9 +1,6 @@
 package TP2;
 
 import modelo.clases.*;
-import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.mockito.Matchers.startsWith;
@@ -11,20 +8,16 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import org.junit.*;
-import modelo.*;
 import modelo.enums.Color;
-import modelo.enums.comportamiento.TipoAccesorio;
-import modelo.enums.comportamiento.TipoInferior;
-import modelo.enums.comportamiento.TipoSuperior;
+import modelo.enums.comportamiento.TipoPrenda;
 
 public class EventoTest {
 
-	Prenda camisaRojo = new Prenda(TipoSuperior.CAMISA, Color.ROJO);
-	Prenda bufandaAzul = new Prenda(TipoAccesorio.BUFANDA, Color.AZUL);
-	Prenda pantalonVerde = new Prenda(TipoInferior.PANTALON, Color.VERDE);
+	Prenda camisaRojo = new Prenda(TipoPrenda.CAMISA, Color.ROJO);
+	Prenda bufandaAzul = new Prenda(TipoPrenda.BUFANDA, Color.AZUL);
+	Prenda pantalonVerde = new Prenda(TipoPrenda.PANTALON, Color.VERDE);
 	ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
 	Guardarropas guardaropa1 = new Guardarropas(prendas1);
 	ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
