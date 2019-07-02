@@ -3,7 +3,7 @@ package modelo.clases;
 import modelo.enums.Categoria;
 import modelo.enums.Color;
 import modelo.enums.Material;
-import modelo.interfaces.TipoPrenda;
+import modelo.enums.comportamiento.TipoPrenda;
 
 public class Prenda {
 	

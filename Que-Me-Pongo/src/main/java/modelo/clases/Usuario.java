@@ -13,7 +13,7 @@ public class Usuario  {
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	ArrayList<Evento> eventos = new ArrayList<Evento>();
 	
-	public Usuario(ArrayList <Guardarropas> guardaRopas, Suscripcion unaSuscripcion) throws Exception  {
+	public Usuario(ArrayList <Guardarropas> guardaRopas, Suscripcion unaSuscripcion) {
 		this.setGuardaRopas(guardaRopas);
 		this.setSuscripcion(unaSuscripcion);
 	}
