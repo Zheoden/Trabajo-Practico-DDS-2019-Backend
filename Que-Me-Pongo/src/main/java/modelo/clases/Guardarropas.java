@@ -59,9 +59,9 @@ public class Guardarropas {
 				.collect(Collectors.toList());
 	}
 
-//	public List<Atuendo> atuendosValidosParaEvento(Evento evento) {
-//		return generarSugerencias(this.administrarProveedores.obtenerTemperatura(evento.getFecha()));
-//	}
+	public List<Atuendo> atuendosValidosParaEvento(Evento evento) {
+		return generarSugerencias(this.administrarProveedores.obtenerTemperatura(evento.getFechaEvento()));
+	}
 
 	public List<Atuendo> atuendosValidosParaAhora() {
 		return generarSugerencias(this.administrarProveedores.obtenerTemperaturaActual());

@@ -82,7 +82,7 @@ public class UsuarioTest {
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium());
-		List<Atuendo> atuendos = pepe.todosPosiblesAtuendosPorGuardarropa();
+		List<Atuendo> atuendos = pepe.todosPosiblesAtuendosPorGuardarropaParaAhora();
 		Assert.assertEquals(atuendos.size(), 1);
 	}
 
