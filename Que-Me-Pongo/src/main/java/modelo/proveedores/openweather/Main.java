@@ -1,5 +1,7 @@
 package modelo.proveedores.openweather;
 
+import modelo.utils.Utils;
+
 public class Main {
 	private Double temp;
 	private Double humidity;
@@ -7,7 +9,7 @@ public class Main {
 	private Double temp_max;
 
 	public Double getTemp() {
-		return kelvinToCelsius(temp);
+		return Utils.kelvinToCelsius(temp);
 	}
 
 	public void setTemp(Double temp) {
@@ -23,7 +25,7 @@ public class Main {
 	}
 
 	public Double getTemp_min() {
-		return kelvinToCelsius(temp_min);
+		return Utils.kelvinToCelsius(temp_min);
 	}
 
 	public void setTemp_min(Double temp_min) {
@@ -31,14 +33,10 @@ public class Main {
 	}
 
 	public Double getTemp_max() {
-		return kelvinToCelsius(temp_max);
+		return Utils.kelvinToCelsius(temp_max);
 	}
 
 	public void setTemp_max(Double temp_max) {
 		this.temp_max = temp_max;
-	}
-
-	private Double kelvinToCelsius(Double kelvin) {
-		return kelvin - 273.00;
 	}
 }
