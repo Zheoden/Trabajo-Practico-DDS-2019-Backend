@@ -1,17 +1,17 @@
-package modelo.proveedores;
+package modelo.proveedores.openweather;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import javafx.util.converter.LocalDateStringConverter;
+
 import modelo.interfaces.Proveedores;
-import proveedores.PronosticoHomogeneo;
-import proveedores.IProveedorClima;
-import proveedores.openweather.actual.OpenWeatherDTO; 
-import proveedores.openweather.extendido.ExtendedOpenWeatherDTO;
-import proveedores.openweather.extendido.WeatherEvery3Hours;
-import utils.JsonMapper;
+import modelo.proveedores.openweather.IProveedorClima;
+import modelo.proveedores.openweather.PronosticoHomogeneo;
+import modelo.proveedores.openweather.openweather.actual.OpenWeatherDTO;
+import modelo.proveedores.openweather.openweather.extendido.ExtendedOpenWeatherDTO;
+import modelo.proveedores.openweather.openweather.extendido.WeatherEvery3Hours;
+import modelo.utils.JsonParser;
 
 import javax.ws.rs.core.MediaType;
 import java.text.SimpleDateFormat;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class OpenWeather implements Proveedores {
 	private Client client;
 	private static final String key = "8265e5cbff52629ea9d1042c6dee7cb0";
-	private JsonMapper jsonMapper = new JsonMapper();
+	private JsonParser jsonParser = new JsonParser();
 	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
 	private static final String pronosticoActualUrl = "http://api.openweathermap.org/data/2.5/weather";

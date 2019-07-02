@@ -6,15 +6,14 @@ import org.junit.jupiter.api.DisplayName;
 
 import modelo.enums.Categoria;
 import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoCalzado;
-import modelo.interfaces.TipoPrenda;
+import modelo.enums.comportamiento.TipoPrenda;
 
 @DisplayName("Tests para los Atuendos")
 public class TipoCalzadoTest {
-	TipoPrenda zapatillas = TipoCalzado.ZAPATILLAS;
-	TipoPrenda zapatos = TipoCalzado.ZAPATOS;
-	TipoPrenda zapatosDeTacon = TipoCalzado.ZAPATOSDETACON;
-	TipoPrenda ojotas = TipoCalzado.OJOTAS;
+	TipoPrenda zapatillas = TipoPrenda.ZAPATILLAS;
+	TipoPrenda zapatos = TipoPrenda.ZAPATOS;
+	TipoPrenda zapatosDeTacon = TipoPrenda.ZAPATOSDETACON;
+	TipoPrenda ojotas = TipoPrenda.OJOTAS;
 	
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")

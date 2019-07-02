@@ -1,4 +1,4 @@
-package modelo.proveedores;
+package modelo.proveedores.openweather;
 
 public class Weather {
 	private String main;

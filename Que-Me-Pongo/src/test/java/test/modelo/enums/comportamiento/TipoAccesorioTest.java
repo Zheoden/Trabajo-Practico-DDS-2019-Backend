@@ -6,17 +6,16 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import modelo.enums.*;
-import modelo.enums.comportamiento.TipoAccesorio;
-import modelo.interfaces.TipoPrenda;
+import modelo.enums.comportamiento.TipoPrenda;
 
 @DisplayName("Tests para los Accesorios")
 public class TipoAccesorioTest {
-	TipoPrenda anteojos = TipoAccesorio.ANTEOJOS;
-	TipoPrenda aros = TipoAccesorio.AROS;
-	TipoPrenda bufanda = TipoAccesorio.BUFANDA;
-	TipoPrenda gorra = TipoAccesorio.GORRA;
-	TipoPrenda collar = TipoAccesorio.COLLAR;
-	TipoPrenda lentes = TipoAccesorio.LENTES;
+	TipoPrenda anteojos = TipoPrenda.ANTEOJOS;
+	TipoPrenda aros = TipoPrenda.AROS;
+	TipoPrenda bufanda = TipoPrenda.BUFANDA;
+	TipoPrenda gorra = TipoPrenda.GORRA;
+	TipoPrenda collar = TipoPrenda.COLLAR;
+	TipoPrenda lentes = TipoPrenda.LENTES;
 	
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")

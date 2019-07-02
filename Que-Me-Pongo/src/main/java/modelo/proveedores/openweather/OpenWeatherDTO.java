@@ -1,4 +1,4 @@
-package modelo.proveedores;
+package modelo.proveedores.openweather;
 
 import java.util.List;
 
