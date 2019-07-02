@@ -4,7 +4,6 @@ import modelo.proveedores.openweather.OpenWeather;
 
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.Test;
