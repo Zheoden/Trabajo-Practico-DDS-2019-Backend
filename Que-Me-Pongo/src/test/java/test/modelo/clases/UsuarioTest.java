@@ -1,5 +1,10 @@
 package test.modelo.clases;
 
+import static org.mockito.Matchers.startsWith;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +15,7 @@ import org.junit.jupiter.api.DisplayName;
 import modelo.clases.Atuendo;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
+import modelo.clases.SuscripcionGratuita;
 import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
 import modelo.enums.Color;
@@ -86,4 +92,66 @@ public class UsuarioTest {
 
 	}
 
+	@Test
+	@DisplayName("Agregar mas prendas de la permitida por la suscripcion del usuario")
+	public void agregarPrendaAGuardaRopa() {
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		guardaRopa3.addPrenda(prenda1);
+		guardaRopa3.addPrenda(prenda2);
+		guardaRopa3.addPrenda(prenda3);
+		guardaRopa3.addPrenda(prenda4);
+		guardaRopa3.addPrenda(prenda5);
+
+		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>());
+		guardaRopa4.addPrenda(prenda6);
+		guardaRopa4.addPrenda(prenda7);
+		guardaRopa4.addPrenda(prenda8);
+
+		ArrayList<Guardarropas> ropero = new ArrayList<Guardarropas>();
+		ropero.add(guardaRopa3);
+		ropero.add(guardaRopa4);
+
+		SuscripcionGratuita subs2 = new SuscripcionGratuita();
+
+		Usuario santi = new Usuario(ropero, subs2);
+		PrintStream out = mock(PrintStream.class);
+		System.setOut(out);
+		santi.agregarAGuardaRopas(prenda9, guardaRopa3);
+		verify(out).println(startsWith(
+				"El guardaRopas posee la cantidad maxima de prendas permitidas por la suscripcion del ususario"));
+	}
+
+	@Test
+	@DisplayName("La cantidad permitida por la suscripcionGratuita da false")
+	public void suscripcionGratuita() {
+		SuscripcionGratuita subs3 = new SuscripcionGratuita();
+		Assert.assertEquals(subs3.cantidadPrendasPermitidas(5), false);
+	}
+
+	@Test
+	@DisplayName("Agregar menos prendas de la permitida por la suscripcion del usuario")
+	public void agregarPrendaAGuardaRopa2() {
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		guardaRopa3.addPrenda(prenda1);
+		guardaRopa3.addPrenda(prenda2);
+		guardaRopa3.addPrenda(prenda3);
+		guardaRopa3.addPrenda(prenda4);
+
+		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>());
+		guardaRopa4.addPrenda(prenda6);
+		guardaRopa4.addPrenda(prenda7);
+		guardaRopa4.addPrenda(prenda8);
+
+		ArrayList<Guardarropas> ropero2 = new ArrayList<Guardarropas>();
+		ropero2.add(guardaRopa3);
+		ropero2.add(guardaRopa4);
+
+		SuscripcionGratuita subs4 = new SuscripcionGratuita();
+
+		Usuario santi = new Usuario(ropero2, subs4);
+		santi.agregarAGuardaRopas(prenda5, guardaRopa3);
+
+		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda5), true);
+
+	}
 }
