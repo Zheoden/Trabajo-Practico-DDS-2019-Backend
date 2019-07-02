@@ -1,7 +1,13 @@
 package modelo.clases;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Usuario {
 
@@ -49,11 +55,11 @@ public class Usuario {
 		return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();
 	}
 
-	public void cargarEvento(Evento unEvento) throws InterruptedException {
+	public void cargarEvento(Evento unEvento) throws ParseException{
 		this.eventos.add(unEvento);
-		this.getEvento(unEvento).recordatorio();
+		this.getEvento(unEvento).recordatorio(1); 	//Avisa del evento un minuto antes en este caso
+		
 	}
-
 	public void irAEventos() {
 		this.eventos.forEach(evento -> evento.iniciar());
 	}
