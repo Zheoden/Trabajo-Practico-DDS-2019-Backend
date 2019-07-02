@@ -1,9 +1,15 @@
 package modelo.clases;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -50,21 +56,37 @@ public class Evento {
 		return this.fecha.getTime();
 	}
 
-	public void recordatorio() {
+	public void recordatorio(int minutosAnteriores) throws ParseException {
 
-		// Se ejecutaria 1 vez antes de 5 minutos del evento
-		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-		ScheduledFuture<?> future = scheduler.scheduleAtFixedRate(
-				() -> System.out.println("Recordatorio de evento " + this.getNombre()), 0, 5, TimeUnit.MINUTES);
-		scheduler.schedule(() -> {
-			future.cancel(true);
-			scheduler.shutdown();
-		}, 1, TimeUnit.MINUTES);
-		scheduler.shutdown();
+		int minutos = getFecha().get(Calendar.MINUTE);
+		int minutosAntes = minutos - minutosAnteriores;
+		Calendar aux =  GregorianCalendar.getInstance();
+		aux.set(Calendar.MINUTE,minutosAntes);
+		Date dateAux = aux.getTime();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String despertador = dateFormat.format(dateAux);
+	
+		//DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		//Date date = dateFormat.parse(dateFormat.format(getFecha().getTime()));
+		Timer t=new Timer();
+		t.schedule(new TimerTask() {
+		    public void run() {
+		    	System.out.println("Recordatorio de evento Ir al alamo");
+		    }
+		},new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(despertador));
+	   
+	
+		
+		
+		/*ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
+		Runnable record = () -> System.out.println("Recordatorio de evento " + this.getNombre());
+		ses.schedule(record, minutosAntes, TimeUnit.MINUTES);
+		ses.shutdown();*/
+
 	}
 
 	public void iniciar() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		System.out.println("Voy a " + this.getNombre() + " en " + this.getCiudad() + " en la fecha "
 				+ dateFormat.format(this.fecha.getTime()));
 
