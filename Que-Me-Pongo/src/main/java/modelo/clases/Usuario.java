@@ -3,10 +3,12 @@ package modelo.clases;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+
+public class Usuario  {
 	
 	Suscripcion suscripcion;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
+	ArrayList<Evento> eventos = new ArrayList<Evento>();
 	
 	public Usuario(ArrayList <Guardarropas> guardaRopas, Suscripcion unaSuscripcion) {
 		this.setGuardaRopas(guardaRopas);
@@ -35,7 +37,46 @@ public class Usuario {
 		return guardarropas;
 	}
 
+	
+	
 	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
 		this.guardarropas = guardaRopas;
 	}
+	
+	public ArrayList<Evento> getEventos() {
+		return eventos;
+	}
+	
+	public Evento getEvento(Evento unEvento)
+	{
+	return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();	
+	}
+	
+	public void cargarEvento(Evento unEvento) throws InterruptedException
+	{
+	this.eventos.add(unEvento);
+	this.getEvento(unEvento).recordatorio();
+	}
+	
+	public void irAEventos()
+	{
+	this.eventos.forEach(evento -> evento.iniciar());	
+	}
+	
+	
+	public void irAElEvento(Evento unEvento) 
+	{
+	if(this.eventos.contains(unEvento))
+	{
+    unEvento.iniciar();
+	}
+	else
+	{
+	System.out.println("No estas invitado al evento " + unEvento.getNombre());
+	}
+	}
+	
+
+
+
 }
