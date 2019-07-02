@@ -4,33 +4,41 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
-
+import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
+import org.quartz.JobKey;
+import org.quartz.ScheduleBuilder;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
+import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.triggers.SimpleTriggerImpl;
 
 public class Evento {
 	private String nombre;
-	private Ciudad ciudad;
+	private String ciudad;
 	private Calendar fecha;
 
-	public Evento(String nombreEvento, Ciudad ciudad, Calendar fecha) {
+	public Evento(String nombreEvento, String ciudad, Calendar fecha) {
 		this.nombre = nombreEvento;
 		this.ciudad = ciudad;
 		this.fecha = fecha;
 	}
 
-	public Ciudad getCiudad() {
+	public String getCiudad() {
 		return ciudad;
 	}
 
-	public void setCiudad(Ciudad ciudad) {
+	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
 
@@ -57,27 +65,29 @@ public class Evento {
 	}
 
 	public void recordatorio() {
-		try {
-			SchedulerFactory sf = new StdSchedulerFactory();
-			Scheduler scheduler = sf.getScheduler();
 
-			JobDetail job = JobBuilder.newJob(Usuario.class).build();
-
-			Trigger crontrigger = TriggerBuilder.newTrigger().startAt(this.diaAnterior()).endAt(this.getFecha().getTime()).build();
-
-			scheduler.start();
-			scheduler.scheduleJob(job, crontrigger);
-		} catch (SchedulerException se) {
-			se.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		  //Se ejecutaria 1 vez antes de 5 minutos del evento
+		  ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+				  ScheduledFuture<?> future = scheduler.scheduleAtFixedRate(
+					        () -> System.out.println("Recordatorio de evento " +this.getNombre()),
+					        0,
+					        5, TimeUnit.MINUTES);
+					    scheduler.schedule(
+					        () -> {
+					            future.cancel(true);
+					            scheduler.shutdown();
+					        }, 1, TimeUnit.MINUTES);
+					    scheduler.shutdown();
 	}
+
+			
+
+
+	
 
 	public void iniciar() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println("Voy a " + this.getNombre() + " en " + this.ciudad.getNombre() + " en la fecha "
+		System.out.println("Voy a " + this.getNombre() + " en " + this.getCiudad() + " en la fecha "
 				+ dateFormat.format(this.fecha.getTime()));
 
 	}

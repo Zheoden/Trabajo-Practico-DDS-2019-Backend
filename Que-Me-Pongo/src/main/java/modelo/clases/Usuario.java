@@ -1,13 +1,13 @@
 package modelo.clases;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 
-public class Usuario implements Job {
+
+
+public class Usuario  {
 	
 	Suscripcion suscripcion;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
@@ -40,6 +40,8 @@ public class Usuario implements Job {
 		return guardarropas;
 	}
 
+	
+	
 	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
 		this.guardarropas = guardaRopas;
 	}
@@ -48,10 +50,15 @@ public class Usuario implements Job {
 		return eventos;
 	}
 	
-	public void cargarEvento(Evento unEvento)
+	public Evento getEvento(Evento unEvento)
 	{
-	this.eventos.add(unEvento);	
-	unEvento.recordatorio();
+	return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();	
+	}
+	
+	public void cargarEvento(Evento unEvento) throws InterruptedException
+	{
+	this.eventos.add(unEvento);
+	this.getEvento(unEvento).recordatorio();
 	}
 	
 	public void irAEventos()
@@ -60,7 +67,7 @@ public class Usuario implements Job {
 	}
 	
 	
-	public void irAElEvento(Evento unEvento) throws Exception 
+	public void irAElEvento(Evento unEvento) 
 	{
 	if(this.eventos.contains(unEvento))
 	{
@@ -68,14 +75,11 @@ public class Usuario implements Job {
 	}
 	else
 	{
-	throw new Exception("No estas inivitado al evento " + unEvento.getNombre());	
+	System.out.println("No estas invitado al evento " + unEvento.getNombre());
 	}
 	}
 	
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
-		this.getGuardaRopas().forEach(guarda-> System.out.println("Me sugirieron "+ 
-	    guarda.atuendosValidosParaAhora().toString()));
-		
-	}
+
+
+
 }
