@@ -8,8 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import modelo.clases.Atuendo;
 import modelo.clases.Prenda;
 import modelo.enums.*;
-import modelo.enums.comportamiento.TipoAccesorio;
-import modelo.enums.comportamiento.TipoSuperior;
+import modelo.enums.comportamiento.TipoPrenda;
 
 import java.util.ArrayList;
 
@@ -26,8 +25,8 @@ public class AtuendoTest {
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void agregarPrendasAlAtuendo() {
-		Prenda prenda1 = new Prenda(TipoAccesorio.AROS, Color.AMARILLO);
-		Prenda prenda2 = new Prenda(TipoSuperior.REMERACORTA,Material.ALGODON, Color.ROSA);		
+		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
+		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA,Material.ALGODON, Color.ROSA);		
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		prendas.add(prenda1);
 		prendas.add(prenda2);

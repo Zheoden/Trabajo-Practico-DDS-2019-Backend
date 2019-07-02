@@ -15,28 +15,25 @@ import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
 import modelo.enums.Color;
 import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoAccesorio;
-import modelo.enums.comportamiento.TipoCalzado;
-import modelo.enums.comportamiento.TipoInferior;
-import modelo.enums.comportamiento.TipoSuperior;
+import modelo.enums.comportamiento.TipoPrenda;
 
 @DisplayName("Tests para los Usuarios")
 public class UsuarioTest {
-	Prenda prenda = new Prenda(TipoSuperior.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda1 = new Prenda(TipoSuperior.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda2 = new Prenda(TipoSuperior.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda3 = new Prenda(TipoSuperior.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda4 = new Prenda(TipoSuperior.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda = new Prenda(TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda4 = new Prenda(TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	
-	Prenda prenda5 = new Prenda(TipoInferior.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda6 = new Prenda(TipoInferior.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	Prenda prenda7 = new Prenda(TipoInferior.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda8 = new Prenda(TipoInferior.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda9 = new Prenda(TipoInferior.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda5 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda6 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
+	Prenda prenda7 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda8 = new Prenda(TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda9 = new Prenda(TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	
-	Prenda prenda10 = new Prenda(TipoCalzado.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda10 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 
-	Prenda prenda11 = new Prenda(TipoAccesorio.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda11 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
 	ArrayList <Prenda> prendas = new ArrayList <Prenda>();
 	ArrayList <Prenda> prendas1 = new ArrayList <Prenda>();
 	

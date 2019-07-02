@@ -1,34 +1,35 @@
 package modelo.clases;
 
 import modelo.interfaces.Proveedores;
+import modelo.proveedores.openweather.OpenWeather;
 
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalDate;
 
 public class AdministrarProveedores {
 	
-	Set<Proveedores> proveedores;
+	Proveedores proveedores;
 	
 	public AdministrarProveedores() {
+		this.proveedores = (new OpenWeather());
 	}
 	
-	public Double obtenerTemperatura(Date fecha) {
-		return 7.0;
+	public Double obtenerTemperatura(LocalDate fecha) {
+		return this.proveedores.obtenerTemperaturATalDia(fecha);
 	}
 	
 	public Double obtenerTemperaturaActual() {
-		return 7.0;
+		return this.proveedores.obtenerPronosticoActual().getTemp();
 	}
 	
-	public void addProveedores(Proveedores proveedores) {
-		this.proveedores.add(proveedores);
-	}
+//	public void addProveedores(Proveedores proveedor) {
+//		System.out.println(proveedor);
+//	}
 	
-	public void setProveedores(Set<Proveedores> proveedores) {
-		this.proveedores = proveedores;
-	}
-	
-	public Set<Proveedores> getProveedores() {
-		return this.proveedores;
-	}
+//	public void setProveedores(Set<Proveedores> proveedores) {
+//		this.proveedores = proveedores;
+//	}
+//	
+//	public Set<Proveedores> getProveedores() {
+//		return this.proveedores;
+//	}
 }

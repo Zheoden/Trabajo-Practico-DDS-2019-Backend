@@ -6,17 +6,16 @@ import org.junit.jupiter.api.DisplayName;
 
 import modelo.enums.Categoria;
 import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoInferior;
-import modelo.interfaces.TipoPrenda;
+import modelo.enums.comportamiento.TipoPrenda;
 
 
 @DisplayName("Tests para los Atuendos")
 public class TipoInferiorTest {
-	TipoPrenda bermudas = TipoInferior.BERMUDAS;
-	TipoPrenda calzas = TipoInferior.CALZAS;
-	TipoPrenda pantalon = TipoInferior.PANTALON;
-	TipoPrenda pollera = TipoInferior.POLLERA;
-	TipoPrenda shorts = TipoInferior.SHORTS;
+	TipoPrenda bermudas = TipoPrenda.BERMUDAS;
+	TipoPrenda calzas = TipoPrenda.CALZAS;
+	TipoPrenda pantalon = TipoPrenda.PANTALON;
+	TipoPrenda pollera = TipoPrenda.POLLERA;
+	TipoPrenda shorts = TipoPrenda.SHORTS;
 	
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
