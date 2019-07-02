@@ -114,5 +114,9 @@ public class Guardarropas {
 	public ArrayList<Prenda> getPrendas() {
 		return this.prendas;
 	}
+	
+	public boolean laPrendaEstaEnElGuardaRopa(Prenda unaPrenda) {
+		return prendas.contains(unaPrenda);
+	}
 
 }
