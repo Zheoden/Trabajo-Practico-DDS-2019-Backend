@@ -186,7 +186,7 @@ public class GuardarropasTest {
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
 		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora();
-		Assert.assertEquals(atuendos.size(), 4);
+		Assert.assertEquals(atuendos.size(), 6);
 	}
 
 	@Test

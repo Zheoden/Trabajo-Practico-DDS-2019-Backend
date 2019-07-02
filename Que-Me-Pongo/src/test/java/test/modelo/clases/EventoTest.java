@@ -11,7 +11,6 @@ import static org.mockito.Mockito.verify;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.*;
 import modelo.enums.Color;
@@ -79,19 +78,17 @@ public class EventoTest {
 		guardaRopas.add(guardaropa1);
 		Usuario usuario1 = new Usuario(guardaRopas, premium);
 		usuario1.setGuardaRopas(guardaRopas);
-		fecha1.set(2019,8,2);
+		fecha1.set(2019, 8, 2);
 		fecha1.set(Calendar.HOUR_OF_DAY, 14);
 		fecha1.set(Calendar.MINUTE, 46);
 		fecha1.set(Calendar.SECOND, 00);
-		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	    System.out.println(new PrintStream(outContent));
-	    Assert.assertEquals("", outContent.toString());
+		System.out.println(new PrintStream(outContent));
+		Assert.assertEquals("", outContent.toString());
 	}
-	
-	
+
 	@Test
-	//Avisa del evento un minuto antes en este caso
+	// Avisa del evento un minuto antes en este caso
 	public void recordatorioEventoSucces() throws Exception {
 		prendas1.add(camisaRojo);
 		prendas1.add(bufandaAzul);
@@ -99,7 +96,7 @@ public class EventoTest {
 		guardaRopas.add(guardaropa1);
 		Usuario usuario1 = new Usuario(guardaRopas, premium);
 		usuario1.setGuardaRopas(guardaRopas);
-		fecha1.set(2019,7,2);
+		fecha1.set(2019, 7, 2);
 		fecha1.set(Calendar.HOUR_OF_DAY, 14);
 		fecha1.set(Calendar.MINUTE, 46);
 		fecha1.set(Calendar.SECOND, 00);
@@ -109,6 +106,5 @@ public class EventoTest {
 		usuario1.cargarEvento(irAlAlamo);
 		verify(out).println(startsWith("Recordatorio de evento Ir al alamo"));
 	}
-
 
 }

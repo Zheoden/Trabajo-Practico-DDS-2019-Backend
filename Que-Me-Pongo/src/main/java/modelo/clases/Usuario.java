@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.interfaces.Suscripcion;
+import modelo.utils.Utils;
 
 public class Usuario {
 
@@ -17,9 +18,15 @@ public class Usuario {
 		this.setSuscripcion(unaSuscripcion);
 	}
 
-	public List<Atuendo> todosPosiblesAtuendosPorGuardarropa() {
+	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaAhora() {
 		List<Atuendo> atuendosValidos = new ArrayList<Atuendo>();
 		this.guardarropas.forEach(guardarropa -> atuendosValidos.addAll(guardarropa.atuendosValidosParaAhora()));
+		return atuendosValidos;
+	}
+
+	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaEvento(Evento evento) {
+		List<Atuendo> atuendosValidos = new ArrayList<Atuendo>();
+		this.guardarropas.forEach(guardarropa -> atuendosValidos.addAll(guardarropa.atuendosValidosParaEvento(evento)));
 		return atuendosValidos;
 	}
 
@@ -30,15 +37,16 @@ public class Usuario {
 	public void setSuscripcion(Suscripcion unaSuscripcion) {
 		suscripcion = unaSuscripcion;
 	}
-	
+
 	public void agregarAGuardaRopas(Prenda unaPrenda, Guardarropas guardaRopas) {
-		if(this.suscripcion.cantidadPrendasPermitidas(guardaRopas.tamanioGuardarropas())) {
+		if (this.suscripcion.cantidadPrendasPermitidas(guardaRopas.tamanioGuardarropas())) {
 			guardaRopas.addPrenda(unaPrenda);
 		} else {
-			System.out.println("El guardaRopas posee la cantidad maxima de prendas permitidas por la suscripcion del ususario");
+			System.out.println(
+					"El guardaRopas posee la cantidad maxima de prendas permitidas por la suscripcion del ususario");
 		}
 	}
-	
+
 	public ArrayList<Guardarropas> getGuardaRopas() {
 		return guardarropas;
 	}
@@ -55,11 +63,11 @@ public class Usuario {
 		return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();
 	}
 
-	public void cargarEvento(Evento unEvento) throws ParseException{
+	public void cargarEvento(Evento unEvento) throws ParseException {
 		this.eventos.add(unEvento);
-		this.getEvento(unEvento).recordatorio(1); 	//Avisa del evento un minuto antes en este caso
-		
+		Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en este caso
 	}
+
 	public void irAEventos() {
 		this.eventos.forEach(evento -> evento.iniciar());
 	}
