@@ -1,4 +1,4 @@
-package TP2;
+package test.modelo.clases;
 
 import modelo.clases.*;
 import java.io.PrintStream;
