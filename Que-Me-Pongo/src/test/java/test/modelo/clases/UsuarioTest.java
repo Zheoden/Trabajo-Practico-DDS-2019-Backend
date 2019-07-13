@@ -6,6 +6,8 @@ import static org.mockito.Mockito.verify;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Assert;
@@ -13,6 +15,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import modelo.clases.Atuendo;
+import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.SuscripcionGratuita;
@@ -148,4 +151,5 @@ public class UsuarioTest {
 		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda5), true);
 
 	}
+	
 }
