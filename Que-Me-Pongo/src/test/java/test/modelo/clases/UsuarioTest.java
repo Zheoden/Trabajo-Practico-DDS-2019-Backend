@@ -15,7 +15,6 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import modelo.clases.Atuendo;
-import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.SuscripcionGratuita;

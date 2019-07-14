@@ -155,7 +155,7 @@ public class EventoTest {
 	}	
 	
 	@Test
-	@DisplayName("Test para verificar que se rechacen los atuendos")
+	@DisplayName("Test para verificar que se deshagan las operaciones sobre los atuendos")
 	public void deshacerAtuendos() {
 		fecha1.set(2019, 7, 2);
 		fecha1.set(Calendar.HOUR_OF_DAY, 14);

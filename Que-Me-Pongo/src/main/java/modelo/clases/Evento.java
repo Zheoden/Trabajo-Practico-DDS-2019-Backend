@@ -14,7 +14,12 @@ public class Evento {
 	private String nombre;
 	private String ciudad;
 	private Calendar fecha;
+	
 	ArrayList<Atuendo> atuendosAceptados = new ArrayList<Atuendo>();
+	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
+	
+	
+	
 	public ArrayList<Atuendo> getAtuendosAceptados() {
 		return atuendosAceptados;
 	}
@@ -23,8 +28,6 @@ public class Evento {
 		this.atuendosAceptados = atuendosAceptados;
 	}
 
-	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
-	
 	
 	public Evento(String nombreEvento, String ciudad, Calendar fecha) {
 		this.nombre = nombreEvento;
