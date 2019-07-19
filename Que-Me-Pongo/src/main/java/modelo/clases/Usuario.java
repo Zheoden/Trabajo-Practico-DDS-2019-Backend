@@ -80,4 +80,16 @@ public class Usuario {
 		}
 	}
 
+	public void aceptarAtuendo (Atuendo unAtuendo) {
+		unAtuendo.getEvento().aceptarAtuendo(unAtuendo);
+	}	
+	
+	public void rechazarAtuendos (Atuendo unAtuendo) {
+		unAtuendo.getEvento().rechazarAtuendo(unAtuendo);
+	}	
+	
+	public void deshacer (Evento evento) {
+		evento.deshacer();
+	}	
+	
 }
