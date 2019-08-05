@@ -87,24 +87,4 @@ public class EventoTest {
 		Assert.assertEquals("", outContent.toString());
 	}
 
-	@Test
-	// Avisa del evento un minuto antes en este caso
-	public void recordatorioEventoSucces() throws Exception {
-		prendas1.add(camisaRojo);
-		prendas1.add(bufandaAzul);
-		prendas1.add(pantalonVerde);
-		guardaRopas.add(guardaropa1);
-		Usuario usuario1 = new Usuario(guardaRopas, premium);
-		usuario1.setGuardaRopas(guardaRopas);
-		fecha1.set(2019, 7, 2);
-		fecha1.set(Calendar.HOUR_OF_DAY, 14);
-		fecha1.set(Calendar.MINUTE, 46);
-		fecha1.set(Calendar.SECOND, 00);
-		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
-		PrintStream out = mock(PrintStream.class);
-		System.setOut(out);
-		usuario1.cargarEvento(irAlAlamo);
-		verify(out).println(startsWith("Recordatorio de evento Ir al alamo"));
-	}
-
 }
