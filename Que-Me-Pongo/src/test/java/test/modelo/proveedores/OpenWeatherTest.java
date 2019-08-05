@@ -4,8 +4,10 @@ import modelo.proveedores.openweather.ExtendedOpenWeatherDTO;
 import modelo.proveedores.openweather.OpenWeather;
 import modelo.proveedores.openweather.OpenWeatherDTO;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,10 +32,13 @@ public class OpenWeatherTest {
 		Assert.assertFalse(pronostico.getList().isEmpty());
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	@DisplayName("Test para obtener la temperatura del dia X")
 	public void obtenerTemperaturATalDia() {
-		String localDate = "2019-07-07 00:00:00";
+		Date aux = new java.util.Date();
+		aux.setDate(aux.getDate() + 1);
+		String localDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(aux);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		LocalDate fechaDelClima = LocalDate.parse(localDate, formatter);
 

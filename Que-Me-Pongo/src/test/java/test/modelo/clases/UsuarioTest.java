@@ -85,7 +85,7 @@ public class UsuarioTest {
 		guardaRopas.add(guardaRopa2);
 		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium());
 		List<Atuendo> atuendos = pepe.todosPosiblesAtuendosPorGuardarropaParaAhora();
-		Assert.assertEquals(atuendos.size(), 1);
+		Assert.assertEquals(atuendos.size(), 2);
 	}
 
 	@Test
@@ -112,7 +112,7 @@ public class UsuarioTest {
 		Usuario santi = new Usuario(ropero, subs2);
 		PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
-		santi.agregarAGuardaRopas(prenda9, guardaRopa3);
+		santi.agregarPrendaAGuardaRopas(prenda9, guardaRopa3);
 		verify(out).println(startsWith(
 				"El guardaRopas posee la cantidad maxima de prendas permitidas por la suscripcion del ususario"));
 	}
@@ -145,7 +145,7 @@ public class UsuarioTest {
 		SuscripcionGratuita subs4 = new SuscripcionGratuita();
 
 		Usuario santi = new Usuario(ropero2, subs4);
-		santi.agregarAGuardaRopas(prenda5, guardaRopa3);
+		santi.agregarPrendaAGuardaRopas(prenda5, guardaRopa3);
 
 		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda5), true);
 

@@ -89,28 +89,26 @@ public class EventoTest {
 		System.out.println(new PrintStream(outContent));
 		Assert.assertEquals("", outContent.toString());
 	}
-
-<<<<<<< HEAD
-=======
-	@Test
-	// Avisa del evento un minuto antes en este caso
-	public void recordatorioEventoSucces() throws Exception {
-		prendas1.add(camisaRojo);
-		prendas1.add(bufandaAzul);
-		prendas1.add(pantalonVerde);
-		guardaRopas.add(guardaropa1);
-		Usuario usuario1 = new Usuario(guardaRopas, premium);
-		usuario1.setGuardaRopas(guardaRopas);
-		fecha1.set(2019, 7, 2);
-		fecha1.set(Calendar.HOUR_OF_DAY, 14);
-		fecha1.set(Calendar.MINUTE, 46);
-		fecha1.set(Calendar.SECOND, 00);
-		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
-		PrintStream out = mock(PrintStream.class);
-		System.setOut(out);
-		usuario1.cargarEvento(irAlAlamo);
-		verify(out).println(startsWith("Recordatorio de evento Ir al alamo"));
-	}
+	
+//	@Test
+//	// Avisa del evento un minuto antes en este caso
+//	public void recordatorioEventoSucces() throws Exception {
+//		prendas1.add(camisaRojo);
+//		prendas1.add(bufandaAzul);
+//		prendas1.add(pantalonVerde);
+//		guardaRopas.add(guardaropa1);
+//		Usuario usuario1 = new Usuario(guardaRopas, premium);
+//		usuario1.setGuardaRopas(guardaRopas);
+//		fecha1.set(2019, 7, 2);
+//		fecha1.set(Calendar.HOUR_OF_DAY, 14);
+//		fecha1.set(Calendar.MINUTE, 46);
+//		fecha1.set(Calendar.SECOND, 00);
+//		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
+//		PrintStream out = mock(PrintStream.class);
+//		System.setOut(out);
+//		usuario1.cargarEvento(irAlAlamo);
+//		verify(out).println(startsWith("Recordatorio de evento Ir al alamo"));
+//	}
 
 	
 	@Test
@@ -194,8 +192,5 @@ public class EventoTest {
 		Assert.assertFalse(irAlAlamo.getAtuendosAceptados().contains(atuendo3));
 		Assert.assertFalse(irAlAlamo.getAtuendosAceptados().contains(atuendo2));
 		Assert.assertTrue(irAlAlamo.getAtuendosAceptados().contains(atuendo));
-	}	
-	
-	
->>>>>>> d0af1d6a117ceed3dd035fb25fe824aa0a7c9432
+	}
 }
