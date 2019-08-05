@@ -13,7 +13,10 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import org.junit.*;
+import org.junit.jupiter.api.DisplayName;
+
 import modelo.enums.Color;
+import modelo.enums.Material;
 import modelo.enums.comportamiento.TipoPrenda;
 import modelo.interfaces.Suscripcion;
 
@@ -87,4 +90,112 @@ public class EventoTest {
 		Assert.assertEquals("", outContent.toString());
 	}
 
+<<<<<<< HEAD
+=======
+	@Test
+	// Avisa del evento un minuto antes en este caso
+	public void recordatorioEventoSucces() throws Exception {
+		prendas1.add(camisaRojo);
+		prendas1.add(bufandaAzul);
+		prendas1.add(pantalonVerde);
+		guardaRopas.add(guardaropa1);
+		Usuario usuario1 = new Usuario(guardaRopas, premium);
+		usuario1.setGuardaRopas(guardaRopas);
+		fecha1.set(2019, 7, 2);
+		fecha1.set(Calendar.HOUR_OF_DAY, 14);
+		fecha1.set(Calendar.MINUTE, 46);
+		fecha1.set(Calendar.SECOND, 00);
+		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
+		PrintStream out = mock(PrintStream.class);
+		System.setOut(out);
+		usuario1.cargarEvento(irAlAlamo);
+		verify(out).println(startsWith("Recordatorio de evento Ir al alamo"));
+	}
+
+	
+	@Test
+	@DisplayName("Test para verificar que se acepten los atuendos")
+	public void aceptarAtuendos() {
+		fecha1.set(2019, 7, 2);
+		fecha1.set(Calendar.HOUR_OF_DAY, 14);
+		fecha1.set(Calendar.MINUTE, 46);
+		fecha1.set(Calendar.SECOND, 00);
+		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
+		
+		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
+		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
+		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		Atuendo atuendo = new Atuendo(prendas);
+		
+		irAlAlamo.aceptarAtuendo(atuendo);
+		
+		Assert.assertTrue(irAlAlamo.getAtuendosAceptados().contains(atuendo));
+	}	
+	
+	
+	@Test
+	@DisplayName("Test para verificar que se rechacen los atuendos")
+	public void rechazarAtuendos() {
+		fecha1.set(2019, 7, 2);
+		fecha1.set(Calendar.HOUR_OF_DAY, 14);
+		fecha1.set(Calendar.MINUTE, 46);
+		fecha1.set(Calendar.SECOND, 00);
+		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
+		
+		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
+		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
+		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		Atuendo atuendo = new Atuendo(prendas);
+		
+		irAlAlamo.rechazarAtuendo(atuendo);
+		
+		Assert.assertFalse(irAlAlamo.getAtuendosAceptados().contains(atuendo));
+	}	
+	
+	@Test
+	@DisplayName("Test para verificar que se deshagan las operaciones sobre los atuendos")
+	public void deshacerAtuendos() {
+		fecha1.set(2019, 7, 2);
+		fecha1.set(Calendar.HOUR_OF_DAY, 14);
+		fecha1.set(Calendar.MINUTE, 46);
+		fecha1.set(Calendar.SECOND, 00);
+		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
+		
+		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
+		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
+		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		Atuendo atuendo = new Atuendo(prendas);
+		
+		Prenda prenda3 = new Prenda(TipoPrenda.BERMUDAS, Color.AMARILLO);
+		Prenda prenda4 = new Prenda(TipoPrenda.BUZO, Material.ALGODON, Color.ROSA);
+		Prenda prenda5 = new Prenda(TipoPrenda.AROS, Material.ALGODON, Color.ROSA);
+		ArrayList<Prenda> prendas2 = new ArrayList<Prenda>();
+		prendas2.add(prenda3);
+		prendas2.add(prenda4);
+		prendas2.add(prenda5);
+		Atuendo atuendo2 = new Atuendo(prendas2);		
+		
+		Prenda prenda6 = new Prenda(TipoPrenda.CAMPERA, Color.AZUL);
+		ArrayList<Prenda> prendas3 = new ArrayList<Prenda>();
+		prendas3.add(prenda6);
+		Atuendo atuendo3 = new Atuendo(prendas3);		
+	
+		irAlAlamo.aceptarAtuendo(atuendo);	
+		irAlAlamo.rechazarAtuendo(atuendo2);
+		irAlAlamo.aceptarAtuendo(atuendo3);
+		irAlAlamo.deshacer();
+		
+		Assert.assertFalse(irAlAlamo.getAtuendosAceptados().contains(atuendo3));
+		Assert.assertFalse(irAlAlamo.getAtuendosAceptados().contains(atuendo2));
+		Assert.assertTrue(irAlAlamo.getAtuendosAceptados().contains(atuendo));
+	}	
+	
+	
+>>>>>>> d0af1d6a117ceed3dd035fb25fe824aa0a7c9432
 }

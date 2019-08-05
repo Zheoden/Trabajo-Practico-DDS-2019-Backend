@@ -32,4 +32,6 @@ public class AtuendoTest {
 		Atuendo atuendo = new Atuendo(prendas);
 		Assert.assertEquals(atuendo.getPrendas(), prendas);
 	}
+
+	
 }
