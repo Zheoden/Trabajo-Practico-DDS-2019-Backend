@@ -1,6 +1,8 @@
-package modelo.proveedores.openweather;
+package modelo.dtos;
 
 import java.util.List;
+
+import modelo.proveedores.openweather.ExtendedMain;
 
 public class ExtendedOpenWeatherDTO {
 	private List<ExtendedMain> list;
