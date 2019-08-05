@@ -17,51 +17,12 @@ public class Evento {
 	
 	ArrayList<Atuendo> atuendosAceptados = new ArrayList<Atuendo>();
 	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
-	
-	
-	
-	public ArrayList<Atuendo> getAtuendosAceptados() {
-		return atuendosAceptados;
-	}
-
-	public void setAtuendosAceptados(ArrayList<Atuendo> atuendosAceptados) {
-		this.atuendosAceptados = atuendosAceptados;
-	}
 
 	
 	public Evento(String nombreEvento, String ciudad, Calendar fecha) {
 		this.nombre = nombreEvento;
 		this.ciudad = ciudad;
 		this.fecha = fecha;
-	}
-	
-	public String getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
-
-	public Calendar getFecha() {
-		return fecha;
-	}
-
-	public LocalDate getFechaEvento() {
-		return LocalDateTime.ofInstant(this.fecha.toInstant(), this.fecha.getTimeZone().toZoneId()).toLocalDate();
-	}
-
-	public void setFecha(Calendar fecha) {
-		this.fecha = fecha;
-
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public Date diaAnterior() {
@@ -94,7 +55,43 @@ public class Evento {
 		} else { 
 			atuendosMovimientos.remove(atuendosMovimientos.size()-1); //solo lo saco de la lista de movimientos, consultar si deberiamos hacer otra cosa
 		}
+	}
+
+	public ArrayList<Atuendo> getAtuendosAceptados() {
+		return this.atuendosAceptados;
+	}
+
+	public void setAtuendosAceptados(ArrayList<Atuendo> atuendosAceptados) {
+		this.atuendosAceptados = atuendosAceptados;
+	}
 	
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public Calendar getFecha() {
+		return fecha;
+	}
+
+	public LocalDate getFechaEvento() {
+		return LocalDateTime.ofInstant(this.fecha.toInstant(), this.fecha.getTimeZone().toZoneId()).toLocalDate();
+	}
+
+	public void setFecha(Calendar fecha) {
+		this.fecha = fecha;
+
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 }

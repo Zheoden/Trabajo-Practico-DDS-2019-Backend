@@ -13,8 +13,13 @@ public class Usuario {
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	ArrayList<Evento> eventos = new ArrayList<Evento>();
 
-	public Usuario(ArrayList<Guardarropas> guardaRopas, Suscripcion unaSuscripcion) {
-		this.setGuardaRopas(guardaRopas);
+	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion) {
+		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
+			this.setGuardaRopas(guardarropas);			
+		} else {
+			System.out.print("No se puede asignar esta lista de guardarropas porque no es complatible con la subscripcion seleccionada.");
+		}
+		
 		this.setSuscripcion(unaSuscripcion);
 	}
 
@@ -30,33 +35,13 @@ public class Usuario {
 		return atuendosValidos;
 	}
 
-	public Suscripcion getSuscripcion() {
-		return suscripcion;
-	}
-
-	public void setSuscripcion(Suscripcion unaSuscripcion) {
-		suscripcion = unaSuscripcion;
-	}
-
-	public void agregarAGuardaRopas(Prenda unaPrenda, Guardarropas guardaRopas) {
+	public void agregarPrendaAGuardaRopas(Prenda unaPrenda, Guardarropas guardaRopas) {
 		if (this.suscripcion.cantidadPrendasPermitidas(guardaRopas.tamanioGuardarropas())) {
 			guardaRopas.addPrenda(unaPrenda);
 		} else {
 			System.out.println(
 					"El guardaRopas posee la cantidad maxima de prendas permitidas por la suscripcion del ususario");
 		}
-	}
-
-	public ArrayList<Guardarropas> getGuardaRopas() {
-		return guardarropas;
-	}
-
-	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
-		this.guardarropas = guardaRopas;
-	}
-
-	public ArrayList<Evento> getEventos() {
-		return eventos;
 	}
 
 	public Evento getEvento(Evento unEvento) {
@@ -90,6 +75,30 @@ public class Usuario {
 	
 	public void deshacer (Evento evento) {
 		evento.deshacer();
+	}
+
+	public ArrayList<Guardarropas> getGuardaRopas() {
+		return this.guardarropas;
+	}
+
+	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
+		this.guardarropas = guardaRopas;
+	}
+
+	public Suscripcion getSuscripcion() {
+		return this.suscripcion;
+	}
+
+	public void setSuscripcion(Suscripcion unaSuscripcion) {
+		this.suscripcion = unaSuscripcion;
+	}
+
+	public ArrayList<Evento> getEventos() {
+		return this.eventos;
+	}
+
+	public ArrayList<Evento> setEventos(ArrayList<Evento> eventos) {
+		return this.eventos = eventos;
 	}	
 	
 }
