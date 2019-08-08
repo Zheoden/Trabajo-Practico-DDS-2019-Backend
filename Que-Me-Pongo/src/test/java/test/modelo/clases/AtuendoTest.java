@@ -6,8 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 
 import modelo.clases.Atuendo;
 import modelo.clases.Prenda;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 import modelo.enums.*;
-import modelo.enums.comportamiento.TipoPrenda;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import http.routes.Router;
 import spark.Spark;

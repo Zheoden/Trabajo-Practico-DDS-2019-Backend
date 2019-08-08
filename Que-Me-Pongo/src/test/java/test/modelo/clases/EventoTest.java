@@ -1,6 +1,9 @@
 package test.modelo.clases;
 
 import modelo.clases.*;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -15,9 +18,6 @@ import java.util.GregorianCalendar;
 import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 
-import modelo.enums.Color;
-import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoPrenda;
 import modelo.interfaces.Suscripcion;
 
 public class EventoTest {

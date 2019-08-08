@@ -1,4 +1,4 @@
-package modelo.proveedores.openweather;
+package proveedores.openweather;
 
 public class ExtendedMain {
 	private Main main;

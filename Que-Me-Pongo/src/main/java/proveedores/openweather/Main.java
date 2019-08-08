@@ -1,6 +1,6 @@
-package modelo.proveedores.openweather;
+package proveedores.openweather;
 
-import modelo.utils.Utils;
+import utils.Utils;
 
 public class Main {
 	private Double temp;

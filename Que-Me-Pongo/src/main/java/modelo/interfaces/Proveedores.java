@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import modelo.dtos.ExtendedOpenWeatherDTO;
 import modelo.dtos.OpenWeatherDTO;
-import modelo.proveedores.openweather.ExtendedMain;
+import proveedores.openweather.ExtendedMain;
 
 public interface Proveedores {
 

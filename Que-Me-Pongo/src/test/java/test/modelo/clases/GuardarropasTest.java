@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import modelo.clases.Atuendo;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 import modelo.enums.*;
-import modelo.enums.comportamiento.TipoPrenda;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -6,8 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 
 import modelo.clases.Imagen;
 import modelo.clases.Prenda;
+import modelo.dtos.Categoria;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 import modelo.enums.*;
-import modelo.enums.comportamiento.TipoPrenda;
 
 @DisplayName("Tests para las Prendas")
 public class PrendasTest {

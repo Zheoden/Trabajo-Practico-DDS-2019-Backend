@@ -1,7 +1,7 @@
 package modelo.clases;
 
 import modelo.interfaces.Proveedores;
-import modelo.proveedores.openweather.OpenWeather;
+import proveedores.openweather.OpenWeather;
 
 import java.time.LocalDate;
 

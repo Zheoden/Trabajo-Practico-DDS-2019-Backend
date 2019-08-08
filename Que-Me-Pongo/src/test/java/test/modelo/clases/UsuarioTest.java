@@ -18,9 +18,9 @@ import modelo.clases.Prenda;
 import modelo.clases.SuscripcionGratuita;
 import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
-import modelo.enums.Color;
-import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoPrenda;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 import modelo.interfaces.Suscripcion;
 
 @DisplayName("Tests para los Usuarios")

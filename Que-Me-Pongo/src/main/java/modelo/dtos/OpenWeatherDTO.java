@@ -1,6 +1,6 @@
 package modelo.dtos;
 
-import modelo.proveedores.openweather.Main;
+import proveedores.openweather.Main;
 
 public class OpenWeatherDTO {
 	private Main main;

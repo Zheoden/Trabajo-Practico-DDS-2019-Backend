@@ -2,7 +2,7 @@ package test.modelo.proveedores;
 
 import modelo.dtos.ExtendedOpenWeatherDTO;
 import modelo.dtos.OpenWeatherDTO;
-import modelo.proveedores.openweather.OpenWeather;
+import proveedores.openweather.OpenWeather;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
