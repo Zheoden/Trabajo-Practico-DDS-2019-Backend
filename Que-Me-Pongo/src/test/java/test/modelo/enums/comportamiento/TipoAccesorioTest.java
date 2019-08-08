@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import modelo.dtos.Categoria;
 import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
-import modelo.enums.*;
 
 @DisplayName("Tests para los Accesorios")
 public class TipoAccesorioTest {

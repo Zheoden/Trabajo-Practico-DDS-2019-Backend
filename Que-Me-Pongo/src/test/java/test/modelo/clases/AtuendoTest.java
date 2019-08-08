@@ -9,7 +9,6 @@ import modelo.clases.Prenda;
 import modelo.dtos.Color;
 import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
-import modelo.enums.*;
 
 import java.util.ArrayList;
 

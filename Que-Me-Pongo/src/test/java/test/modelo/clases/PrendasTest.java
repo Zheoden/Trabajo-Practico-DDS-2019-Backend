@@ -10,7 +10,6 @@ import modelo.dtos.Categoria;
 import modelo.dtos.Color;
 import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
-import modelo.enums.*;
 
 @DisplayName("Tests para las Prendas")
 public class PrendasTest {
