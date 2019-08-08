@@ -4,15 +4,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 
+import modelo.clases.AdministrarProveedores;
 import modelo.clases.Atuendo;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
-import modelo.enums.*;
-import modelo.enums.comportamiento.TipoPrenda;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.mockito.Mockito;
 
 @DisplayName("Tests para los Guardarropas")
 public class GuardarropasTest {
@@ -184,9 +187,12 @@ public class GuardarropasTest {
 		prendas.add(prenda10);
 		prendas.add(prenda11);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
+		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(28.0);
+		
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
 		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora();
-		Assert.assertEquals(atuendos.size(), 10);
+		Assert.assertEquals(atuendos.size(), 15);
 	}
 
 	@Test

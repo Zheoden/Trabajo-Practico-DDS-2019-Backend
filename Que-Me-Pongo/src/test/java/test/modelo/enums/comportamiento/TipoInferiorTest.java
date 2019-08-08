@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-import modelo.enums.Categoria;
-import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoPrenda;
+import modelo.dtos.Categoria;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 
 @DisplayName("Tests para los Atuendos")
 public class TipoInferiorTest {

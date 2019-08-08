@@ -2,9 +2,9 @@ package modelo.interfaces;
 
 import java.time.LocalDate;
 
-import modelo.proveedores.openweather.ExtendedMain;
-import modelo.proveedores.openweather.ExtendedOpenWeatherDTO;
-import modelo.proveedores.openweather.OpenWeatherDTO;
+import modelo.dtos.ExtendedOpenWeatherDTO;
+import modelo.dtos.OpenWeatherDTO;
+import proveedores.openweather.ExtendedMain;
 
 public interface Proveedores {
 

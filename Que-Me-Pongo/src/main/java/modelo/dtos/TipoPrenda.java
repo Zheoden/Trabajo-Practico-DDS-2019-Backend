@@ -1,12 +1,9 @@
-package modelo.enums.comportamiento;
+package modelo.dtos;
 
 import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import modelo.enums.Categoria;
-import modelo.enums.Material;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum TipoPrenda {

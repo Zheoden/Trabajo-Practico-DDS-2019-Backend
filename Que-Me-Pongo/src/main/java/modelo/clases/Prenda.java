@@ -1,9 +1,9 @@
 package modelo.clases;
 
-import modelo.enums.Categoria;
-import modelo.enums.Color;
-import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoPrenda;
+import modelo.dtos.Categoria;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 
 public class Prenda {
 

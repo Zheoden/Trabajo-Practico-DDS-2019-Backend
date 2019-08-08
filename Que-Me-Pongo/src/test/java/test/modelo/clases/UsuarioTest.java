@@ -11,16 +11,18 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.mockito.Mockito;
 
+import modelo.clases.AdministrarProveedores;
 import modelo.clases.Atuendo;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.SuscripcionGratuita;
 import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
-import modelo.enums.Color;
-import modelo.enums.Material;
-import modelo.enums.comportamiento.TipoPrenda;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 import modelo.interfaces.Suscripcion;
 
 @DisplayName("Tests para los Usuarios")
@@ -76,14 +78,17 @@ public class UsuarioTest {
 		prendas1.add(prenda10);
 		prendas1.add(prenda11);
 
-		Guardarropas guardaRopa1 = new Guardarropas(prendas);
-		Guardarropas guardaRopa2 = new Guardarropas(prendas1);
+		AdministrarProveedores admin = Mockito.mock(AdministrarProveedores.class);
+		Mockito.when(admin.obtenerTemperaturaActual()).thenReturn(22.0);
+		
+		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin);
+		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin);
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium());
 		List<Atuendo> atuendos = pepe.todosPosiblesAtuendosPorGuardarropaParaAhora();
-		Assert.assertEquals(atuendos.size(), 2);
+		Assert.assertEquals(atuendos.size(), 4);
 	}
 
 	@Test

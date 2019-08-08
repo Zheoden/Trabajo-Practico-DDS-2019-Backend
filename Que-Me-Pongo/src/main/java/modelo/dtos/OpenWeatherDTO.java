@@ -1,4 +1,6 @@
-package modelo.proveedores.openweather;
+package modelo.dtos;
+
+import proveedores.openweather.Main;
 
 public class OpenWeatherDTO {
 	private Main main;

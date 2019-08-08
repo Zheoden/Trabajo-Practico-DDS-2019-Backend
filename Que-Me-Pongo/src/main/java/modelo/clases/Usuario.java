@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.interfaces.Suscripcion;
-import modelo.utils.Utils;
+import utils.Utils;
 
 public class Usuario {
 

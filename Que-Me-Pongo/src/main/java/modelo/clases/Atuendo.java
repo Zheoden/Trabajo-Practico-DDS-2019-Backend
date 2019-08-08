@@ -61,6 +61,4 @@ public class Atuendo {
 	public void rechazar() {
 		this.aceptado = false;
 	}
-	
-	
 }

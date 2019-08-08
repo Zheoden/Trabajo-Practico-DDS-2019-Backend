@@ -1,8 +1,8 @@
 package test.modelo.proveedores;
 
-import modelo.proveedores.openweather.ExtendedOpenWeatherDTO;
-import modelo.proveedores.openweather.OpenWeather;
-import modelo.proveedores.openweather.OpenWeatherDTO;
+import modelo.dtos.ExtendedOpenWeatherDTO;
+import modelo.dtos.OpenWeatherDTO;
+import proveedores.openweather.OpenWeather;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

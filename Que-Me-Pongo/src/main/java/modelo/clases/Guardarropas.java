@@ -7,16 +7,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import modelo.clases.Abrigo;
+import modelo.dtos.Categoria;
 
 import static com.google.common.collect.Sets.cartesianProduct;
 import static com.google.common.collect.Sets.powerSet;
 
-import modelo.enums.*;
-
 public class Guardarropas {
-	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
-	AdministrarProveedores administrarProveedores = new AdministrarProveedores();
+	public ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+	public AdministrarProveedores administrarProveedores = new AdministrarProveedores();
 
+	public Guardarropas(ArrayList<Prenda> prendas, AdministrarProveedores administrarProv) {
+		this.setPrendas(prendas);
+		this.administrarProveedores = administrarProv;
+	}
+	
 	public Guardarropas(ArrayList<Prenda> prendas) {
 		this.setPrendas(prendas);
 	}
