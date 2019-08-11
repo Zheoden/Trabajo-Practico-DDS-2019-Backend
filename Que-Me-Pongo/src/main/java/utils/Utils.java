@@ -1,5 +1,8 @@
 package utils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Properties;
 
 import modelo.clases.Atuendo;
 import modelo.clases.Evento;
@@ -52,5 +56,25 @@ public class Utils {
 		} catch (ParseException e) {
 			System.out.println(e);
 		}
+	}
+	
+	public static Properties getProyectProperties() throws Exception {
+		Properties prop = new Properties();
+		InputStream input = null ;
+		try {
+			input = new FileInputStream("system.properties");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			throw new Exception("No se encuentra el archivo de properties.");
+		}
+		
+		try {
+			prop.load(input);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new Exception("No se pudo cargar el archivo de properties.");
+		}	
+		
+		return prop;
 	}
 }
