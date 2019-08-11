@@ -1,6 +1,7 @@
 package modelo.clases;
 
 import java.text.ParseException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +10,12 @@ import utils.Utils;
 
 public class Usuario {
 
+	Sensibilidad sensibilidadCuerpo;
 	Suscripcion suscripcion;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	ArrayList<Evento> eventos = new ArrayList<Evento>();
 
-	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion) {
+	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, Sensibilidad cuerpoSensible) {
 		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
 			this.setGuardaRopas(guardarropas);			
 		} else {
@@ -21,6 +23,7 @@ public class Usuario {
 		}
 		
 		this.setSuscripcion(unaSuscripcion);
+		this.setSensibilidadCuerpo(cuerpoSensible);
 	}
 
 	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaAhora() {
@@ -100,5 +103,17 @@ public class Usuario {
 	public ArrayList<Evento> setEventos(ArrayList<Evento> eventos) {
 		return this.eventos = eventos;
 	}	
+
+	public ArrayList<Guardarropas> getGuardarropas() {
+		return guardarropas;
+	}
+	
+	public Sensibilidad getSensibilidadCuerpo() {
+		return sensibilidadCuerpo;
+	}
+
+	public void setSensibilidadCuerpo(Sensibilidad sensibilidad) {
+		this.sensibilidadCuerpo = sensibilidad;
+	}
 	
 }

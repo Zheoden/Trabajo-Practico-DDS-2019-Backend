@@ -328,6 +328,23 @@ public enum TipoPrenda {
 			return 0;
 		}
 	},
+	GUANTES {
+		public Categoria categoria() {
+			return Categoria.ACCESORIO;
+		}
+
+		public int nivelDeCapa() {
+			return 0;
+		}
+
+		public boolean esMaterialValido(Material material) {
+			return true;
+		}
+
+		public int nivelDeAbrigo() {
+			return 0;
+		}
+	},
 	COLLAR {
 		public Categoria categoria() {
 			return Categoria.ACCESORIO;
