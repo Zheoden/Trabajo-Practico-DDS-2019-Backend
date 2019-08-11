@@ -38,6 +38,13 @@
 			<artifactId>spark-core</artifactId>
 			<version>[2.7.2,)</version>
 		</dependency>
+		
+		<!-- Jersey to Manage the Weather service -->
+		<dependency>
+		    <groupId>com.sun.jersey</groupId>
+		    <artifactId>jersey-client</artifactId>
+		    <version>1.9.1</version>
+		</dependency>
 
 		<!-- slf4j for logging -->
 		<dependency>
