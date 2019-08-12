@@ -122,7 +122,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeCapa() {
-			return 0;
+			return 1;
 		}
 
 		public int nivelDeAbrigo() {
@@ -140,7 +140,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeCapa() {
-			return 0;
+			return 1;
 		}
 
 		public int nivelDeAbrigo() {
@@ -158,7 +158,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeCapa() {
-			return 0;
+			return 1;
 		}
 
 		public int nivelDeAbrigo() {
@@ -204,6 +204,24 @@ public enum TipoPrenda {
 
 		public Categoria categoria() {
 			return Categoria.PARTE_INFERIOR;
+		}
+	},
+	MEDIAS {
+		public boolean esMaterialValido(Material material) {
+			return !Arrays.asList(Material.ALGODON, Material.TERCIOPELO, Material.GABARDINA, Material.LINO, Material.OXFORD)
+					.contains(material);
+		}	
+
+		public int nivelDeAbrigo() {
+			return 1;
+		}
+
+		public int nivelDeCapa() {
+			return 0;
+		}
+
+		public Categoria categoria() {
+			return Categoria.CALZADO;
 		}
 	},
 	CALZAS {
@@ -308,7 +326,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeAbrigo() {
-			return 0;
+			return 2;
 		}
 	},
 	GORRA {
@@ -325,7 +343,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeAbrigo() {
-			return 0;
+			return 2;
 		}
 	},
 	GUANTES {
@@ -342,7 +360,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeAbrigo() {
-			return 0;
+			return 2;
 		}
 	},
 	COLLAR {

@@ -3,6 +3,7 @@ package modelo.clases;
 import java.util.List;
 import java.util.Optional;
 
+import modelo.dtos.Categoria;
 import modelo.dtos.TipoPrenda;
 
 public class Sensibilidad {
@@ -54,8 +55,11 @@ public class Sensibilidad {
 		this.calurosoCabeza = calurosoCabeza;
 	}
 	
+	//Funcion Principal Para Calificar Los Distintos Atuendos Aceptados Para Un Evento
 	public void calificarAtuendosAceptados(Evento unEvento, List<Guardarropas> guardarropas) {
 
+		unEvento.getAtuendosAceptados().stream()
+				.forEach(atuendoAceptado -> this.calificarSegunSensibilidadGlobal(atuendoAceptado, guardarropas));	
 		unEvento.getAtuendosAceptados().stream()
 				.forEach(atuendoAceptado -> this.calificarSegunSensibilidadManos(atuendoAceptado, guardarropas));
 		unEvento.getAtuendosAceptados().stream()
@@ -64,7 +68,25 @@ public class Sensibilidad {
 				.forEach(atuendoAceptado -> this.calificarSegunSensibilidadCabeza(atuendoAceptado, guardarropas));
 
 	}
+	
+	//Funcion Para Ver Que Hacer En Cuanto A La Sensibilidad Global
+	public void calificarSegunSensibilidadGlobal(Atuendo unAtuendo, List<Guardarropas> guardarropas) {
+		
+		//Si Es Caluroso Remuevo Las Prendas Que Cumplen La Condicion
+		if (esCalurosoGeneralmente()) {
+			this.retirarPrendasCalurosas(unAtuendo);
+		}
+		
+		else {}
+		
+	}
+	
+	private void retirarPrendasCalurosas(Atuendo unAtuendo) {
+		unAtuendo.getPrendas().removeIf(
+				prenda -> prenda.getTipo().categoria() != Categoria.CALZADO && prenda.getTipo().nivelDeCapa() > 0);
+	}
 
+	//Funcion Para Ver Que Hacer En Cuanto A La Sensibilidad De Manos
 	public void calificarSegunSensibilidadManos(Atuendo unAtuendo, List<Guardarropas> guardarropas) {
 		if (this.esCalurosoDeManos()) {
 			unAtuendo.getPrendas().stream()
@@ -74,6 +96,7 @@ public class Sensibilidad {
 		}
 	}
 
+	//Funcion Para Ver Que Hacer En Cuanto A La Sensibilidad De Cuello
 	public void calificarSegunSensibilidadCuello(Atuendo unAtuendo, List<Guardarropas> guardarropas) {
 		if (this.esCalurosoDeCuello()) {
 			unAtuendo.getPrendas().stream()
@@ -83,6 +106,7 @@ public class Sensibilidad {
 		}
 	}
 
+	//Funcion Para Ver Que Hacer En Cuanto A La Sensibilidad De Cabeza
 	public void calificarSegunSensibilidadCabeza(Atuendo unAtuendo, List<Guardarropas> guardarropas) {
 		if (this.esCalurosoDeCabeza()) {
 			unAtuendo.getPrendas().stream()
@@ -92,32 +116,42 @@ public class Sensibilidad {
 		}
 	}
 
-	public void agregarPrendaFaltante(Atuendo unAtuendo, List<Guardarropas> guardarropas, TipoPrenda unTipoPrenda) {
+	private void agregarPrendaFaltante(Atuendo unAtuendo, List<Guardarropas> guardarropas, TipoPrenda unTipoPrenda) {
 		if (unAtuendo.getPrendas().stream().noneMatch(prenda -> prenda.getTipo().equals(unTipoPrenda))) {
-			guardarropas.stream()
-					.forEach(guardarropa -> buscarPrendaEnElGuardarropaIndicado(unAtuendo, guardarropa, unTipoPrenda));
+			
+			//Busco El Guardarropa Correspondiente A Las Prendas Que Forman El Atuendo
+			Optional<Guardarropas> guardarropaConteniente = guardarropas.stream().filter(guardarropa -> devolverGuardarropaEnBaseAlAtuendo(guardarropa, unAtuendo.getPrendas().get(0))).findFirst();
+			this.buscarPrendaEnElGuardarropaIndicado(unAtuendo, guardarropaConteniente, unTipoPrenda);
 		}
 	}
 
-	public void buscarPrendaEnElGuardarropaIndicado(Atuendo unAtuendo, Guardarropas unGuardarropa,
+	private boolean devolverGuardarropaEnBaseAlAtuendo(Guardarropas unGuardarropa, Prenda unaPrenda){
+		return unGuardarropa.getPrendas().stream().anyMatch(prenda -> prenda.equals(unaPrenda));
+	}
+	
+	//Funcion Para Buscar La Prenda Especifica En Guardarropa Y De Tenerla Agregarla Al Atuendo, Si No Esta
+	private void buscarPrendaEnElGuardarropaIndicado(Atuendo unAtuendo, Optional<Guardarropas> unGuardarropa,
 			TipoPrenda unTipoPrenda) {
-
+		
 		Optional<Prenda> prendaABuscar = unAtuendo.getPrendas().stream()
 				.filter(prenda -> prenda.getTipo().equals(unTipoPrenda)).findFirst();
-
-		if (prendaABuscar.equals(null)) {
-			unGuardarropa.getPrendas().stream()
+		if (!prendaABuscar.isPresent()) {
+			
+			Guardarropas elGuardarropa = unGuardarropa.get();
+			elGuardarropa.getPrendas().stream()
 					.forEach(prenda -> agregarPrendaSiEstaEnElGuardarropa(unAtuendo, prenda, unTipoPrenda));
 		}
 	}
 
-	public void agregarPrendaSiEstaEnElGuardarropa(Atuendo unAtuendo, Prenda unaPrenda, TipoPrenda unTipoPrenda) {
+	private void agregarPrendaSiEstaEnElGuardarropa(Atuendo unAtuendo, Prenda unaPrenda, TipoPrenda unTipoPrenda) {
 		if (unaPrenda.getTipo().equals(unTipoPrenda)) {
 			unAtuendo.addPrenda(unaPrenda);
 		}
 	}
 
-	public void sacarPrendaExtra(Atuendo unAtuendo, Prenda prendaARemover, TipoPrenda unTipoPrenda) {
+	//Funcion Para Remover Las Prenda Especifica
+	private void sacarPrendaExtra(Atuendo unAtuendo, Prenda prendaARemover, TipoPrenda unTipoPrenda) {
+
 		if (prendaARemover.getTipo().equals(unTipoPrenda)) {
 			unAtuendo.getPrendas().remove(prendaARemover);
 		}
