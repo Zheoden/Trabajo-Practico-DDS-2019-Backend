@@ -81,18 +81,6 @@ public class UtilsTests extends Application {
 		guardaRopas.add(guardaRopa2);
 		Suscripcion subs = new SuscripcionPremium();
 		Usuario pepe = new Usuario("axelfulop@hotmail.com",guardaRopas, subs);
-		Calendar fecha1 = GregorianCalendar.getInstance();
-		fecha1.set(2019, 8, 10);
-		fecha1.set(Calendar.HOUR_OF_DAY, 14);
-		fecha1.set(Calendar.MINUTE, 39);
-		fecha1.set(Calendar.SECOND, 00);
-		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
-		try {
-			pepe.cargarEvento(irAlAlamo);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		//pepe.irAElEvento(irAlAlamo);
 		String [] args = null;
 		main(args);
 	}

@@ -1,15 +1,18 @@
 package modelo.clases;
 
-import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.junit.Test;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-
 import modelo.interfaces.Suscripcion;
 import utils.Utils;
+
 
 public class Usuario implements Job {
 
@@ -122,17 +125,29 @@ public class Usuario implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		if(!this.eventos.isEmpty()) {
-			this.eventos.forEach(evento-> {
-				try {
-					Utils.enviarEmail("gmail",this, evento, null);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			});
+		
+       //La idea es obtener todos los eventos del usuario de la bd
+	   // por el momento se hardcodea para los test
+	   //List<Evento> = Evento.findAll();
+	   //El mail tmb lo harcodeo pero se obtendria todo por bd
+	   //Usuario user = findUserById(this.getId());
+		
+	   List<Evento> eventos = new ArrayList<Evento>();
+	   Calendar fecha1 = GregorianCalendar.getInstance();
+	   fecha1.set(2019, 10, 12);
+	   Evento alamo = new Evento("ir al alamo","palermo",fecha1);
+	   this.setEmail("axelfulop@hotmail.com");
+	   eventos.add(alamo);
+	   eventos.forEach(evento -> {
+		try {
+			new Utils().enviarEmail("gmail",this.getEmail(),evento,null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	});
+		
 
-		}	
 	}
+
 
 }

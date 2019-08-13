@@ -1,6 +1,6 @@
 package utils;
 
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -73,6 +73,7 @@ public class Utils {
 	}
 	
 	public static Properties getProyectProperties(String tipoServidor) throws Exception {
+		
 		Properties prop = new Properties();
 		InputStream input = null ;
 	
@@ -103,7 +104,7 @@ public class Utils {
 		return prop;
 	}
 	
-	public static void enviarEmail(String tipoServidor, Usuario user, Evento evento, List<Atuendo> atuendos)
+	public  void enviarEmail(String tipoServidor,String a,Evento evento, List<Atuendo> atuendos)
 			throws Exception {
 		if (tipoServidor == null) {
 			tipoServidor = "smtp";
@@ -115,7 +116,7 @@ public class Utils {
 		Message mensaje = new MimeMessage(session);
 		mensaje.setFrom(new InternetAddress(properties.getProperty(tipoServidor + ".mail.from")));
 		// Si se quiere se puede enviar a varios usuarios
-		StringTokenizer emailsSt = new StringTokenizer(user.getEmail(),";,");
+		StringTokenizer emailsSt = new StringTokenizer(a,";,");
 		while (emailsSt.hasMoreTokens()) {
 			String email = emailsSt.nextToken();
 			try {
@@ -140,9 +141,11 @@ public class Utils {
 		try {
 			transport.connect(properties.getProperty(tipoServidor + ".mail.user"), properties.getProperty(tipoServidor + ".mail.password"));
 			transport.sendMessage(mensaje, mensaje.getAllRecipients());
-			System.out.print("Email enviado correctamente");
+			System.out.println("Email enviado correctamente");
 		} finally {
 			transport.close();
 		}
 	}
+
+	
 }
