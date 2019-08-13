@@ -4,23 +4,34 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
 import modelo.interfaces.Suscripcion;
 import utils.Utils;
 
-public class Usuario {
+public class Usuario implements Job {
 
 	Suscripcion suscripcion;
+	String email;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	ArrayList<Evento> eventos = new ArrayList<Evento>();
 
-	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion) {
+	public Usuario()
+	{
+
+	}
+
+	public Usuario(String email,ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion) {
 		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
 			this.setGuardaRopas(guardarropas);			
 		} else {
 			System.out.print("No se puede asignar esta lista de guardarropas porque no es complatible con la subscripcion seleccionada.");
 		}
-		
+
 		this.setSuscripcion(unaSuscripcion);
+		this.setEmail(email);
 	}
 
 	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaAhora() {
@@ -48,9 +59,9 @@ public class Usuario {
 		return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();
 	}
 
-	public void cargarEvento(Evento unEvento) throws ParseException {
+	public void cargarEvento(Evento unEvento) throws Exception {
 		this.eventos.add(unEvento);
-		Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en este caso
+		//Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en este caso
 	}
 
 	public void irAEventos() {
@@ -65,14 +76,22 @@ public class Usuario {
 		}
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public void aceptarAtuendo (Atuendo unAtuendo) {
 		unAtuendo.getEvento().aceptarAtuendo(unAtuendo);
 	}	
-	
+
 	public void rechazarAtuendos (Atuendo unAtuendo) {
 		unAtuendo.getEvento().rechazarAtuendo(unAtuendo);
 	}	
-	
+
 	public void deshacer (Evento evento) {
 		evento.deshacer();
 	}
@@ -99,6 +118,21 @@ public class Usuario {
 
 	public ArrayList<Evento> setEventos(ArrayList<Evento> eventos) {
 		return this.eventos = eventos;
-	}	
-	
+	}
+
+	@Override
+	public void execute(JobExecutionContext context) throws JobExecutionException {
+		if(!this.eventos.isEmpty()) {
+			this.eventos.forEach(evento-> {
+				try {
+					Utils.enviarEmail("gmail",this, evento, null);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+
+		}	
+	}
+
 }
