@@ -12,8 +12,10 @@ public class Usuario {
 	Suscripcion suscripcion;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	ArrayList<Evento> eventos = new ArrayList<Evento>();
+	String Email;
+	String NumeroTelefono;
 
-	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion) {
+	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email, String numeroTelefono) {
 		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
 			this.setGuardaRopas(guardarropas);			
 		} else {
@@ -21,6 +23,8 @@ public class Usuario {
 		}
 		
 		this.setSuscripcion(unaSuscripcion);
+		this.setEmail(email);
+		this.setNumeroTelefono(numeroTelefono);
 	}
 
 	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaAhora() {
@@ -99,6 +103,30 @@ public class Usuario {
 
 	public ArrayList<Evento> setEventos(ArrayList<Evento> eventos) {
 		return this.eventos = eventos;
+	}
+
+	public ArrayList<Guardarropas> getGuardarropas() {
+		return guardarropas;
+	}
+
+	public void setGuardarropas(ArrayList<Guardarropas> guardarropas) {
+		this.guardarropas = guardarropas;
+	}
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+	public String getNumeroTelefono() {
+		return NumeroTelefono;
+	}
+
+	public void setNumeroTelefono(String numeroTelefono) {
+		NumeroTelefono = numeroTelefono;
 	}	
 	
 }

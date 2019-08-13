@@ -54,7 +54,7 @@ public class UsuarioTest {
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 		Suscripcion subs = new SuscripcionPremium();
-		Usuario pepe = new Usuario(guardaRopas, subs);
+		Usuario pepe = new Usuario(guardaRopas, subs, "test@test.com", "12341234");
 		Assert.assertEquals(pepe.getClass(), Usuario.class);
 		Assert.assertEquals(pepe.getGuardaRopas(), guardaRopas);
 		Assert.assertEquals(pepe.getSuscripcion(), subs);
@@ -86,7 +86,7 @@ public class UsuarioTest {
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium());
+		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234");
 		List<Atuendo> atuendos = pepe.todosPosiblesAtuendosPorGuardarropaParaAhora();
 		Assert.assertEquals(atuendos.size(), 4);
 	}
@@ -112,7 +112,7 @@ public class UsuarioTest {
 
 		SuscripcionGratuita subs2 = new SuscripcionGratuita();
 
-		Usuario santi = new Usuario(ropero, subs2);
+		Usuario santi = new Usuario(ropero, subs2, "test@test.com", "12341234");
 		PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
 		santi.agregarPrendaAGuardaRopas(prenda9, guardaRopa3);
@@ -147,7 +147,7 @@ public class UsuarioTest {
 
 		SuscripcionGratuita subs4 = new SuscripcionGratuita();
 
-		Usuario santi = new Usuario(ropero2, subs4);
+		Usuario santi = new Usuario(ropero2, subs4, "test@test.com", "12341234");
 		santi.agregarPrendaAGuardaRopas(prenda5, guardaRopa3);
 
 		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda5), true);

@@ -1,11 +1,17 @@
 package test.modelo.utils;
 
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import junit.framework.Assert;
+import modelo.clases.Evento;
+import modelo.clases.Guardarropas;
+import modelo.clases.SuscripcionPremium;
+import modelo.clases.Usuario;
 import utils.Utils;
 
 @DisplayName("Tests para las funciones de utilidad")
@@ -32,6 +38,18 @@ public class UtilsTests {
 			Assert.assertEquals(aux.getProperty("hotmail.mail.user"), "correoDePrubaDDS@gmail.com");
 			Assert.assertEquals(aux.getProperty("hotmail.mail.password"), "diseñoDeSistemas ");
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@DisplayName("Tests para Enviar un correo electronico")
+	public void mailSender() {
+		Usuario pepe = new Usuario(new ArrayList<Guardarropas>(), new SuscripcionPremium(), "schifferJulian@gmail.com", "12341234");
+		try {
+			Utils.emailSender("gmail", pepe, new Evento("Tu vieja", "Tu hermana", GregorianCalendar.getInstance()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

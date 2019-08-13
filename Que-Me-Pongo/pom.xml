@@ -68,14 +68,19 @@
 		</dependency>
 		
 		
-		<!-- JavaxMail for notifying the user -->
+		<!-- JavaxMail and SunMail for notifying the user -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
 		    <artifactId>javax.mail-api</artifactId>
 		    <version>1.6.2</version>
 		</dependency>
 		
-    	
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>smtp</artifactId>
+		    <version>1.4.5</version>
+		</dependency>
+		
         <!-- Jackson to Parse JSON -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
