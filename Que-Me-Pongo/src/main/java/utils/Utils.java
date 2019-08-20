@@ -92,8 +92,7 @@ public class Utils {
 		return prop;
 	}
 	
-	public static void emailSender(String tipoServidor, Usuario user, Evento evento) throws Exception {
-		//objeto donde almacenamos la configuración para conectarnos al servidor
+	public static Properties getPropertiesForServer(String tipoServidor) throws Exception {
 		Properties properties = Utils.getProyectProperties();
 		Properties aux = new Properties();
 	    Set<String> propertyNames = properties.stringPropertyNames();
@@ -103,19 +102,21 @@ public class Utils {
 		    	aux.setProperty(name.substring(tipoServidor.length() + 1), propertyValue);
 	    	}
 	    }
-	    
-	    System.out.println(aux);
-	    Session session = Session.getInstance(aux, null);
-		//creamos el mensaje a enviar
+	    return aux;
+	}
+	
+	public static void emailSender(String tipoServidor, Usuario user, Evento evento) throws Exception {
+		Properties properties = getPropertiesForServer(tipoServidor);
+		
+	    System.out.println(properties);
+	    Session session = Session.getInstance(properties, null);
 	    Message mensaje = new MimeMessage(session);
-	    //agregamos la dirección que envía el email
 	    mensaje.setFrom(new InternetAddress(properties.getProperty("mail.from")));
 	    //Si se quiere se puede enviar a varios usuarios
 	    StringTokenizer emailsSt = new StringTokenizer(user.getEmail(),";,");
 	    while (emailsSt.hasMoreTokens()) {
-	    	String email=emailsSt.nextToken();
+	    	String email = emailsSt.nextToken();
 	    	try{
-	    		//agregamos las direcciones de email que reciben el email, en el primer parametro envíamos el tipo de receptor
 	    		mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
 	    		//Message.RecipientType.TO;  para
 	    		//Message.RecipientType.CC;  con copia
@@ -125,7 +126,6 @@ public class Utils {
 	    	}
 	    }
 	    mensaje.setSubject("Recordatorio evento " + evento.getNombre());
-	    //agregamos una fecha al email
 	    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 	    mensaje.setSentDate(dateFormat.parse(dateFormat.format(date)));
@@ -136,55 +136,12 @@ public class Utils {
 	    mensaje.setContent(multipart);
 	    SMTPTransport transport = (SMTPTransport) session.getTransport("smtp");
 	    try {
-	    	//conectar al servidor
 	        transport.connect(properties.getProperty("mail.user"), properties.getProperty("mail.password"));
-	        //enviar el mensaje
 	        transport.sendMessage(mensaje, mensaje.getAllRecipients());
+	        System.out.println("Email enviado correctamente");
 	    } finally {
-	    	//cerrar la conexión
 	        transport.close();
 	    }
 	}
-
-	public  void enviarEmail(String tipoServidor,String a,Evento evento, List<Atuendo> atuendos) throws Exception {
-		if (tipoServidor == null) {
-			tipoServidor = "smtp";
-		}
-		Properties properties = getProyectProperties();
-		//InputStream input = new FileInputStream("src/main/java/utils/" + "system" + ".properties");
-		//properties.load(input);
-		Session session = Session.getInstance(properties, null);
-		Message mensaje = new MimeMessage(session);
-		mensaje.setFrom(new InternetAddress(properties.getProperty(tipoServidor + ".mail.from")));
-		// Si se quiere se puede enviar a varios usuarios
-		StringTokenizer emailsSt = new StringTokenizer(a,";,");
-		while (emailsSt.hasMoreTokens()) {
-			String email = emailsSt.nextToken();
-			try {
-				mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-				// Message.RecipientType.TO; para
-				// Message.RecipientType.CC; con copia
-			} catch (Exception ex) {
-				System.out.print(ex);
-			}
-		}
-		mensaje.setSubject("Recordatorio evento " + evento.getNombre());
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		mensaje.setSentDate(dateFormat.parse(dateFormat.format(date)));
-		BodyPart messageBodyPart = new MimeBodyPart();
-		messageBodyPart
-				.setText("Se aproxima el evento " + evento.getNombre() + " en la fecha " + evento.getFechaEvento());
-		Multipart multipart = new MimeMultipart();
-		multipart.addBodyPart(messageBodyPart);
-		mensaje.setContent(multipart);
-		SMTPTransport transport = (SMTPTransport) session.getTransport("smtp");
-		try {
-			transport.connect(properties.getProperty(tipoServidor + ".mail.user"), properties.getProperty(tipoServidor + ".mail.password"));
-			transport.sendMessage(mensaje, mensaje.getAllRecipients());
-			System.out.println("Email enviado correctamente");
-		} finally {
-			transport.close();
-		}
-	}
 }
+	

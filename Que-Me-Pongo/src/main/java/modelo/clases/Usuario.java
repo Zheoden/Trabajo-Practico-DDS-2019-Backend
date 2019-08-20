@@ -152,7 +152,7 @@ public class Usuario implements Job {
 	   eventos.add(alamo);
 	   eventos.forEach(evento -> {
 			try {
-				new Utils().enviarEmail("gmail",this.getEmail(),evento,null);
+				Utils.emailSender("gmail", this, evento);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
