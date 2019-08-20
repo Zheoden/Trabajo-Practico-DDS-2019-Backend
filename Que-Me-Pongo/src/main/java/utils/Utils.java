@@ -1,6 +1,7 @@
 package utils;
 
 import java.io.BufferedReader;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,6 +31,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
 import com.sun.mail.smtp.SMTPTransport;
 
 import java.util.Properties;
@@ -82,9 +84,11 @@ public class Utils {
 		}
 	}
 	
-	public static Properties getProyectProperties() throws Exception {
+	public static Properties getProyectProperties(String tipoServidor) throws Exception {
+		
 		Properties prop = new Properties();
 		InputStream input = null ;
+	
 		try {
 			input = new FileInputStream("system.properties");
 		} catch (FileNotFoundException e) {
@@ -94,6 +98,16 @@ public class Utils {
 		
 		try {
 			prop.load(input);
+			if(tipoServidor == "gmail")
+			{
+			prop.setProperty("mail.smtp.host","smtp.gmail.com");
+			prop.setProperty("mail.smtp.port","587");
+			}
+			else
+			{
+				prop.setProperty("mail.smtp.host","smtp.live.com");
+				prop.setProperty("mail.smtp.port","25");	
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new Exception("No se pudo cargar el archivo de properties.");
@@ -156,42 +170,45 @@ public class Utils {
 	    }
 	}
 
-	public static void whatsAppSender(String number, String message) {
-		String jsonPayload = new StringBuilder()
-			      .append("{")
-			      .append("\"number\":\"")
-			      .append(number)
-			      .append("\",")
-			      .append("\"message\":\"")
-			      .append(message)
-			      .append("\"")
-			      .append("}")
-			      .toString();
-
-			    URL url = new URL(WA_GATEWAY_URL);
-			    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			    conn.setDoOutput(true);
-			    conn.setRequestMethod("POST");
-			    conn.setRequestProperty("X-WM-CLIENT-ID", CLIENT_ID);
-			    conn.setRequestProperty("X-WM-CLIENT-SECRET", CLIENT_SECRET);
-			    conn.setRequestProperty("Content-Type", "application/json");
-
-			    OutputStream os = conn.getOutputStream();
-			    os.write(jsonPayload.getBytes());
-			    os.flush();
-			    os.close();
-
-			    int statusCode = conn.getResponseCode();
-			    System.out.println("Response from WA Gateway: \n");
-			    System.out.println("Status Code: " + statusCode);
-			    BufferedReader br = new BufferedReader(new InputStreamReader(
-			        (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()
-			      ));
-			    String output;
-			    while ((output = br.readLine()) != null) {
-			        System.out.println(output);
-			    }
-			    conn.disconnect();
-			  }
+	public  void enviarEmail(String tipoServidor,String a,Evento evento, List<Atuendo> atuendos) throws Exception {
+		if (tipoServidor == null) {
+			tipoServidor = "smtp";
+		}
+		Properties properties = getProyectProperties(tipoServidor);
+		//InputStream input = new FileInputStream("src/main/java/utils/" + "system" + ".properties");
+		//properties.load(input);
+		Session session = Session.getInstance(properties, null);
+		Message mensaje = new MimeMessage(session);
+		mensaje.setFrom(new InternetAddress(properties.getProperty(tipoServidor + ".mail.from")));
+		// Si se quiere se puede enviar a varios usuarios
+		StringTokenizer emailsSt = new StringTokenizer(a,";,");
+		while (emailsSt.hasMoreTokens()) {
+			String email = emailsSt.nextToken();
+			try {
+				mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+				// Message.RecipientType.TO; para
+				// Message.RecipientType.CC; con copia
+			} catch (Exception ex) {
+				System.out.print(ex);
+			}
+		}
+		mensaje.setSubject("Recordatorio evento " + evento.getNombre());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		mensaje.setSentDate(dateFormat.parse(dateFormat.format(date)));
+		BodyPart messageBodyPart = new MimeBodyPart();
+		messageBodyPart
+				.setText("Se aproxima el evento " + evento.getNombre() + " en la fecha " + evento.getFechaEvento());
+		Multipart multipart = new MimeMultipart();
+		multipart.addBodyPart(messageBodyPart);
+		mensaje.setContent(multipart);
+		SMTPTransport transport = (SMTPTransport) session.getTransport("smtp");
+		try {
+			transport.connect(properties.getProperty(tipoServidor + ".mail.user"), properties.getProperty(tipoServidor + ".mail.password"));
+			transport.sendMessage(mensaje, mensaje.getAllRecipients());
+			System.out.println("Email enviado correctamente");
+		} finally {
+			transport.close();
+		}
 	}
 }

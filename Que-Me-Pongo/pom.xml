@@ -71,8 +71,8 @@
 		<!-- JavaxMail and SunMail for notifying the user -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
-		    <artifactId>javax.mail-api</artifactId>
-		    <version>1.6.2</version>
+		    <artifactId>mail</artifactId>
+		    <version>1.5.0-b01</version>
 		</dependency>
 		
 		<dependency>
@@ -81,6 +81,7 @@
 		    <version>1.4.5</version>
 		</dependency>
 		
+    	
         <!-- Jackson to Parse JSON -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
