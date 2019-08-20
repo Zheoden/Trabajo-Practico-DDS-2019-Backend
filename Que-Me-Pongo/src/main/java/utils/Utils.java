@@ -1,15 +1,9 @@
 package utils;
 
-import java.io.BufferedReader;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,12 +35,6 @@ import modelo.clases.Evento;
 import modelo.clases.Usuario;
 
 public class Utils {
-	
-	private static final String INSTANCE_ID = "YOUR_INSTANCE_ID_HERE";
-	private static final String CLIENT_ID = "YOUR_CLIENT_ID_HERE";
-	private static final String CLIENT_SECRET = "YOUR_CLIENT_SECRET_HERE";
-	private static final String WA_GATEWAY_URL = "http://api.whatsmate.net/v3/whatsapp/single/text/message/" + INSTANCE_ID;
-	
 	@SuppressWarnings("resource")
 	public static String readFileFromResources(String path) {
 
@@ -84,35 +72,23 @@ public class Utils {
 		}
 	}
 	
-	public static Properties getProyectProperties(String tipoServidor) throws Exception {
-		
+	public static Properties getProyectProperties() throws Exception {
 		Properties prop = new Properties();
 		InputStream input = null ;
-	
 		try {
 			input = new FileInputStream("system.properties");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			throw new Exception("No se encuentra el archivo de properties.");
 		}
-		
+
 		try {
 			prop.load(input);
-			if(tipoServidor == "gmail")
-			{
-			prop.setProperty("mail.smtp.host","smtp.gmail.com");
-			prop.setProperty("mail.smtp.port","587");
-			}
-			else
-			{
-				prop.setProperty("mail.smtp.host","smtp.live.com");
-				prop.setProperty("mail.smtp.port","25");	
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new Exception("No se pudo cargar el archivo de properties.");
 		}	
-		
+
 		return prop;
 	}
 	
@@ -174,7 +150,7 @@ public class Utils {
 		if (tipoServidor == null) {
 			tipoServidor = "smtp";
 		}
-		Properties properties = getProyectProperties(tipoServidor);
+		Properties properties = getProyectProperties();
 		//InputStream input = new FileInputStream("src/main/java/utils/" + "system" + ".properties");
 		//properties.load(input);
 		Session session = Session.getInstance(properties, null);

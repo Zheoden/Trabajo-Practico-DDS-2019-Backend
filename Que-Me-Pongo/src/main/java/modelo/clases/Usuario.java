@@ -1,12 +1,10 @@
 package modelo.clases;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.junit.Test;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -75,14 +73,6 @@ public class Usuario implements Job {
 		} else {
 			System.out.println("No estas invitado al evento " + unEvento.getNombre());
 		}
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public void aceptarAtuendo (Atuendo unAtuendo) {
