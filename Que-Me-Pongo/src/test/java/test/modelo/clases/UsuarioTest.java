@@ -5,7 +5,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.io.PrintStream;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Assert;
@@ -15,8 +18,10 @@ import org.mockito.Mockito;
 
 import modelo.clases.AdministrarProveedores;
 import modelo.clases.Atuendo;
+import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
+import modelo.clases.Sensibilidad;
 import modelo.clases.SuscripcionGratuita;
 import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
@@ -40,8 +45,15 @@ public class UsuarioTest {
 	Prenda prenda9 = new Prenda(TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
 	Prenda prenda10 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda14 = new Prenda(TipoPrenda.ZAPATILLAS, Material.OXFORD, Color.AZUL, Color.ROJO);
+	Prenda prenda15 = new Prenda(TipoPrenda.ZAPATOSDETACON, Material.JEAN, Color.MARRON, Color.NEGRO);
+	Prenda prenda16 = new Prenda(TipoPrenda.MEDIAS, Material.ALGODON, Color.VERDE, Color.AMARILLO);
 
 	Prenda prenda11 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda12 = new Prenda(TipoPrenda.BUFANDA, Material.POLAR, Color.AZUL, Color.BLANCO);
+	Prenda prenda13 = new Prenda(TipoPrenda.GUANTES, Material.POLAR, Color.NEGRO, Color.GRIS);
+	Prenda prenda17 = new Prenda(TipoPrenda.BUFANDA, Material.LINO, Color.NEGRO, Color.BLANCO);
+	
 	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 	ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
 
@@ -54,7 +66,9 @@ public class UsuarioTest {
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 		Suscripcion subs = new SuscripcionPremium();
-		Usuario pepe = new Usuario(guardaRopas, subs, "test@test.com", "12341234");
+    
+		Usuario pepe = new Usuario(guardaRopas, subs, "test@test.com", "12341234", null);
+    
 		Assert.assertEquals(pepe.getClass(), Usuario.class);
 		Assert.assertEquals(pepe.getGuardaRopas(), guardaRopas);
 		Assert.assertEquals(pepe.getSuscripcion(), subs);
@@ -86,7 +100,9 @@ public class UsuarioTest {
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234");
+
+		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", null);
+
 		List<Atuendo> atuendos = pepe.todosPosiblesAtuendosPorGuardarropaParaAhora();
 		Assert.assertEquals(atuendos.size(), 4);
 	}
@@ -112,7 +128,8 @@ public class UsuarioTest {
 
 		SuscripcionGratuita subs2 = new SuscripcionGratuita();
 
-		Usuario santi = new Usuario(ropero, subs2, "test@test.com", "12341234");
+		Usuario santi = new Usuario(ropero, subs2, "test@test.com", "12341234", null);
+
 		PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
 		santi.agregarPrendaAGuardaRopas(prenda9, guardaRopa3);
@@ -147,11 +164,65 @@ public class UsuarioTest {
 
 		SuscripcionGratuita subs4 = new SuscripcionGratuita();
 
-		Usuario santi = new Usuario(ropero2, subs4, "test@test.com", "12341234");
+		Usuario santi = new Usuario(ropero2, subs4, "test@test.com", "12341234", null);
+    
 		santi.agregarPrendaAGuardaRopas(prenda5, guardaRopa3);
 
 		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda5), true);
 
 	}
 	
+	@Test
+	@DisplayName("Genera Atuendos, Se Los Acepta Para El Evento, Agregando Despues Algunas Prendas Mas")
+	public void calificarAtuendosValidos() throws ParseException{
+		
+		Guardarropas guardarropa1 = new Guardarropas(prendas);
+		Guardarropas guardarropa2 = new Guardarropas(prendas1);
+		
+		guardarropa1.addPrenda(prenda);
+		guardarropa1.addPrenda(prenda1);
+		guardarropa1.addPrenda(prenda3);
+		guardarropa1.addPrenda(prenda5);
+		guardarropa1.addPrenda(prenda7);
+		guardarropa1.addPrenda(prenda10);
+		guardarropa1.addPrenda(prenda11);
+		guardarropa1.addPrenda(prenda12);
+		guardarropa1.addPrenda(prenda13);
+		guardarropa1.addPrenda(prenda14);
+		guardarropa1.addPrenda(prenda16);
+		
+		guardarropa2.addPrenda(prenda2);
+		guardarropa2.addPrenda(prenda4);
+		guardarropa2.addPrenda(prenda3);
+		guardarropa2.addPrenda(prenda6);
+		guardarropa2.addPrenda(prenda8);
+		guardarropa2.addPrenda(prenda9);
+		guardarropa2.addPrenda(prenda15);
+		guardarropa2.addPrenda(prenda17);
+		
+		SuscripcionPremium premium = new SuscripcionPremium();
+
+		ArrayList<Guardarropas> conjuntoGuardarropa = new ArrayList<>();
+		conjuntoGuardarropa.add(guardarropa1);
+		conjuntoGuardarropa.add(guardarropa2);
+		
+		Sensibilidad sensibleUsuario = new Sensibilidad(true, false, false, true);
+		Usuario juan = new Usuario(conjuntoGuardarropa, premium, null, null, sensibleUsuario);
+		Calendar fecha1 = GregorianCalendar.getInstance();
+		fecha1.set(2019, 10, 15);
+		fecha1.set(Calendar.HOUR_OF_DAY, 07);
+		fecha1.set(Calendar.MINUTE, 30);
+		Evento irAlAlamo = new Evento("AlamosNight", "Adrogue", fecha1);
+		
+		List<Atuendo> atuendos = guardarropa1.generarSugerencias(20.0);
+
+		juan.cargarEvento(irAlAlamo);
+		Evento eventoCargado = juan.getEventos().get(0);
+		atuendos.stream().forEach(atuendo -> eventoCargado.aceptarAtuendo(atuendo));
+
+		juan.getSensibilidadCuerpo().calificarAtuendosAceptados(eventoCargado, juan.getGuardaRopas());
+		Atuendo atuendoAceptado1 = eventoCargado.getAtuendosAceptados().get(1);
+		Assert.assertEquals(7, atuendoAceptado1.getPrendas().size());
+		Assert.assertEquals(prenda12.getTipo(), atuendoAceptado1.getPrendas().get(6).getTipo());
+	}
 }

@@ -19,7 +19,7 @@ public class Prenda {
 			this.setColorSecundario(colorSecundario);
 		} else {
 			System.out
-					.print("Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
+					.println("Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
 		}
 	}
 
@@ -28,7 +28,7 @@ public class Prenda {
 		if (this.esMaterialValido(tipo, material)) {
 			this.setTela(material);
 		} else {
-			System.out.print(
+			System.out.println(
 					"Se intento crear una prenda con una combinacion Tipo - Material invalida. Se dejo el material como nulo.");
 		}
 	}

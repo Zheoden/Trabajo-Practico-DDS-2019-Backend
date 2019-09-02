@@ -17,7 +17,6 @@ public class Evento {
 	ArrayList<Atuendo> atuendosAceptados = new ArrayList<Atuendo>();
 	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
 
-	
 	public Evento(String nombreEvento, String ciudad, Calendar fecha) {
 		this.nombre = nombreEvento;
 		this.ciudad = ciudad;
@@ -92,5 +91,4 @@ public class Evento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
 }

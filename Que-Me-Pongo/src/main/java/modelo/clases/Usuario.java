@@ -14,6 +14,7 @@ import utils.Utils;
 
 public class Usuario implements Job {
 
+	Sensibilidad sensibilidadCuerpo;
 	Suscripcion suscripcion;
 	String email;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
@@ -21,7 +22,8 @@ public class Usuario implements Job {
 	String Email;
 	String NumeroTelefono;
 
-	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email, String numeroTelefono) {
+	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email, String numeroTelefono, Sensibilidad cuerpoSensible) {
+
 		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
 			this.setGuardaRopas(guardarropas);			
 		} else {
@@ -29,6 +31,7 @@ public class Usuario implements Job {
 		}
 
 		this.setSuscripcion(unaSuscripcion);
+		this.setSensibilidadCuerpo(cuerpoSensible);
 		this.setEmail(email);
 		this.setNumeroTelefono(numeroTelefono);
 	}
@@ -134,6 +137,18 @@ public class Usuario implements Job {
 	public void setNumeroTelefono(String numeroTelefono) {
 		NumeroTelefono = numeroTelefono;
 	}	
+
+	public ArrayList<Guardarropas> getGuardarropas() {
+		return guardarropas;
+	}
+	
+	public Sensibilidad getSensibilidadCuerpo() {
+		return sensibilidadCuerpo;
+	}
+
+	public void setSensibilidadCuerpo(Sensibilidad sensibilidad) {
+		this.sensibilidadCuerpo = sensibilidad;
+	}
 	
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
