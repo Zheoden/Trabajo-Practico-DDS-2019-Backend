@@ -66,7 +66,9 @@ public class UsuarioTest {
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 		Suscripcion subs = new SuscripcionPremium();
-		Usuario pepe = new Usuario(guardaRopas, subs, null);
+    
+		Usuario pepe = new Usuario(guardaRopas, subs, "test@test.com", "12341234", null);
+    
 		Assert.assertEquals(pepe.getClass(), Usuario.class);
 		Assert.assertEquals(pepe.getGuardaRopas(), guardaRopas);
 		Assert.assertEquals(pepe.getSuscripcion(), subs);
@@ -98,7 +100,9 @@ public class UsuarioTest {
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), null);
+
+		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", null);
+
 		List<Atuendo> atuendos = pepe.todosPosiblesAtuendosPorGuardarropaParaAhora();
 		Assert.assertEquals(atuendos.size(), 4);
 	}
@@ -124,7 +128,8 @@ public class UsuarioTest {
 
 		SuscripcionGratuita subs2 = new SuscripcionGratuita();
 
-		Usuario santi = new Usuario(ropero, subs2, null);
+		Usuario santi = new Usuario(ropero, subs2, "test@test.com", "12341234", null);
+
 		PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
 		santi.agregarPrendaAGuardaRopas(prenda9, guardaRopa3);
@@ -159,7 +164,8 @@ public class UsuarioTest {
 
 		SuscripcionGratuita subs4 = new SuscripcionGratuita();
 
-		Usuario santi = new Usuario(ropero2, subs4, null);
+		Usuario santi = new Usuario(ropero2, subs4, "test@test.com", "12341234", null);
+    
 		santi.agregarPrendaAGuardaRopas(prenda5, guardaRopa3);
 
 		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda5), true);
@@ -201,7 +207,7 @@ public class UsuarioTest {
 		conjuntoGuardarropa.add(guardarropa2);
 		
 		Sensibilidad sensibleUsuario = new Sensibilidad(true, false, false, true);
-		Usuario juan = new Usuario(conjuntoGuardarropa, premium, sensibleUsuario);
+		Usuario juan = new Usuario(conjuntoGuardarropa, premium, null, null, sensibleUsuario);
 		Calendar fecha1 = GregorianCalendar.getInstance();
 		fecha1.set(2019, 10, 15);
 		fecha1.set(Calendar.HOUR_OF_DAY, 07);
