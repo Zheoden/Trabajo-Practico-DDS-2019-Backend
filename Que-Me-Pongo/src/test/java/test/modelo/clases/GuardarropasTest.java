@@ -115,7 +115,7 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0, null);
 		Atuendo atuendoRandom = unGuardarropa.obtenerAtuendoRandom(atuendos);
 		Assert.assertEquals(atuendoRandom.getClass(), Atuendo.class);
 		Assert.assertEquals(atuendoRandom.getPrendas().size(), 4);
@@ -132,7 +132,7 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0, null);
 		Assert.assertEquals(atuendos.size(), 0);
 	}
 
@@ -153,7 +153,7 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0, null);
 		Assert.assertEquals(atuendos.size(), 15);
 	}
 

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nullable;
+
 import modelo.clases.Abrigo;
 import modelo.dtos.Categoria;
 
@@ -30,21 +32,19 @@ public class Guardarropas {
 	}
 
 	public Set<Prenda> obtenerPrendasSuperiores() {
-		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_SUPERIOR)
-				.collect(Collectors.toSet());
+		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.PARTE_SUPERIOR && !prenda.enUso)).collect(Collectors.toSet());
 	}
 
 	public Set<Prenda> obtenerPrendasInferiores() {
-		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_INFERIOR)
-				.collect(Collectors.toSet());
+		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.PARTE_INFERIOR && !prenda.enUso)).collect(Collectors.toSet());
 	}
 
 	public Set<Prenda> obtenerCalzados() {
-		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.CALZADO).collect(Collectors.toSet());
+		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.CALZADO && !prenda.enUso)).collect(Collectors.toSet());
 	}
 
 	public Set<Prenda> obtenerAccesorios() {
-		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.ACCESORIO).collect(Collectors.toSet());
+		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.ACCESORIO && !prenda.enUso)).collect(Collectors.toSet());
 	}
 
 	public Atuendo obtenerAtuendoRandom(List<Atuendo> combinaciones) {
@@ -52,23 +52,30 @@ public class Guardarropas {
 		return combinaciones.get(0);
 	}
 
-	public List<Atuendo> generarSugerencias(Double temperatura, int sensibilidad) {
+	public List<Atuendo> generarSugerencias(Double temperatura, int sensibilidad, @Nullable Evento evento) {
 		Set<Set<Prenda>> calzados = obtenerCombinacionesNoVacias(obtenerCalzados(), temperatura, sensibilidad);
 		Set<Set<Prenda>> prendasInferiores = obtenerCombinacionesNoVacias(obtenerPrendasInferiores(), temperatura, sensibilidad);
 		Set<Set<Prenda>> prendasSuperiores = obtenerCombinacionesNoVacias(obtenerPrendasSuperiores(), temperatura, sensibilidad);
 		Set<Set<Prenda>> accesorios = obtenerCombinacionesNoVacias(obtenerAccesorios(), temperatura, sensibilidad);
+		
+		if(evento != null) {
+			return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
+					.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3), evento))
+					.collect(Collectors.toList());
+		} else {
+			return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
+					.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3)))
+					.collect(Collectors.toList());
+		}
 
-		return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
-				.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3)))
-				.collect(Collectors.toList());
 	}
 
 	public List<Atuendo> atuendosValidosParaEvento(Evento evento, int sensibilidad) {
-		return generarSugerencias(this.administrarProveedores.obtenerTemperatura(evento.getFechaEvento()), sensibilidad);
+		return generarSugerencias(this.administrarProveedores.obtenerTemperatura(evento.getFechaEvento()), sensibilidad, evento);
 	}
 
 	public List<Atuendo> atuendosValidosParaAhora(int sensibilidad) {
-		return generarSugerencias(this.administrarProveedores.obtenerTemperaturaActual(), sensibilidad);
+		return generarSugerencias(this.administrarProveedores.obtenerTemperaturaActual(), sensibilidad, null);
 	}
 
 //	public Atuendo generarSugerenciaParaEvento(Evento evento) {

@@ -12,6 +12,7 @@ public class Prenda {
 	Material material;
 	Color colorPrimario;
 	Color colorSecundario;
+	Boolean enUso;
 
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
 		this(tipo, material, colorPrimario);
@@ -36,6 +37,7 @@ public class Prenda {
 	public Prenda(TipoPrenda tipo, Color colorPrimario) {
 		this.setTipo(tipo);
 		this.setColorPrimario(colorPrimario);
+		this.setEnUso(false);
 	}
 
 	public boolean esMaterialValido(TipoPrenda tipo, Material material) {
@@ -68,6 +70,14 @@ public class Prenda {
 
 	public void setColorSecundario(Color colorSecundario) {
 		this.colorSecundario = colorSecundario;
+	}
+	
+	public Boolean getEnUso() {
+		return this.enUso;
+	}
+
+	public void setEnUso(Boolean valor) {
+		this.enUso = valor;
 	}
 
 	public Material getTela() {

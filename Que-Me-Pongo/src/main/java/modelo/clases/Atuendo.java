@@ -34,6 +34,10 @@ public class Atuendo {
 		this(superior, inferior, calzado, accesorio);
 		this.setEvento(evento);
 	}
+	
+	public void modificarEstadoDePrendas(Boolean nuevoEstado) {
+		prendas.forEach(elemento -> elemento.setEnUso(nuevoEstado));
+	}
 
 	public ArrayList<Prenda> getPrendas() {
 		return prendas;
@@ -49,10 +53,12 @@ public class Atuendo {
 	
 	public void aceptar() {
 		this.aceptado = true;
+		this.modificarEstadoDePrendas(true);
 	}
 	
 	public void rechazar() {
 		this.aceptado = false;
+		this.modificarEstadoDePrendas(false);
 	}
 	
 	public Evento getEvento() {
