@@ -35,7 +35,7 @@ public class EventoTest {
 	@Test
 	public void usuarioAsisteASusEventos() throws Exception {
     
-		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", null);
+		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", new Sensibilidad());
 
 		prendas1.add(camisaRojo);
 		prendas1.add(bufandaAzul);

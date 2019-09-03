@@ -61,7 +61,7 @@ public class Usuario implements Job {
 		return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();
 	}
 
-	public void cargarEvento(Evento unEvento) throws Exception {
+	public void cargarEvento(Evento unEvento) {
 		this.eventos.add(unEvento);
 		//Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en este caso
 	}
@@ -112,10 +112,6 @@ public class Usuario implements Job {
 
 	public ArrayList<Evento> setEventos(ArrayList<Evento> eventos) {
 		return this.eventos = eventos;
-	}
-
-	public ArrayList<Guardarropas> getGuardarropas() {
-		return guardarropas;
 	}
 
 	public void setGuardarropas(ArrayList<Guardarropas> guardarropas) {

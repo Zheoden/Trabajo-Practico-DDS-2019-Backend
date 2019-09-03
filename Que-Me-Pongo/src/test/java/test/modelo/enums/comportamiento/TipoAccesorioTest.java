@@ -110,8 +110,8 @@ public class TipoAccesorioTest {
 	public void nivelDeAbrigo() {
 		Assert.assertEquals(anteojos.nivelDeAbrigo(), 0);
 		Assert.assertEquals(aros.nivelDeAbrigo(), 0);
-		Assert.assertEquals(bufanda.nivelDeAbrigo(), 0);
-		Assert.assertEquals(gorra.nivelDeAbrigo(), 0);
+		Assert.assertEquals(bufanda.nivelDeAbrigo(), 2);
+		Assert.assertEquals(gorra.nivelDeAbrigo(), 2);
 		Assert.assertEquals(collar.nivelDeAbrigo(), 0);
 		Assert.assertEquals(lentes.nivelDeAbrigo(), 0);
 	}

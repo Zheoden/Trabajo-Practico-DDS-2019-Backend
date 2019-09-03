@@ -9,6 +9,7 @@ import junit.framework.Assert;
 import main.Application;
 import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
+import modelo.clases.Sensibilidad;
 import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
 import utils.Utils;
@@ -44,9 +45,9 @@ public class UtilsTests extends Application {
 	@Test
 	@DisplayName("Tests para Enviar un correo electronico")
 	public void mailSender() {
-		Usuario pepe = new Usuario(new ArrayList<Guardarropas>(), new SuscripcionPremium(), "schifferJulian@gmail.com", "12341234");
+		Usuario pepe = new Usuario(new ArrayList<Guardarropas>(), new SuscripcionPremium(), "schifferJulian@gmail.com", "12341234", new Sensibilidad());
 		try {
-			Utils.emailSender("gmail", pepe, new Evento("Tu vieja", "Tu hermana", GregorianCalendar.getInstance()));
+			Utils.emailSender("gmail", pepe, new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

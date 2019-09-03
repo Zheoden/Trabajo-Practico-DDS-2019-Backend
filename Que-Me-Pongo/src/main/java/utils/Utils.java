@@ -108,7 +108,6 @@ public class Utils {
 	public static void emailSender(String tipoServidor, Usuario user, Evento evento) throws Exception {
 		Properties properties = getPropertiesForServer(tipoServidor);
 		
-	    System.out.println(properties);
 	    Session session = Session.getInstance(properties, null);
 	    Message mensaje = new MimeMessage(session);
 	    mensaje.setFrom(new InternetAddress(properties.getProperty("mail.from")));
@@ -130,7 +129,7 @@ public class Utils {
 		Date date = new Date();
 	    mensaje.setSentDate(dateFormat.parse(dateFormat.format(date)));
 	    BodyPart messageBodyPart = new MimeBodyPart();
-	    messageBodyPart.setText("Se aproxima el evento " + evento.getNombre() + "en la fecha " + evento.getFechaEvento() + "te sugiero que ");
+	    messageBodyPart.setText("Se aproxima el evento " + evento.getNombre() + " en la fecha " + evento.getFechaEvento() + " te sugiero que ");
 	    Multipart multipart = new MimeMultipart();
 	    multipart.addBodyPart(messageBodyPart);
 	    mensaje.setContent(multipart);
