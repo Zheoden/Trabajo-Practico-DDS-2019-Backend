@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -14,7 +15,7 @@ import utils.Utils;
 
 public class Usuario implements Job {
 
-	int rangoDeSensibilidad;
+	int rangoDeSensibilidad; //Numero negativo es friolento (transforma de 20 grados a 15 grados por ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados por ejemplo)
 	Suscripcion suscripcion;
 	String email;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
@@ -34,6 +35,33 @@ public class Usuario implements Job {
 		this.setSensibilidadCuerpo(rangoDeSensibilidad);
 		this.setEmail(email);
 		this.setNumeroTelefono(numeroTelefono);
+	}
+	
+	public ArrayList<Atuendo> todosLosAtuendosAceptados() {
+		List<ArrayList<Atuendo>> todosLosAtuendos = this.getEventos().stream().map(evento -> evento.getAtuendosAceptados()).collect(Collectors.toList());
+		ArrayList<Atuendo> aux = new ArrayList<Atuendo>();
+		todosLosAtuendos.forEach( listaAtuendos -> {
+			listaAtuendos.forEach(atuendo -> aux.add(atuendo));
+		});
+		return aux;
+	}
+	
+	public void evaluarRangoSensibilidad(Evento evento, Atuendo atuendo) {
+		double temperatura = new AdministrarProveedores().obtenerTemperatura(evento.getFechaEvento());
+
+		if (temperatura > 11.0 && temperatura < 26.0) {
+			int puntosDeAbrigo = atuendo.getPrendas().stream().mapToInt(prenda -> prenda.getTipo().nivelDeAbrigo()).sum();
+			Abrigo nivelDeAbrigo = Abrigo.obtenerNivelDeAbrigo(temperatura);
+			int indice = nivelDeAbrigo.getNivelesDeAbrigo().indexOf(puntosDeAbrigo);
+			
+			if ( nivelDeAbrigo.getNivelesDeAbrigo().size() - (indice + 1) == 0 ) { // es friolento
+				this.rangoDeSensibilidad--;
+			}
+
+			if ( nivelDeAbrigo.getNivelesDeAbrigo().size() - (indice + 1) == 2 ) { // es caluroso
+				this.rangoDeSensibilidad++;
+			}
+		}
 	}
 
 	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaAhora() {
@@ -80,6 +108,7 @@ public class Usuario implements Job {
 
 	public void aceptarAtuendo (Atuendo unAtuendo) {
 		unAtuendo.getEvento().aceptarAtuendo(unAtuendo);
+		this.evaluarRangoSensibilidad(unAtuendo.getEvento(), unAtuendo);
 	}	
 
 	public void rechazarAtuendos (Atuendo unAtuendo) {

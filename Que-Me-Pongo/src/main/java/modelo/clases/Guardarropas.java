@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nullable;
+
 import modelo.clases.Abrigo;
 import modelo.dtos.Categoria;
 
