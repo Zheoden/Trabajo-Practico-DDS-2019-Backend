@@ -3,9 +3,12 @@ package test.modelo.clases;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import modelo.clases.AdministrarProveedores;
 import modelo.clases.Atuendo;
+import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.dtos.Color;
@@ -20,28 +23,37 @@ import org.mockito.Mockito;
 @DisplayName("Tests para los Guardarropas")
 public class GuardarropasTest {
 	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
-	Prenda prenda = new Prenda(TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda4 = new Prenda(TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda = new Prenda(TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO,false);
+	Prenda prenda1 = new Prenda(TipoPrenda.SWEATER, Material.ALGODON, Color.ROJO, Color.BLANCO,false);
+	Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO,false);
+	Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO,false);
+	Prenda prenda4 = new Prenda(TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO,false);
 
-	Prenda prenda5 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda6 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	Prenda prenda7 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda8 = new Prenda(TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda9 = new Prenda(TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda5 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO,false);
+	Prenda prenda6 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO,false);
+	Prenda prenda7 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO,false);
+	Prenda prenda8 = new Prenda(TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO,false);
+	Prenda prenda9 = new Prenda(TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO,false);
 
-	Prenda prenda10 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda10 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO,false);
 
-	Prenda prenda11 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda11 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO,true);
 
+	Prenda prenda12 = new Prenda(TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO,true);
+
+	Prenda prenda13 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO,true);
+
+	Prenda prenda14 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO,true);
+
+	
+	
+	
 	@Test
 	@DisplayName("Tests para el Constructor")
 	public void getPrenda() {
-		Prenda prenda = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.AZUL);
-		Prenda prenda1 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.AZUL);
-		Prenda prenda2 = new Prenda(TipoPrenda.ZAPATILLAS, Material.ALGODON, Color.AZUL);
+		Prenda prenda = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.AZUL,false);
+		Prenda prenda1 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.AZUL,true);
+		Prenda prenda2 = new Prenda(TipoPrenda.ZAPATILLAS, Material.ALGODON, Color.AZUL,false);
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		prendas.add(prenda);
 		prendas.add(prenda1);
@@ -62,7 +74,7 @@ public class GuardarropasTest {
 		prendas.add(prenda4);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		Assert.assertEquals(unGuardarropa.obtenerPrendasSuperiores(),
+		Assert.assertEquals(unGuardarropa.obtenerPrendasSuperioresInformales(),
 				this.prendas.stream().collect(Collectors.toSet()));
 	}
 
@@ -76,7 +88,7 @@ public class GuardarropasTest {
 		prendas.add(prenda9);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		Assert.assertEquals(unGuardarropa.obtenerPrendasInferiores(),
+		Assert.assertEquals(unGuardarropa.obtenerPrendasInferioresInformales(),
 				this.prendas.stream().collect(Collectors.toSet()));
 	}
 
@@ -86,7 +98,7 @@ public class GuardarropasTest {
 		prendas.add(prenda10);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		Assert.assertEquals(unGuardarropa.obtenerCalzados(), this.prendas.stream().collect(Collectors.toSet()));
+		Assert.assertEquals(unGuardarropa.obtenerCalzadosInformales(), this.prendas.stream().collect(Collectors.toSet()));
 	}
 
 	@Test
@@ -95,7 +107,7 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		Assert.assertEquals(unGuardarropa.obtenerAccesorios(), this.prendas.stream().collect(Collectors.toSet()));
+		Assert.assertEquals(unGuardarropa.obtenerAccesoriosFormales(), this.prendas.stream().collect(Collectors.toSet()));
 	}
 
 	@Test
@@ -113,9 +125,13 @@ public class GuardarropasTest {
 		prendas.add(prenda9);
 		prendas.add(prenda10);
 		prendas.add(prenda11);
-
+		Calendar fecha1 = GregorianCalendar.getInstance();
+		fecha1.set(2019, 10, 12);
+		fecha1.set(Calendar.HOUR_OF_DAY, 21);
+		fecha1.set(Calendar.MINUTE, 30);
+		Evento irAlAlamo = new Evento("Ir al alamo", "Lanus", fecha1,false);
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerenciasPara(irAlAlamo,26.0);
 		Atuendo atuendoRandom = unGuardarropa.obtenerAtuendoRandom(atuendos);
 		Assert.assertEquals(atuendoRandom.getClass(), Atuendo.class);
 		Assert.assertEquals(atuendoRandom.getPrendas().size(), 4);
@@ -130,9 +146,13 @@ public class GuardarropasTest {
 		prendas.add(prenda8);
 		prendas.add(prenda9);
 		prendas.add(prenda11);
-
+		Calendar fecha1 = GregorianCalendar.getInstance();
+		fecha1.set(2019, 10, 12);
+		fecha1.set(Calendar.HOUR_OF_DAY, 21);
+		fecha1.set(Calendar.MINUTE, 30);
+		Evento irAlAlamo = new Evento("Ir al alamo", "Lanus", fecha1,false);
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerenciasPara(irAlAlamo,26.0);
 		Assert.assertEquals(atuendos.size(), 0);
 	}
 
@@ -151,10 +171,17 @@ public class GuardarropasTest {
 		prendas.add(prenda9);
 		prendas.add(prenda10);
 		prendas.add(prenda11);
-
+		prendas.add(prenda12);
+		prendas.add(prenda13);
+		prendas.add(prenda14);
+		Calendar fecha1 = GregorianCalendar.getInstance();
+		fecha1.set(2019, 10, 12);
+		fecha1.set(Calendar.HOUR_OF_DAY, 21);
+		fecha1.set(Calendar.MINUTE, 30);
+		Evento irAlAlamo = new Evento("Ir al alamo", "Lanus", fecha1,true);
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0);
-		Assert.assertEquals(atuendos.size(), 15);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerenciasPara(irAlAlamo,26.0);
+		Assert.assertEquals(atuendos.size(), 12);
 	}
 
 	@Test
@@ -164,11 +191,11 @@ public class GuardarropasTest {
 		prendas.add(prenda4); // remera larga
 		prendas.add(prenda5);// bermudas
 		prendas.add(prenda10);
-		prendas.add(prenda11);
+
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
 		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora();
-		Assert.assertEquals(atuendos.size(), 0);
+		Assert.assertEquals(atuendos.size(), 4);
 	}
 
 	@Test

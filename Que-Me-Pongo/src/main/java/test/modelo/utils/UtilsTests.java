@@ -6,15 +6,15 @@ import java.util.Properties;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import junit.framework.Assert;
+import main.Application;
 import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
-import modelo.clases.Sensibilidad;
 import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
 import utils.Utils;
 
 @DisplayName("Tests para las funciones de utilidad")
-public class UtilsTests {
+public class UtilsTests extends Application {
 
 	@Test
 	@DisplayName("Tests para obtener correctamente el archivo de propiedades")
@@ -44,14 +44,9 @@ public class UtilsTests {
 	@Test
 	@DisplayName("Tests para Enviar un correo electronico")
 	public void mailSender() {
-		Usuario pepe = new Usuario(new ArrayList<Guardarropas>(), new SuscripcionPremium(), "schifferJulian@gmail.com", "12341234", new Sensibilidad());
+		Usuario pepe = new Usuario(new ArrayList<Guardarropas>(), new SuscripcionPremium(), "schifferJulian@gmail.com", "12341234");
 		try {
-<<<<<<< Updated upstream
-			Utils.emailSender("gmail", pepe, new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance()));
-=======
-			Evento tuvieja =  new Evento("Tu vieja", "Tu hermana", GregorianCalendar.getInstance(),false);
-			Utils.emailSender("gmail", pepe,tuvieja,pepe.getGuardaRopas().get(0).atuendosValidosParaEvento(tuvieja));
->>>>>>> Stashed changes
+			Utils.emailSender("gmail", pepe, new Evento("Tu vieja", "Tu hermana", GregorianCalendar.getInstance()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

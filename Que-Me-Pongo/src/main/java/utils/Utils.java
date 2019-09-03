@@ -105,7 +105,7 @@ public class Utils {
 	    return aux;
 	}
 	
-	public static void emailSender(String tipoServidor, Usuario user, Evento evento) throws Exception {
+	public static void emailSender(String tipoServidor, Usuario user, Evento evento,List<Atuendo> sugerencias) throws Exception {
 		Properties properties = getPropertiesForServer(tipoServidor);
 		
 	    Session session = Session.getInstance(properties, null);
@@ -129,7 +129,12 @@ public class Utils {
 		Date date = new Date();
 	    mensaje.setSentDate(dateFormat.parse(dateFormat.format(date)));
 	    BodyPart messageBodyPart = new MimeBodyPart();
+<<<<<<< Updated upstream
 	    messageBodyPart.setText("Se aproxima el evento " + evento.getNombre() + " en la fecha " + evento.getFechaEvento() + " te sugiero que ");
+=======
+	    messageBodyPart.setText("Se aproxima el evento " + evento.getNombre() + " en la fecha " + evento.getFechaEvento() + " te sugiero");
+	    		
+>>>>>>> Stashed changes
 	    Multipart multipart = new MimeMultipart();
 	    multipart.addBodyPart(messageBodyPart);
 	    mensaje.setContent(multipart);

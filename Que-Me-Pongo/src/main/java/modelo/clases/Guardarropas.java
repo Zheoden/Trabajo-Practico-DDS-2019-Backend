@@ -2,6 +2,7 @@ package modelo.clases;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,47 +30,84 @@ public class Guardarropas {
 		return prendas.size();
 	}
 
-	public Set<Prenda> obtenerPrendasSuperiores() {
-		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_SUPERIOR)
+	public Set<Prenda> obtenerPrendasSuperioresFormales() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_SUPERIOR && prenda.isFormal())
 				.collect(Collectors.toSet());
 	}
 
-	public Set<Prenda> obtenerPrendasInferiores() {
-		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_INFERIOR)
+	public Set<Prenda> obtenerPrendasInferioresFormales() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_INFERIOR && prenda.isFormal())
 				.collect(Collectors.toSet());
 	}
 
-	public Set<Prenda> obtenerCalzados() {
-		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.CALZADO).collect(Collectors.toSet());
+	public Set<Prenda> obtenerCalzadosFormales() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.CALZADO && prenda.isFormal()).collect(Collectors.toSet());
 	}
 
-	public Set<Prenda> obtenerAccesorios() {
-		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.ACCESORIO).collect(Collectors.toSet());
+	public Set<Prenda> obtenerAccesoriosFormales() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.ACCESORIO && prenda.isFormal()).collect(Collectors.toSet());
 	}
 
 	public Atuendo obtenerAtuendoRandom(List<Atuendo> combinaciones) {
 		Collections.shuffle(combinaciones);
 		return combinaciones.get(0);
 	}
+	
+	public Set<Prenda> obtenerPrendasSuperioresInformales() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_SUPERIOR && !prenda.isFormal())
+				.collect(Collectors.toSet());
+	}
 
-	public List<Atuendo> generarSugerencias(Double temperatura) {
-		Set<Set<Prenda>> calzados = obtenerCombinacionesNoVacias(obtenerCalzados(), temperatura);
-		Set<Set<Prenda>> prendasInferiores = obtenerCombinacionesNoVacias(obtenerPrendasInferiores(), temperatura);
-		Set<Set<Prenda>> prendasSuperiores = obtenerCombinacionesNoVacias(obtenerPrendasSuperiores(), temperatura);
-		Set<Set<Prenda>> accesorios = obtenerCombinacionesNoVacias(obtenerAccesorios(), temperatura);
+	public Set<Prenda> obtenerPrendasInferioresInformales() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.PARTE_INFERIOR && !prenda.isFormal())
+				.collect(Collectors.toSet());
+	}
 
-		return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
-				.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3)))
-				.collect(Collectors.toList());
+	public Set<Prenda> obtenerCalzadosInformales() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.CALZADO && !prenda.isFormal()).collect(Collectors.toSet());
+	}
+
+	public Set<Prenda> obtenerAccesoriosInformales() {
+		return prendas.stream().filter(prenda -> prenda.Categoria() == Categoria.ACCESORIO && !prenda.isFormal()).collect(Collectors.toSet());
+	}
+
+
+	public List<Atuendo> generarSugerenciasPara(Evento evento,Double temperatura) {
+		
+		Set<Set<Prenda>> calzados = new HashSet<>();
+		Set<Set<Prenda>> prendasInferiores = new HashSet<>(); 
+		Set<Set<Prenda>> prendasSuperiores = new HashSet<>(); 
+		Set<Set<Prenda>> accesorios = new HashSet<>(); 
+
+		if(evento.isFormal())
+		{
+			calzados= obtenerCombinacionesNoVacias(obtenerCalzadosFormales(), temperatura);	
+			prendasInferiores = obtenerCombinacionesNoVacias(obtenerPrendasInferioresFormales(), temperatura);
+			prendasSuperiores = obtenerCombinacionesNoVacias(obtenerPrendasSuperioresFormales(), temperatura);
+			accesorios =  obtenerCombinacionesNoVacias(obtenerAccesoriosFormales(), temperatura);
+		}
+		else
+		{
+		calzados= obtenerCombinacionesNoVacias(obtenerCalzadosInformales(), temperatura);	
+		prendasInferiores = obtenerCombinacionesNoVacias(obtenerPrendasInferioresInformales(), temperatura);
+		prendasSuperiores = obtenerCombinacionesNoVacias(obtenerPrendasSuperioresInformales(), temperatura);
+		accesorios =  obtenerCombinacionesNoVacias(obtenerAccesoriosInformales(), temperatura);
+		}
+		 return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
+		.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3)))
+		.collect(Collectors.toList());
 	}
 
 	public List<Atuendo> atuendosValidosParaEvento(Evento evento) {
-		return generarSugerencias(this.administrarProveedores.obtenerTemperatura(evento.getFechaEvento()));
+		return generarSugerenciasPara(evento,this.administrarProveedores.obtenerTemperatura(evento.getFechaEvento()));
 	}
 
 	public List<Atuendo> atuendosValidosParaAhora() {
-		return generarSugerencias(this.administrarProveedores.obtenerTemperaturaActual());
+		return generarSugerenciasPara(null,this.administrarProveedores.obtenerTemperaturaActual());
 	}
+
+	
+	
 
 //	public Atuendo generarSugerenciaParaEvento(Evento evento) {
 //		return this.obtenerAtuendoRandom(atuendosValidosParaEvento(evento));
@@ -107,6 +145,7 @@ public class Guardarropas {
 				.collect(Collectors.toSet());
 	}
 
+	
 	public void addPrenda(Prenda unaPrenda) {
 		this.prendas.add(unaPrenda);
 	}

@@ -11,7 +11,6 @@ import org.quartz.JobExecutionException;
 import modelo.interfaces.Suscripcion;
 import utils.Utils;
 
-
 public class Usuario implements Job {
 
 	Sensibilidad sensibilidadCuerpo;
@@ -22,12 +21,25 @@ public class Usuario implements Job {
 	String Email;
 	String NumeroTelefono;
 
+<<<<<<< Updated upstream
 	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email, String numeroTelefono, Sensibilidad cuerpoSensible) {
 
 		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
 			this.setGuardaRopas(guardarropas);			
+=======
+	public Usuario() {
+
+	}
+
+	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email,
+			String numeroTelefono) {
+		if (guardarropas.stream()
+				.allMatch(guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
+			this.setGuardaRopas(guardarropas);
+>>>>>>> Stashed changes
 		} else {
-			System.out.print("No se puede asignar esta lista de guardarropas porque no es complatible con la subscripcion seleccionada.");
+			System.out.print(
+					"No se puede asignar esta lista de guardarropas porque no es complatible con la subscripcion seleccionada.");
 		}
 
 		this.setSuscripcion(unaSuscripcion);
@@ -48,6 +60,8 @@ public class Usuario implements Job {
 		return atuendosValidos;
 	}
 
+
+	
 	public void agregarPrendaAGuardaRopas(Prenda unaPrenda, Guardarropas guardaRopas) {
 		if (this.suscripcion.cantidadPrendasPermitidas(guardaRopas.tamanioGuardarropas())) {
 			guardaRopas.addPrenda(unaPrenda);
@@ -63,7 +77,8 @@ public class Usuario implements Job {
 
 	public void cargarEvento(Evento unEvento) {
 		this.eventos.add(unEvento);
-		//Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en este caso
+		// Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en
+		// este caso
 	}
 
 	public void irAEventos() {
@@ -78,15 +93,15 @@ public class Usuario implements Job {
 		}
 	}
 
-	public void aceptarAtuendo (Atuendo unAtuendo) {
+	public void aceptarAtuendo(Atuendo unAtuendo) {
 		unAtuendo.getEvento().aceptarAtuendo(unAtuendo);
-	}	
+	}
 
-	public void rechazarAtuendos (Atuendo unAtuendo) {
+	public void rechazarAtuendos(Atuendo unAtuendo) {
 		unAtuendo.getEvento().rechazarAtuendo(unAtuendo);
-	}	
+	}
 
-	public void deshacer (Evento evento) {
+	public void deshacer(Evento evento) {
 		evento.deshacer();
 	}
 
@@ -132,6 +147,7 @@ public class Usuario implements Job {
 
 	public void setNumeroTelefono(String numeroTelefono) {
 		NumeroTelefono = numeroTelefono;
+<<<<<<< Updated upstream
 	}	
 
 	public ArrayList<Guardarropas> getGuardarropas() {
@@ -146,24 +162,30 @@ public class Usuario implements Job {
 		this.sensibilidadCuerpo = sensibilidad;
 	}
 	
+=======
+	}
+
+>>>>>>> Stashed changes
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		
-       //La idea es obtener todos los eventos del usuario de la bd
-	   // por el momento se hardcodea para los test
-	   //List<Evento> = Evento.findAll();
-	   //El mail tmb lo harcodeo pero se obtendria todo por bd
-	   //Usuario user = findUserById(this.getId());
-		
-	   List<Evento> eventos = new ArrayList<Evento>();
-	   Calendar fecha1 = GregorianCalendar.getInstance();
-	   fecha1.set(2019, 10, 12);
-	   Evento alamo = new Evento("ir al alamo","palermo",fecha1);
-	   this.setEmail("axelfulop@hotmail.com");
-	   eventos.add(alamo);
-	   eventos.forEach(evento -> {
+
+		// La idea es obtener todos los eventos del usuario de la bd
+		// por el momento se hardcodea para los test
+		// List<Evento> = Evento.findAll();
+		// El mail tmb lo harcodeo pero se obtendria todo por bd
+		// Usuario user = findUserById(this.getId());
+
+		List<Evento> eventos = new ArrayList<Evento>();
+		Calendar fecha1 = GregorianCalendar.getInstance();
+		fecha1.set(2019, 10, 12);
+		Evento alamo = new Evento("ir al alamo", "palermo", fecha1,false);
+		this.setEmail("axelfulop@hotmail.com");
+		List<Atuendo> sugerencias;
+		sugerencias = todosPosiblesAtuendosPorGuardarropaParaEvento(alamo);
+		eventos.add(alamo);
+		eventos.forEach(evento -> {
 			try {
-				Utils.emailSender("gmail", this, evento);
+				Utils.emailSender("gmail", this, evento,sugerencias);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

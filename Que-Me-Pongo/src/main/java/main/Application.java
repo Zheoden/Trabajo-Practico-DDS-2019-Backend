@@ -14,13 +14,14 @@ import spark.Spark;
 
 public class Application {
 	public static void main(String[] args) {
+		org.apache.log4j.BasicConfigurator.configure();
 		Spark.port(7071);
 		Router.register();
 		//Manda el mail cada 5 minutos
 		try
 		{
 			JobDetail job = JobBuilder.newJob(Usuario.class)
-					.withIdentity("UsuarioJob")
+					.withIdentity("UsuariooJob")
 					.build();
 
 			Trigger trigger = TriggerBuilder.newTrigger()

@@ -13,14 +13,21 @@ public class Evento {
 	private String nombre;
 	private String ciudad;
 	private Calendar fecha;
+	private boolean formal;
 	
 	ArrayList<Atuendo> atuendosAceptados = new ArrayList<Atuendo>();
 	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
 
+<<<<<<< Updated upstream
 	public Evento(String nombreEvento, String ciudad, Calendar fecha) {
+=======
+	
+	public Evento(String nombreEvento, String ciudad, Calendar fecha,boolean formal) {
+>>>>>>> Stashed changes
 		this.nombre = nombreEvento;
 		this.ciudad = ciudad;
 		this.fecha = fecha;
+		this.setFormal(formal);
 	}
 
 	public Date diaAnterior() {
@@ -63,6 +70,14 @@ public class Evento {
 		this.atuendosAceptados = atuendosAceptados;
 	}
 	
+	public boolean isFormal() {
+		return formal;
+	}
+
+	public void setFormal(boolean formal) {
+		this.formal = formal;
+	}
+
 	public String getCiudad() {
 		return ciudad;
 	}

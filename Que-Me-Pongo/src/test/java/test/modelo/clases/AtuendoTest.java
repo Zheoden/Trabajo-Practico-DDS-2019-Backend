@@ -25,11 +25,13 @@ public class AtuendoTest {
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void agregarPrendasAlAtuendo() {
-		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
-		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
+		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO,false);
+		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA,false);
+		Prenda prenda3= new Prenda(TipoPrenda.CAMISA,Material.LYCRA,Color.AZUL,true);
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		prendas.add(prenda1);
 		prendas.add(prenda2);
+		prendas.add(prenda3);
 		Atuendo atuendo = new Atuendo(prendas);
 		Assert.assertEquals(atuendo.getPrendas(), prendas);
 	}

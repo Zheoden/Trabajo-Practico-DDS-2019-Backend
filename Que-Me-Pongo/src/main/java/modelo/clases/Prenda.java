@@ -12,9 +12,18 @@ public class Prenda {
 	Material material;
 	Color colorPrimario;
 	Color colorSecundario;
+	boolean formal;
 
-	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
-		this(tipo, material, colorPrimario);
+	public boolean isFormal() {
+		return formal;
+	}
+
+	public void setInformal(boolean formal) {
+		this.formal = formal;
+	}
+
+	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario,boolean formal) {
+		this(tipo, material, colorPrimario,formal);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
@@ -23,19 +32,21 @@ public class Prenda {
 		}
 	}
 
-	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario) {
-		this(tipo, colorPrimario);
+	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario,boolean formal) {
+		this(tipo, colorPrimario,formal);
 		if (this.esMaterialValido(tipo, material)) {
 			this.setTela(material);
+			this.setInformal(formal);
 		} else {
 			System.out.println(
 					"Se intento crear una prenda con una combinacion Tipo - Material invalida. Se dejo el material como nulo.");
 		}
 	}
 
-	public Prenda(TipoPrenda tipo, Color colorPrimario) {
+	public Prenda(TipoPrenda tipo, Color colorPrimario,boolean informal) {
 		this.setTipo(tipo);
 		this.setColorPrimario(colorPrimario);
+		this.setInformal(informal);
 	}
 
 	public boolean esMaterialValido(TipoPrenda tipo, Material material) {
