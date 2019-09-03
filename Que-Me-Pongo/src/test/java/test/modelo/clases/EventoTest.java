@@ -35,7 +35,7 @@ public class EventoTest {
 	@Test
 	public void usuarioAsisteASusEventos() throws Exception {
     
-		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", new Sensibilidad());
+		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", 0);
 
 		prendas1.add(camisaRojo);
 		prendas1.add(bufandaAzul);
@@ -65,7 +65,7 @@ public class EventoTest {
 		prendas1.add(pantalonVerde);
 		guardaRopas.add(guardaropa1);
 
-		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", null);
+		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", 0);
 		fecha1.set(2019, 10, 12);
 		fecha1.set(Calendar.HOUR_OF_DAY, 21);
 		fecha1.set(Calendar.MINUTE, 30);
@@ -83,7 +83,7 @@ public class EventoTest {
 		prendas1.add(pantalonVerde);
 		guardaRopas.add(guardaropa1);
 
-		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", null);
+		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", 0);
     
 		usuario1.setGuardaRopas(guardaRopas);
 		fecha1.set(2019, 8, 2);

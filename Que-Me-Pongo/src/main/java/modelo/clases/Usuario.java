@@ -14,7 +14,7 @@ import utils.Utils;
 
 public class Usuario implements Job {
 
-	Sensibilidad sensibilidadCuerpo;
+	int rangoDeSensibilidad;
 	Suscripcion suscripcion;
 	String email;
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
@@ -22,7 +22,7 @@ public class Usuario implements Job {
 	String Email;
 	String NumeroTelefono;
 
-	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email, String numeroTelefono, Sensibilidad cuerpoSensible) {
+	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email, String numeroTelefono, int rangoDeSensibilidad) {
 
 		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
 			this.setGuardaRopas(guardarropas);			
@@ -31,20 +31,20 @@ public class Usuario implements Job {
 		}
 
 		this.setSuscripcion(unaSuscripcion);
-		this.setSensibilidadCuerpo(cuerpoSensible);
+		this.setSensibilidadCuerpo(rangoDeSensibilidad);
 		this.setEmail(email);
 		this.setNumeroTelefono(numeroTelefono);
 	}
 
 	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaAhora() {
 		List<Atuendo> atuendosValidos = new ArrayList<Atuendo>();
-		this.guardarropas.forEach(guardarropa -> atuendosValidos.addAll(guardarropa.atuendosValidosParaAhora()));
+		this.guardarropas.forEach(guardarropa -> atuendosValidos.addAll(guardarropa.atuendosValidosParaAhora(this.rangoDeSensibilidad)));
 		return atuendosValidos;
 	}
 
 	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaEvento(Evento evento) {
 		List<Atuendo> atuendosValidos = new ArrayList<Atuendo>();
-		this.guardarropas.forEach(guardarropa -> atuendosValidos.addAll(guardarropa.atuendosValidosParaEvento(evento)));
+		this.guardarropas.forEach(guardarropa -> atuendosValidos.addAll(guardarropa.atuendosValidosParaEvento(evento, this.rangoDeSensibilidad)));
 		return atuendosValidos;
 	}
 
@@ -138,12 +138,12 @@ public class Usuario implements Job {
 		return guardarropas;
 	}
 	
-	public Sensibilidad getSensibilidadCuerpo() {
-		return sensibilidadCuerpo;
+	public int getSensibilidadCuerpo() {
+		return rangoDeSensibilidad;
 	}
 
-	public void setSensibilidadCuerpo(Sensibilidad sensibilidad) {
-		this.sensibilidadCuerpo = sensibilidad;
+	public void setSensibilidadCuerpo(int sensibilidad) {
+		this.rangoDeSensibilidad = sensibilidad;
 	}
 	
 	@Override
