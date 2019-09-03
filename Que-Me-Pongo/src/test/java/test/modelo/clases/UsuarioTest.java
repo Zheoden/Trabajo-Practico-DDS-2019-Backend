@@ -154,4 +154,31 @@ public class UsuarioTest {
 
 	}
 	
+	@Test
+	@DisplayName("Dos usuarios agregan prendas al guardaropas")
+	public void agregarPrendaAGuardaRopaCompartido() {
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		guardaRopa3.addPrenda(prenda1);
+		guardaRopa3.addPrenda(prenda2);
+		guardaRopa3.addPrenda(prenda3);
+		guardaRopa3.addPrenda(prenda4);
+
+		ArrayList<Guardarropas> ropero2 = new ArrayList<Guardarropas>();
+		ropero2.add(guardaRopa3);
+
+		SuscripcionGratuita subs4 = new SuscripcionGratuita();
+		SuscripcionGratuita subs1 = new SuscripcionGratuita();
+
+		
+		Usuario santi = new Usuario(ropero2, subs4);
+		Usuario fede = new Usuario(ropero2, subs1);
+		
+		santi.agregarPrendaAGuardaRopas(prenda5, guardaRopa3);
+		fede.agregarPrendaAGuardaRopas(prenda6, guardaRopa3);
+		
+		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda5), true);
+		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda6), true);
+
+	}
+	
 }
