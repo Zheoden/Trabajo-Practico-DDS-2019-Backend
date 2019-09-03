@@ -9,6 +9,7 @@ import modelo.dtos.ExtendedOpenWeatherDTO;
 import modelo.dtos.OpenWeatherDTO;
 import modelo.interfaces.Proveedores;
 import utils.JsonParser;
+import utils.Utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,13 +20,23 @@ import javax.ws.rs.core.MediaType;
 
 public class OpenWeather implements Proveedores {
 	private Client client;
-	private static final String key = "d5c84c5f85329e1169f639f844d39548";
+
 	private JsonParser jsonParser = new JsonParser();
 
-	private static final String pronosticoActualUrl = "http://api.openweathermap.org/data/2.5/weather";
-	private static final String pronosticoPorHoraUrl = "http://api.openweathermap.org/data/2.5/forecast";
+	private static String key;
+	private static String pronosticoActualUrl;
+	private static String pronosticoPorHoraUrl;
 
 	public OpenWeather() {
+		try {
+			key = Utils.getProyectProperties().getProperty("open.weather.key");
+			pronosticoActualUrl = Utils.getProyectProperties().getProperty("open.weather.hora.actual.url");
+			pronosticoPorHoraUrl = Utils.getProyectProperties().getProperty("open.weather.por.hora.url");	
+		} catch (Exception e) {
+			key = "";
+			pronosticoActualUrl = "";
+			pronosticoPorHoraUrl = "";
+		}
 	}
 
 	@Override

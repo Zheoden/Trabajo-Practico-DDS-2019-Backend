@@ -22,6 +22,8 @@ public class Usuario implements Job {
 	ArrayList<Evento> eventos = new ArrayList<Evento>();
 	String Email;
 	String NumeroTelefono;
+	
+	public Usuario() {}
 
 	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email, String numeroTelefono, int rangoDeSensibilidad) {
 
