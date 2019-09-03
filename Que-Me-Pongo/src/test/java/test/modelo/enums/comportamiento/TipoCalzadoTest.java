@@ -27,9 +27,9 @@ public class TipoCalzadoTest {
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")
 	public void nivelDeCapa() {
-		Assert.assertEquals(zapatillas.nivelDeCapa(), 0);
-		Assert.assertEquals(zapatos.nivelDeCapa(), 0);
-		Assert.assertEquals(zapatosDeTacon.nivelDeCapa(), 0);
+		Assert.assertEquals(zapatillas.nivelDeCapa(), 1);
+		Assert.assertEquals(zapatos.nivelDeCapa(), 1);
+		Assert.assertEquals(zapatosDeTacon.nivelDeCapa(), 1);
 		Assert.assertEquals(ojotas.nivelDeCapa(), 0);
 	}
 

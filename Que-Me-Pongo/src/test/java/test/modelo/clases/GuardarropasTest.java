@@ -115,7 +115,7 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0);
 		Atuendo atuendoRandom = unGuardarropa.obtenerAtuendoRandom(atuendos);
 		Assert.assertEquals(atuendoRandom.getClass(), Atuendo.class);
 		Assert.assertEquals(atuendoRandom.getPrendas().size(), 4);
@@ -132,7 +132,7 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0);
 		Assert.assertEquals(atuendos.size(), 0);
 	}
 
@@ -153,7 +153,7 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0);
+		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0);
 		Assert.assertEquals(atuendos.size(), 15);
 	}
 
@@ -167,7 +167,7 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 
 		Guardarropas unGuardarropa = new Guardarropas(prendas);
-		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora();
+		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(0);
 		Assert.assertEquals(atuendos.size(), 0);
 	}
 
@@ -191,10 +191,58 @@ public class GuardarropasTest {
 		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(28.0);
 		
 		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
-		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora();
+		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(0);
+		Assert.assertEquals(atuendos.size(), 15);
+	}
+	
+	@Test
+	@DisplayName("Tests para verificar que se puedan generar atuendos validos en base al clima actual y la sensibilidad del usuario caluriento")
+	public void atuendosValidosParaAhoraLlenoConSensibilidadCaluriento() {
+		prendas.add(prenda);
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		prendas.add(prenda3);
+		prendas.add(prenda4);
+		prendas.add(prenda5);
+		prendas.add(prenda6);
+		prendas.add(prenda7);
+		prendas.add(prenda8);
+		prendas.add(prenda9);
+		prendas.add(prenda10);
+		prendas.add(prenda11);
+
+		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
+		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(26.0);
+		
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
+		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(2);
 		Assert.assertEquals(atuendos.size(), 15);
 	}
 
+	@Test
+	@DisplayName("Tests para verificar que se puedan generar atuendos validos en base al clima actual y la sensibilidad del usuario friolento")
+	public void atuendosValidosParaAhoraLlenoConSensibilidadFriolento() {
+		prendas.add(prenda);
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		prendas.add(prenda3);
+		prendas.add(prenda4);
+		prendas.add(prenda5);
+		prendas.add(prenda6);
+		prendas.add(prenda7);
+		prendas.add(prenda8);
+		prendas.add(prenda9);
+		prendas.add(prenda10);
+		prendas.add(prenda11);
+
+		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
+		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(30.0);
+		
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
+		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(-2);
+		Assert.assertEquals(atuendos.size(), 15);
+	}
+	
 	@Test
 	@DisplayName("Tests para verificar los puntos de abrigo de un cierto conjunto de prendas")
 	public void obtenerPuntosDeAbrigo() {

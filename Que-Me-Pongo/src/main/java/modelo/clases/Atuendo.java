@@ -10,23 +10,6 @@ public class Atuendo {
 	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 	Boolean aceptado;
 	Evento evento;
-	
-	public Evento getEvento() {
-		return evento;
-	}
-
-	public Boolean getAceptado() {
-		return aceptado;
-	}
-
-	public void setAceptado(Boolean aceptado) {
-		this.aceptado = aceptado;
-	}
-
-	
-	public Atuendo(ArrayList<Prenda> prendas) {
-		this.prendas = prendas;
-	}
 
 	public Atuendo(Prenda superior, Prenda inferior, Prenda calzado, Prenda accesorio) {
 		this.addPrenda(superior);
@@ -35,11 +18,21 @@ public class Atuendo {
 		this.addPrenda(accesorio);
 	}
 	
+	public Atuendo(Prenda superior, Prenda inferior, Prenda calzado, Prenda accesorio, Evento evento) {
+		this(superior, inferior, calzado, accesorio);
+		this.setEvento(evento);
+	}
+	
 	public Atuendo(Set<Prenda> superior, Set<Prenda> inferior, Set<Prenda> calzado, Set<Prenda> accesorio) {
 		this.addListPrenda(Lists.newArrayList(superior));
 		this.addListPrenda(Lists.newArrayList(inferior));
 		this.addListPrenda(Lists.newArrayList(calzado));
 		this.addListPrenda(Lists.newArrayList(accesorio));
+	}
+	
+	public Atuendo(Set<Prenda> superior, Set<Prenda> inferior, Set<Prenda> calzado, Set<Prenda> accesorio, Evento evento) {
+		this(superior, inferior, calzado, accesorio);
+		this.setEvento(evento);
 	}
 
 	public ArrayList<Prenda> getPrendas() {
@@ -60,5 +53,26 @@ public class Atuendo {
 	
 	public void rechazar() {
 		this.aceptado = false;
+	}
+	
+	public Evento getEvento() {
+		return evento;
+	}
+	
+	public void setEvento(Evento evento) {
+		this.evento = evento;
+	}
+
+	public Boolean getAceptado() {
+		return aceptado;
+	}
+
+	public void setAceptado(Boolean aceptado) {
+		this.aceptado = aceptado;
+	}
+
+	
+	public Atuendo(ArrayList<Prenda> prendas) {
+		this.prendas = prendas;
 	}
 }
