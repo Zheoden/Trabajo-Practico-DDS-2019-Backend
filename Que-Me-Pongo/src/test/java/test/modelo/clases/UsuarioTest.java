@@ -169,6 +169,29 @@ public class UsuarioTest {
 	}
 	
 	@Test
+	@DisplayName("Dos usuarios agregan prendas al guardaropas")
+	public void agregarPrendaAGuardaRopaCompartido() {
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		guardaRopa3.addPrenda(prenda1);
+		guardaRopa3.addPrenda(prenda2);
+		guardaRopa3.addPrenda(prenda3);
+		guardaRopa3.addPrenda(prenda4);
+
+		ArrayList<Guardarropas> ropero2 = new ArrayList<Guardarropas>();
+		ropero2.add(guardaRopa3);
+		
+		Usuario santi = new Usuario(ropero2, new SuscripcionGratuita());
+		Usuario fede = new Usuario(ropero2, new SuscripcionGratuita());
+		
+		santi.agregarPrendaAGuardaRopas(prenda5, guardaRopa3);
+		fede.agregarPrendaAGuardaRopas(prenda6, guardaRopa3);
+		
+		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda5), true);
+		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda6), true);
+
+	}
+	
+	@Test
 	@DisplayName("Solicitar a todos los eventos todos los conjuntos que fueron aceptados y unificarlos")
 	public void todosPosiblesAtuendosPorEvento() {
 		Evento trabajo = new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance());
