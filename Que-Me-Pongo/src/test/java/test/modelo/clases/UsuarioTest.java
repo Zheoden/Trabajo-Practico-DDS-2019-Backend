@@ -180,15 +180,14 @@ public class UsuarioTest {
 		ArrayList<Guardarropas> ropero2 = new ArrayList<Guardarropas>();
 		ropero2.add(guardaRopa3);
 		
-		Usuario santi = new Usuario(ropero2, new SuscripcionGratuita());
-		Usuario fede = new Usuario(ropero2, new SuscripcionGratuita());
+		Usuario santi = new Usuario(ropero2, new SuscripcionPremium(), "test@test.com", "12341234", 0);
+		Usuario fede = new Usuario(ropero2, new SuscripcionPremium(), "test@test.com", "12341234", 0);
 		
 		santi.agregarPrendaAGuardaRopas(prenda5, guardaRopa3);
 		fede.agregarPrendaAGuardaRopas(prenda6, guardaRopa3);
 		
 		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda5), true);
 		Assert.assertEquals(guardaRopa3.laPrendaEstaEnElGuardaRopa(prenda6), true);
-
 	}
 	
 	@Test
