@@ -111,7 +111,7 @@ public class Usuario implements Job {
 	public void aceptarAtuendo (Atuendo unAtuendo) {
 		unAtuendo.getEvento().aceptarAtuendo(unAtuendo);
 		this.evaluarRangoSensibilidad(unAtuendo.getEvento(), unAtuendo);
-	}	
+	}
 
 	public void rechazarAtuendos (Atuendo unAtuendo) {
 		unAtuendo.getEvento().rechazarAtuendo(unAtuendo);
