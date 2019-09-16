@@ -50,7 +50,7 @@ public class UtilsTests extends Application {
 	@Test
 	@DisplayName("Tests para Enviar un correo electronico")
 	public void mailSender() {
-		Usuario pepe = new Usuario(new ArrayList<Guardarropas>(), new SuscripcionPremium(), "federico.solomonovici@gmail.com", "12341234", 0);
+		Usuario pepe = new Usuario(new ArrayList<Guardarropas>(), new SuscripcionPremium(), "schifferJulian@gmail.com", "12341234", 0);
 		try {
 			notificador.emailSend("gmail", pepe, new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance()));
 		} catch (Exception e) {

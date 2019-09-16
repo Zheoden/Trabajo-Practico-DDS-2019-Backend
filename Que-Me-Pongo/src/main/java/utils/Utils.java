@@ -104,43 +104,6 @@ public class Utils {
 	    }
 	    return aux;
 	}
-	
-	public static void emailSender(String tipoServidor, Usuario user, Evento evento) throws Exception {
-		Properties properties = getPropertiesForServer(tipoServidor);
-		
-	    Session session = Session.getInstance(properties, null);
-	    Message mensaje = new MimeMessage(session);
-	    mensaje.setFrom(new InternetAddress(properties.getProperty("mail.from")));
-	    //Si se quiere se puede enviar a varios usuarios
-	    StringTokenizer emailsSt = new StringTokenizer(user.getEmail(),";,");
-	    while (emailsSt.hasMoreTokens()) {
-	    	String email = emailsSt.nextToken();
-	    	try{
-	    		mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-	    		//Message.RecipientType.TO;  para
-	    		//Message.RecipientType.CC;  con copia
-	    		//Message.RecipientType.BCC; con copia oculta
-	    	}catch(Exception ex){
-	    		//en caso que el email esté mal formado lanzará una exception y la ignoramos
-	    	}
-	    }
-	    mensaje.setSubject("Recordatorio evento " + evento.getNombre());
-	    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-	    mensaje.setSentDate(dateFormat.parse(dateFormat.format(date)));
-	    BodyPart messageBodyPart = new MimeBodyPart();
-	    messageBodyPart.setText("Se aproxima el evento " + evento.getNombre() + " en la fecha " + evento.getFechaEvento() + " te sugiero que ");
-	    Multipart multipart = new MimeMultipart();
-	    multipart.addBodyPart(messageBodyPart);
-	    mensaje.setContent(multipart);
-	    SMTPTransport transport = (SMTPTransport) session.getTransport("smtp");
-	    try {
-	        transport.connect(properties.getProperty("mail.user"), properties.getProperty("mail.password"));
-	        transport.sendMessage(mensaje, mensaje.getAllRecipients());
-	        System.out.println("Email enviado correctamente");
-	    } finally {
-	        transport.close();
-	    }
-	}
+
 }
 	
