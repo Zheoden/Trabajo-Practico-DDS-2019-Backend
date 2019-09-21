@@ -11,6 +11,7 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import modelo.interfaces.Suscripcion;
 import utils.Utils;
+import utils.emailSender;
 
 
 public class Usuario implements Job {
@@ -186,6 +187,7 @@ public class Usuario implements Job {
 	   //El mail tmb lo harcodeo pero se obtendria todo por bd
 	   //Usuario user = findUserById(this.getId());
 		
+	emailSender notification = new emailSender();
 	   List<Evento> eventos = new ArrayList<Evento>();
 	   Calendar fecha1 = GregorianCalendar.getInstance();
 	   fecha1.set(2019, 10, 12);
@@ -194,7 +196,7 @@ public class Usuario implements Job {
 	   eventos.add(alamo);
 	   eventos.forEach(evento -> {
 			try {
-				Utils.emailSender("gmail", this, evento);
+				notification.emailSend("gmail", this, evento);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
