@@ -1,6 +1,8 @@
 package test.modelo.utils;
 
 import java.util.ArrayList;
+
+
 import java.util.GregorianCalendar;
 import java.util.Properties;
 import org.junit.Test;
@@ -11,15 +13,20 @@ import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
-import utils.Utils;
+import utils.emailSender;
+import utils.Utils;;
+
 
 @DisplayName("Tests para las funciones de utilidad")
 public class UtilsTests extends Application {
 
+	emailSender notification = new emailSender();
+	
 	@Test
 	@DisplayName("Tests para obtener correctamente el archivo de propiedades")
 	public void getProperties() {
 		try {
+			
 			Properties aux = Utils.getProyectProperties();
 			Assert.assertEquals(aux.getProperty("gmail.mail.smtp.host"), "smtp.gmail.com");
 			Assert.assertEquals(aux.getProperty("gmail.mail.smtp.auth"), "true");
@@ -46,7 +53,7 @@ public class UtilsTests extends Application {
 	public void mailSender() {
 		Usuario pepe = new Usuario(new ArrayList<Guardarropas>(), new SuscripcionPremium(), "schifferJulian@gmail.com", "12341234", 0);
 		try {
-			Utils.emailSender("gmail", pepe, new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance()));
+			notification.emailSend("gmail", pepe, new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
