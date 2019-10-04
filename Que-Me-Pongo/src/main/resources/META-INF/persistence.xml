@@ -13,9 +13,9 @@
             <property name="hibernate.archive.autodetection" value="class"/>
 
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/2018VnGroup05" />
-            <property name="hibernate.connection.username" value="2018-vn-group-05" />
-            <property name="hibernate.connection.password" value="password"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/Pepe" />
+            <property name="hibernate.connection.username" value="pepe" />
+            <property name="hibernate.connection.password" value="pepe"/>
 
  			<!--<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />-->
             <!--<property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db" />-->

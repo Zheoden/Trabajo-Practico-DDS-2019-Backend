@@ -8,6 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Pepe {
     @Id
-    private long id;
-    private String nombre;
+    public long id;
+    public String nombre;
 }
