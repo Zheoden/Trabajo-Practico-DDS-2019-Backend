@@ -1,4 +1,4 @@
-package repository;
+package modelo.interfaces;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;

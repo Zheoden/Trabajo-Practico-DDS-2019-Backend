@@ -1,7 +1,5 @@
 package modelo.interfaces;
 
-import java.util.Properties;
-
 import modelo.clases.Evento;
 import modelo.clases.Usuario;
 
