@@ -17,24 +17,25 @@ public class Atuendo {
 		this.addPrenda(calzado);
 		this.addPrenda(accesorio);
 	}
-	
+
 	public Atuendo(Prenda superior, Prenda inferior, Prenda calzado, Prenda accesorio, Evento evento) {
 		this(superior, inferior, calzado, accesorio);
 		this.setEvento(evento);
 	}
-	
+
 	public Atuendo(Set<Prenda> superior, Set<Prenda> inferior, Set<Prenda> calzado, Set<Prenda> accesorio) {
 		this.addListPrenda(Lists.newArrayList(superior));
 		this.addListPrenda(Lists.newArrayList(inferior));
 		this.addListPrenda(Lists.newArrayList(calzado));
 		this.addListPrenda(Lists.newArrayList(accesorio));
 	}
-	
-	public Atuendo(Set<Prenda> superior, Set<Prenda> inferior, Set<Prenda> calzado, Set<Prenda> accesorio, Evento evento) {
+
+	public Atuendo(Set<Prenda> superior, Set<Prenda> inferior, Set<Prenda> calzado, Set<Prenda> accesorio,
+			Evento evento) {
 		this(superior, inferior, calzado, accesorio);
 		this.setEvento(evento);
 	}
-	
+
 	public void modificarEstadoDePrendas(Boolean nuevoEstado) {
 		prendas.forEach(elemento -> elemento.setEnUso(nuevoEstado));
 	}
@@ -50,21 +51,21 @@ public class Atuendo {
 	public void addListPrenda(List<Prenda> prendas) {
 		this.prendas.addAll(prendas);
 	}
-	
+
 	public void aceptar() {
 		this.aceptado = true;
 		this.modificarEstadoDePrendas(true);
 	}
-	
+
 	public void rechazar() {
 		this.aceptado = false;
 		this.modificarEstadoDePrendas(false);
 	}
-	
+
 	public Evento getEvento() {
 		return evento;
 	}
-	
+
 	public void setEvento(Evento evento) {
 		this.evento = evento;
 	}
@@ -77,7 +78,6 @@ public class Atuendo {
 		this.aceptado = aceptado;
 	}
 
-	
 	public Atuendo(ArrayList<Prenda> prendas) {
 		this.prendas = prendas;
 	}

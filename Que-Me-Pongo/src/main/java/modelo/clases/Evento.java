@@ -43,25 +43,27 @@ public class Evento {
 		System.out.println("Voy a " + this.getNombre() + " en " + this.getCiudad() + " en la fecha "
 				+ dateFormat.format(this.fecha.getTime()));
 	}
-	
-	public void aceptarAtuendo (Atuendo unAtuendo) {
+
+	public void aceptarAtuendo(Atuendo unAtuendo) {
 		unAtuendo.aceptar();
 		this.atuendosAceptados.add(unAtuendo);
 		this.atuendosMovimientos.add(unAtuendo);
 	}
 
-	public void rechazarAtuendo (Atuendo unAtuendo) {
+	public void rechazarAtuendo(Atuendo unAtuendo) {
 		unAtuendo.rechazar();
 		this.atuendosMovimientos.add(unAtuendo);
 	}
 
-	public void deshacer () {
-		Atuendo unAtuendo = atuendosMovimientos.get(atuendosMovimientos.size()-1); //necesito el ultimo elemento de la lista de movimientos
-		if (unAtuendo.getAceptado()) { //si fue aceptado lo saco de la lista
-			atuendosAceptados.remove(atuendosAceptados.size()-1); //si fue aceptado lo saco de la lista
-			atuendosMovimientos.remove(atuendosMovimientos.size()-1); // tambien de la lista de movimientos
-		} else { 
-			atuendosMovimientos.remove(atuendosMovimientos.size()-1); //solo lo saco de la lista de movimientos, consultar si deberiamos hacer otra cosa
+	public void deshacer() {
+		Atuendo unAtuendo = atuendosMovimientos.get(atuendosMovimientos.size() - 1); // necesito el ultimo elemento de
+																						// la lista de movimientos
+		if (unAtuendo.getAceptado()) { // si fue aceptado lo saco de la lista
+			atuendosAceptados.remove(atuendosAceptados.size() - 1); // si fue aceptado lo saco de la lista
+			atuendosMovimientos.remove(atuendosMovimientos.size() - 1); // tambien de la lista de movimientos
+		} else {
+			atuendosMovimientos.remove(atuendosMovimientos.size() - 1); // solo lo saco de la lista de movimientos,
+																		// consultar si deberiamos hacer otra cosa
 		}
 	}
 
@@ -80,7 +82,7 @@ public class Evento {
 	public void setAtuendosAceptados(ArrayList<Atuendo> atuendosAceptados) {
 		this.atuendosAceptados = atuendosAceptados;
 	}
-	
+
 	public String getCiudad() {
 		return ciudad;
 	}

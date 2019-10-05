@@ -24,9 +24,9 @@ import utils.Utils;
 public class Application {
 	public static void main(String[] args) {
 		Spark.port(7071);
-		Router.register();		
-		
-		//Manda el mail cada 5 minutos
+		Router.register();
+
+		// Manda el mail cada 5 minutos
 //		try
 //		{
 //			JobDetail job = JobBuilder.newJob(Usuario.class)

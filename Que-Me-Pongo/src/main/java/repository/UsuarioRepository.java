@@ -35,6 +35,6 @@ public class UsuarioRepository implements Repository<Usuario> {
             return Optional.of((Usuario) query.getSingleResult());
         } catch (NoResultException e) {
             return Optional.empty();
-        }
-    }
+		}
+	}
 }
