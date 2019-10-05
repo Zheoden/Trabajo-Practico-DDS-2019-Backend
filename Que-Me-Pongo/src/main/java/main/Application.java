@@ -19,6 +19,7 @@ import modelo.clases.Usuario;
 import modelo.interfaces.Suscripcion;
 import repository.PepeRepository;
 import repository.UsuarioRepo;
+import setup.SetUp;
 import spark.Spark;
 import utils.Utils;
 
@@ -26,17 +27,9 @@ public class Application {
 	public static void main(String[] args) {
 		Spark.port(7071);
 		Router.register();
-		
-		UsuarioRepo ur = new UsuarioRepo();
-		Usuario pepe = new Usuario();
-    
-		pepe.setNombreUsuario("pepeArgento");
-		pepe.setPasswordUsuario(Utils.generarHash256("hola123"));
-		//ur.persist(pepe);
-		
-		Usuario pepeJe = ur.getUser("pepeArgento",Utils.generarHash256("hola123"));
-		System.out.print(pepeJe.getNombreUsuario());
-		pepeJe.getPasswordUsuario();
+		SetUp su = new SetUp();
+		su.init();
+	
 		
 		//Manda el mail cada 5 minutos
 		try

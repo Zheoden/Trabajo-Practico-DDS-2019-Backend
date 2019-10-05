@@ -6,19 +6,24 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
+import javax.persistence.*;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import modelo.interfaces.Suscripcion;
+import utils.Utils;
 import utils.emailSender;
 
 @Entity
@@ -33,19 +38,18 @@ public class Usuario implements Job {
     String nombreUsuario;
 	@Column (name = "password")
     String passwordUsuario;
-	@Transient
     int rangoDeSensibilidad; //Numero negativo es friolento (transforma de 20 grados a 15 grados por ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados por ejemplo)
 	@Transient
 	Suscripcion suscripcion;
-	@Transient
 	String email;
-	@Transient
-	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
-	@Transient
-	ArrayList<Evento> eventos = new ArrayList<Evento>();
-	@Transient
-	String Email;
-	@Transient
+	@OneToMany (cascade = CascadeType.ALL)
+	@JoinColumn (name = "cliente_id")
+	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "EventoXUsuario",
+	           joinColumns = @JoinColumn (name = "usuario_id"),
+	           inverseJoinColumns = @JoinColumn(name = "evento_id" ))
+    List<Evento> eventos = new ArrayList<Evento>();
 	String NumeroTelefono;
 	
 	public Usuario() {}
@@ -137,7 +141,7 @@ public class Usuario implements Job {
 	}
 
 	public void setPasswordUsuario(String passwordUsuario) {
-		this.passwordUsuario = passwordUsuario;
+		this.passwordUsuario = Utils.generarHash256(passwordUsuario);
 	}
 
 	public void cargarEvento(Evento unEvento) {
@@ -170,7 +174,7 @@ public class Usuario implements Job {
 		evento.deshacer();
 	}
 
-	public ArrayList<Guardarropas> getGuardaRopas() {
+	public List<Guardarropas> getGuardaRopas() {
 		return this.guardarropas;
 	}
 
@@ -186,11 +190,11 @@ public class Usuario implements Job {
 		this.suscripcion = unaSuscripcion;
 	}
 
-	public ArrayList<Evento> getEventos() {
+	public List<Evento> getEventos() {
 		return this.eventos;
 	}
 
-	public ArrayList<Evento> setEventos(ArrayList<Evento> eventos) {
+	public List<Evento> setEventos(ArrayList<Evento> eventos) {
 		return this.eventos = eventos;
 	}
 
@@ -199,11 +203,11 @@ public class Usuario implements Job {
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
-	public void setEmail(String email) {
-		Email = email;
+	public void setEmail(String setEmail) {
+		email = setEmail;
 	}
 
 	public String getNumeroTelefono() {
@@ -214,7 +218,7 @@ public class Usuario implements Job {
 		NumeroTelefono = numeroTelefono;
 	}	
 
-	public ArrayList<Guardarropas> getGuardarropas() {
+	public List<Guardarropas> getGuardarropas() {
 		return guardarropas;
 	}
 	

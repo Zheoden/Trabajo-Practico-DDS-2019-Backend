@@ -28,13 +28,15 @@ public class UsuarioRepo implements Repository<Usuario>{
 	Usuario user = null;
 	try
 	{
-	String query = "SELECT u FROM Usuario u  "
-			     + "WHERE user = :nomUsuario "
-			     + "and password = :pass ";
-	Query userQuery = DataBase.getSession().createQuery(query);
-	userQuery.setParameter("nomUsuario",userName);
-	userQuery.setParameter("pass",Utils.generarHash256(userPassword));
-	userQuery.setMaxResults(1);
+	String query = "SELECT u FROM Usuario u"
+			     + " WHERE user = :nomUsuario"
+			     + " and password = :pass ";
+	Query userQuery = DataBase.getSession().
+			          createQuery(query,Usuario.class).
+	                  setParameter("nomUsuario",userName).
+	                  setParameter("pass",Utils.generarHash256(userPassword)).
+	                  setMaxResults(1);
+	                  
 	user = (Usuario) userQuery.getSingleResult();
 	}
 	catch(NoResultException e)

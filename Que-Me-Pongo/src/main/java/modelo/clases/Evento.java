@@ -6,15 +6,25 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import java.util.ArrayList;
 
-
+@Entity
 public class Evento {
+	@Id
+	@GeneratedValue
+	long id;
 	private String nombre;
 	private String ciudad;
 	private Calendar fecha;
-	
+	@Transient
 	ArrayList<Atuendo> atuendosAceptados = new ArrayList<Atuendo>();
+	@Transient
 	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
 
 	public Evento(String nombreEvento, String ciudad, Calendar fecha) {
@@ -57,6 +67,14 @@ public class Evento {
 
 	public ArrayList<Atuendo> getAtuendosAceptados() {
 		return this.atuendosAceptados;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public void setAtuendosAceptados(ArrayList<Atuendo> atuendosAceptados) {

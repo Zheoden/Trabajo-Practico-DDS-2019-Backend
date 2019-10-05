@@ -7,6 +7,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import modelo.clases.Abrigo;
 import modelo.dtos.Categoria;
@@ -14,8 +18,14 @@ import modelo.dtos.Categoria;
 import static com.google.common.collect.Sets.cartesianProduct;
 import static com.google.common.collect.Sets.powerSet;
 
+@Entity
 public class Guardarropas {
+	@Id
+	@GeneratedValue
+	long id;
+	@Transient
 	public ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+	@Transient
 	public AdministrarProveedores administrarProveedores = new AdministrarProveedores();
 
 	public Guardarropas(ArrayList<Prenda> prendas, AdministrarProveedores administrarProv) {
@@ -120,6 +130,14 @@ public class Guardarropas {
 
 	public void setPrendas(ArrayList<Prenda> prendasNuevas) {
 		this.prendas = prendasNuevas;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public ArrayList<Prenda> getPrendas() {
