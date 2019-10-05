@@ -26,7 +26,7 @@ import utils.Utils;
 import utils.emailSender;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "Usuario")
 @Inheritance (strategy= InheritanceType.SINGLE_TABLE)
 public class Usuario implements Job {
 

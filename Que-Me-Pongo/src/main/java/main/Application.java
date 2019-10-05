@@ -24,18 +24,7 @@ import utils.Utils;
 public class Application {
 	public static void main(String[] args) {
 		Spark.port(7071);
-		Router.register();
-		
-//		UsuarioRepository userRepo = new UsuarioRepository();
-//		Usuario user = new Usuario();
-//		Optional<Usuario> user = userRepo.find("kkck", "asdasd");
-//		System.out.println(user.get().getEmail());
-//		user.setEmail("test@test.com");
-//		user.setUsername("kkck");
-//		user.setNumeroTelefono("12341234");
-//		user.setPassword("asdasd");
-//		userRepo.persist(user);
-		
+		Router.register();		
 		
 		//Manda el mail cada 5 minutos
 //		try
