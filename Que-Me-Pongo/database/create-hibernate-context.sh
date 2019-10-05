@@ -27,7 +27,7 @@ while getopts ":hp:" opt; do
 done
 
 ### SCRIPT true logic begin here ###
-sudo mysql -u root $ROOT_PASS -e "create database Pepe;CREATE USER 'pepe'@'localhost' IDENTIFIED BY 'pepe';GRANT ALL PRIVILEGES ON Pepe.* TO 'pepe'@'localhost';"
+sudo mysql -u root $ROOT_PASS -e "create database QueMePongoDB;CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';GRANT ALL PRIVILEGES ON QueMePongoDB.* TO 'admin'@'localhost';"
 
 
 

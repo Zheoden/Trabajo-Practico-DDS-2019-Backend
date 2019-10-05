@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -34,22 +33,26 @@ public class Usuario implements Job {
 	@Id
 	@GeneratedValue
 	long id;
-	@Column (name = "user")
-    String nombreUsuario;
-	@Column (name = "password")
-    String passwordUsuario;
+	
+    String username;
+    String password;
     int rangoDeSensibilidad; //Numero negativo es friolento (transforma de 20 grados a 15 grados por ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados por ejemplo)
-	@Transient
+	
+    @Transient
 	Suscripcion suscripcion;
+    
 	String email;
+	
 	@OneToMany (cascade = CascadeType.ALL)
 	@JoinColumn (name = "cliente_id")
 	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "EventoXUsuario",
 	           joinColumns = @JoinColumn (name = "usuario_id"),
 	           inverseJoinColumns = @JoinColumn(name = "evento_id" ))
     List<Evento> eventos = new ArrayList<Evento>();
+	
 	String NumeroTelefono;
 	
 	public Usuario() {}
@@ -128,20 +131,20 @@ public class Usuario implements Job {
 		this.id = id;
 	}
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getPasswordUsuario() {
-		return passwordUsuario;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswordUsuario(String passwordUsuario) {
-		this.passwordUsuario = Utils.generarHash256(passwordUsuario);
+	public void setPassword(String password) {
+		this.password = Utils.generarHash256(password);
 	}
 
 	public void cargarEvento(Evento unEvento) {
