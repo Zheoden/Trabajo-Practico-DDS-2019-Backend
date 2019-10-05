@@ -6,22 +6,46 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import modelo.interfaces.Suscripcion;
-import utils.Utils;
 import utils.emailSender;
 
-
+@Entity
+@Table(name = "usuario")
+@Inheritance (strategy= InheritanceType.SINGLE_TABLE)
 public class Usuario implements Job {
 
-	int rangoDeSensibilidad; //Numero negativo es friolento (transforma de 20 grados a 15 grados por ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados por ejemplo)
+	@Id
+	@GeneratedValue
+	long id;
+	@Column (name = "user")
+    String nombreUsuario;
+	@Column (name = "password")
+    String passwordUsuario;
+	@Transient
+    int rangoDeSensibilidad; //Numero negativo es friolento (transforma de 20 grados a 15 grados por ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados por ejemplo)
+	@Transient
 	Suscripcion suscripcion;
+	@Transient
 	String email;
+	@Transient
 	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
+	@Transient
 	ArrayList<Evento> eventos = new ArrayList<Evento>();
+	@Transient
 	String Email;
+	@Transient
 	String NumeroTelefono;
 	
 	public Usuario() {}
@@ -90,6 +114,30 @@ public class Usuario implements Job {
 
 	public Evento getEvento(Evento unEvento) {
 		return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getPasswordUsuario() {
+		return passwordUsuario;
+	}
+
+	public void setPasswordUsuario(String passwordUsuario) {
+		this.passwordUsuario = passwordUsuario;
 	}
 
 	public void cargarEvento(Evento unEvento) {
@@ -192,7 +240,7 @@ public class Usuario implements Job {
 	   Calendar fecha1 = GregorianCalendar.getInstance();
 	   fecha1.set(2019, 10, 12);
 	   Evento alamo = new Evento("ir al alamo","palermo",fecha1);
-	   this.setEmail("axelfulop@hotmail.com");
+	   this.setEmail("facufulop@hotmail.com");
 	   eventos.add(alamo);
 	   eventos.forEach(evento -> {
 			try {
