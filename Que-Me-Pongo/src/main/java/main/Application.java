@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
@@ -9,21 +11,25 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 import http.routes.Router;
+import modelo.clases.Guardarropas;
 import modelo.clases.Pepe;
+import modelo.clases.Prenda;
+import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
+import modelo.interfaces.Suscripcion;
 import repository.PepeRepository;
+import repository.UsuarioRepo;
+import setup.SetUp;
 import spark.Spark;
+import utils.Utils;
 
 public class Application {
 	public static void main(String[] args) {
 		Spark.port(7071);
 		Router.register();
-		
-		PepeRepository asdasd = new PepeRepository();
-		Pepe pepe = new Pepe();
-		pepe.id = 1;
-		pepe.nombre = "adasd";
-		asdasd.persist(pepe);
+		SetUp su = new SetUp();
+		su.init();
+	
 		
 		//Manda el mail cada 5 minutos
 		try

@@ -6,6 +6,19 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.*;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -13,15 +26,30 @@ import modelo.interfaces.Suscripcion;
 import utils.Utils;
 import utils.emailSender;
 
-
+@Entity
+@Table(name = "usuario")
+@Inheritance (strategy= InheritanceType.SINGLE_TABLE)
 public class Usuario implements Job {
 
-	int rangoDeSensibilidad; //Numero negativo es friolento (transforma de 20 grados a 15 grados por ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados por ejemplo)
+	@Id
+	@GeneratedValue
+	long id;
+	@Column (name = "user")
+    String nombreUsuario;
+	@Column (name = "password")
+    String passwordUsuario;
+    int rangoDeSensibilidad; //Numero negativo es friolento (transforma de 20 grados a 15 grados por ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados por ejemplo)
+	@Transient
 	Suscripcion suscripcion;
 	String email;
-	ArrayList<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
-	ArrayList<Evento> eventos = new ArrayList<Evento>();
-	String Email;
+	@OneToMany (cascade = CascadeType.ALL)
+	@JoinColumn (name = "cliente_id")
+	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "EventoXUsuario",
+	           joinColumns = @JoinColumn (name = "usuario_id"),
+	           inverseJoinColumns = @JoinColumn(name = "evento_id" ))
+    List<Evento> eventos = new ArrayList<Evento>();
 	String NumeroTelefono;
 	
 	public Usuario() {}
@@ -92,6 +120,30 @@ public class Usuario implements Job {
 		return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();
 	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getPasswordUsuario() {
+		return passwordUsuario;
+	}
+
+	public void setPasswordUsuario(String passwordUsuario) {
+		this.passwordUsuario = Utils.generarHash256(passwordUsuario);
+	}
+
 	public void cargarEvento(Evento unEvento) {
 		this.eventos.add(unEvento);
 		//Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en este caso
@@ -122,7 +174,7 @@ public class Usuario implements Job {
 		evento.deshacer();
 	}
 
-	public ArrayList<Guardarropas> getGuardaRopas() {
+	public List<Guardarropas> getGuardaRopas() {
 		return this.guardarropas;
 	}
 
@@ -138,11 +190,11 @@ public class Usuario implements Job {
 		this.suscripcion = unaSuscripcion;
 	}
 
-	public ArrayList<Evento> getEventos() {
+	public List<Evento> getEventos() {
 		return this.eventos;
 	}
 
-	public ArrayList<Evento> setEventos(ArrayList<Evento> eventos) {
+	public List<Evento> setEventos(ArrayList<Evento> eventos) {
 		return this.eventos = eventos;
 	}
 
@@ -151,11 +203,11 @@ public class Usuario implements Job {
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
-	public void setEmail(String email) {
-		Email = email;
+	public void setEmail(String setEmail) {
+		email = setEmail;
 	}
 
 	public String getNumeroTelefono() {
@@ -166,7 +218,7 @@ public class Usuario implements Job {
 		NumeroTelefono = numeroTelefono;
 	}	
 
-	public ArrayList<Guardarropas> getGuardarropas() {
+	public List<Guardarropas> getGuardarropas() {
 		return guardarropas;
 	}
 	
@@ -192,7 +244,7 @@ public class Usuario implements Job {
 	   Calendar fecha1 = GregorianCalendar.getInstance();
 	   fecha1.set(2019, 10, 12);
 	   Evento alamo = new Evento("ir al alamo","palermo",fecha1);
-	   this.setEmail("axelfulop@hotmail.com");
+	   this.setEmail("facufulop@hotmail.com");
 	   eventos.add(alamo);
 	   eventos.forEach(evento -> {
 			try {

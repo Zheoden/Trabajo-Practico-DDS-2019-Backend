@@ -1,6 +1,9 @@
 package modelo.clases;
 
+import javax.persistence.Entity;
+
 import modelo.interfaces.Suscripcion;
+
 
 public class SuscripcionGratuita implements Suscripcion {
 
