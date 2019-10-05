@@ -23,4 +23,8 @@ public interface Repository<T> extends WithGlobalEntityManager, TransactionalOps
     }
 
     List<T> all();
+    
+    default void closeConnection() {
+    	entityManager().close();
+    }
 }

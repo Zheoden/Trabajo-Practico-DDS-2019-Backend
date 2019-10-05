@@ -1,5 +1,10 @@
 package modelo.clases;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.ManyToMany;
+
 import modelo.dtos.Categoria;
 import modelo.dtos.Color;
 import modelo.dtos.Material;
@@ -13,6 +18,8 @@ public class Prenda {
 	Color colorPrimario;
 	Color colorSecundario;
 	Boolean enUso;
+	@ManyToMany(mappedBy="prendas")
+	List<Guardarropas> guardarropas = new ArrayList<>();
 
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
 		this(tipo, material, colorPrimario);
@@ -95,4 +102,13 @@ public class Prenda {
 	public void setDireccionImagen(String direccionImagen) {
 		this.direccionImagen = direccionImagen;
 	}
+	
+	public List<Guardarropas> getGuardarropas(){
+		return guardarropas;
+	}
+	
+	public void setGuardarropas(List<Guardarropas> guardarropas) {
+		this.guardarropas = guardarropas;
+	}
+	
 }

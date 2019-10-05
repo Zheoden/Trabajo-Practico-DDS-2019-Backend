@@ -43,15 +43,17 @@ public class Usuario implements Job {
     
 	String email;
 	
-	@OneToMany (cascade = CascadeType.ALL)
-	@JoinColumn (name = "cliente_id")
-	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(name = "GuardarropaXUsuario",
+    joinColumns = @JoinColumn (name = "usuario_id"),
+    inverseJoinColumns = @JoinColumn(name = "guardarropa_id" ))
+	List<Guardarropas> guardarropas = new ArrayList<>();
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "EventoXUsuario",
 	           joinColumns = @JoinColumn (name = "usuario_id"),
 	           inverseJoinColumns = @JoinColumn(name = "evento_id" ))
-    List<Evento> eventos = new ArrayList<Evento>();
+    List<Evento> eventos = new ArrayList<>();
 	
 	String NumeroTelefono;
 	
