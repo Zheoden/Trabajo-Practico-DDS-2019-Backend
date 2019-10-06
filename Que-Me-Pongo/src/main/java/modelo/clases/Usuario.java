@@ -10,11 +10,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.*;
@@ -27,7 +24,6 @@ import utils.emailSender;
 
 @Entity
 @Table(name = "Usuario")
-@Inheritance (strategy= InheritanceType.SINGLE_TABLE)
 public class Usuario implements Job {
 
 	@Id
@@ -64,7 +60,7 @@ public class Usuario implements Job {
 		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
 			this.setGuardaRopas(guardarropas);			
 		} else {
-			System.out.print("No se puede asignar esta lista de guardarropas porque no es complatible con la subscripcion seleccionada.");
+			System.out.print("No se puede asignar esta lista de guardarropas porque no es compatible con la subscripcion seleccionada.");
 		}
 
 		this.setSuscripcion(unaSuscripcion);

@@ -5,7 +5,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.io.PrintStream;
+import java.lang.annotation.Repeatable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -71,8 +73,9 @@ public class UsuarioTest {
 		Assert.assertEquals(pepe.getSuscripcion(), subs);
 	}
 
-	@Test
-	@DisplayName("Solicitar a todos los guardarropas todos los conjuntos que pueden armar y unificarlos")
+	@Test	
+	@DisplayName("Solicitar a todos los guardarropas todos los conjuntos que pueden armar y unificarlos, "
+			+ "Generacion de todos los atuendos generados para el evento en especifico")
 	public void todosPosiblesAtuendosPorGuardarropa() {
 		prendas.add(prenda);
 		prendas.add(prenda1);
@@ -99,11 +102,20 @@ public class UsuarioTest {
 		guardaRopas.add(guardaRopa2);
 
 		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", 0);
+		
+		Calendar fecha1 = GregorianCalendar.getInstance();
+		fecha1.set(2019, 10, 12);
+		fecha1.set(Calendar.HOUR_OF_DAY, 21);
+		fecha1.set(Calendar.MINUTE, 30);
+		Evento irAlAlamo = new Evento("Ir al alamo", "Lanus", fecha1);
 
 		List<Atuendo> atuendos = pepe.todosPosiblesAtuendosPorGuardarropaParaAhora();
 		Assert.assertEquals(atuendos.size(), 4);
+		
+		List<Atuendo> atuendosParaEvento = pepe.todosPosiblesAtuendosPorGuardarropaParaEvento(irAlAlamo);
+		Assert.assertEquals(atuendosParaEvento.size(), 1);
 	}
-
+	
 	@Test
 	@DisplayName("Agregar mas prendas de la permitida por la suscripcion del usuario")
 	public void agregarPrendaAGuardaRopa() {
@@ -227,4 +239,5 @@ public class UsuarioTest {
 		List<Atuendo> atuendos = pepe.todosLosAtuendosAceptados();
 		Assert.assertEquals(atuendos.size(), 8);
 	}
+
 }
