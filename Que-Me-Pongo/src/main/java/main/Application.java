@@ -1,53 +1,23 @@
 package main;
 
-import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
-import org.quartz.CronScheduleBuilder;
-import org.quartz.JobBuilder;
-import org.quartz.JobDetail;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
-import org.quartz.impl.StdSchedulerFactory;
 import http.routes.Router;
-import modelo.clases.Guardarropas;
-import modelo.clases.Pepe;
-import modelo.clases.Prenda;
-import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
-import modelo.interfaces.Suscripcion;
-import repository.PepeRepository;
-import repository.UsuarioRepo;
-import setup.SetUp;
+import repository.UsuarioRepository;
 import spark.Spark;
-import utils.Utils;
+import utils.JobScheduler;
 
 public class Application {
 	public static void main(String[] args) {
+		
+		// Manda el mail cada 5 minutos
+		Usuario pepe = new Usuario();
+		new JobScheduler(0, 5, TimeUnit.MINUTES).run(pepe::notifyUser);
+		
 		Spark.port(7071);
 		Router.register();
-		SetUp su = new SetUp();
-		su.init();
-	
-		
-		//Manda el mail cada 5 minutos
-		try
-		{
-			JobDetail job = JobBuilder.newJob(Usuario.class)
-					.withIdentity("UsuarioJob")
-					.build();
-
-			Trigger trigger = TriggerBuilder.newTrigger()
-					.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 * 1/1 * ? *"))
-					.build();
-
-			SchedulerFactory schFactory = new StdSchedulerFactory();
-			org.quartz.Scheduler  sch = schFactory.getScheduler();
-			sch.start();
-			sch.scheduleJob(job, trigger);
-		} catch (SchedulerException e) {
-			e.printStackTrace();
-		}
+		UsuarioRepository repo = new UsuarioRepository();
+		repo.init();
 	}
 }

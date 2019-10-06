@@ -31,7 +31,7 @@
 	</build>
 
 	<dependencies>
-	    
+
 		<!-- Sparks for endpoints -->
 		<dependency>
 			<groupId>com.sparkjava</groupId>
@@ -60,14 +60,6 @@
 			<version>[28.0-jre,)</version>
 		</dependency>
 		
-		<!-- Quartz to schedule Events -->
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-			<version>[2.3.0,)</version>
-		</dependency>
-		
-		
 		<!-- JavaxMail and SunMail for notifying the user -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
@@ -81,7 +73,6 @@
 		    <version>1.4.5</version>
 		</dependency>
 		
-    	
         <!-- Jackson to Parse JSON -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -146,8 +137,6 @@
 			<version>5.5.0-M1</version>
 			<scope>test</scope>
 		</dependency>
-    
+
 	</dependencies>
-
-
 </project>

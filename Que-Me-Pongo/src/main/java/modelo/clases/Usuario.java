@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,37 +18,38 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.*;
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 import modelo.interfaces.Suscripcion;
 import utils.Utils;
-import utils.emailSender;
+import utils.EmailSender;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "Usuario")
 @Inheritance (strategy= InheritanceType.SINGLE_TABLE)
-public class Usuario implements Job {
+public class Usuario {
 
 	@Id
 	@GeneratedValue
 	long id;
-	@Column (name = "user")
-    String nombreUsuario;
-	@Column (name = "password")
-    String passwordUsuario;
+	
+    String username;
+    String password;
     int rangoDeSensibilidad; //Numero negativo es friolento (transforma de 20 grados a 15 grados por ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados por ejemplo)
-	@Transient
+	
+    @Transient
 	Suscripcion suscripcion;
+    
 	String email;
-	@OneToMany (cascade = CascadeType.ALL)
-	@JoinColumn (name = "cliente_id")
+	
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(name = "GuardarropaPorUsuario",
+    joinColumns = @JoinColumn (name = "usuario_id"),
+    inverseJoinColumns = @JoinColumn(name = "guardarropa_id" ))
 	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "EventoXUsuario",
-	           joinColumns = @JoinColumn (name = "usuario_id"),
-	           inverseJoinColumns = @JoinColumn(name = "evento_id" ))
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id")
     List<Evento> eventos = new ArrayList<Evento>();
+	
 	String NumeroTelefono;
 	
 	public Usuario() {}
@@ -128,20 +128,20 @@ public class Usuario implements Job {
 		this.id = id;
 	}
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getPasswordUsuario() {
-		return passwordUsuario;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswordUsuario(String passwordUsuario) {
-		this.passwordUsuario = Utils.generarHash256(passwordUsuario);
+	public void setPassword(String password) {
+		this.password = Utils.generarHash256(password);
 	}
 
 	public void cargarEvento(Evento unEvento) {
@@ -230,8 +230,7 @@ public class Usuario implements Job {
 		this.rangoDeSensibilidad = sensibilidad;
 	}
 	
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
+	public Void notifyUser(Void t) {
 		
        //La idea es obtener todos los eventos del usuario de la bd
 	   // por el momento se hardcodea para los test
@@ -239,12 +238,12 @@ public class Usuario implements Job {
 	   //El mail tmb lo harcodeo pero se obtendria todo por bd
 	   //Usuario user = findUserById(this.getId());
 		
-	emailSender notification = new emailSender();
+	EmailSender notification = new EmailSender();
 	   List<Evento> eventos = new ArrayList<Evento>();
 	   Calendar fecha1 = GregorianCalendar.getInstance();
 	   fecha1.set(2019, 10, 12);
 	   Evento alamo = new Evento("ir al alamo","palermo",fecha1);
-	   this.setEmail("facufulop@hotmail.com");
+	   this.setEmail("sculian@gmail.com");
 	   eventos.add(alamo);
 	   eventos.forEach(evento -> {
 			try {
@@ -253,5 +252,7 @@ public class Usuario implements Job {
 				e.printStackTrace();
 			}
 		});
+	   
+	   return t;
 	}
 }
