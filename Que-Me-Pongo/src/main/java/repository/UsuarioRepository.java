@@ -53,6 +53,7 @@ public class UsuarioRepository implements Repository<Usuario> {
 		Prenda prenda4 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 		Prenda prenda5 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
 		Prenda prenda6 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+		Prenda prenda7 = new Prenda(TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 		
 		ArrayList<Prenda> listaDePrendas = new ArrayList<Prenda>();
 		listaDePrendas.add(prenda1);
@@ -63,6 +64,7 @@ public class UsuarioRepository implements Repository<Usuario> {
 		listaDePrendas.add(prenda4);
 		listaDePrendas.add(prenda5);
 		listaDePrendas.add(prenda6);
+		listaDePrendas.add(prenda7);
 		Guardarropas guardaRopa1 = new Guardarropas(listaDePrendas);
 		Guardarropas guardaRopa2 = new Guardarropas(listaDePrendas2);
 		ArrayList<Guardarropas> guardaRopas1 = new ArrayList<Guardarropas>();
