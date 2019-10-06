@@ -22,7 +22,7 @@ public class PrendaTest {
 	@DisplayName("Verificar la cantidad de prendas de mamaKondo")
 	@Test
 	public void cantidadDePrendasMamaKondo() {
-		Optional<Usuario> user = userRepo.find(1);
+		Optional<Usuario> user = userRepo.find(2);
 		Assert.assertEquals(user.get().getGuardaRopas().get(0).getPrendas().size(), 4);
 	}
 }
