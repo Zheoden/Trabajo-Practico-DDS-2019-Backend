@@ -23,6 +23,7 @@ public class Prenda {
 
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
 		this(tipo, material, colorPrimario);
+		this.setEnUso(false);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
@@ -33,6 +34,7 @@ public class Prenda {
 
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario) {
 		this(tipo, colorPrimario);
+		this.setEnUso(false);
 		if (this.esMaterialValido(tipo, material)) {
 			this.setTela(material);
 		} else {

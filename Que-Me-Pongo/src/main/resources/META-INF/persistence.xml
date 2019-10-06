@@ -10,6 +10,10 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
      <class>modelo.clases.Usuario</class>
+     <class>modelo.clases.Guardarropas</class>
+     <class>modelo.clases.Prenda</class>
+     <class>modelo.clases.Atuendo</class>
+     <class>modelo.clases.Evento</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>

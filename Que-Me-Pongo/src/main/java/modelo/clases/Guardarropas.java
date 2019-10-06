@@ -38,6 +38,8 @@ public class Guardarropas {
 	@ManyToMany (mappedBy="guardarropas")
 	private List<Usuario> usuarios = new ArrayList<>();
 
+	public Guardarropas() {}
+	
 	public Guardarropas(ArrayList<Prenda> prendas, AdministrarProveedores administrarProv) {
 		this.setPrendas(prendas);
 		this.administrarProveedores = administrarProv;
@@ -138,7 +140,7 @@ public class Guardarropas {
 		this.prendas.add(unaPrenda);
 	}
 
-	public void setPrendas(ArrayList<Prenda> prendasNuevas) {
+	public void setPrendas(List<Prenda> prendasNuevas) {
 		this.prendas = prendasNuevas;
 	}
 

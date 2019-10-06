@@ -40,7 +40,9 @@ public class GuardarropasTest {
 	Prenda prenda10 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 
 	Prenda prenda11 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
-
+	Prenda prenda12 = new Prenda(TipoPrenda.ZAPATILLAS, Material.CUERO, Color.NEGRO, Color.ROJO);
+	Prenda prenda13 = new Prenda(TipoPrenda.ZAPATOS, Material.CUERO, Color.NEGRO, Color.MARRON);
+	
 	@Test
 	@DisplayName("Tests para el Constructor")
 	public void getPrenda() {
@@ -247,7 +249,7 @@ public class GuardarropasTest {
 		
 		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(19.0);
-		
+		System.out.println(a.obtenerTemperaturaActual());
 		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
 		Set<Prenda> setPrendas = new HashSet<>(prendas);
 		Set<Set<Prenda>> combinacionesObtenidas = unGuardarropa.obtenerCombinacionesDePrenda(setPrendas,
@@ -341,5 +343,25 @@ public class GuardarropasTest {
 		boolean esValido = unGuardarropa
 				.prendasTienenNivelesDeCapaValidos(prendas.stream().collect(Collectors.toSet()));
 		Assert.assertTrue(esValido);
+	}
+	
+	@Test
+	@DisplayName("Verificar que la cantidad de combinaciones de Prenda no es vacio")
+	public void seTienenCombinacionesNoVacias() {
+		
+		prendas.add(prenda2);
+		prendas.add(prenda3);
+		prendas.add(prenda4);
+		prendas.add(prenda7);
+		prendas.add(prenda9);
+		prendas.add(prenda11);
+		prendas.add(prenda12);
+		
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
+		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(15.0);
+		
+		Set<Set<Prenda>> combinacionesCreadas = unGuardarropa.obtenerCombinacionesNoVacias(prendas.stream().collect(Collectors.toSet()), a.obtenerTemperaturaActual(), -3);
+		Assert.assertTrue(!combinacionesCreadas.isEmpty());
 	}
 }

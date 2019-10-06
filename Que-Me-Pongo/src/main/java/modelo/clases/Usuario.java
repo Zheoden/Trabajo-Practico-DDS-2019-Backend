@@ -85,7 +85,7 @@ public class Usuario implements Job {
 			int puntosDeAbrigo = atuendo.getPrendas().stream().mapToInt(prenda -> prenda.getTipo().nivelDeAbrigo()).sum();
 			Abrigo nivelDeAbrigo = Abrigo.obtenerNivelDeAbrigo(temperatura);
 			int indice = nivelDeAbrigo.getNivelesDeAbrigo().indexOf(puntosDeAbrigo);
-			
+
 			if ( nivelDeAbrigo.getNivelesDeAbrigo().size() - (indice + 1) == 0 ) { // es friolento
 				this.rangoDeSensibilidad--;
 			}

@@ -5,7 +5,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.io.PrintStream;
-import java.lang.annotation.Repeatable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -239,5 +238,4 @@ public class UsuarioTest {
 		List<Atuendo> atuendos = pepe.todosLosAtuendosAceptados();
 		Assert.assertEquals(atuendos.size(), 8);
 	}
-
 }
