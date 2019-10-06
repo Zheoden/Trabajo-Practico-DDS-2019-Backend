@@ -42,6 +42,8 @@ public class Evento {
 	@ManyToMany(mappedBy = "eventos")
 	List<Usuario> usuarios = new ArrayList<Usuario>();
 	
+	public Evento() {}
+	
 	public Evento(String nombreEvento, String ciudad, Calendar fecha) {
 		this.nombre = nombreEvento;
 		this.ciudad = ciudad;
