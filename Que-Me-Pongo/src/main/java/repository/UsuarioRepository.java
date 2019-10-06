@@ -59,13 +59,11 @@ public class UsuarioRepository implements Repository<Usuario> {
 		user1.setPassword("123");
 		user2.setPassword("456");
 		List<Usuario> usuarios = this.all();
+		if (usuarios.isEmpty()) {
 		entityManager().getTransaction().begin();
-		if (!usuarios.isEmpty()) {
-			usuarios.forEach(usuario -> entityManager().remove(usuario));
-		}
 		entityManager().persist(user1);
 		entityManager().persist(user2);
-
 		entityManager().getTransaction().commit();
+		}
 	}
 }
