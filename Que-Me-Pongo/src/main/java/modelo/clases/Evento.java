@@ -6,31 +6,54 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import java.util.ArrayList;
 
+import javax.persistence.ManyToMany;
+
 @Entity
+@Table(name = "evento")
+@Inheritance (strategy= InheritanceType.SINGLE_TABLE)
 public class Evento {
 	@Id
 	@GeneratedValue
 	long id;
-	private String nombre;
-	private String ciudad;
-	private Calendar fecha;
+	@Column (name = "nombre")
+	String nombre;
+	@Column (name = "ciudad")
+	String ciudad;
+	@Column (name = "fecha")
+	Calendar fecha;
 	@Transient
 	ArrayList<Atuendo> atuendosAceptados = new ArrayList<Atuendo>();
 	@Transient
 	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
-
+	
+	@ManyToMany(mappedBy = "eventos")
+	List<Usuario> usuarios = new ArrayList<Usuario>();
+	
 	public Evento(String nombreEvento, String ciudad, Calendar fecha) {
 		this.nombre = nombreEvento;
 		this.ciudad = ciudad;
-		this.fecha = fecha;
+		this.fecha = fecha;	
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	public Date diaAnterior() {
