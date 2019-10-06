@@ -11,6 +11,9 @@ import modelo.clases.Prenda;
 import modelo.clases.SuscripcionGratuita;
 import modelo.clases.SuscripcionPremium;
 import modelo.clases.Usuario;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 import modelo.interfaces.Repository;
 import modelo.interfaces.Suscripcion;
 import utils.Utils;
@@ -44,8 +47,24 @@ public class UsuarioRepository implements Repository<Usuario> {
 	}
 
 	public void init() {
-		Guardarropas guardaRopa1 = new Guardarropas(new ArrayList<Prenda>());
-		Guardarropas guardaRopa2 = new Guardarropas(new ArrayList<Prenda>());
+		Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+		Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+		Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+		Prenda prenda4 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+		Prenda prenda5 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
+		Prenda prenda6 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+		
+		ArrayList<Prenda> listaDePrendas = new ArrayList<Prenda>();
+		listaDePrendas.add(prenda1);
+		listaDePrendas.add(prenda2);
+		listaDePrendas.add(prenda3);
+		
+		ArrayList<Prenda> listaDePrendas2 = new ArrayList<Prenda>();
+		listaDePrendas.add(prenda4);
+		listaDePrendas.add(prenda5);
+		listaDePrendas.add(prenda6);
+		Guardarropas guardaRopa1 = new Guardarropas(listaDePrendas);
+		Guardarropas guardaRopa2 = new Guardarropas(listaDePrendas2);
 		ArrayList<Guardarropas> guardaRopas1 = new ArrayList<Guardarropas>();
 		ArrayList<Guardarropas> guardaRopas2 = new ArrayList<Guardarropas>();
 		guardaRopas1.add(guardaRopa1);
