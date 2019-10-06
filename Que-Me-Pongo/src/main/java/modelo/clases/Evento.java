@@ -8,18 +8,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import java.util.ArrayList;
 
-import javax.persistence.ManyToMany;
 
 @Entity
 @Table(name = "evento")
@@ -39,8 +41,9 @@ public class Evento {
 	@Transient
 	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
 	
-	@ManyToMany(mappedBy = "eventos")
-	List<Usuario> usuarios = new ArrayList<Usuario>();
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "evento_id")
+    Usuario usuario;
 	
 	public Evento() {}
 	
@@ -50,13 +53,6 @@ public class Evento {
 		this.fecha = fecha;	
 	}
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
 
 	public Date diaAnterior() {
 		this.fecha.add(Calendar.DATE, -1);
@@ -136,4 +132,13 @@ public class Evento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 }

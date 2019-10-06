@@ -1,11 +1,14 @@
 package repository;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.SuscripcionGratuita;
@@ -73,6 +76,22 @@ public class UsuarioRepository implements Repository<Usuario> {
 		Suscripcion subs2 = new SuscripcionGratuita();
 		Usuario user1 = new Usuario(guardaRopas1, subs, "test@test.com", "12341234110", 0);
 		Usuario user2 = new Usuario(guardaRopas2, subs2, "test2@test.com", "1122112209", 0);
+		
+		Calendar fecha1 = GregorianCalendar.getInstance();
+		Calendar fecha2 = GregorianCalendar.getInstance();
+		fecha1.set(2019, 10, 12);
+		fecha1.set(Calendar.HOUR_OF_DAY, 07);
+		fecha1.set(Calendar.MINUTE, 30);
+		fecha2.set(2019, 06, 29);
+		fecha2.set(Calendar.HOUR_OF_DAY, 21);
+		fecha2.set(Calendar.MINUTE, 30);
+		Evento irAlAlamo = new Evento("AlamosNigth", "Adrogue", fecha2);
+		Evento developer = new Evento("Desarrollar software", "Azul", fecha1);
+		
+		user1.cargarEvento(irAlAlamo);
+		user1.cargarEvento(developer);	
+		user2.cargarEvento(developer);
+		
 		user1.setUsername("pepeCirco");
 		user2.setUsername("mamaKondo");
 		user1.setPassword("123");
