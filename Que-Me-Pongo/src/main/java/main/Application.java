@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import http.routes.Router;
 import modelo.clases.Usuario;
+import repository.UsuarioRepository;
 import spark.Spark;
 import utils.JobScheduler;
 
@@ -16,5 +17,7 @@ public class Application {
 		
 		Spark.port(7071);
 		Router.register();
+		UsuarioRepository repo = new UsuarioRepository();
+		repo.init();
 	}
 }

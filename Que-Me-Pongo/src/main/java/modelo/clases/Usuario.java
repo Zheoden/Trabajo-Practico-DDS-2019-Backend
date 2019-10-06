@@ -40,14 +40,14 @@ public class Usuario {
     
 	String email;
 	
-	@OneToMany (cascade = CascadeType.ALL)
-	@JoinColumn (name = "cliente_id")
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(name = "GuardarropaPorUsuario",
+    joinColumns = @JoinColumn (name = "usuario_id"),
+    inverseJoinColumns = @JoinColumn(name = "guardarropa_id" ))
 	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "EventoXUsuario",
-	           joinColumns = @JoinColumn (name = "usuario_id"),
-	           inverseJoinColumns = @JoinColumn(name = "evento_id" ))
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id")
     List<Evento> eventos = new ArrayList<Evento>();
 	
 	String NumeroTelefono;
@@ -243,7 +243,7 @@ public class Usuario {
 	   Calendar fecha1 = GregorianCalendar.getInstance();
 	   fecha1.set(2019, 10, 12);
 	   Evento alamo = new Evento("ir al alamo","palermo",fecha1);
-	   this.setEmail("schifferjulian@gmail.com");
+	   this.setEmail("sculian@gmail.com");
 	   eventos.add(alamo);
 	   eventos.forEach(evento -> {
 			try {

@@ -32,7 +32,10 @@ public class Guardarropas {
 		this.setPrendas(prendas);
 		this.administrarProveedores = administrarProv;
 	}
-
+    public Guardarropas() {
+    	
+    }
+	
 	public Guardarropas(ArrayList<Prenda> prendas) {
 		this.setPrendas(prendas);
 	}
