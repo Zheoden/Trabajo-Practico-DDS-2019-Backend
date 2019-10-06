@@ -1,26 +1,47 @@
 package modelo.clases;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import modelo.dtos.Categoria;
 import modelo.dtos.Color;
 import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
 
+@Entity
+@Table(name = "prenda")
+@Inheritance (strategy= InheritanceType.SINGLE_TABLE)
 public class Prenda {
-
+	
+	@Id
+	@GeneratedValue
+	long id;
+	@Transient
 	String direccionImagen;
+	@Enumerated(EnumType.STRING)
 	TipoPrenda tipo;
+	@Enumerated(EnumType.STRING)
 	Material material;
+	@Enumerated(EnumType.STRING)
 	Color colorPrimario;
+	@Enumerated(EnumType.STRING)
 	Color colorSecundario;
 	Boolean enUso;
-
+	
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
 		this(tipo, material, colorPrimario);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
-			System.out.println(
-					"Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
+			System.out
+					.println("Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
 		}
 	}
 
@@ -71,7 +92,7 @@ public class Prenda {
 	public void setColorSecundario(Color colorSecundario) {
 		this.colorSecundario = colorSecundario;
 	}
-
+	
 	public Boolean getEnUso() {
 		return this.enUso;
 	}
@@ -94,5 +115,13 @@ public class Prenda {
 
 	public void setDireccionImagen(String direccionImagen) {
 		this.direccionImagen = direccionImagen;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }

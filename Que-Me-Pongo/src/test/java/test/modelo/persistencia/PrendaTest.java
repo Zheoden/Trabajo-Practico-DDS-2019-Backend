@@ -25,6 +25,4 @@ public class PrendaTest {
 		Optional<Usuario> user = userRepo.find(1);
 		Assert.assertEquals(user.get().getGuardaRopas().get(0).getPrendas().size(), 4);
 	}
-
-	
 }
