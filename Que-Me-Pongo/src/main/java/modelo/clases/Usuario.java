@@ -28,8 +28,8 @@ import utils.EmailSender;
 public class Usuario {
 
 	@Id
-	@GeneratedValue
-	long id;
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private Long id;
 	
     String username;
     String password;
@@ -46,9 +46,8 @@ public class Usuario {
     inverseJoinColumns = @JoinColumn(name = "guardarropa_id" ))
 	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "usuario_id")
-    List<Evento> eventos = new ArrayList<Evento>();
+	@OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Evento> eventos;
 	
 	String NumeroTelefono;
 	
@@ -119,7 +118,8 @@ public class Usuario {
 	public Evento getEvento(Evento unEvento) {
 		return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();
 	}
-
+	
+	@Column(name="id")
 	public long getId() {
 		return id;
 	}
@@ -145,7 +145,10 @@ public class Usuario {
 	}
 
 	public void cargarEvento(Evento unEvento) {
-		this.eventos.add(unEvento);
+		if (eventos == null) {
+			eventos = new ArrayList<Evento>();
+		}
+		eventos.add(unEvento);
 		//Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en este caso
 	}
 

@@ -19,11 +19,11 @@ public class EventoTest {
 	@DisplayName("Verificar la cantidad de eventos de pepeCirco")
 	public void cantidadDeEventosPepeCirco() {
 		Optional<Usuario> user = userRepo.find(1);
-		Assert.assertEquals(user.get().getEventos().size(), 2);
+		Assert.assertEquals(user.get().getEventos().size(), 3);
 	}
 
 	@Test
-	@DisplayName("Verificar la cantidad de eventos de pepeCirco")
+	@DisplayName("Verificar la cantidad de eventos de MamaKondo")
 	public void cantidadDeEventosMamaKondo() {
 		Optional<Usuario> user = userRepo.find(2);
 		Assert.assertEquals(user.get().getEventos().size(), 1);

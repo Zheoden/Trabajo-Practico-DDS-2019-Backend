@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -27,23 +28,33 @@ import java.util.ArrayList;
 @Table(name = "evento")
 @Inheritance (strategy= InheritanceType.SINGLE_TABLE)
 public class Evento {
+	
 	@Id
-	@GeneratedValue
-	long id;
-	@Column (name = "nombre")
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private Long id;
+	
 	String nombre;
-	@Column (name = "ciudad")
 	String ciudad;
-	@Column (name = "fecha")
 	Calendar fecha;
+	
 	@Transient
 	ArrayList<Atuendo> atuendosAceptados = new ArrayList<Atuendo>();
 	@Transient
 	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "evento_id")
-    Usuario usuario;
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private Usuario usuario;
+	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 	
 	public Evento() {}
 	
@@ -89,9 +100,11 @@ public class Evento {
 	}
 
 	public ArrayList<Atuendo> getAtuendosAceptados() {
+	
 		return this.atuendosAceptados;
 	}
-
+	
+	@Column(name = "id")
 	public long getId() {
 		return id;
 	}
@@ -132,13 +145,6 @@ public class Evento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public Usuario getUsuario() {
-		return usuario;
-	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 }

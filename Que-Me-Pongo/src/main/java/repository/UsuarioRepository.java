@@ -87,10 +87,14 @@ public class UsuarioRepository implements Repository<Usuario> {
 		fecha2.set(Calendar.MINUTE, 30);
 		Evento irAlAlamo = new Evento("AlamosNigth", "Adrogue", fecha2);
 		Evento developer = new Evento("Desarrollar software", "Azul", fecha1);
+		Evento poolParty = new Evento("pool party", "Azul", fecha1);
+		Evento prueba = new Evento("prueba", "Azul", fecha1);
+		
 		
 		user1.cargarEvento(irAlAlamo);
-		user1.cargarEvento(developer);	
-		user2.cargarEvento(developer);
+		user1.cargarEvento(poolParty);
+		user1.cargarEvento(developer);
+		user2.cargarEvento(prueba);
 		
 		user1.setUsername("pepeCirco");
 		user2.setUsername("mamaKondo");
