@@ -10,11 +10,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.*;
@@ -59,7 +56,7 @@ public class Usuario {
 		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
 			this.setGuardaRopas(guardarropas);			
 		} else {
-			System.out.print("No se puede asignar esta lista de guardarropas porque no es complatible con la subscripcion seleccionada.");
+			System.out.print("No se puede asignar esta lista de guardarropas porque no es compatible con la subscripcion seleccionada.");
 		}
 
 		this.setSuscripcion(unaSuscripcion);
@@ -84,7 +81,7 @@ public class Usuario {
 			int puntosDeAbrigo = atuendo.getPrendas().stream().mapToInt(prenda -> prenda.getTipo().nivelDeAbrigo()).sum();
 			Abrigo nivelDeAbrigo = Abrigo.obtenerNivelDeAbrigo(temperatura);
 			int indice = nivelDeAbrigo.getNivelesDeAbrigo().indexOf(puntosDeAbrigo);
-			
+
 			if ( nivelDeAbrigo.getNivelesDeAbrigo().size() - (indice + 1) == 0 ) { // es friolento
 				this.rangoDeSensibilidad--;
 			}

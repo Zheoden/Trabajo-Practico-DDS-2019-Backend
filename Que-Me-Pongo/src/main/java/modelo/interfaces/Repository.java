@@ -23,4 +23,5 @@ public interface Repository<T> extends WithGlobalEntityManager, TransactionalOps
 	}
 
 	List<T> all();
+
 }

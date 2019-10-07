@@ -1,5 +1,8 @@
 package modelo.clases;
 
+import static com.google.common.collect.Sets.cartesianProduct;
+import static com.google.common.collect.Sets.powerSet;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,27 +10,36 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import modelo.clases.Abrigo;
 import modelo.dtos.Categoria;
 
-import static com.google.common.collect.Sets.cartesianProduct;
-import static com.google.common.collect.Sets.powerSet;
-
 @Entity
+@Table (name="guardarropas")
 public class Guardarropas {
 	@Id
 	@GeneratedValue
 	long id;
-	@Transient
-	public ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "GuardarropaXPrenda",
+    joinColumns = @JoinColumn (name = "guardarropa_id"),
+    inverseJoinColumns = @JoinColumn(name = "prenda_id" ))
+	private List<Prenda> prendas = new ArrayList<>();
 	@Transient
 	public AdministrarProveedores administrarProveedores = new AdministrarProveedores();
+	@ManyToMany (mappedBy="guardarropas")
+	private List<Usuario> usuarios = new ArrayList<>();
 
+	public Guardarropas() {}
+	
 	public Guardarropas(ArrayList<Prenda> prendas, AdministrarProveedores administrarProv) {
 		this.setPrendas(prendas);
 		this.administrarProveedores = administrarProv;
@@ -141,7 +153,7 @@ public class Guardarropas {
 		this.prendas.add(unaPrenda);
 	}
 
-	public void setPrendas(ArrayList<Prenda> prendasNuevas) {
+	public void setPrendas(List<Prenda> prendasNuevas) {
 		this.prendas = prendasNuevas;
 	}
 
@@ -153,12 +165,20 @@ public class Guardarropas {
 		this.id = id;
 	}
 
-	public ArrayList<Prenda> getPrendas() {
+	public List<Prenda> getPrendas() {
 		return this.prendas;
 	}
 
 	public boolean laPrendaEstaEnElGuardaRopa(Prenda unaPrenda) {
 		return prendas.contains(unaPrenda);
+	}
+	
+	public List<Usuario> getUsuarios(){
+		return usuarios;
+	}
+	
+	public void setUsuarios(List<Usuario> usuarios){
+		this.usuarios = usuarios;
 	}
 
 }

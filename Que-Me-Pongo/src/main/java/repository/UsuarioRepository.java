@@ -3,6 +3,7 @@ package repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
@@ -19,7 +20,7 @@ import modelo.interfaces.Suscripcion;
 import utils.Utils;
 
 public class UsuarioRepository implements Repository<Usuario> {
-
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Usuario> all() {
@@ -46,7 +47,18 @@ public class UsuarioRepository implements Repository<Usuario> {
 		}
 	}
 
+	
+	public Optional<Guardarropas> findWardrobe(long id){
+		Guardarropas unGuardarropa = (Guardarropas) entityManager()
+				.createQuery("SELECT u FROM Guardarropas u WHERE u.id = :id")
+				.setParameter("id", id)
+				.getSingleResult();
+		
+		return Optional.ofNullable(unGuardarropa);
+	}
+
 	public void init() {
+
 		Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 		Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 		Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
