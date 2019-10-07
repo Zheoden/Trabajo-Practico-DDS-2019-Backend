@@ -31,7 +31,7 @@ public class OpenWeather implements Proveedores {
 		try {
 			key = Utils.getProyectProperties().getProperty("open.weather.key");
 			pronosticoActualUrl = Utils.getProyectProperties().getProperty("open.weather.hora.actual.url");
-			pronosticoPorHoraUrl = Utils.getProyectProperties().getProperty("open.weather.por.hora.url");	
+			pronosticoPorHoraUrl = Utils.getProyectProperties().getProperty("open.weather.por.hora.url");
 		} catch (Exception e) {
 			key = "";
 			pronosticoActualUrl = "";

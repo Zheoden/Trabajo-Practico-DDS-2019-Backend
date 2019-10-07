@@ -2,7 +2,6 @@ package modelo.clases;
 
 import modelo.interfaces.Suscripcion;
 
-
 public class SuscripcionGratuita implements Suscripcion {
 
 	@Override

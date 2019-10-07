@@ -7,24 +7,21 @@ import java.util.Arrays;
 import java.util.List;
 
 public interface Repository<T> extends WithGlobalEntityManager, TransactionalOps {
-    default void persist(T entity) {
-        withTransaction(() -> entityManager().persist(entity));
-    }
+	default void persist(T entity) {
+		withTransaction(() -> entityManager().persist(entity));
+	}
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	default void persistAll(T... entities) {
-        withTransaction(() -> {
-            Arrays.stream(entities).forEach(entityManager()::persist);
-        });
-    }
+		withTransaction(() -> {
+			Arrays.stream(entities).forEach(entityManager()::persist);
+		});
+	}
 
-    default void delete(T entity) {
-        withTransaction(() -> entityManager().remove(entity));
-    }
+	default void delete(T entity) {
+		withTransaction(() -> entityManager().remove(entity));
+	}
 
-    List<T> all();
-    
-    default void closeConnection() {
-    	entityManager().close();
-    }
+	List<T> all();
+
 }

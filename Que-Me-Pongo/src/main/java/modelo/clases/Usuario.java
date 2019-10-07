@@ -15,16 +15,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.*;
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 import modelo.interfaces.Suscripcion;
 import utils.Utils;
-import utils.emailSender;
+import utils.EmailSender;
 
 @Entity
-@Table(name = "usuario")
-public class Usuario implements Job {
+@Table(name = "Usuario")
+@Inheritance (strategy= InheritanceType.SINGLE_TABLE)
+public class Usuario {
 
 	@Id
 	@GeneratedValue
@@ -40,16 +38,14 @@ public class Usuario implements Job {
 	String email;
 	
 	@ManyToMany (cascade = CascadeType.ALL)
-	@JoinTable(name = "GuardarropaXUsuario",
+	@JoinTable(name = "GuardarropaPorUsuario",
     joinColumns = @JoinColumn (name = "usuario_id"),
     inverseJoinColumns = @JoinColumn(name = "guardarropa_id" ))
-	List<Guardarropas> guardarropas = new ArrayList<>();
+	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "EventoXUsuario",
-	           joinColumns = @JoinColumn (name = "usuario_id"),
-	           inverseJoinColumns = @JoinColumn(name = "evento_id" ))
-    List<Evento> eventos = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id")
+    List<Evento> eventos = new ArrayList<Evento>();
 	
 	String NumeroTelefono;
 	
@@ -231,8 +227,7 @@ public class Usuario implements Job {
 		this.rangoDeSensibilidad = sensibilidad;
 	}
 	
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
+	public Void notifyUser(Void t) {
 		
        //La idea es obtener todos los eventos del usuario de la bd
 	   // por el momento se hardcodea para los test
@@ -240,12 +235,12 @@ public class Usuario implements Job {
 	   //El mail tmb lo harcodeo pero se obtendria todo por bd
 	   //Usuario user = findUserById(this.getId());
 		
-	emailSender notification = new emailSender();
+	EmailSender notification = new EmailSender();
 	   List<Evento> eventos = new ArrayList<Evento>();
 	   Calendar fecha1 = GregorianCalendar.getInstance();
 	   fecha1.set(2019, 10, 12);
 	   Evento alamo = new Evento("ir al alamo","palermo",fecha1);
-	   this.setEmail("facufulop@hotmail.com");
+	   this.setEmail("sculian@gmail.com");
 	   eventos.add(alamo);
 	   eventos.forEach(evento -> {
 			try {
@@ -254,5 +249,7 @@ public class Usuario implements Job {
 				e.printStackTrace();
 			}
 		});
+	   
+	   return t;
 	}
 }

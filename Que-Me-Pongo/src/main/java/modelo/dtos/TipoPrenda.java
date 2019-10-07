@@ -208,9 +208,10 @@ public enum TipoPrenda {
 	},
 	MEDIAS {
 		public boolean esMaterialValido(Material material) {
-			return !Arrays.asList(Material.ALGODON, Material.TERCIOPELO, Material.GABARDINA, Material.LINO, Material.OXFORD)
+			return !Arrays
+					.asList(Material.ALGODON, Material.TERCIOPELO, Material.GABARDINA, Material.LINO, Material.OXFORD)
 					.contains(material);
-		}	
+		}
 
 		public int nivelDeAbrigo() {
 			return 1;

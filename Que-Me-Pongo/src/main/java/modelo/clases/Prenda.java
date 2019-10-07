@@ -43,8 +43,8 @@ public class Prenda {
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
-			System.out
-					.println("Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
+			System.out.println(
+					"Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
 		}
 	}
 
@@ -96,7 +96,7 @@ public class Prenda {
 	public void setColorSecundario(Color colorSecundario) {
 		this.colorSecundario = colorSecundario;
 	}
-	
+
 	public Boolean getEnUso() {
 		return this.enUso;
 	}

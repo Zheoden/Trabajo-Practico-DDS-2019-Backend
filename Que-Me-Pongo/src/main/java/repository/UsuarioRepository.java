@@ -46,6 +46,7 @@ public class UsuarioRepository implements Repository<Usuario> {
 			return Optional.empty();
 		}
 	}
+
 	
 	public Optional<Guardarropas> findWardrobe(long id){
 		Guardarropas unGuardarropa = (Guardarropas) entityManager()
@@ -57,7 +58,7 @@ public class UsuarioRepository implements Repository<Usuario> {
 	}
 
 	public void init() {
-		
+
 		Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 		Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 		Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
