@@ -23,8 +23,8 @@ import utils.Utils;
 
 public class Application {
 	public static void main(String[] args) {
-		Spark.port(7071);
-		Router.register();		
+//		Spark.port(7071);
+//		Router.register();		
 		
 		//Manda el mail cada 5 minutos
 //		try
@@ -44,5 +44,7 @@ public class Application {
 //		} catch (SchedulerException e) {
 //			e.printStackTrace();
 //		}
+		UsuarioRepository repo = new UsuarioRepository();
+		repo.init();
 	}
 }

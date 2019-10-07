@@ -23,7 +23,7 @@ import utils.Utils;
 import utils.emailSender;
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "usuario")
 public class Usuario implements Job {
 
 	@Id

@@ -23,7 +23,7 @@ import javax.persistence.Transient;
 import modelo.dtos.Categoria;
 
 @Entity
-@Table (name="guardarropa")
+@Table (name="guardarropas")
 public class Guardarropas {
 	@Id
 	@GeneratedValue

@@ -3,19 +3,35 @@ package modelo.clases;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import modelo.dtos.Categoria;
 import modelo.dtos.Color;
 import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
 
+@Entity
+@Table(name = "prenda")
 public class Prenda {
 
+	@Id
+	@GeneratedValue
+	long id;
+	@Transient
 	String direccionImagen;
 	TipoPrenda tipo;
+	@Enumerated(EnumType.STRING)
 	Material material;
+	@Enumerated(EnumType.STRING)
 	Color colorPrimario;
+	@Enumerated(EnumType.STRING)
 	Color colorSecundario;
 	Boolean enUso;
 	@ManyToMany(mappedBy="prendas")
@@ -113,4 +129,11 @@ public class Prenda {
 		this.guardarropas = guardarropas;
 	}
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 }
