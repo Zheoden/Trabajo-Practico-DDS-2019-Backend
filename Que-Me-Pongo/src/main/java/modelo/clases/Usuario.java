@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.*;
 import modelo.interfaces.Suscripcion;
+
 import utils.Utils;
 import utils.EmailSender;
 
@@ -119,7 +120,7 @@ public class Usuario {
 		return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();
 	}
 	
-	@Column(name="id")
+	
 	public long getId() {
 		return id;
 	}

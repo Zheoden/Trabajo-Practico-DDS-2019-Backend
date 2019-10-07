@@ -90,7 +90,6 @@ public class UsuarioRepository implements Repository<Usuario> {
 		Evento poolParty = new Evento("pool party", "Azul", fecha1);
 		Evento prueba = new Evento("prueba", "Azul", fecha1);
 		
-		
 		user1.cargarEvento(irAlAlamo);
 		user1.cargarEvento(poolParty);
 		user1.cargarEvento(developer);
