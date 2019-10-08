@@ -1,5 +1,8 @@
 package modelo.clases;
 
+import static com.google.common.collect.Sets.cartesianProduct;
+import static com.google.common.collect.Sets.powerSet;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,21 +10,42 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import modelo.clases.Abrigo;
 import modelo.dtos.Categoria;
 
-import static com.google.common.collect.Sets.cartesianProduct;
-import static com.google.common.collect.Sets.powerSet;
-
+@Entity
+@Table (name="guardarropas")
 public class Guardarropas {
-	public ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+	@Id
+	@GeneratedValue
+	long id;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "GuardarropaXPrenda",
+    joinColumns = @JoinColumn (name = "guardarropa_id"),
+    inverseJoinColumns = @JoinColumn(name = "prenda_id" ))
+	private List<Prenda> prendas = new ArrayList<>();
+	@Transient
 	public AdministrarProveedores administrarProveedores = new AdministrarProveedores();
+	@ManyToMany (mappedBy="guardarropas")
+	private List<Usuario> usuarios = new ArrayList<>();
 
+	
 	public Guardarropas(ArrayList<Prenda> prendas, AdministrarProveedores administrarProv) {
 		this.setPrendas(prendas);
 		this.administrarProveedores = administrarProv;
 	}
+    public Guardarropas() {
+    	
+    }
 	
 	public Guardarropas(ArrayList<Prenda> prendas) {
 		this.setPrendas(prendas);
@@ -32,19 +56,23 @@ public class Guardarropas {
 	}
 
 	public Set<Prenda> obtenerPrendasSuperiores() {
-		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.PARTE_SUPERIOR && !prenda.enUso)).collect(Collectors.toSet());
+		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.PARTE_SUPERIOR && !prenda.enUso))
+				.collect(Collectors.toSet());
 	}
 
 	public Set<Prenda> obtenerPrendasInferiores() {
-		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.PARTE_INFERIOR && !prenda.enUso)).collect(Collectors.toSet());
+		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.PARTE_INFERIOR && !prenda.enUso))
+				.collect(Collectors.toSet());
 	}
 
 	public Set<Prenda> obtenerCalzados() {
-		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.CALZADO && !prenda.enUso)).collect(Collectors.toSet());
+		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.CALZADO && !prenda.enUso))
+				.collect(Collectors.toSet());
 	}
 
 	public Set<Prenda> obtenerAccesorios() {
-		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.ACCESORIO && !prenda.enUso)).collect(Collectors.toSet());
+		return prendas.stream().filter(prenda -> (prenda.Categoria() == Categoria.ACCESORIO && !prenda.enUso))
+				.collect(Collectors.toSet());
 	}
 
 	public Atuendo obtenerAtuendoRandom(List<Atuendo> combinaciones) {
@@ -54,11 +82,13 @@ public class Guardarropas {
 
 	public List<Atuendo> generarSugerencias(Double temperatura, int sensibilidad, @Nullable Evento evento) {
 		Set<Set<Prenda>> calzados = obtenerCombinacionesNoVacias(obtenerCalzados(), temperatura, sensibilidad);
-		Set<Set<Prenda>> prendasInferiores = obtenerCombinacionesNoVacias(obtenerPrendasInferiores(), temperatura, sensibilidad);
-		Set<Set<Prenda>> prendasSuperiores = obtenerCombinacionesNoVacias(obtenerPrendasSuperiores(), temperatura, sensibilidad);
+		Set<Set<Prenda>> prendasInferiores = obtenerCombinacionesNoVacias(obtenerPrendasInferiores(), temperatura,
+				sensibilidad);
+		Set<Set<Prenda>> prendasSuperiores = obtenerCombinacionesNoVacias(obtenerPrendasSuperiores(), temperatura,
+				sensibilidad);
 		Set<Set<Prenda>> accesorios = obtenerCombinacionesNoVacias(obtenerAccesorios(), temperatura, sensibilidad);
-		
-		if(evento != null) {
+
+		if (evento != null) {
 			return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
 					.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3), evento))
 					.collect(Collectors.toList());
@@ -71,7 +101,8 @@ public class Guardarropas {
 	}
 
 	public List<Atuendo> atuendosValidosParaEvento(Evento evento, int sensibilidad) {
-		return generarSugerencias(this.administrarProveedores.obtenerTemperatura(evento.getFechaEvento()), sensibilidad, evento);
+		return generarSugerencias(this.administrarProveedores.obtenerTemperatura(evento.getFechaEvento()), sensibilidad,
+				evento);
 	}
 
 	public List<Atuendo> atuendosValidosParaAhora(int sensibilidad) {
@@ -87,14 +118,17 @@ public class Guardarropas {
 //	}
 
 	public Set<Set<Prenda>> obtenerCombinacionesDePrenda(Set<Prenda> prendas, Double temperatura, int sensibilidad) {
-		return powerSet(prendas).stream().filter(this::prendasTienenNivelesDeCapaValidos)
-				.filter(conjuntoDePrendas -> this.prendasTienenNivelesDeAbrigoValidos(conjuntoDePrendas, temperatura, sensibilidad))
+		return powerSet(prendas)
+				.stream().filter(this::prendasTienenNivelesDeCapaValidos).filter(conjuntoDePrendas -> this
+						.prendasTienenNivelesDeAbrigoValidos(conjuntoDePrendas, temperatura, sensibilidad))
 				.collect(Collectors.toSet());
 	}
 
-	public Boolean prendasTienenNivelesDeAbrigoValidos(Set<Prenda> conjuntoDePrendas, Double temperatura, int sensibilidad) {
+	public Boolean prendasTienenNivelesDeAbrigoValidos(Set<Prenda> conjuntoDePrendas, Double temperatura,
+			int sensibilidad) {
 		return conjuntoDePrendas.stream().anyMatch(prenda -> prenda.getTipo().nivelDeAbrigo() == 0)
-				|| Abrigo.obtenerNivelesDeAbrigo(temperatura, sensibilidad).contains(this.obtenerPuntosDeAbrigo(conjuntoDePrendas));
+				|| Abrigo.obtenerNivelesDeAbrigo(temperatura, sensibilidad)
+						.contains(this.obtenerPuntosDeAbrigo(conjuntoDePrendas));
 	}
 
 	public int obtenerPuntosDeAbrigo(Set<Prenda> prendas) {
@@ -118,16 +152,32 @@ public class Guardarropas {
 		this.prendas.add(unaPrenda);
 	}
 
-	public void setPrendas(ArrayList<Prenda> prendasNuevas) {
+	public void setPrendas(List<Prenda> prendasNuevas) {
 		this.prendas = prendasNuevas;
 	}
 
-	public ArrayList<Prenda> getPrendas() {
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public List<Prenda> getPrendas() {
 		return this.prendas;
 	}
-	
+
 	public boolean laPrendaEstaEnElGuardaRopa(Prenda unaPrenda) {
 		return prendas.contains(unaPrenda);
+	}
+	
+	public List<Usuario> getUsuarios(){
+		return usuarios;
+	}
+	
+	public void setUsuarios(List<Usuario> usuarios){
+		this.usuarios = usuarios;
 	}
 
 }

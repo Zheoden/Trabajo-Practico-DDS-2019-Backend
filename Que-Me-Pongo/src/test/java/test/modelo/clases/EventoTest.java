@@ -20,8 +20,9 @@ import org.junit.jupiter.api.DisplayName;
 
 import modelo.interfaces.Suscripcion;
 
-public class EventoTest {
 
+public class EventoTest {
+	
 	Prenda camisaRojo = new Prenda(TipoPrenda.CAMISA, Color.ROJO);
 	Prenda bufandaAzul = new Prenda(TipoPrenda.BUFANDA, Color.AZUL);
 	Prenda pantalonVerde = new Prenda(TipoPrenda.PANTALON, Color.VERDE);
@@ -33,6 +34,7 @@ public class EventoTest {
 	Calendar fecha2 = GregorianCalendar.getInstance();
 
 	@Test
+	@DisplayName("Avisa al Usuario de cada Evento el cual asiste")
 	public void usuarioAsisteASusEventos() throws Exception {
     
 		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", 0);
@@ -59,6 +61,7 @@ public class EventoTest {
 	}
 
 	@Test
+	@DisplayName("Verificar que el usuario no esta invitado al Evento")
 	public void noEstasInvitadoAlEvento() throws Exception {
 		prendas1.add(camisaRojo);
 		prendas1.add(bufandaAzul);
@@ -198,4 +201,7 @@ public class EventoTest {
 		Assert.assertFalse(irAlAlamo.getAtuendosAceptados().contains(atuendo2));
 		Assert.assertTrue(irAlAlamo.getAtuendosAceptados().contains(atuendo));
 	}
+
+
+
 }
