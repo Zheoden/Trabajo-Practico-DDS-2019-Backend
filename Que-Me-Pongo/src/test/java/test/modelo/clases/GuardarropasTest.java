@@ -169,7 +169,7 @@ public class GuardarropasTest {
 	public void atuendosValidosParaAhoraVacio() {
 		prendas.add(prenda3); // remera corta
 		prendas.add(prenda4); // remera larga
-		prendas.add(prenda5);// bermudas
+		prendas.add(prenda5); // bermudas
 		prendas.add(prenda10);
 		prendas.add(prenda11);
 

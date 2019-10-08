@@ -1,11 +1,17 @@
 package test.modelo.persistencia;
-import java.util.List;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.ArrayList;
+import java.util.Optional;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+
+import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.SuscripcionGratuita;
@@ -16,9 +22,10 @@ import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
 import modelo.interfaces.Suscripcion;
 import repository.UsuarioRepository;
-import modelo.clases.Evento;
 
-public class PersistirUsuarios {
+public class RepositoryTest {
+
+	UsuarioRepository userRepo = new UsuarioRepository();
 	Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
@@ -35,19 +42,15 @@ public class PersistirUsuarios {
 	Suscripcion subs2 = new SuscripcionGratuita();
 	Usuario user1 = new Usuario(listaGuardarropas1, subs, "test@test.com", "12341234110", 0);
 	Usuario user2 = new Usuario(listaGuardarropas2, subs2, "test2@test.com", "1122112209", 0);
-	UsuarioRepository userRepo = new UsuarioRepository();
 	Calendar fecha1 = GregorianCalendar.getInstance();
 	Calendar fecha2 = GregorianCalendar.getInstance();
 	Evento irAlAlamo = new Evento("AlamosNigth", "Adrogue", fecha2);
 	Evento developer = new Evento("Desarrollar software", "Azul", fecha1);
 	Evento poolParty = new Evento("pool party", "Azul", fecha1);
 	Evento prueba = new Evento("prueba", "Azul", fecha1);
-	
-	
-	
-	
-	@Test
-	public void persistirUsuario() {
+
+	@Before
+	public void setUp() {
 		listaDePrendas1.add(prenda1);
 		listaDePrendas1.add(prenda2);
 		listaDePrendas1.add(prenda3);
@@ -66,28 +69,94 @@ public class PersistirUsuarios {
 		fecha2.set(2019, 06, 29);
 		fecha2.set(Calendar.HOUR_OF_DAY, 21);
 		fecha2.set(Calendar.MINUTE, 30);
-		
+
 		irAlAlamo.setUsuario(user1);
 		developer.setUsuario(user1);
 		poolParty.setUsuario(user1);
 		prueba.setUsuario(user2);
-		
+
 		user1.cargarEvento(irAlAlamo);
 		user1.cargarEvento(poolParty);
 		user1.cargarEvento(developer);
 		user2.cargarEvento(prueba);
-		
+
 		user1.setUsername("pepeCirco");
 		user2.setUsername("mamaKondo");
 		user1.setPassword("123");
 		user2.setPassword("456");
-
-		userRepo.entityManager().getTransaction().begin();
-		userRepo.entityManager().persist(user1);
-		userRepo.entityManager().persist(user2);
-		userRepo.entityManager().getTransaction().commit();
-		List<Usuario> usuarios = userRepo.all();
-		Assert.assertEquals(2, usuarios.size());
+		
+		userRepo.persist(user1);
+		userRepo.persist(user2);
 	}
 
+	@Test
+	@DisplayName("Verificar la cantidad de eventos de pepeCirco")
+	public void cantidadDeEventosPepeCirco() {
+		Optional<Usuario> user = userRepo.find(1);
+		Assert.assertEquals(user.get().getEventos().size(), 3);
+	}
+
+	@Test
+	@DisplayName("Verificar la cantidad de eventos de MamaKondo")
+	public void cantidadDeEventosMamaKondo() {
+		Optional<Usuario> user = userRepo.find(2);
+		Assert.assertEquals(user.get().getEventos().size(), 1);
+	}
+	
+	@Test
+	@DisplayName("Verificar la cantidad de guardarropas del usuario")
+	public void cantidadDeGuardarropas() {
+		Optional<Usuario> user = userRepo.find("mamaKondo", "456");
+		Assert.assertEquals(user.get().getGuardaRopas().size(), 1);
+	}
+	
+	@Test
+	@DisplayName("Verificar que el Usuario tiene el Guardarropa id asociado")
+	public void coincidenElId() {	
+		Optional<Usuario> user = userRepo.find(1);
+		Guardarropas guardarropa = user.get().getGuardaRopas().get(0);
+		Optional<Guardarropas> guardarropaId = userRepo.findGuardarropaById(1);
+		Guardarropas guardarropaEncontrado = guardarropaId.get();
+		Assert.assertTrue(guardarropa.getId() == (guardarropaEncontrado.getId()));
+	}
+	
+	@DisplayName("Verificar la cantidad de prendas de pepeCirco")
+	@Test
+	public void cantidadDePrendasPepeCirco() {
+		Optional<Usuario> user = userRepo.find(1);
+		Assert.assertEquals(user.get().getGuardaRopas().get(0).getPrendas().size(), 3);
+	}
+
+	@DisplayName("Verificar la cantidad de prendas de mamaKondo")
+	@Test
+	public void cantidadDePrendasMamaKondo() {
+		Optional<Usuario> user = userRepo.find(2);
+		Assert.assertEquals(user.get().getGuardaRopas().get(0).getPrendas().size(), 4);
+	}
+	
+	@DisplayName("Verifica que la cantidad de usuarios persistidos es correcta")
+	@Test
+	public void cantidadDeUsuariosPersistidosTest() {
+		Assert.assertEquals(userRepo.all().size(), 2);
+	}
+
+	@DisplayName("Obtiene al usuario de la bd por id")
+	@Test
+	public void obtenerUsuarioPorId() {
+		Optional<Usuario> user = userRepo.find(1);
+		Assert.assertEquals(user.get().getUsername(), "pepeCirco");
+	}
+
+	@DisplayName("Obtiene al usuario de la bd por username y password")
+	@Test
+	public void obtenerUsuarioPorNombreYPassword() {
+		Optional<Usuario> pepe = userRepo.find("pepeCirco", "123");
+		Assert.assertEquals(pepe.get().getUsername(), "pepeCirco");
+	}
+	
+	@After
+	public void cleanSetUp() {
+		userRepo.delete(user1);
+		userRepo.delete(user2);
+	}
 }
