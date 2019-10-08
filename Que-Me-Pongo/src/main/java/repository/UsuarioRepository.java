@@ -90,10 +90,16 @@ public class UsuarioRepository implements Repository<Usuario> {
 		Evento poolParty = new Evento("pool party", "Azul", fecha1);
 		Evento prueba = new Evento("prueba", "Azul", fecha1);
 		
+		irAlAlamo.setUsuario(user1);
+		developer.setUsuario(user1);
+		poolParty.setUsuario(user1);
+		prueba.setUsuario(user2);
+		
 		user1.cargarEvento(irAlAlamo);
 		user1.cargarEvento(poolParty);
 		user1.cargarEvento(developer);
 		user2.cargarEvento(prueba);
+		
 		
 		user1.setUsername("pepeCirco");
 		user2.setUsername("mamaKondo");
