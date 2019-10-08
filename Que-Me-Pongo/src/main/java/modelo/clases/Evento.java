@@ -6,41 +6,72 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import java.util.ArrayList;
 
+
 @Entity
+@Table(name = "evento")
+@Inheritance (strategy= InheritanceType.SINGLE_TABLE)
 public class Evento {
+	
 	@Id
-	@GeneratedValue
-	long id;
-	private String nombre;
-	private String ciudad;
-	private Calendar fecha;
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private Long id;
+	
+	String nombre;
+	String ciudad;
+	Calendar fecha;
+	
 	@Transient
 	ArrayList<Atuendo> atuendosAceptados = new ArrayList<Atuendo>();
 	@Transient
 	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
+	
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private Usuario usuario;
+	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
+	public Evento() {}
+	
 	public Evento(String nombreEvento, String ciudad, Calendar fecha) {
 		this.nombre = nombreEvento;
 		this.ciudad = ciudad;
-		this.fecha = fecha;
+		this.fecha = fecha;	
 	}
+
 
 	public Date diaAnterior() {
 		this.fecha.add(Calendar.DATE, -1);
 		return this.fecha.getTime();
 	}
     
-	public  Evento() {
-		
-	}
+
 	public void iniciar() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		System.out.println("Voy a " + this.getNombre() + " en " + this.getCiudad() + " en la fecha "
@@ -71,9 +102,11 @@ public class Evento {
 	}
 
 	public ArrayList<Atuendo> getAtuendosAceptados() {
+	
 		return this.atuendosAceptados;
 	}
-
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -114,4 +147,6 @@ public class Evento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
 }

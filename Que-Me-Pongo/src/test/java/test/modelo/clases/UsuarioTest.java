@@ -88,6 +88,7 @@ public class UsuarioTest {
 		prendas1.add(prenda3);
 		prendas1.add(prenda7);
 		prendas1.add(prenda8);
+		
 		prendas1.add(prenda10);
 		prendas1.add(prenda11);
 

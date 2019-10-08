@@ -20,8 +20,9 @@ import org.junit.jupiter.api.DisplayName;
 
 import modelo.interfaces.Suscripcion;
 
-public class EventoTest {
 
+public class EventoTest {
+	
 	Prenda camisaRojo = new Prenda(TipoPrenda.CAMISA, Color.ROJO);
 	Prenda bufandaAzul = new Prenda(TipoPrenda.BUFANDA, Color.AZUL);
 	Prenda pantalonVerde = new Prenda(TipoPrenda.PANTALON, Color.VERDE);
@@ -200,4 +201,7 @@ public class EventoTest {
 		Assert.assertFalse(irAlAlamo.getAtuendosAceptados().contains(atuendo2));
 		Assert.assertTrue(irAlAlamo.getAtuendosAceptados().contains(atuendo));
 	}
+
+
+
 }
