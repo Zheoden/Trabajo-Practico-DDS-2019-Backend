@@ -1,14 +1,11 @@
 package modelo.clases;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -20,12 +17,12 @@ import modelo.dtos.TipoPrenda;
 @Entity
 @Table(name = "prenda")
 public class Prenda {
-
 	@Id
 	@GeneratedValue
 	long id;
 	@Transient
 	String direccionImagen;
+	@Enumerated(EnumType.STRING)
 	TipoPrenda tipo;
 	@Enumerated(EnumType.STRING)
 	Material material;
@@ -43,8 +40,8 @@ public class Prenda {
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
-			System.out.println(
-					"Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
+			System.out
+					.println("Se intento asignar un color secundario igual al primario. No se realizo dicha asignacion");
 		}
 	}
 
@@ -101,7 +98,7 @@ public class Prenda {
 	public void setColorSecundario(Color colorSecundario) {
 		this.colorSecundario = colorSecundario;
 	}
-
+	
 	public Boolean getEnUso() {
 		return this.enUso;
 	}
@@ -125,7 +122,7 @@ public class Prenda {
 	public void setDireccionImagen(String direccionImagen) {
 		this.direccionImagen = direccionImagen;
 	}
-	
+
 	public List<Guardarropas> getGuardarropas(){
 		return guardarropas;
 	}

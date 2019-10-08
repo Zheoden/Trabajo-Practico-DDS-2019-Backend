@@ -38,17 +38,5 @@ public class UsuarioRepository implements Repository<Usuario> {
 			return Optional.empty();
 		}
 	}
-
-	
-	public Optional<Guardarropas> findWardrobe(long id){
-		Guardarropas unGuardarropa = (Guardarropas) entityManager()
-				.createQuery("SELECT u FROM Guardarropas u WHERE u.id = :id")
-				.setParameter("id", id)
-				.getSingleResult();
-		
-		return Optional.ofNullable(unGuardarropa);
-	}
-
-
 	
 }

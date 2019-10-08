@@ -14,14 +14,15 @@ public class PrendaTest {
 	
 	@DisplayName("Verificar la cantidad de prendas de pepeCirco")
 	@Test
-	public void cantidadDePrendas() {
+	public void cantidadDePrendasPepeCirco() {
 		Optional<Usuario> user = userRepo.find(1);
-		Assert.assertEquals(user.get().getGuardaRopas().size(), 1);
+		Assert.assertEquals(user.get().getGuardaRopas().get(0).getPrendas().size(), 3);
 	}
-/*
-	private Object findFirst(List<Guardarropas> guardaRopas) {
-		// TODO Auto-generated method stub
-		return null;
+
+	@DisplayName("Verificar la cantidad de prendas de mamaKondo")
+	@Test
+	public void cantidadDePrendasMamaKondo() {
+		Optional<Usuario> user = userRepo.find(2);
+		Assert.assertEquals(user.get().getGuardaRopas().get(0).getPrendas().size(), 4);
 	}
-*/
 }
