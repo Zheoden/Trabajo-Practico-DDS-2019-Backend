@@ -36,8 +36,10 @@ public class RepositoryTest {
 	ArrayList<Prenda> listaDePrendas2 = new ArrayList<Prenda>();
 	Guardarropas guardaRopas1 = new Guardarropas(listaDePrendas1);
 	Guardarropas guardaRopas2 = new Guardarropas(listaDePrendas2);
+	Guardarropas guardaRopas3 = new Guardarropas(listaDePrendas1);
 	ArrayList<Guardarropas> listaGuardarropas1 = new ArrayList<Guardarropas>();
 	ArrayList<Guardarropas> listaGuardarropas2 = new ArrayList<Guardarropas>();
+
 	Suscripcion subs = new SuscripcionPremium();
 	Suscripcion subs2 = new SuscripcionGratuita();
 	Usuario user1 = new Usuario(listaGuardarropas1, subs, "test@test.com", "12341234110", 0);
@@ -62,6 +64,7 @@ public class RepositoryTest {
 
 		listaGuardarropas1.add(guardaRopas1);
 		listaGuardarropas2.add(guardaRopas2);
+		listaGuardarropas1.add(guardaRopas3);
 
 		fecha1.set(2019, 10, 12);
 		fecha1.set(Calendar.HOUR_OF_DAY, 07);
@@ -84,7 +87,7 @@ public class RepositoryTest {
 		user2.setUsername("mamaKondo");
 		user1.setPassword("123");
 		user2.setPassword("456");
-		
+		user2.setGuardaRopas(listaGuardarropas1);
 		userRepo.persist(user1);
 		userRepo.persist(user2);
 	}
@@ -154,9 +157,9 @@ public class RepositoryTest {
 		Assert.assertEquals(pepe.get().getUsername(), "pepeCirco");
 	}
 	
-	@After
-	public void cleanSetUp() {
-		userRepo.delete(user1);
-		userRepo.delete(user2);
-	}
+//	@After
+//	public void cleanSetUp() {
+//		userRepo.delete(user1);
+//		userRepo.delete(user2);
+//	}
 }
