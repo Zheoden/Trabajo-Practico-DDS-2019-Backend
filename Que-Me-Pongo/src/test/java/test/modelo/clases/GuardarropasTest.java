@@ -1,21 +1,26 @@
 package test.modelo.clases;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.ArrayList;
-
-import modelo.clases.AdministrarProveedores;
-import modelo.clases.Atuendo;
-import modelo.clases.Guardarropas;
-import modelo.clases.Prenda;
-import modelo.dtos.Color;
-import modelo.dtos.Material;
-import modelo.dtos.TipoPrenda;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.mockito.Mockito;
+
+import modelo.clases.AdministrarProveedores;
+import modelo.clases.Atuendo;
+import modelo.clases.Evento;
+import modelo.clases.Guardarropas;
+import modelo.clases.Prenda;
+import modelo.dtos.Color;
+import modelo.dtos.Material;
+import modelo.dtos.TipoPrenda;
 
 @DisplayName("Tests para los Guardarropas")
 public class GuardarropasTest {
@@ -35,7 +40,9 @@ public class GuardarropasTest {
 	Prenda prenda10 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 
 	Prenda prenda11 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
-
+	Prenda prenda12 = new Prenda(TipoPrenda.ZAPATILLAS, Material.CUERO, Color.NEGRO, Color.ROJO);
+	Prenda prenda13 = new Prenda(TipoPrenda.ZAPATOS, Material.CUERO, Color.NEGRO, Color.MARRON);
+	
 	@Test
 	@DisplayName("Tests para el Constructor")
 	public void getPrenda() {
@@ -196,6 +203,62 @@ public class GuardarropasTest {
 	}
 	
 	@Test
+	@DisplayName("Tests para verificar que el Atuendo generado pertenece al Evento")
+	public void atuendosValidosParaEvento() {
+		prendas.add(prenda);
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		prendas.add(prenda3);
+		prendas.add(prenda4);
+		prendas.add(prenda5);
+		prendas.add(prenda6);
+		prendas.add(prenda7);
+		prendas.add(prenda8);
+		prendas.add(prenda9);
+		prendas.add(prenda10);
+		prendas.add(prenda11);
+
+		Calendar fecha = GregorianCalendar.getInstance();
+		fecha.set(2019, 26, 10);
+		fecha.set(Calendar.HOUR_OF_DAY, 22);
+		fecha.set(Calendar.MINUTE, 15);
+		Evento paloko = new Evento("Ir a Paloko", "Buenos Aires", fecha);
+		
+		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
+		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(23.0);
+		
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
+		
+		List<Atuendo> atuendosEvento = unGuardarropa.atuendosValidosParaEvento(paloko, 0);
+		
+		Assert.assertEquals(atuendosEvento.get(2).getEvento(), paloko);
+	}
+	
+	@Test
+	@DisplayName("Verificar que se generan combinaciones de Prendas")
+	public void setDePrendasCombinadas() {
+		
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		prendas.add(prenda3);
+		prendas.add(prenda5);
+		prendas.add(prenda6);
+		prendas.add(prenda8);
+		prendas.add(prenda9);
+		prendas.add(prenda10);
+		
+		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
+		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(19.0);
+		System.out.println(a.obtenerTemperaturaActual());
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
+		Set<Prenda> setPrendas = new HashSet<>(prendas);
+		Set<Set<Prenda>> combinacionesObtenidas = unGuardarropa.obtenerCombinacionesDePrenda(setPrendas,
+				a.obtenerTemperaturaActual(), 0);
+		
+		Assert.assertEquals(combinacionesObtenidas.size(), 5);	
+	}
+	
+	@Test
 	@DisplayName("Tests para verificar que se puedan generar atuendos validos en base al clima actual y la sensibilidad del usuario caluriento")
 	public void atuendosValidosParaAhoraLlenoConSensibilidadCaluriento() {
 		prendas.add(prenda);
@@ -280,5 +343,25 @@ public class GuardarropasTest {
 		boolean esValido = unGuardarropa
 				.prendasTienenNivelesDeCapaValidos(prendas.stream().collect(Collectors.toSet()));
 		Assert.assertTrue(esValido);
+	}
+	
+	@Test
+	@DisplayName("Verificar que la cantidad de combinaciones de Prenda no es vacio")
+	public void seTienenCombinacionesNoVacias() {
+		
+		prendas.add(prenda2);
+		prendas.add(prenda3);
+		prendas.add(prenda4);
+		prendas.add(prenda7);
+		prendas.add(prenda9);
+		prendas.add(prenda11);
+		prendas.add(prenda12);
+		
+		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
+		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(15.0);
+		
+		Set<Set<Prenda>> combinacionesCreadas = unGuardarropa.obtenerCombinacionesNoVacias(prendas.stream().collect(Collectors.toSet()), a.obtenerTemperaturaActual(), -3);
+		Assert.assertTrue(!combinacionesCreadas.isEmpty());
 	}
 }

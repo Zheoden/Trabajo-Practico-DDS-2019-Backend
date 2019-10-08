@@ -1,12 +1,11 @@
 package modelo.clases;
 
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -17,9 +16,7 @@ import modelo.dtos.TipoPrenda;
 
 @Entity
 @Table(name = "prenda")
-@Inheritance (strategy= InheritanceType.SINGLE_TABLE)
 public class Prenda {
-	
 	@Id
 	@GeneratedValue
 	long id;
@@ -34,9 +31,12 @@ public class Prenda {
 	@Enumerated(EnumType.STRING)
 	Color colorSecundario;
 	Boolean enUso;
-	
+	@ManyToMany(mappedBy="prendas")
+	List<Guardarropas> guardarropas = new ArrayList<>();
+
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
 		this(tipo, material, colorPrimario);
+		this.setEnUso(false);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
 		} else {
@@ -47,6 +47,7 @@ public class Prenda {
 
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario) {
 		this(tipo, colorPrimario);
+		this.setEnUso(false);
 		if (this.esMaterialValido(tipo, material)) {
 			this.setTela(material);
 		} else {
@@ -59,6 +60,11 @@ public class Prenda {
 		this.setTipo(tipo);
 		this.setColorPrimario(colorPrimario);
 		this.setEnUso(false);
+	}
+	
+	public Prenda()
+	{
+		
 	}
 
 	public boolean esMaterialValido(TipoPrenda tipo, Material material) {
@@ -115,6 +121,14 @@ public class Prenda {
 
 	public void setDireccionImagen(String direccionImagen) {
 		this.direccionImagen = direccionImagen;
+	}
+
+	public List<Guardarropas> getGuardarropas(){
+		return guardarropas;
+	}
+	
+	public void setGuardarropas(List<Guardarropas> guardarropas) {
+		this.guardarropas = guardarropas;
 	}
 	
 	public long getId() {
