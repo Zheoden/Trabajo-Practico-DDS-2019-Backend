@@ -38,7 +38,6 @@ public class Guardarropas {
 	@ManyToMany (mappedBy="guardarropas")
 	private List<Usuario> usuarios = new ArrayList<>();
 
-	public Guardarropas() {}
 	
 	public Guardarropas(ArrayList<Prenda> prendas, AdministrarProveedores administrarProv) {
 		this.setPrendas(prendas);

@@ -64,6 +64,11 @@ public class Prenda {
 		this.setColorPrimario(colorPrimario);
 		this.setEnUso(false);
 	}
+	
+	public Prenda()
+	{
+		
+	}
 
 	public boolean esMaterialValido(TipoPrenda tipo, Material material) {
 		return tipo.esMaterialValido(material);
