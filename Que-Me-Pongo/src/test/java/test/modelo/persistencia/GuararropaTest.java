@@ -26,9 +26,8 @@ public class GuararropaTest {
 	public void coincidenElId() {	
 		Optional<Usuario> user = userRepo.find(1);
 		Guardarropas guardarropa = user.get().getGuardaRopas().get(0);
-		Optional<Guardarropas> guardarropaId = userRepo.findWardrobe(1);
+		Optional<Guardarropas> guardarropaId = userRepo.findGuardarropaById(1);
 		Guardarropas guardarropaEncontrado = guardarropaId.get();
 		Assert.assertTrue(guardarropa.getId() == (guardarropaEncontrado.getId()));
 	}
-	
 }

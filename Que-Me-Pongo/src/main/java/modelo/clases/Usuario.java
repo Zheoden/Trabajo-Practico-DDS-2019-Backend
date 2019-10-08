@@ -22,41 +22,45 @@ import utils.EmailSender;
 
 @Entity
 @Table(name = "Usuario")
-@Inheritance (strategy= InheritanceType.SINGLE_TABLE)
+
 public class Usuario {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-    String username;
-    String password;
-    int rangoDeSensibilidad; //Numero negativo es friolento (transforma de 20 grados a 15 grados por ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados por ejemplo)
-	
-    @Transient
+
+	String username;
+	String password;
+	int rangoDeSensibilidad; // Numero negativo es friolento (transforma de 20 grados a 15 grados por
+								// ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados
+								// por ejemplo)
+
+	@Transient
 	Suscripcion suscripcion;
-    
+
 	String email;
-	
-	@ManyToMany (cascade = CascadeType.ALL)
-	@JoinTable(name = "GuardarropaPorUsuario",
-    joinColumns = @JoinColumn (name = "usuario_id"),
-    inverseJoinColumns = @JoinColumn(name = "guardarropa_id" ))
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "GuardarropaPorUsuario", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "guardarropa_id"))
 	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
-	
-	@OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Evento> eventos;
-	
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Evento> eventos;
+
 	String NumeroTelefono;
-	
-	public Usuario() {}
 
-	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email, String numeroTelefono, int rangoDeSensibilidad) {
+	public Usuario() {
+	}
 
-		if (guardarropas.stream().allMatch( guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
-			this.setGuardaRopas(guardarropas);			
+	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email,
+			String numeroTelefono, int rangoDeSensibilidad) {
+
+		if (guardarropas.stream()
+				.allMatch(guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
+			this.setGuardaRopas(guardarropas);
 		} else {
-			System.out.print("No se puede asignar esta lista de guardarropas porque no es compatible con la subscripcion seleccionada.");
+			System.out.print(
+					"No se puede asignar esta lista de guardarropas porque no es compatible con la subscripcion seleccionada.");
 		}
 
 		this.setSuscripcion(unaSuscripcion);
@@ -64,29 +68,31 @@ public class Usuario {
 		this.setEmail(email);
 		this.setNumeroTelefono(numeroTelefono);
 	}
-	
+
 	public ArrayList<Atuendo> todosLosAtuendosAceptados() {
-		List<ArrayList<Atuendo>> todosLosAtuendos = this.getEventos().stream().map(evento -> evento.getAtuendosAceptados()).collect(Collectors.toList());
+		List<ArrayList<Atuendo>> todosLosAtuendos = this.getEventos().stream()
+				.map(evento -> evento.getAtuendosAceptados()).collect(Collectors.toList());
 		ArrayList<Atuendo> aux = new ArrayList<Atuendo>();
-		todosLosAtuendos.forEach( listaAtuendos -> {
+		todosLosAtuendos.forEach(listaAtuendos -> {
 			listaAtuendos.forEach(atuendo -> aux.add(atuendo));
 		});
 		return aux;
 	}
-	
+
 	public void evaluarRangoSensibilidad(Evento evento, Atuendo atuendo) {
 		double temperatura = new AdministrarProveedores().obtenerTemperatura(evento.getFechaEvento());
 
 		if (temperatura > 11.0 && temperatura < 26.0) {
-			int puntosDeAbrigo = atuendo.getPrendas().stream().mapToInt(prenda -> prenda.getTipo().nivelDeAbrigo()).sum();
+			int puntosDeAbrigo = atuendo.getPrendas().stream().mapToInt(prenda -> prenda.getTipo().nivelDeAbrigo())
+					.sum();
 			Abrigo nivelDeAbrigo = Abrigo.obtenerNivelDeAbrigo(temperatura);
 			int indice = nivelDeAbrigo.getNivelesDeAbrigo().indexOf(puntosDeAbrigo);
 
-			if ( nivelDeAbrigo.getNivelesDeAbrigo().size() - (indice + 1) == 0 ) { // es friolento
+			if (nivelDeAbrigo.getNivelesDeAbrigo().size() - (indice + 1) == 0) { // es friolento
 				this.rangoDeSensibilidad--;
 			}
 
-			if ( nivelDeAbrigo.getNivelesDeAbrigo().size() - (indice + 1) == 2 ) { // es caluroso
+			if (nivelDeAbrigo.getNivelesDeAbrigo().size() - (indice + 1) == 2) { // es caluroso
 				this.rangoDeSensibilidad++;
 			}
 		}
@@ -94,13 +100,15 @@ public class Usuario {
 
 	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaAhora() {
 		List<Atuendo> atuendosValidos = new ArrayList<Atuendo>();
-		this.guardarropas.forEach(guardarropa -> atuendosValidos.addAll(guardarropa.atuendosValidosParaAhora(this.rangoDeSensibilidad)));
+		this.guardarropas.forEach(
+				guardarropa -> atuendosValidos.addAll(guardarropa.atuendosValidosParaAhora(this.rangoDeSensibilidad)));
 		return atuendosValidos;
 	}
 
 	public List<Atuendo> todosPosiblesAtuendosPorGuardarropaParaEvento(Evento evento) {
 		List<Atuendo> atuendosValidos = new ArrayList<Atuendo>();
-		this.guardarropas.forEach(guardarropa -> atuendosValidos.addAll(guardarropa.atuendosValidosParaEvento(evento, this.rangoDeSensibilidad)));
+		this.guardarropas.forEach(guardarropa -> atuendosValidos
+				.addAll(guardarropa.atuendosValidosParaEvento(evento, this.rangoDeSensibilidad)));
 		return atuendosValidos;
 	}
 
@@ -116,8 +124,7 @@ public class Usuario {
 	public Evento getEvento(Evento unEvento) {
 		return this.eventos.stream().filter(evento -> evento.getNombre() == unEvento.getNombre()).findFirst().get();
 	}
-	
-	
+
 	public long getId() {
 		return id;
 	}
@@ -147,7 +154,8 @@ public class Usuario {
 			eventos = new ArrayList<Evento>();
 		}
 		eventos.add(unEvento);
-		//Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en este caso
+		// Utils.recordatorio(1, unEvento, this); // Avisa del evento un minuto antes en
+		// este caso
 	}
 
 	public void irAEventos() {
@@ -162,16 +170,16 @@ public class Usuario {
 		}
 	}
 
-	public void aceptarAtuendo (Atuendo unAtuendo) {
+	public void aceptarAtuendo(Atuendo unAtuendo) {
 		unAtuendo.getEvento().aceptarAtuendo(unAtuendo);
 		this.evaluarRangoSensibilidad(unAtuendo.getEvento(), unAtuendo);
 	}
 
-	public void rechazarAtuendos (Atuendo unAtuendo) {
+	public void rechazarAtuendos(Atuendo unAtuendo) {
 		unAtuendo.getEvento().rechazarAtuendo(unAtuendo);
-	}	
+	}
 
-	public void deshacer (Evento evento) {
+	public void deshacer(Evento evento) {
 		evento.deshacer();
 	}
 
@@ -217,12 +225,12 @@ public class Usuario {
 
 	public void setNumeroTelefono(String numeroTelefono) {
 		NumeroTelefono = numeroTelefono;
-	}	
+	}
 
 	public List<Guardarropas> getGuardarropas() {
 		return guardarropas;
 	}
-	
+
 	public int getSensibilidadCuerpo() {
 		return rangoDeSensibilidad;
 	}
@@ -230,30 +238,30 @@ public class Usuario {
 	public void setSensibilidadCuerpo(int sensibilidad) {
 		this.rangoDeSensibilidad = sensibilidad;
 	}
-	
+
 	public Void notifyUser(Void t) {
-		
-       //La idea es obtener todos los eventos del usuario de la bd
-	   // por el momento se hardcodea para los test
-	   //List<Evento> = Evento.findAll();
-	   //El mail tmb lo harcodeo pero se obtendria todo por bd
-	   //Usuario user = findUserById(this.getId());
-		
-	EmailSender notification = new EmailSender();
-	   List<Evento> eventos = new ArrayList<Evento>();
-	   Calendar fecha1 = GregorianCalendar.getInstance();
-	   fecha1.set(2019, 10, 12);
-	   Evento alamo = new Evento("ir al alamo","palermo",fecha1);
-	   this.setEmail("sculian@gmail.com");
-	   eventos.add(alamo);
-	   eventos.forEach(evento -> {
+
+		// La idea es obtener todos los eventos del usuario de la bd
+		// por el momento se hardcodea para los test
+		// List<Evento> = Evento.findAll();
+		// El mail tmb lo harcodeo pero se obtendria todo por bd
+		// Usuario user = findUserById(this.getId());
+
+		EmailSender notification = new EmailSender();
+		List<Evento> eventos = new ArrayList<Evento>();
+		Calendar fecha1 = GregorianCalendar.getInstance();
+		fecha1.set(2019, 10, 12);
+		Evento alamo = new Evento("ir al alamo", "palermo", fecha1);
+		this.setEmail("sculian@gmail.com");
+		eventos.add(alamo);
+		eventos.forEach(evento -> {
 			try {
 				notification.emailSend("gmail", this, evento);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
-	   
-	   return t;
+
+		return t;
 	}
 }

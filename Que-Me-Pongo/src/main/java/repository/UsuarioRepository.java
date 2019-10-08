@@ -44,4 +44,12 @@ public class UsuarioRepository implements Repository<Usuario> {
 		}
 	}
 	
+	public Optional<Guardarropas> findGuardarropaById (long id){
+		Guardarropas unGuardarropa = (Guardarropas) entityManager()
+				.createQuery("SELECT u FROM Guardarropas u WHERE u.id = :id")
+				.setParameter("id", id)
+				.getSingleResult();
+
+		return Optional.ofNullable(unGuardarropa);
+	}
 }

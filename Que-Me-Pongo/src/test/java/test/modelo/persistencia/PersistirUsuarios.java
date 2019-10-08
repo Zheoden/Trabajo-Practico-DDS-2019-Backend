@@ -55,6 +55,7 @@ public class PersistirUsuarios {
 		listaDePrendas2.add(prenda4);
 		listaDePrendas2.add(prenda5);
 		listaDePrendas2.add(prenda6);
+		listaDePrendas2.add(prenda1);
 
 		listaGuardarropas1.add(guardaRopas1);
 		listaGuardarropas2.add(guardaRopas2);
