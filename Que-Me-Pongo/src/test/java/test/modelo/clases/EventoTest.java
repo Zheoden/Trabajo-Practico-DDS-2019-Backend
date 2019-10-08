@@ -34,6 +34,7 @@ public class EventoTest {
 	Calendar fecha2 = GregorianCalendar.getInstance();
 
 	@Test
+	@DisplayName("Avisa al Usuario de cada Evento el cual asiste")
 	public void usuarioAsisteASusEventos() throws Exception {
     
 		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", 0);
@@ -60,6 +61,7 @@ public class EventoTest {
 	}
 
 	@Test
+	@DisplayName("Verificar que el usuario no esta invitado al Evento")
 	public void noEstasInvitadoAlEvento() throws Exception {
 		prendas1.add(camisaRojo);
 		prendas1.add(bufandaAzul);

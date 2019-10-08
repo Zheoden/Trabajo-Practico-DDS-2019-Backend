@@ -70,6 +70,7 @@ public class Evento {
 		this.fecha.add(Calendar.DATE, -1);
 		return this.fecha.getTime();
 	}
+    
 
 	public void iniciar() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
