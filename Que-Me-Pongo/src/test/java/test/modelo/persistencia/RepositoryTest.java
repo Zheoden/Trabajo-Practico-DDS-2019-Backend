@@ -21,29 +21,49 @@ import modelo.dtos.Color;
 import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
 import modelo.interfaces.Suscripcion;
+import repository.AtuendoRepository;
+import repository.EventoRepository;
+import repository.GuardarropaRepository;
+import repository.PrendaRepository;
 import repository.UsuarioRepository;
 
 public class RepositoryTest {
-
+    //Repositorios
 	UsuarioRepository userRepo = new UsuarioRepository();
+	PrendaRepository prendaRepo = new PrendaRepository();
+	AtuendoRepository atuendoRepo = new AtuendoRepository();
+	GuardarropaRepository guardarropasRepo = new GuardarropaRepository();
+	EventoRepository eventoRepo = new EventoRepository();
+	
+	//Creacion de prendas
 	Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda4 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda5 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
 	Prenda prenda6 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	
+	//Lista de prendas
 	ArrayList<Prenda> listaDePrendas1 = new ArrayList<Prenda>();
 	ArrayList<Prenda> listaDePrendas2 = new ArrayList<Prenda>();
+	
+	//Creacion de guardarropas
 	Guardarropas guardaRopas1 = new Guardarropas(listaDePrendas1);
 	Guardarropas guardaRopas2 = new Guardarropas(listaDePrendas2);
-	Guardarropas guardaRopas3 = new Guardarropas(listaDePrendas1);
+	
+	//Lista de guardarropas
 	ArrayList<Guardarropas> listaGuardarropas1 = new ArrayList<Guardarropas>();
 	ArrayList<Guardarropas> listaGuardarropas2 = new ArrayList<Guardarropas>();
 
+	//Creacion de suscripciones
 	Suscripcion subs = new SuscripcionPremium();
 	Suscripcion subs2 = new SuscripcionGratuita();
+	
+	//Creacion de usuarios
 	Usuario user1 = new Usuario(listaGuardarropas1, subs, "test@test.com", "12341234110", 0);
 	Usuario user2 = new Usuario(listaGuardarropas2, subs2, "test2@test.com", "1122112209", 0);
+	
+	//Creacion de eventos
 	Calendar fecha1 = GregorianCalendar.getInstance();
 	Calendar fecha2 = GregorianCalendar.getInstance();
 	Evento irAlAlamo = new Evento("AlamosNigth", "Adrogue", fecha2);
@@ -64,7 +84,7 @@ public class RepositoryTest {
 
 		listaGuardarropas1.add(guardaRopas1);
 		listaGuardarropas2.add(guardaRopas2);
-		listaGuardarropas1.add(guardaRopas3);
+		
 
 		fecha1.set(2019, 10, 12);
 		fecha1.set(Calendar.HOUR_OF_DAY, 07);
@@ -92,6 +112,7 @@ public class RepositoryTest {
 		//Sin esto como esta estructurado los tests.
 		//Al ejecutar los que hay, se persisten los objetos
 		//como x = objeto * unidadtests
+		
 		List<Usuario> usuarios = userRepo.all();
 		if (usuarios.isEmpty()) {
 		userRepo.persist(user1);
@@ -100,73 +121,13 @@ public class RepositoryTest {
 	}
 
 	@Test
-	@DisplayName("Verificar la cantidad de eventos de pepeCirco")
-	public void cantidadDeEventosPepeCirco() {
-		Optional<Usuario> user = userRepo.find(1);
-		Assert.assertEquals(user.get().getEventos().size(), 3);
-	}
-
-	@Test
-	@DisplayName("Verificar la cantidad de eventos de MamaKondo")
-	public void cantidadDeEventosMamaKondo() {
-		Optional<Usuario> user = userRepo.find(2);
-		Assert.assertEquals(user.get().getEventos().size(), 1);
-	}
-	
-	@Test
-	@DisplayName("Verificar la cantidad de guardarropas del usuario")
-	public void cantidadDeGuardarropas() {
-		Optional<Usuario> user = userRepo.find("mamaKondo", "456");
-		Assert.assertEquals(user.get().getGuardaRopas().size(), 1);
-	}
-	
-	@Test
-	@DisplayName("Verificar que el Usuario tiene el Guardarropa id asociado")
-	public void coincidenElId() {	
-		Optional<Usuario> user = userRepo.find(1);
-		Guardarropas guardarropa = user.get().getGuardaRopas().get(0);
-		Optional<Guardarropas> guardarropaId = userRepo.findGuardarropaById(1);
-		Guardarropas guardarropaEncontrado = guardarropaId.get();
-		Assert.assertTrue(guardarropa.getId() == (guardarropaEncontrado.getId()));
-	}
-	
-	@DisplayName("Verificar la cantidad de prendas de pepeCirco")
-	@Test
-	public void cantidadDePrendasPepeCirco() {
-		Optional<Usuario> user = userRepo.find(1);
-		Assert.assertEquals(user.get().getGuardaRopas().get(0).getPrendas().size(), 3);
-	}
-
-	@DisplayName("Verificar la cantidad de prendas de mamaKondo")
-	@Test
-	public void cantidadDePrendasMamaKondo() {
-		Optional<Usuario> user = userRepo.find(2);
-		Assert.assertEquals(user.get().getGuardaRopas().get(0).getPrendas().size(), 4);
-	}
-	
-	@DisplayName("Verifica que la cantidad de usuarios persistidos es correcta")
-	@Test
-	public void cantidadDeUsuariosPersistidosTest() {
-		Assert.assertEquals(userRepo.all().size(), 2);
-	}
-
-	@DisplayName("Obtiene al usuario de la bd por id")
-	@Test
-	public void obtenerUsuarioPorId() {
-		Optional<Usuario> user = userRepo.find(1);
+	@DisplayName("Usuario crea guardarropas y los persiste")
+	public void guardarropasPersistidosPorElUsuario() {
+		Optional<Usuario> user = userRepo.find("pepeCirco");
+		List<Guardarropas> guardarropas1 = guardarropasRepo.findByUser(user.get().getUsername());
 		Assert.assertEquals(user.get().getUsername(), "pepeCirco");
+		Assert.assertEquals(guardarropas1.size(), 1);
 	}
 
-	@DisplayName("Obtiene al usuario de la bd por username y password")
-	@Test
-	public void obtenerUsuarioPorNombreYPassword() {
-		Optional<Usuario> pepe = userRepo.find("pepeCirco", "123");
-		Assert.assertEquals(pepe.get().getUsername(), "pepeCirco");
-	}
-	
-//	@After
-//	public void cleanSetUp() {
-//		userRepo.delete(user1);
-//		userRepo.delete(user2);
-//	}
+
 }

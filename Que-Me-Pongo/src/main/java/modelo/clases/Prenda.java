@@ -40,7 +40,7 @@ public class Prenda {
 	@ManyToMany(mappedBy="prendas")
 	List<Guardarropas> guardarropas = new ArrayList<>();
 	@ManyToMany
-	@JoinTable(name = "AtuendoXPrenda", joinColumns = @JoinColumn(name = "prenda_id"), inverseJoinColumns = @JoinColumn(name = "atuendo_id"))
+	@JoinTable(name = "AtuendoPorPrenda", joinColumns = @JoinColumn(name = "prenda_id"), inverseJoinColumns = @JoinColumn(name = "atuendo_id"))
 	List<Atuendo> atuendos = new ArrayList<>();
 	
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
