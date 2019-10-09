@@ -3,9 +3,9 @@ package test.modelo.persistencia;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Optional;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -88,8 +88,15 @@ public class RepositoryTest {
 		user1.setPassword("123");
 		user2.setPassword("456");
 		user2.setGuardaRopas(listaGuardarropas1);
+		
+		//Sin esto como esta estructurado los tests.
+		//Al ejecutar los que hay, se persisten los objetos
+		//como x = objeto * unidadtests
+		List<Usuario> usuarios = userRepo.all();
+		if (usuarios.isEmpty()) {
 		userRepo.persist(user1);
 		userRepo.persist(user2);
+		}
 	}
 
 	@Test

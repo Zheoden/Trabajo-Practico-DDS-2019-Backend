@@ -69,8 +69,8 @@ public class Usuario {
 		this.setNumeroTelefono(numeroTelefono);
 	}
 
-	public ArrayList<Atuendo> todosLosAtuendosAceptados() {
-		List<ArrayList<Atuendo>> todosLosAtuendos = this.getEventos().stream()
+	public List<Atuendo> todosLosAtuendosAceptados() {
+		List<List<Atuendo>> todosLosAtuendos = this.getEventos().stream()
 				.map(evento -> evento.getAtuendosAceptados()).collect(Collectors.toList());
 		ArrayList<Atuendo> aux = new ArrayList<Atuendo>();
 		todosLosAtuendos.forEach(listaAtuendos -> {

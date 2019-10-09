@@ -4,8 +4,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,10 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import java.util.ArrayList;
 
 @Entity
 @Table(name = "evento")
@@ -30,10 +30,10 @@ public class Evento {
 	String ciudad;
 	Calendar fecha;
 
-	@Transient
-	ArrayList<Atuendo> atuendosAceptados = new ArrayList<Atuendo>();
-	@Transient
-	ArrayList<Atuendo> atuendosMovimientos = new ArrayList<Atuendo>();
+	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+	List<Atuendo> atuendosAceptados = new ArrayList<>();
+	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+	List<Atuendo> atuendosMovimientos = new ArrayList<>();
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
@@ -90,7 +90,7 @@ public class Evento {
 		}
 	}
 
-	public ArrayList<Atuendo> getAtuendosAceptados() {
+	public List<Atuendo> getAtuendosAceptados() {
 
 		return this.atuendosAceptados;
 	}
@@ -136,4 +136,15 @@ public class Evento {
 		this.nombre = nombre;
 	}
 
+	public List<Atuendo> getAtuendosMovimientos() {
+		return atuendosMovimientos;
+	}
+
+	public void setAtuendosMovimientos(List<Atuendo> atuendosMovimientos) {
+		this.atuendosMovimientos = atuendosMovimientos;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }
