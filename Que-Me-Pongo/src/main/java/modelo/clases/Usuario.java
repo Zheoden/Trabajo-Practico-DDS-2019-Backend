@@ -57,7 +57,7 @@ public class Usuario {
 
 		if (guardarropas.stream()
 				.allMatch(guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
-			this.setGuardaRopas(guardarropas);
+			this.setGuardarropas(guardarropas);
 		} else {
 			System.out.print(
 					"No se puede asignar esta lista de guardarropas porque no es compatible con la subscripcion seleccionada.");
@@ -183,13 +183,10 @@ public class Usuario {
 		evento.deshacer();
 	}
 
-	public List<Guardarropas> getGuardaRopas() {
-		return this.guardarropas;
-	}
-
-	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
-		this.guardarropas = guardaRopas;
-	}
+   public void removeGuardarropas(List<Guardarropas> guardarropas)
+   {
+	this.guardarropas.removeAll(guardarropas);
+   }
 
 	public Suscripcion getSuscripcion() {
 		return this.suscripcion;

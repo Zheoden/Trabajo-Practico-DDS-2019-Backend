@@ -26,7 +26,7 @@ public class AtuendoRepository implements Repository<Atuendo> {
 
 	@SuppressWarnings("unchecked")
 	public List<Atuendo> findSugerenciasAceptadas() {
-		String query = "SELECT a FROM Atuendo a JOIN evento e on (e.evento_id = a.evento_id) WHERE a.aceptado = true";
+		String query = "SELECT a FROM Atuendo a JOIN Evento e on (e.evento_id = a.evento_id) WHERE a.aceptado = true";
 		List<Atuendo> atuendos = entityManager().createQuery(query).getResultList();
 		return atuendos;
 	}

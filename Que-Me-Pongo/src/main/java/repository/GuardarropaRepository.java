@@ -15,8 +15,8 @@ public class GuardarropaRepository implements Repository<Guardarropas> {
 	
 	@SuppressWarnings("unchecked")
 	public List<Guardarropas> findByUser(String username){
-		String query = "SELECT g FROM Guardarropas g JOIN GuardarropaPorUsuario gpu ON (gpu.guardarropas_id = g.id) JOIN Usuario u ON (gpu.usuario_id = u.id) WHERE u.username = :username";
-	    List<Guardarropas> guardarropas = entityManager().createQuery(query).getResultList();
+		String query = "FROM Usuario u JOIN u.guardarropas  where u.username= :username ";
+	    List<Guardarropas> guardarropas = entityManager().createQuery(query).setParameter("username",username).getResultList();
 	    return guardarropas;
 	}
 

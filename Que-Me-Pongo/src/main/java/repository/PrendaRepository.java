@@ -23,7 +23,7 @@ public class PrendaRepository implements Repository<Prenda> {
 
 	@SuppressWarnings("unchecked")
 	public List<Prenda> findAllByGuardarropaId(long guardarropaId) {
-		String query = "SELECT p FROM Prenda p JOIN guardarropaporprenda gxp on (gxp.prenda_id = p.id) JOIN guardarropa r on (gxp.guardarropa_id = :id)";
+		String query = "FROM Guardarropas g JOIN g.prendas p WHERE  g.id = :id";
 		List<Prenda> prendas = entityManager().createQuery(query).setParameter("id", guardarropaId).getResultList();
 		return prendas;
 	}

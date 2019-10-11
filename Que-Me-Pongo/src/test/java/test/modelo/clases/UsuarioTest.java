@@ -68,7 +68,7 @@ public class UsuarioTest {
 		Usuario pepe = new Usuario(guardaRopas, subs, "test@test.com", "12341234", 0);
     
 		Assert.assertEquals(pepe.getClass(), Usuario.class);
-		Assert.assertEquals(pepe.getGuardaRopas(), guardaRopas);
+		Assert.assertEquals(pepe.getGuardarropas(), guardaRopas);
 		Assert.assertEquals(pepe.getSuscripcion(), subs);
 	}
 
