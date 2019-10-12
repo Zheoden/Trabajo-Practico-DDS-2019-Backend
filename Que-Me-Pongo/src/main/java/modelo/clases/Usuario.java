@@ -109,6 +109,7 @@ public class Usuario {
 		List<Atuendo> atuendosValidos = new ArrayList<Atuendo>();
 		this.guardarropas.forEach(guardarropa -> atuendosValidos
 				.addAll(guardarropa.atuendosValidosParaEvento(evento, this.rangoDeSensibilidad)));
+		atuendosValidos.stream().forEach(atuendo -> atuendo.getPrendas().stream().forEach(prenda -> prenda.agregarseAlAtuendo(atuendo)));
 		return atuendosValidos;
 	}
 

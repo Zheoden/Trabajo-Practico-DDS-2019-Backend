@@ -104,6 +104,10 @@ public class Atuendo {
 		this.prendas = prendas;
 	}
 	
+	public void setPrendas(List<Prenda> prendas) {
+		this.prendas = prendas;
+	}
+
 	public Long getId() {
 		return id;
 	}

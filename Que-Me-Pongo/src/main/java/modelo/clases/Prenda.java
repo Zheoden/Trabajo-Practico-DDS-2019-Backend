@@ -155,4 +155,8 @@ public class Prenda {
 	public void setAtuendos(List<Atuendo> atuendos) {
 		this.atuendos = atuendos;
 	}
+	
+	public void agregarseAlAtuendo(Atuendo atuendo) {
+		this.getAtuendos().add(atuendo);
+	}
 }
