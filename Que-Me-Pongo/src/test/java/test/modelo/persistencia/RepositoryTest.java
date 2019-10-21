@@ -154,7 +154,7 @@ public class RepositoryTest {
 		Assert.assertEquals(pepe.get().getUsername(), "pepeCirco");
 	}
 	
-	@DisplayName("Verificar la carga de eventos")
+	@DisplayName("Verifica la carga de eventos")
 	@Test
 	public void verificarCargaDeEventos() {
 		Optional<Usuario> user = userRepo.find(1);
