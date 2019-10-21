@@ -9,16 +9,20 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.persistence.*;
-import modelo.interfaces.Suscripcion;
 
-import utils.Utils;
+import com.google.gson.annotations.Expose;
+
+import modelo.interfaces.Suscripcion;
 import utils.EmailSender;
+import utils.Utils;
 
 @Entity
 @Table(name = "Usuario")
@@ -27,10 +31,14 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Expose
 	private Long id;
 
+	@Expose
 	String username;
+	@Expose
 	String password;
+	@Expose
 	int rangoDeSensibilidad; // Numero negativo es friolento (transforma de 20 grados a 15 grados por
 								// ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados
 								// por ejemplo)
@@ -38,6 +46,7 @@ public class Usuario {
 	@Transient
 	Suscripcion suscripcion;
 
+	@Expose // La anotacion de Expose es para no exponer los otros Objetos, no se si hay otra forma
 	String email;
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -47,6 +56,7 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Evento> eventos;
 
+	@Expose
 	String NumeroTelefono;
 
 	public Usuario() {
@@ -187,6 +197,10 @@ public class Usuario {
    public void removeGuardarropas(List<Guardarropas> guardarropas)
    {
 	this.guardarropas.removeAll(guardarropas);
+   }
+   
+   public void agregarGuardarropa(Guardarropas guardarropa) {
+	   this.guardarropas.add(guardarropa);
    }
 
 	public Suscripcion getSuscripcion() {

@@ -17,11 +17,16 @@ public class UsuarioRepository implements Repository<Usuario> {
 		return entityManager().createQuery("FROM Usuario").getResultList();
 	}
 
-	public Optional<Usuario> find(long id) {
-		Usuario usuario = (Usuario) entityManager().createQuery("SELECT u FROM Usuario u WHERE u.id = :id")
-				.setParameter("id", id).getSingleResult();
-
-		return Optional.ofNullable(usuario);
+	public Optional<Usuario> findById(long id){
+		Query query = entityManager()
+					  .createQuery("SELECT u FROM Usuario u WHERE u.id = :id")
+					  .setParameter("id", id);
+		
+		try {
+			return Optional.of((Usuario) query.getSingleResult());
+		} catch (NoResultException e) {
+			return Optional.empty();
+		}
 	}
 
 	public Optional<Usuario> find(String username) {
