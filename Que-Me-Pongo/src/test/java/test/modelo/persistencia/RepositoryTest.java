@@ -154,6 +154,20 @@ public class RepositoryTest {
 		Assert.assertEquals(pepe.get().getUsername(), "pepeCirco");
 	}
 	
+	@DisplayName("Verificar la carga de eventos")
+	@Test
+	public void verificarCargaDeEventos() {
+		Optional<Usuario> user = userRepo.find(1);
+		Assert.assertEquals(user.get().getEventos().size(), 3);
+	}
+/*	
+	@DisplayName("Eliminar eventos del calendario")
+	@Test
+	public void eliminarEventos() {
+		Optional<Usuario> user = userRepo.find(1);
+		Assert.assertEquals(user.get().getEventos().remove(1).size(), 2);
+	}
+*/
 	@After
 	public void cleanSetUp() {
 		userRepo.delete(user1);
