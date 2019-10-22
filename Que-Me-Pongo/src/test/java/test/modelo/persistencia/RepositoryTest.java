@@ -135,6 +135,22 @@ public class RepositoryTest {
 		List<Guardarropas> guardarropas2 = guardarropasRepo.findByUser(user.get().getUsername());
 		Assert.assertEquals(guardarropas2.size(), 2);
 	}
+	
+	@DisplayName("Verifica la carga de eventos")
+	@Test
+	public void verificarCargaDeEventos() {
+		Optional<Usuario> user = userRepo.find(1);
+		Assert.assertEquals(user.get().getEventos().size(), 3);
+	}
+
+
+	@DisplayName("Eliminar eventos del calendario")
+	@Test
+	public void eliminarEventos() {
+		Optional<Usuario> user = userRepo.find(1);
+		List<Evento> listaDeEventos = (List<Evento>) user.get().getEventos().remove(1);
+		Assert.assertEquals(listaDeEventos.size(), 2);
+	}
 
 	
 	@AfterClass
