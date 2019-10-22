@@ -20,6 +20,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import modelo.dtos.Categoria;
 
 @Entity
@@ -34,8 +36,10 @@ public class Guardarropas {
     inverseJoinColumns = @JoinColumn(name = "prenda_id" ))
 	private List<Prenda> prendas = new ArrayList<>();
 	@Transient
+	@JsonIgnore
 	public AdministrarProveedores administrarProveedores = new AdministrarProveedores();
 	@ManyToMany (mappedBy="guardarropas")
+	@JsonIgnore
 	private List<Usuario> usuarios = new ArrayList<>();
 
 	
@@ -179,5 +183,4 @@ public class Guardarropas {
 	public void setUsuarios(List<Usuario> usuarios){
 		this.usuarios = usuarios;
 	}
-
 }

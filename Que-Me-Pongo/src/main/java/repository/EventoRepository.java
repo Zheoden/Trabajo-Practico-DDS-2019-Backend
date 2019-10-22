@@ -7,9 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import modelo.clases.Evento;
-import modelo.clases.Usuario;
 import modelo.interfaces.Repository;
-
 
 public class EventoRepository implements Repository<Evento> {
 

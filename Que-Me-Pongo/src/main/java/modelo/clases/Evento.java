@@ -18,16 +18,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "evento")
 public class Evento {
 
 	@Id
 	@GeneratedValue
+	
 	private Long id;
-
+	
 	String nombre;
+	
 	String ciudad;
+	
 	Calendar fecha;
 
 	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
@@ -37,6 +42,7 @@ public class Evento {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	@JsonIgnore
 	private Usuario usuario;
 
 	public Usuario getUsuario() {

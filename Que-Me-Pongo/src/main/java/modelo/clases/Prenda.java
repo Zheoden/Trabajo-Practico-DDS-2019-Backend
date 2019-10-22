@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import modelo.dtos.Categoria;
 import modelo.dtos.Color;
 import modelo.dtos.Material;
@@ -38,6 +40,7 @@ public class Prenda {
 	Color colorSecundario;
 	Boolean enUso;
 	@ManyToMany(mappedBy="prendas")
+	@JsonIgnore
 	List<Guardarropas> guardarropas = new ArrayList<>();
 	@ManyToMany
 	@JoinTable(name = "AtuendoPorPrenda", joinColumns = @JoinColumn(name = "prenda_id"), inverseJoinColumns = @JoinColumn(name = "atuendo_id"))

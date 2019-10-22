@@ -2,7 +2,6 @@ package test.modelo.utils;
 
 import java.util.ArrayList;
 
-
 import java.util.GregorianCalendar;
 import java.util.Properties;
 import org.junit.Test;

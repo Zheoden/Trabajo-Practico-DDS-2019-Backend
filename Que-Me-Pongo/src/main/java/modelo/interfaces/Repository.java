@@ -6,15 +6,6 @@ import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.mail.Session;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
-
-
 public interface Repository<T> extends WithGlobalEntityManager, TransactionalOps {
 	default void persist(T entity) {
 		withTransaction(() -> entityManager().persist(entity));

@@ -18,8 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.google.gson.annotations.Expose;
-
 import modelo.interfaces.Suscripcion;
 import utils.EmailSender;
 import utils.Utils;
@@ -31,22 +29,18 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Expose
 	private Long id;
 
-	@Expose
 	String username;
-	@Expose
+
 	String password;
-	@Expose
+
 	int rangoDeSensibilidad; // Numero negativo es friolento (transforma de 20 grados a 15 grados por
 								// ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados
 								// por ejemplo)
-
 	@Transient
 	Suscripcion suscripcion;
 
-	@Expose // La anotacion de Expose es para no exponer los otros Objetos, no se si hay otra forma
 	String email;
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -55,8 +49,7 @@ public class Usuario {
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Evento> eventos;
-
-	@Expose
+	
 	String NumeroTelefono;
 
 	public Usuario() {

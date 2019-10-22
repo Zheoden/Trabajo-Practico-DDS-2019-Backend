@@ -12,9 +12,6 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.google.gson.Gson;
-
-import spark.ResponseTransformer;
 
 public class JsonParser {
 	/**
@@ -29,7 +26,7 @@ public class JsonParser {
 			.setSerializationInclusion(JsonInclude.Include.NON_ABSENT)
 			.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
 
-	public <T> T read(String text, TypeReference<T> type) {
+	public static <T> T read(String text, TypeReference<T> type) {
 		try {
 			return objectMapper.readValue(text, type);
 		} catch (Exception e) {
@@ -47,6 +44,10 @@ public class JsonParser {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	public static ObjectMapper getObjectMapper() {
+		return objectMapper;
 	}
 
 	public <T> T readFromResourceFile(String path, TypeReference<T> type) {
