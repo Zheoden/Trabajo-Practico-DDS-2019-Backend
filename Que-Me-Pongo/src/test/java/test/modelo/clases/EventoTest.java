@@ -88,7 +88,7 @@ public class EventoTest {
 
 		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", 0);
     
-		usuario1.setGuardaRopas(guardaRopas);
+		usuario1.setGuardarropas(guardaRopas);
 		fecha1.set(2019, 8, 2);
 		fecha1.set(Calendar.HOUR_OF_DAY, 14);
 		fecha1.set(Calendar.MINUTE, 46);

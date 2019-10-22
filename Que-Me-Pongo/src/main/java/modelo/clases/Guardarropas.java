@@ -29,7 +29,7 @@ public class Guardarropas {
 	@GeneratedValue
 	long id;
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "GuardarropaXPrenda",
+	@JoinTable(name = "GuardarropaPorPrenda",
     joinColumns = @JoinColumn (name = "guardarropa_id"),
     inverseJoinColumns = @JoinColumn(name = "prenda_id" ))
 	private List<Prenda> prendas = new ArrayList<>();

@@ -9,6 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -37,7 +39,10 @@ public class Prenda {
 	Boolean enUso;
 	@ManyToMany(mappedBy="prendas")
 	List<Guardarropas> guardarropas = new ArrayList<>();
-
+	@ManyToMany
+	@JoinTable(name = "AtuendoPorPrenda", joinColumns = @JoinColumn(name = "prenda_id"), inverseJoinColumns = @JoinColumn(name = "atuendo_id"))
+	List<Atuendo> atuendos = new ArrayList<>();
+	
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
 		this(tipo, material, colorPrimario);
 		this.setEnUso(false);
@@ -141,5 +146,17 @@ public class Prenda {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public List<Atuendo> getAtuendos() {
+		return atuendos;
+	}
+
+	public void setAtuendos(List<Atuendo> atuendos) {
+		this.atuendos = atuendos;
+	}
+	
+	public void agregarseAlAtuendo(Atuendo atuendo) {
+		this.getAtuendos().add(atuendo);
 	}
 }

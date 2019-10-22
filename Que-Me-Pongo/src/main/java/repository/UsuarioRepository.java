@@ -24,10 +24,10 @@ public class UsuarioRepository implements Repository<Usuario> {
 		return Optional.ofNullable(usuario);
 	}
 
-	public Optional<Usuario> find(String username, String password) {
+	public Optional<Usuario> find(String username) {
 		Query query = entityManager()
-				.createQuery("SELECT u FROM Usuario u WHERE u.username = :username AND u.password = :password")
-				.setParameter("username", username).setParameter("password", Utils.generarHash256(password))
+				.createQuery("SELECT u FROM Usuario u WHERE u.username = :username")
+				.setParameter("username", username)
 				.setMaxResults(1);
 
 		try {
@@ -37,12 +37,5 @@ public class UsuarioRepository implements Repository<Usuario> {
 		}
 	}
 	
-	public Optional<Guardarropas> findGuardarropaById (long id){
-		Guardarropas unGuardarropa = (Guardarropas) entityManager()
-				.createQuery("SELECT u FROM Guardarropas u WHERE u.id = :id")
-				.setParameter("id", id)
-				.getSingleResult();
 
-		return Optional.ofNullable(unGuardarropa);
-	}
 }

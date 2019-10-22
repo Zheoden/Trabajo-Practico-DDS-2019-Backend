@@ -57,7 +57,7 @@ public class Usuario {
 
 		if (guardarropas.stream()
 				.allMatch(guardarropa -> unaSuscripcion.cantidadPrendasPermitidas(guardarropa.tamanioGuardarropas()))) {
-			this.setGuardaRopas(guardarropas);
+			this.setGuardarropas(guardarropas);
 		} else {
 			System.out.print(
 					"No se puede asignar esta lista de guardarropas porque no es compatible con la subscripcion seleccionada.");
@@ -69,8 +69,8 @@ public class Usuario {
 		this.setNumeroTelefono(numeroTelefono);
 	}
 
-	public ArrayList<Atuendo> todosLosAtuendosAceptados() {
-		List<ArrayList<Atuendo>> todosLosAtuendos = this.getEventos().stream()
+	public List<Atuendo> todosLosAtuendosAceptados() {
+		List<List<Atuendo>> todosLosAtuendos = this.getEventos().stream()
 				.map(evento -> evento.getAtuendosAceptados()).collect(Collectors.toList());
 		ArrayList<Atuendo> aux = new ArrayList<Atuendo>();
 		todosLosAtuendos.forEach(listaAtuendos -> {
@@ -109,6 +109,7 @@ public class Usuario {
 		List<Atuendo> atuendosValidos = new ArrayList<Atuendo>();
 		this.guardarropas.forEach(guardarropa -> atuendosValidos
 				.addAll(guardarropa.atuendosValidosParaEvento(evento, this.rangoDeSensibilidad)));
+		atuendosValidos.stream().forEach(atuendo -> atuendo.getPrendas().stream().forEach(prenda -> prenda.agregarseAlAtuendo(atuendo)));
 		return atuendosValidos;
 	}
 
@@ -183,13 +184,10 @@ public class Usuario {
 		evento.deshacer();
 	}
 
-	public List<Guardarropas> getGuardaRopas() {
-		return this.guardarropas;
-	}
-
-	public void setGuardaRopas(ArrayList<Guardarropas> guardaRopas) {
-		this.guardarropas = guardaRopas;
-	}
+   public void removeGuardarropas(List<Guardarropas> guardarropas)
+   {
+	this.guardarropas.removeAll(guardarropas);
+   }
 
 	public Suscripcion getSuscripcion() {
 		return this.suscripcion;

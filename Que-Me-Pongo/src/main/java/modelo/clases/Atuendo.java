@@ -4,13 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import com.google.common.collect.Lists;
 
+@Entity
+@Table (name = "Atuendo")
 public class Atuendo {
 
-	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@ManyToMany (mappedBy = "atuendos")
+	List<Prenda> prendas = new ArrayList<>();
 	Boolean aceptado;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "evento_id")
 	Evento evento;
+	
+	public Atuendo() {}
 
 	public Atuendo(Prenda superior, Prenda inferior, Prenda calzado, Prenda accesorio) {
 		this.addPrenda(superior);
@@ -41,7 +62,7 @@ public class Atuendo {
 		prendas.forEach(elemento -> elemento.setEnUso(nuevoEstado));
 	}
 
-	public ArrayList<Prenda> getPrendas() {
+	public List<Prenda> getPrendas() {
 		return prendas;
 	}
 
@@ -81,5 +102,17 @@ public class Atuendo {
 
 	public Atuendo(ArrayList<Prenda> prendas) {
 		this.prendas = prendas;
+	}
+	
+	public void setPrendas(List<Prenda> prendas) {
+		this.prendas = prendas;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
