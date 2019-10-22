@@ -44,6 +44,7 @@ public class Prenda {
 	List<Guardarropas> guardarropas = new ArrayList<>();
 	@ManyToMany
 	@JoinTable(name = "AtuendoPorPrenda", joinColumns = @JoinColumn(name = "prenda_id"), inverseJoinColumns = @JoinColumn(name = "atuendo_id"))
+	@JsonIgnore
 	List<Atuendo> atuendos = new ArrayList<>();
 	
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
@@ -61,7 +62,7 @@ public class Prenda {
 		this(tipo, colorPrimario);
 		this.setEnUso(false);
 		if (this.esMaterialValido(tipo, material)) {
-			this.setTela(material);
+			this.setMaterial(material);
 		} else {
 			System.out.println(
 					"Se intento crear una prenda con una combinacion Tipo - Material invalida. Se dejo el material como nulo.");
@@ -119,11 +120,11 @@ public class Prenda {
 		this.enUso = valor;
 	}
 
-	public Material getTela() {
+	public Material getMaterial() {
 		return material;
 	}
 
-	public void setTela(Material material) {
+	public void setMaterial(Material material) {
 		this.material = material;
 	}
 

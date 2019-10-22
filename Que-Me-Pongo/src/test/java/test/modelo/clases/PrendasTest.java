@@ -19,7 +19,7 @@ public class PrendasTest {
 	public void validarPrendasConMismoColorPrimarioYSecundario() {
 		Prenda prenda = new Prenda(TipoPrenda.PANTALON, Material.JEAN, Color.AMARILLO, Color.AMARILLO);
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AMARILLO);
-		Assert.assertEquals(prenda.getTela(), Material.JEAN);
+		Assert.assertEquals(prenda.getMaterial(), Material.JEAN);
 		Assert.assertEquals(prenda.Categoria(), Categoria.PARTE_INFERIOR);
 		Assert.assertEquals(prenda.getColorSecundario(), null);
 	}
@@ -30,7 +30,7 @@ public class PrendasTest {
 		Prenda prenda = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.AZUL, Color.ROJO);
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AZUL);
 		Assert.assertEquals(prenda.getColorSecundario(), Color.ROJO);
-		Assert.assertEquals(prenda.getTela(), Material.ALGODON);
+		Assert.assertEquals(prenda.getMaterial(), Material.ALGODON);
 		Assert.assertEquals(prenda.Categoria(), Categoria.PARTE_SUPERIOR);
 	}
 
@@ -39,7 +39,7 @@ public class PrendasTest {
 	public void validarCreacionInvalida() {
 		Prenda prenda = new Prenda(TipoPrenda.REMERACORTA, Material.CUERO, Color.AMARILLO, Color.ROJO);
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AMARILLO);
-		Assert.assertEquals(prenda.getTela(), null);
+		Assert.assertEquals(prenda.getMaterial(), null);
 		Assert.assertEquals(prenda.Categoria(), Categoria.PARTE_SUPERIOR);
 		Assert.assertEquals(prenda.getColorSecundario(), Color.ROJO);
 	}

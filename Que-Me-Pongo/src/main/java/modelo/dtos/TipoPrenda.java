@@ -2,10 +2,6 @@ package modelo.dtos;
 
 import java.util.Arrays;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum TipoPrenda {
 	BUZO {
 		public boolean esMaterialValido(Material material) {
@@ -61,7 +57,6 @@ public enum TipoPrenda {
 		}
 	},
 
-	@JsonProperty("REMERACORTA")
 	REMERACORTA {
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.TERCIOPELO, Material.JEAN).contains(material);

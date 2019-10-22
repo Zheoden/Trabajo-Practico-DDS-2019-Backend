@@ -28,7 +28,7 @@ public class EventoRepository implements Repository<Evento> {
 	
 	@SuppressWarnings("unchecked")
 	public List<Evento> findAllOfUser(String username) {
-		String query = "SELECT e FROM Evento e JOIN Usuario u  on u.id = e.usuario_id  WHERE u.username = :username";
+		String query = "SELECT e FROM Evento e JOIN e.usuario u WHERE u.username = :username AND e.usuario.id = u.id";
 		List<Evento> eventos = entityManager().
 				               createQuery(query).
 				               setParameter("username", username).

@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -33,6 +34,7 @@ public class Evento {
 	
 	String ciudad;
 	
+	@JsonIgnore
 	Calendar fecha;
 
 	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
@@ -121,10 +123,12 @@ public class Evento {
 		this.ciudad = ciudad;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	public Calendar getFecha() {
 		return fecha;
 	}
-
+	
+	@JsonIgnore
 	public LocalDate getFechaEvento() {
 		return LocalDateTime.ofInstant(this.fecha.toInstant(), this.fecha.getTimeZone().toZoneId()).toLocalDate();
 	}
