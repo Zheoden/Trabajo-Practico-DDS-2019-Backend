@@ -4,10 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import modelo.clases.Guardarropas;
 import modelo.clases.Usuario;
 import modelo.interfaces.Repository;
-import utils.Utils;
 
 public class UsuarioRepository implements Repository<Usuario> {
 	
