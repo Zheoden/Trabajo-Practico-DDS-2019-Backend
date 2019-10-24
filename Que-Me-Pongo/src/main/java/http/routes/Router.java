@@ -1,7 +1,7 @@
 package http.routes;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
+import static spark.Spark.*;
+import static spark.route.HttpMethod.before;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +15,7 @@ import modelo.clases.Usuario;
 import repository.EventoRepository;
 import repository.GuardarropaRepository;
 import repository.UsuarioRepository;
+import utils.CorsFilter;
 import utils.JsonParser;
 
 public class Router {
@@ -24,7 +25,7 @@ public class Router {
 		UsuarioRepository userService = new UsuarioRepository();
 		GuardarropaRepository guardarropaService = new GuardarropaRepository();
 		EventoRepository eventoService = new EventoRepository();
-		
+
 		get("/", (req, res) -> "Home");
 		
 		post("/login" ,"application/json",(req, res) -> {
