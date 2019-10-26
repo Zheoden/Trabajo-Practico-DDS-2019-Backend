@@ -11,16 +11,19 @@ import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.Usuario;
+import repository.EventoRepository;
 import repository.GuardarropaRepository;
 import repository.UsuarioRepository;
 import utils.JsonParser;
 
 public class Router {
 
+	@SuppressWarnings("unlikely-arg-type")
 	public static void register() {
 		
 		UsuarioRepository userService = new UsuarioRepository();
 		GuardarropaRepository guardarropaService = new GuardarropaRepository();
+		EventoRepository eventoService = new EventoRepository();
 
 		get("/", (req, res) -> "Home");
 		
@@ -112,6 +115,42 @@ public class Router {
 			return JsonParser.getObjectMapper().writeValueAsString("Se creo el nuevo Evento");	
 		});
 		
+		get("/users/:username/eventos/:evento",(req,res) -> {
+			
+			String username = req.params(":username");
+			String evento = req.params(":evento");
+			Optional<Usuario> userABuscar = userService.find(username);
+			
+			if(!userABuscar.isPresent()) {
+				res.status(404);
+				return JsonParser.getObjectMapper().writeValueAsString("El Usuario No Existe");
+			}
+			
+			Optional <Evento> nuevoEvento = eventoService.find(username,evento);
+			if(!nuevoEvento.isPresent()) {
+				res.status(404);
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + evento + "no existe");
+			}
+			Evento eventoEncontrado = nuevoEvento.get(); 
+			res.status(203);
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosAceptados());
+		});
+		
+		/*
+		post("/users/:username/eventos/:evento/calificarAtuendo", (req,res) -> {
+			
+			Optional <Evento> nuevoEvento = eventoService.find(username,evento);
+			if(!nuevoEvento.isPresent()) {
+				res.status(404);
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + evento + "no existe");
+			}
+			Evento eventoEncontrado = nuevoEvento.get(); 
+			res.status(203);
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosAceptados());
+
+		});
+		*/
+		
 		get("/user/create", (req, res) -> "Create User");
 		get("/user/sugerir-atuendo", (req, res) -> "Sugerir Atuendo");
 		get("/prenda", (req, res) -> "Get Prenda");
@@ -120,4 +159,5 @@ public class Router {
 		get("/Atuendos", (req, res) -> "Atuendos");
 	
 	}
+	
 }
