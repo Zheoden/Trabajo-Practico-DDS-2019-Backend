@@ -53,7 +53,7 @@ public class GuardarropasTest {
 		prendas.add(prenda);
 		prendas.add(prenda1);
 		prendas.add(prenda2);
-		Guardarropas guardaRopa = new Guardarropas(prendas);
+		Guardarropas guardaRopa = new Guardarropas(prendas, "Guardarropa1");
 
 		Assert.assertEquals(guardaRopa.getClass(), Guardarropas.class);
 		Assert.assertEquals(guardaRopa.getPrendas(), prendas);
@@ -68,7 +68,7 @@ public class GuardarropasTest {
 		prendas.add(prenda3);
 		prendas.add(prenda4);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa2");
 		Assert.assertEquals(unGuardarropa.obtenerPrendasSuperiores(),
 				this.prendas.stream().collect(Collectors.toSet()));
 	}
@@ -82,7 +82,7 @@ public class GuardarropasTest {
 		prendas.add(prenda8);
 		prendas.add(prenda9);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa3");
 		Assert.assertEquals(unGuardarropa.obtenerPrendasInferiores(),
 				this.prendas.stream().collect(Collectors.toSet()));
 	}
@@ -92,7 +92,7 @@ public class GuardarropasTest {
 	public void obtenerCalzados() {
 		prendas.add(prenda10);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa4");
 		Assert.assertEquals(unGuardarropa.obtenerCalzados(), this.prendas.stream().collect(Collectors.toSet()));
 	}
 
@@ -101,7 +101,7 @@ public class GuardarropasTest {
 	public void obtenerAccesorios() {
 		prendas.add(prenda11);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa5");
 		Assert.assertEquals(unGuardarropa.obtenerAccesorios(), this.prendas.stream().collect(Collectors.toSet()));
 	}
 
@@ -121,7 +121,7 @@ public class GuardarropasTest {
 		prendas.add(prenda10);
 		prendas.add(prenda11);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa6");
 		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0, null);
 		Atuendo atuendoRandom = unGuardarropa.obtenerAtuendoRandom(atuendos);
 		Assert.assertEquals(atuendoRandom.getClass(), Atuendo.class);
@@ -138,7 +138,7 @@ public class GuardarropasTest {
 		prendas.add(prenda9);
 		prendas.add(prenda11);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa7");
 		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0, null);
 		Assert.assertEquals(atuendos.size(), 0);
 	}
@@ -159,7 +159,7 @@ public class GuardarropasTest {
 		prendas.add(prenda10);
 		prendas.add(prenda11);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa8");
 		List<Atuendo> atuendos = unGuardarropa.generarSugerencias(26.0, 0, null);
 		Assert.assertEquals(atuendos.size(), 15);
 	}
@@ -173,7 +173,7 @@ public class GuardarropasTest {
 		prendas.add(prenda10);
 		prendas.add(prenda11);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa9");
 		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(0);
 		Assert.assertEquals(atuendos.size(), 0);
 	}
@@ -197,7 +197,7 @@ public class GuardarropasTest {
 		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(28.0);
 		
-		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a, "Guardarropa10");
 		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(0);
 		Assert.assertEquals(atuendos.size(), 15);
 	}
@@ -227,7 +227,7 @@ public class GuardarropasTest {
 		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(23.0);
 		
-		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a, "Guardarropa11");
 		
 		List<Atuendo> atuendosEvento = unGuardarropa.atuendosValidosParaEvento(paloko, 0);
 		
@@ -250,7 +250,7 @@ public class GuardarropasTest {
 		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(19.0);
 		System.out.println(a.obtenerTemperaturaActual());
-		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a, "Guardarropa12");
 		Set<Prenda> setPrendas = new HashSet<>(prendas);
 		Set<Set<Prenda>> combinacionesObtenidas = unGuardarropa.obtenerCombinacionesDePrenda(setPrendas,
 				a.obtenerTemperaturaActual(), 0);
@@ -277,7 +277,7 @@ public class GuardarropasTest {
 		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(26.0);
 		
-		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a, "Guardarropa13");
 		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(2);
 		Assert.assertEquals(atuendos.size(), 15);
 	}
@@ -301,7 +301,7 @@ public class GuardarropasTest {
 		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(30.0);
 		
-		Guardarropas unGuardarropa = new Guardarropas(prendas, a);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, a, "Guardarropa14");
 		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(-2);
 		Assert.assertEquals(atuendos.size(), 15);
 	}
@@ -316,7 +316,7 @@ public class GuardarropasTest {
 		prendas.add(prenda10);
 		prendas.add(prenda11);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa15");
 		int sumatoriaPrendas = unGuardarropa.obtenerPuntosDeAbrigo(prendas.stream().collect(Collectors.toSet()));
 		Assert.assertEquals(sumatoriaPrendas, 4);
 	}
@@ -327,7 +327,7 @@ public class GuardarropasTest {
 		prendas.add(prenda3);
 		prendas.add(prenda4);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa16");
 		boolean esValido = unGuardarropa
 				.prendasTienenNivelesDeCapaValidos(prendas.stream().collect(Collectors.toSet()));
 		Assert.assertFalse(esValido);
@@ -339,7 +339,7 @@ public class GuardarropasTest {
 		prendas.add(prenda);
 		prendas.add(prenda4);
 
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa17");
 		boolean esValido = unGuardarropa
 				.prendasTienenNivelesDeCapaValidos(prendas.stream().collect(Collectors.toSet()));
 		Assert.assertTrue(esValido);
@@ -357,7 +357,7 @@ public class GuardarropasTest {
 		prendas.add(prenda11);
 		prendas.add(prenda12);
 		
-		Guardarropas unGuardarropa = new Guardarropas(prendas);
+		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa18");
 		AdministrarProveedores a = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(a.obtenerTemperaturaActual()).thenReturn(15.0);
 		

@@ -1,7 +1,6 @@
 package http.routes;
 
 import static spark.Spark.*;
-import static spark.route.HttpMethod.before;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,10 +11,8 @@ import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.Usuario;
-import repository.EventoRepository;
 import repository.GuardarropaRepository;
 import repository.UsuarioRepository;
-import utils.CorsFilter;
 import utils.JsonParser;
 
 public class Router {
@@ -24,7 +21,6 @@ public class Router {
 		
 		UsuarioRepository userService = new UsuarioRepository();
 		GuardarropaRepository guardarropaService = new GuardarropaRepository();
-		EventoRepository eventoService = new EventoRepository();
 
 		get("/", (req, res) -> "Home");
 		
@@ -46,7 +42,7 @@ public class Router {
 		});
 
 		//Lo mas probable es que cambie a buscarse por medio del nombre de Usuario
-		get("/user/:id", "application/json" ,(req, res) -> {
+		get("/users/:id", "application/json" ,(req, res) -> {
 			String id = req.params(":id");
 			Optional<Usuario> usuarioBuscado = userService.findById(Integer.parseInt(id));
 			if (usuarioBuscado.isPresent()) {
@@ -56,12 +52,13 @@ public class Router {
 			return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Usuario con id: " + id);
 		});
 		
-		post("/user/:username/crearGuardarropa", "application/json", (req, res) -> {
+		post("/users/:username/crearGuardarropa", "application/json", (req, res) -> {
 			String username = req.params(":username");
 			List<Guardarropas> guardarropas = guardarropaService.findByUser(username);
 			if (guardarropas.size() < 2) {
 				Usuario user = userService.find(username).get();
-				user.agregarGuardarropa(new Guardarropas());
+				Guardarropas guardarropaCreado = JsonParser.read(req.body(), new TypeReference<Guardarropas>(){}); 	
+				user.agregarGuardarropa(guardarropaCreado);
 				userService.update(user);
 				return JsonParser.getObjectMapper().writeValueAsString("Se agrego un nuevo guardarropa");
 			}	
@@ -69,7 +66,7 @@ public class Router {
 			return JsonParser.getObjectMapper().writeValueAsString("Solo puede tener como maximo 2 Guardarropas");
 		});
 		
-		post("/users/:username/guardarropas/:id/createPrenda", "application/json" ,(req, res) -> {
+		post("/users/:username/guardarropas/:nombre/createPrenda", "application/json" ,(req, res) -> {
 			
 			String username = req.params(":username");
 			Optional<Usuario> userABuscar = userService.find(username);
@@ -80,12 +77,12 @@ public class Router {
 			}
 			
 			Usuario userEncontrado = userABuscar.get();
-			long id = Integer.parseInt(req.params(":id"));
-			Optional<Guardarropas> guardarropaBuscado = guardarropaService.findWardrobeById(username, id);
+			String nombre = req.params("nombre");
+			Optional<Guardarropas> guardarropaBuscado = guardarropaService.findWardrobeByName(username, nombre);
 			
 			if(!guardarropaBuscado.isPresent()) {
 				res.status(404);
-				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Guardarropa con id: " + id);
+				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Guardarropa con el nombre: " + nombre);
 			}
 			
 			Guardarropas guardarropaEncontrado = guardarropaBuscado.get();

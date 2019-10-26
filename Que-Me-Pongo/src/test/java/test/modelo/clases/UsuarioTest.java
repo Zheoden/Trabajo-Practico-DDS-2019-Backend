@@ -58,8 +58,8 @@ public class UsuarioTest {
 	@Test
 	@DisplayName("Verificar la creacion de un usuario")
 	public void crearUsuarioCorrectamente() {
-		Guardarropas guardaRopa1 = new Guardarropas(new ArrayList<Prenda>());
-		Guardarropas guardaRopa2 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa1 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa1");
+		Guardarropas guardaRopa2 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa2");
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
@@ -95,8 +95,8 @@ public class UsuarioTest {
 		AdministrarProveedores admin = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(admin.obtenerTemperaturaActual()).thenReturn(22.0);
 		
-		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin);
-		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin);
+		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin, "Guardarropa3");
+		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin, "Guardarropa4");
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
@@ -119,14 +119,14 @@ public class UsuarioTest {
 	@Test
 	@DisplayName("Agregar mas prendas de la permitida por la suscripcion del usuario")
 	public void agregarPrendaAGuardaRopa() {
-		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa5");
 		guardaRopa3.addPrenda(prenda1);
 		guardaRopa3.addPrenda(prenda2);
 		guardaRopa3.addPrenda(prenda3);
 		guardaRopa3.addPrenda(prenda4);
 		guardaRopa3.addPrenda(prenda5);
 
-		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa6");
 		guardaRopa4.addPrenda(prenda6);
 		guardaRopa4.addPrenda(prenda7);
 		guardaRopa4.addPrenda(prenda8);
@@ -156,13 +156,13 @@ public class UsuarioTest {
 	@Test
 	@DisplayName("Agregar menos prendas de la permitida por la suscripcion del usuario")
 	public void agregarPrendaAGuardaRopa2() {
-		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa7");
 		guardaRopa3.addPrenda(prenda1);
 		guardaRopa3.addPrenda(prenda2);
 		guardaRopa3.addPrenda(prenda3);
 		guardaRopa3.addPrenda(prenda4);
 
-		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa8");
 		guardaRopa4.addPrenda(prenda6);
 		guardaRopa4.addPrenda(prenda7);
 		guardaRopa4.addPrenda(prenda8);
@@ -183,7 +183,7 @@ public class UsuarioTest {
 	@Test
 	@DisplayName("Dos usuarios agregan prendas al guardaropas")
 	public void agregarPrendaAGuardaRopaCompartido() {
-		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa9");
 		guardaRopa3.addPrenda(prenda1);
 		guardaRopa3.addPrenda(prenda2);
 		guardaRopa3.addPrenda(prenda3);
@@ -225,8 +225,8 @@ public class UsuarioTest {
 		AdministrarProveedores admin = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(admin.obtenerTemperatura(trabajo.getFechaEvento())).thenReturn(20.0);
 		
-		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin);
-		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin);
+		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin, "Guardarropa10");
+		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin, "Guardarropa11");
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);

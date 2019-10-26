@@ -27,8 +27,8 @@ public class PersistirUsuarios {
 	Prenda prenda6 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	ArrayList<Prenda> listaDePrendas1 = new ArrayList<Prenda>();
 	ArrayList<Prenda> listaDePrendas2 = new ArrayList<Prenda>();
-	Guardarropas guardaRopas1 = new Guardarropas(listaDePrendas1);
-	Guardarropas guardaRopas2 = new Guardarropas(listaDePrendas2);
+	Guardarropas guardaRopas1 = new Guardarropas(listaDePrendas1, "Guardarropa1");
+	Guardarropas guardaRopas2 = new Guardarropas(listaDePrendas2, "Guardarropa2");
 	ArrayList<Guardarropas> listaGuardarropas1 = new ArrayList<Guardarropas>();
 	ArrayList<Guardarropas> listaGuardarropas2 = new ArrayList<Guardarropas>();
 	Suscripcion subs = new SuscripcionPremium();

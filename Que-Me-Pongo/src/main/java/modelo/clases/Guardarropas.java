@@ -30,6 +30,8 @@ public class Guardarropas {
 	@Id
 	@GeneratedValue
 	long id;
+	
+	private String nombre;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "GuardarropaPorPrenda",
     joinColumns = @JoinColumn (name = "guardarropa_id"),
@@ -43,7 +45,8 @@ public class Guardarropas {
 	private List<Usuario> usuarios = new ArrayList<>();
 
 	
-	public Guardarropas(ArrayList<Prenda> prendas, AdministrarProveedores administrarProv) {
+	public Guardarropas(ArrayList<Prenda> prendas, AdministrarProveedores administrarProv, String nombre) {
+		this.setNombre(nombre);
 		this.setPrendas(prendas);
 		this.administrarProveedores = administrarProv;
 	}
@@ -51,7 +54,8 @@ public class Guardarropas {
     	
     }
 	
-	public Guardarropas(ArrayList<Prenda> prendas) {
+	public Guardarropas(ArrayList<Prenda> prendas, String nombre) {
+		this.setNombre(nombre);
 		this.setPrendas(prendas);
 	}
 
@@ -183,4 +187,11 @@ public class Guardarropas {
 	public void setUsuarios(List<Usuario> usuarios){
 		this.usuarios = usuarios;
 	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 }

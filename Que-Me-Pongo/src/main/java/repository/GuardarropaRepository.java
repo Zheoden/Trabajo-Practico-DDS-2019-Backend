@@ -36,5 +36,19 @@ public class GuardarropaRepository implements Repository<Guardarropas> {
 			return Optional.empty();
 		}
 	}
+	
+	public Optional<Guardarropas> findWardrobeByName(String username, String nombre){
+		String query = "SELECT g FROM Usuario u JOIN u.guardarropas g WHERE u.username = :username AND g.nombre = :nombre";
+
+		try {
+		   return Optional.of((Guardarropas) entityManager()
+					.createQuery(query)
+					.setParameter("username", username)
+					.setParameter("nombre",nombre)
+					.getSingleResult());
+		} catch (NoResultException e) {
+			return Optional.empty();
+		}
+	}
 
 }

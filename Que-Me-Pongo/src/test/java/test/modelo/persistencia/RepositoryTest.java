@@ -51,9 +51,9 @@ public class RepositoryTest {
 	static ArrayList<Prenda> listaDePrendas3 = new ArrayList<Prenda>();
 
 	// Creacion de guardarropas
-	static Guardarropas guardaRopas1 = new Guardarropas(listaDePrendas1);
-	static Guardarropas guardaRopas2 = new Guardarropas(listaDePrendas2);
-	static Guardarropas guardaRopas3 = new Guardarropas(listaDePrendas3);
+	static Guardarropas guardaRopas1 = new Guardarropas(listaDePrendas1, "Guardarropa1");
+	static Guardarropas guardaRopas2 = new Guardarropas(listaDePrendas2, "Guardarropa2");
+	static Guardarropas guardaRopas3 = new Guardarropas(listaDePrendas3, "Guardarropa3");
 
 	// Lista de guardarropas
 	static ArrayList<Guardarropas> listaGuardarropas1 = new ArrayList<Guardarropas>();

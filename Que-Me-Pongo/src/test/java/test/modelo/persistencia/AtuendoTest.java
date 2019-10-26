@@ -22,8 +22,6 @@ import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
 import repository.AtuendoRepository;
 import repository.EventoRepository;
-import repository.GuardarropaRepository;
-import repository.PrendaRepository;
 import repository.UsuarioRepository;
 
 public class AtuendoTest {
@@ -74,8 +72,8 @@ public class AtuendoTest {
 		AdministrarProveedores admin = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(admin.obtenerTemperatura(trabajo.getFechaEvento())).thenReturn(20.0);
 		
-		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin);
-		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin);
+		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin, "Guardarropa1");
+		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin, "Guardarropa2");
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 		
