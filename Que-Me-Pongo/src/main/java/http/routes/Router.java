@@ -136,6 +136,34 @@ public class Router {
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosAceptados());
 		});
 		
+		get("/users/:username/eventosAll/:evento",(req,res) -> {
+			
+			String username = req.params(":username");
+			String evento = req.params(":evento");
+			Optional<Usuario> userABuscar = userService.find(username);
+			
+			if(!userABuscar.isPresent()) {
+				res.status(404);
+				return JsonParser.getObjectMapper().writeValueAsString("El Usuario No Existe");
+			}
+			
+			Optional <Evento> eventoABuscar = eventoService.find(username,evento);
+			
+			if(!eventoABuscar.isPresent()) {
+				res.status(404);
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + evento + "no existe");
+			}
+			Evento eventoEncontrado = eventoABuscar.get(); 
+			res.status(203);					
+			
+			Usuario usuarioEncontrado = userABuscar.get(); 
+			res.status(203);					
+			
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(usuarioEncontrado.todosPosiblesAtuendosPorGuardarropaParaEvento(eventoEncontrado));
+			
+		});
+		
+		
 		/*
 		post("/users/:username/eventos/:evento/calificarAtuendo", (req,res) -> {
 			
