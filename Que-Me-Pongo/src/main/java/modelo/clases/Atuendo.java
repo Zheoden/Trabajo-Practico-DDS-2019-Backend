@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 
 @Entity
@@ -29,6 +30,7 @@ public class Atuendo {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "evento_id")
+	@JsonIgnore
 	Evento evento;
 	
 	public Atuendo() {}

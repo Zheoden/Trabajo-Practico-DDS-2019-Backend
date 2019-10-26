@@ -28,6 +28,7 @@ public class Prenda {
 	@Id
 	@GeneratedValue
 	long id;
+	private String nombre;
 	@Transient
 	String direccionImagen;
 	@Enumerated(EnumType.STRING)
@@ -47,8 +48,9 @@ public class Prenda {
 	@JsonIgnore
 	List<Atuendo> atuendos = new ArrayList<>();
 	
-	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
+	public Prenda(String nombrePrenda, TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
 		this(tipo, material, colorPrimario);
+		this.setNombre(nombrePrenda);
 		this.setEnUso(false);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
@@ -150,6 +152,14 @@ public class Prenda {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public List<Atuendo> getAtuendos() {

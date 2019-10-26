@@ -25,9 +25,9 @@ public class AtuendoRepository implements Repository<Atuendo> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Atuendo> findSugerenciasAceptadasParaEvento(String nombreEvento) {
-		String query = "SELECT a FROM Atuendo a JOIN a.evento e WHERE a.aceptado = true AND e.nombre = :nombreEvento";
-		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("nombreEvento", nombreEvento).getResultList();
+	public List<Atuendo> findSugerenciasAceptadasParaEvento(String nombreEvento, String nombreUsuario) {
+		String query = "SELECT a FROM Atuendo a JOIN a.evento e JOIN e.usuario u WHERE a.aceptado = true AND e.nombre = :nombreEvento AND u.username = :nombreUsuario";
+		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("nombreEvento", nombreEvento).setParameter("nombreUsuario", nombreUsuario).getResultList();
 		return atuendosXEvento;
 	}
 	//		String query = "FROM Guardarropas g JOIN g.prendas p WHERE  g.id = :id";

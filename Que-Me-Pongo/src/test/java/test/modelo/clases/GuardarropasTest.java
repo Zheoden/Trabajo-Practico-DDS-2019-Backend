@@ -25,23 +25,23 @@ import modelo.dtos.TipoPrenda;
 @DisplayName("Tests para los Guardarropas")
 public class GuardarropasTest {
 	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
-	Prenda prenda = new Prenda(TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda4 = new Prenda(TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda = new Prenda("PR001", TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda1 = new Prenda("PR002", TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda2 = new Prenda("PR003", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda3 = new Prenda("PR004", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda4 = new Prenda("PR005", TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
-	Prenda prenda5 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda6 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	Prenda prenda7 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda8 = new Prenda(TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda9 = new Prenda(TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda5 = new Prenda("PR006", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda6 = new Prenda("PR007", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
+	Prenda prenda7 = new Prenda("PR008", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda8 = new Prenda("PR009", TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda9 = new Prenda("PR0010", TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
-	Prenda prenda10 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda10 = new Prenda("PR0011", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 
-	Prenda prenda11 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
-	Prenda prenda12 = new Prenda(TipoPrenda.ZAPATILLAS, Material.CUERO, Color.NEGRO, Color.ROJO);
-	Prenda prenda13 = new Prenda(TipoPrenda.ZAPATOS, Material.CUERO, Color.NEGRO, Color.MARRON);
+	Prenda prenda11 = new Prenda("PR0012", TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda12 = new Prenda("PR0013", TipoPrenda.ZAPATILLAS, Material.CUERO, Color.NEGRO, Color.ROJO);
+	Prenda prenda13 = new Prenda("PR0014", TipoPrenda.ZAPATOS, Material.CUERO, Color.NEGRO, Color.MARRON);
 	
 	@Test
 	@DisplayName("Tests para el Constructor")

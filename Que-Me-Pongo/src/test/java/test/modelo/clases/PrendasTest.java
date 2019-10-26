@@ -17,7 +17,7 @@ public class PrendasTest {
 	@Test
 	@DisplayName("Test para validar la creacion de prendas con mismo color primario y secundario")
 	public void validarPrendasConMismoColorPrimarioYSecundario() {
-		Prenda prenda = new Prenda(TipoPrenda.PANTALON, Material.JEAN, Color.AMARILLO, Color.AMARILLO);
+		Prenda prenda = new Prenda("PR001", TipoPrenda.PANTALON, Material.JEAN, Color.AMARILLO, Color.AMARILLO);
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AMARILLO);
 		Assert.assertEquals(prenda.getMaterial(), Material.JEAN);
 		Assert.assertEquals(prenda.Categoria(), Categoria.PARTE_INFERIOR);
@@ -27,7 +27,7 @@ public class PrendasTest {
 	@Test
 	@DisplayName("Test para verificar la creacion de las prendas")
 	public void constructorPrenda() {
-		Prenda prenda = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.AZUL, Color.ROJO);
+		Prenda prenda = new Prenda("PR002", TipoPrenda.REMERACORTA, Material.ALGODON, Color.AZUL, Color.ROJO);
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AZUL);
 		Assert.assertEquals(prenda.getColorSecundario(), Color.ROJO);
 		Assert.assertEquals(prenda.getMaterial(), Material.ALGODON);
@@ -37,7 +37,7 @@ public class PrendasTest {
 	@Test
 	@DisplayName("Test para verificar la creacion de prendas con tipo invalido")
 	public void validarCreacionInvalida() {
-		Prenda prenda = new Prenda(TipoPrenda.REMERACORTA, Material.CUERO, Color.AMARILLO, Color.ROJO);
+		Prenda prenda = new Prenda("PR003", TipoPrenda.REMERACORTA, Material.CUERO, Color.AMARILLO, Color.ROJO);
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AMARILLO);
 		Assert.assertEquals(prenda.getMaterial(), null);
 		Assert.assertEquals(prenda.Categoria(), Categoria.PARTE_SUPERIOR);
@@ -49,12 +49,12 @@ public class PrendasTest {
 	public void renderizarImagen() {
 		Imagen objetoImagen = new Imagen();
 
-		Prenda prenda = new Prenda(TipoPrenda.PANTALON, Material.JEAN, Color.AZUL, Color.CELESTE);
+		Prenda prenda = new Prenda("PR004", TipoPrenda.PANTALON, Material.JEAN, Color.AZUL, Color.CELESTE);
 		prenda.setDireccionImagen("ImgPrendas/jeans.jpg");
 		objetoImagen.normalizarImagen(prenda.getDireccionImagen());
 		Assert.assertEquals(objetoImagen.getImagenRenderizada().getHeight(), 800);
 
-		Prenda otraPrenda = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.BLANCO, Color.AZUL);
+		Prenda otraPrenda = new Prenda("PR005", TipoPrenda.REMERACORTA, Material.ALGODON, Color.BLANCO, Color.AZUL);
 		otraPrenda.setDireccionImagen("ImgPrendas/remeraCorta.jpg");
 		objetoImagen.normalizarImagen(otraPrenda.getDireccionImagen());
 		Assert.assertEquals(objetoImagen.getImagenRenderizada().getWidth(), 600);

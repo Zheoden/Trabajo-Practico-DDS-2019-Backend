@@ -19,12 +19,12 @@ import repository.UsuarioRepository;
 import modelo.clases.Evento;
 
 public class PersistirUsuarios {
-	Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda4 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda5 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	Prenda prenda6 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda1 = new Prenda("PR001", TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda2 = new Prenda("PR002", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda3 = new Prenda("PR003", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda4 = new Prenda("PR004", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda5 = new Prenda("PR005", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
+	Prenda prenda6 = new Prenda("PR006", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	ArrayList<Prenda> listaDePrendas1 = new ArrayList<Prenda>();
 	ArrayList<Prenda> listaDePrendas2 = new ArrayList<Prenda>();
 	Guardarropas guardaRopas1 = new Guardarropas(listaDePrendas1, "Guardarropa1");

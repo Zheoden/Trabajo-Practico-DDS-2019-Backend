@@ -37,13 +37,13 @@ public class RepositoryTest {
 	GuardarropaRepository guardarropasRepo = new GuardarropaRepository();
 	EventoRepository eventoRepo = new EventoRepository();
 
-	static Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda4 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda5 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	static Prenda prenda6 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda7 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda1 = new Prenda("PR020", TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda2 = new Prenda("PR021", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda3 = new Prenda("PR022", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda4 = new Prenda("PR023", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda5 = new Prenda("PR024", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
+	static Prenda prenda6 = new Prenda("PR025", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda7 = new Prenda("PR026", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
 	// Lista de prendas
 	static ArrayList<Prenda> listaDePrendas1 = new ArrayList<Prenda>();
@@ -138,9 +138,9 @@ public class RepositoryTest {
 	}
 
 	
-	@AfterClass
-	public static void clearSetUp() {
-		userRepo.delete(user1);
-		userRepo.delete(user2);
-	}
+//	@AfterClass
+//	public static void clearSetUp() {
+//		userRepo.delete(user1);
+//		userRepo.delete(user2);
+//	}
 }

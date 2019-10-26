@@ -39,17 +39,17 @@ public class AtuendoTest {
 	static Evento trabajo = new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance());
 	static List<Atuendo> atuendosGenerados;
 	
-	static Prenda prenda1 = new Prenda(TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda2 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda3 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda4 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda5 = new Prenda(TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda6 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda7 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	static Prenda prenda8 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda9 = new Prenda(TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda10 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
-	static Prenda prenda11 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	static Prenda prenda1 = new Prenda("PR001", TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda2 = new Prenda("PR002", TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda3 = new Prenda("PR003", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda4 = new Prenda("PR004", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda5 = new Prenda("PR005", TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda6 = new Prenda("PR006", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda7 = new Prenda("PR007", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
+	static Prenda prenda8 = new Prenda("PR008", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda9 = new Prenda("PR009", TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda10 = new Prenda("PR0010", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	static Prenda prenda11 = new Prenda("PR0011", TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
 	
 	@BeforeClass
 	public static void setUp() {
@@ -104,7 +104,8 @@ public class AtuendoTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void test() {
-		List<Atuendo> atuendosAceptadosPorEvento = atuendoRepo.findSugerenciasAceptadasParaEvento("Ir a trabajar");
+		Usuario usuarioEncontrado = userRepo.find("pepe").get();
+		List<Atuendo> atuendosAceptadosPorEvento = atuendoRepo.findSugerenciasAceptadasParaEvento("Ir a trabajar", usuarioEncontrado.getUsername());
 		Assert.assertEquals(atuendosAceptadosPorEvento.size(), 2);
 	}
 

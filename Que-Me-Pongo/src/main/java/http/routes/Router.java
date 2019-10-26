@@ -11,9 +11,11 @@ import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.Usuario;
+import modelo.clases.Atuendo;
 import repository.EventoRepository;
 import repository.GuardarropaRepository;
 import repository.UsuarioRepository;
+import repository.AtuendoRepository;
 import utils.JsonParser;
 
 public class Router {
@@ -24,6 +26,7 @@ public class Router {
 		UsuarioRepository userService = new UsuarioRepository();
 		GuardarropaRepository guardarropaService = new GuardarropaRepository();
 		EventoRepository eventoService = new EventoRepository();
+		AtuendoRepository atuendoService = new AtuendoRepository();
 
 		get("/", (req, res) -> "Home");
 		
@@ -115,7 +118,7 @@ public class Router {
 			return JsonParser.getObjectMapper().writeValueAsString("Se creo el nuevo Evento");	
 		});
 		
-		get("/users/:username/eventos/:evento",(req,res) -> {
+		get("/users/:username/eventos/:evento/sugerenciasAceptadas",(req,res) -> {
 			
 			String username = req.params(":username");
 			String evento = req.params(":evento");
@@ -131,9 +134,10 @@ public class Router {
 				res.status(404);
 				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + evento + "no existe");
 			}
-			Evento eventoEncontrado = nuevoEvento.get(); 
+
+			List<Atuendo> atuendosAceptados = atuendoService.findSugerenciasAceptadasParaEvento(evento, username);
 			res.status(203);
-			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosAceptados());
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosAceptados);
 		});
 		
 		get("/users/:username/eventosAll/:evento",(req,res) -> {
