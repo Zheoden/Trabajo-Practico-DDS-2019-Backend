@@ -37,5 +37,13 @@ public class AtuendoRepository implements Repository<Atuendo> {
 		List<Atuendo> atuendos = entityManager().createQuery(query).getResultList();
 		return atuendos;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Atuendo> findSugerenciasParaEvento(String nombreEvento, String nombreUsuario) {
+		String query = "SELECT a FROM Atuendo a JOIN a.evento e JOIN e.usuario u WHERE e.nombre = :nombreEvento AND u.username = :nombreUsuario";
+		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("nombreEvento", nombreEvento).setParameter("nombreUsuario", nombreUsuario).getResultList();
+		return atuendosXEvento;
+	}
 
 }

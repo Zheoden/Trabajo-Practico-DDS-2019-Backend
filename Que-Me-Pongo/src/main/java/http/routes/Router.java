@@ -146,30 +146,28 @@ public class Router {
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosAceptados);
 		});
 		
-		get("/users/:id/eventosAll/:evento",(req,res) -> {
+		get("/users/:id/eventos/:evento/sugerencias",(req,res) -> {
 			
 			long id = Integer.parseInt(req.params(":id"));
 			String evento = req.params(":evento");
 			Optional<Usuario> userABuscar = userService.findById(id);
 			
 			if(!userABuscar.isPresent()) {
-				res.status(400);
+				res.status(404);
 				return JsonParser.getObjectMapper().writeValueAsString("El Usuario No Existe");
 			}
 			
 			Optional <Evento> eventoABuscar = eventoService.find(id,evento);
 			
 			if(!eventoABuscar.isPresent()) {
-				res.status(400);
+				res.status(404);
 				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + evento + "no existe");
 			}
-			Evento eventoEncontrado = eventoABuscar.get(); 			
 			
-			Usuario usuarioEncontrado = userABuscar.get(); 
-			res.status(200);					
-			
-			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(usuarioEncontrado.todosPosiblesAtuendosPorGuardarropaParaEvento(eventoEncontrado));
-			
+			String nombreUser = userABuscar.get().getUsername();
+			List<Atuendo> atuendosSugeridos = atuendoService.findSugerenciasParaEvento(evento, nombreUser);
+			res.status(200);
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosSugeridos);
 		});
 		
 		
