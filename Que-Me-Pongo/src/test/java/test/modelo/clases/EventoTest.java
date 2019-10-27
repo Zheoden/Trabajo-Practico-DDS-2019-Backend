@@ -27,7 +27,7 @@ public class EventoTest {
 	Prenda bufandaAzul = new Prenda(TipoPrenda.BUFANDA, Color.AZUL);
 	Prenda pantalonVerde = new Prenda(TipoPrenda.PANTALON, Color.VERDE);
 	ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
-	Guardarropas guardaropa1 = new Guardarropas(prendas1);
+	Guardarropas guardaropa1 = new Guardarropas(prendas1, "Guardarropa1");
 	ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 	Suscripcion premium = new SuscripcionPremium();
 	Calendar fecha1 = GregorianCalendar.getInstance();

@@ -26,6 +26,22 @@ public class EventoRepository implements Repository<Evento> {
 
 	@SuppressWarnings("unchecked")
 	public List<Evento> findAllOfUser(String username) {
+
+		String query = "SELECT e FROM Evento e JOIN e.usuario u WHERE u.username = :username AND e.usuario.id = u.id";
+		List<Evento> eventos = entityManager().
+				               createQuery(query).
+				               setParameter("username", username).
+				               getResultList();
+		return eventos;
+	}
+
+	public Optional<Evento> find(long id, String evento) {
+		Query query = entityManager()
+				.createQuery("SELECT e FROM Evento e JOIN e.usuario u  WHERE e.nombre = :evento and u.id = :id")
+				.setParameter("id", id)
+				.setParameter("evento", evento)
+				.setMaxResults(1);
+
 		String query = "SELECT e FROM Evento e JOIN Usuario u  on u.id = e.usuario_id  WHERE u.username = :username";
 		List<Evento> eventos = entityManager().createQuery(query).setParameter("username", username).getResultList();
 		return eventos;

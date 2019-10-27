@@ -9,16 +9,18 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.persistence.*;
-import modelo.interfaces.Suscripcion;
 
-import utils.Utils;
+import modelo.interfaces.Suscripcion;
 import utils.EmailSender;
+import utils.Utils;
 
 @Entity
 @Table(name = "Usuario")
@@ -30,11 +32,12 @@ public class Usuario {
 	private Long id;
 
 	String username;
+
 	String password;
+
 	int rangoDeSensibilidad; // Numero negativo es friolento (transforma de 20 grados a 15 grados por
 								// ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados
 								// por ejemplo)
-
 	@Transient
 	Suscripcion suscripcion;
 
@@ -46,7 +49,7 @@ public class Usuario {
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Evento> eventos;
-
+	
 	String NumeroTelefono;
 
 	public Usuario() {
@@ -187,6 +190,10 @@ public class Usuario {
    public void removeGuardarropas(List<Guardarropas> guardarropas)
    {
 	this.guardarropas.removeAll(guardarropas);
+   }
+   
+   public void agregarGuardarropa(Guardarropas guardarropa) {
+	   this.guardarropas.add(guardarropa);
    }
 
 	public Suscripcion getSuscripcion() {

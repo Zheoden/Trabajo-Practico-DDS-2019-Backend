@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import modelo.dtos.Categoria;
 import modelo.dtos.Color;
 import modelo.dtos.Material;
@@ -26,6 +28,7 @@ public class Prenda {
 	@Id
 	@GeneratedValue
 	long id;
+	private String nombre;
 	@Transient
 	String direccionImagen;
 	@Enumerated(EnumType.STRING)
@@ -38,13 +41,16 @@ public class Prenda {
 	Color colorSecundario;
 	Boolean enUso;
 	@ManyToMany(mappedBy="prendas")
+	@JsonIgnore
 	List<Guardarropas> guardarropas = new ArrayList<>();
 	@ManyToMany
 	@JoinTable(name = "AtuendoPorPrenda", joinColumns = @JoinColumn(name = "prenda_id"), inverseJoinColumns = @JoinColumn(name = "atuendo_id"))
+	@JsonIgnore
 	List<Atuendo> atuendos = new ArrayList<>();
 	
-	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
+	public Prenda(String nombrePrenda, TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
 		this(tipo, material, colorPrimario);
+		this.setNombre(nombrePrenda);
 		this.setEnUso(false);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
@@ -58,7 +64,7 @@ public class Prenda {
 		this(tipo, colorPrimario);
 		this.setEnUso(false);
 		if (this.esMaterialValido(tipo, material)) {
-			this.setTela(material);
+			this.setMaterial(material);
 		} else {
 			System.out.println(
 					"Se intento crear una prenda con una combinacion Tipo - Material invalida. Se dejo el material como nulo.");
@@ -116,11 +122,11 @@ public class Prenda {
 		this.enUso = valor;
 	}
 
-	public Material getTela() {
+	public Material getMaterial() {
 		return material;
 	}
 
-	public void setTela(Material material) {
+	public void setMaterial(Material material) {
 		this.material = material;
 	}
 
@@ -146,6 +152,14 @@ public class Prenda {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public List<Atuendo> getAtuendos() {

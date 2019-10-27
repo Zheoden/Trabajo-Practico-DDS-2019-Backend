@@ -22,11 +22,11 @@ public class AtuendoTest {
 	
 	Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
 	Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
-	Prenda prenda3 = new Prenda(TipoPrenda.ZAPATOS, Material.CUERO, Color.BEIGE, Color.NEGRO);
-	Prenda prenda4 = new Prenda(TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.AZUL);
-	Prenda prenda5 = new Prenda(TipoPrenda.SWEATER, Material.OXFORD, Color.AZUL, Color.CAQUI);
-	Prenda prenda6 = new Prenda(TipoPrenda.PANTALON, Material.JEAN, Color.AZUL, Color.CELESTE);
-	Prenda prenda7 = new Prenda(TipoPrenda.BUFANDA, Material.LINO, Color.NEGRO, Color.GRIS);
+	Prenda prenda3 = new Prenda("PR001", TipoPrenda.ZAPATOS, Material.CUERO, Color.BEIGE, Color.NEGRO);
+	Prenda prenda4 = new Prenda("PR002", TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.AZUL);
+	Prenda prenda5 = new Prenda("PR003", TipoPrenda.SWEATER, Material.OXFORD, Color.AZUL, Color.CAQUI);
+	Prenda prenda6 = new Prenda("PR004", TipoPrenda.PANTALON, Material.JEAN, Color.AZUL, Color.CELESTE);
+	Prenda prenda7 = new Prenda("PR005", TipoPrenda.BUFANDA, Material.LINO, Color.NEGRO, Color.GRIS);
 	
 	@Test
 	@DisplayName("Test para verificar la creacion de un Atuendo")

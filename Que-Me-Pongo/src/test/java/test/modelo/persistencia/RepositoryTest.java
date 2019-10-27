@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -36,13 +37,13 @@ public class RepositoryTest {
 	GuardarropaRepository guardarropasRepo = new GuardarropaRepository();
 	EventoRepository eventoRepo = new EventoRepository();
 
-	static Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda4 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda5 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	static Prenda prenda6 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	static Prenda prenda7 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda1 = new Prenda("PR020", TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda2 = new Prenda("PR021", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda3 = new Prenda("PR022", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda4 = new Prenda("PR023", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda5 = new Prenda("PR024", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
+	static Prenda prenda6 = new Prenda("PR025", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda7 = new Prenda("PR026", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
 	// Lista de prendas
 	static ArrayList<Prenda> listaDePrendas1 = new ArrayList<Prenda>();
@@ -50,9 +51,9 @@ public class RepositoryTest {
 	static ArrayList<Prenda> listaDePrendas3 = new ArrayList<Prenda>();
 
 	// Creacion de guardarropas
-	static Guardarropas guardaRopas1 = new Guardarropas(listaDePrendas1);
-	static Guardarropas guardaRopas2 = new Guardarropas(listaDePrendas2);
-	static Guardarropas guardaRopas3 = new Guardarropas(listaDePrendas3);
+	static Guardarropas guardaRopas1 = new Guardarropas(listaDePrendas1, "Guardarropa1");
+	static Guardarropas guardaRopas2 = new Guardarropas(listaDePrendas2, "Guardarropa2");
+	static Guardarropas guardaRopas3 = new Guardarropas(listaDePrendas3, "Guardarropa3");
 
 	// Lista de guardarropas
 	static ArrayList<Guardarropas> listaGuardarropas1 = new ArrayList<Guardarropas>();
@@ -136,6 +137,12 @@ public class RepositoryTest {
 		Assert.assertEquals(guardarropas2.size(), 2);
 	}
 
+//	@AfterClass
+//	public static void clearSetUp() {
+//		userRepo.delete(user1);
+//		userRepo.delete(user2);
+//	}
+
 	@Test
 	@DisplayName("Verifica la carga de eventos")
 	public void verificarCargaDeEventos() {
@@ -150,11 +157,5 @@ public class RepositoryTest {
 		List<Evento> listaDeEventos = user.get().getEventos();
 		listaDeEventos.remove(1);
 		Assert.assertEquals(listaDeEventos.size(), 2);
-	}
-
-	@AfterClass
-	public static void clearSetUp() {
-		userRepo.delete(user1);
-		userRepo.delete(user2);
 	}
 }

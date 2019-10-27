@@ -30,27 +30,27 @@ import modelo.interfaces.Suscripcion;
 
 @DisplayName("Tests para los Usuarios")
 public class UsuarioTest {
-	Prenda prenda = new Prenda(TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda1 = new Prenda(TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda2 = new Prenda(TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda3 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda4 = new Prenda(TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda = new Prenda("PR001", TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda1 = new Prenda("PR002", TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda2 = new Prenda("PR003", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda3 = new Prenda("PR004", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda4 = new Prenda("PR005", TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
-	Prenda prenda5 = new Prenda(TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda6 = new Prenda(TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	Prenda prenda7 = new Prenda(TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda8 = new Prenda(TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda9 = new Prenda(TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda5 = new Prenda("PR006", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda6 = new Prenda("PR007", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
+	Prenda prenda7 = new Prenda("PR008", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda8 = new Prenda("PR009", TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda9 = new Prenda("PR0010", TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
-	Prenda prenda10 = new Prenda(TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
-	Prenda prenda14 = new Prenda(TipoPrenda.ZAPATILLAS, Material.CUERO, Color.AZUL, Color.ROJO);
-	Prenda prenda15 = new Prenda(TipoPrenda.ZAPATOSDETACON, Material.CUERO, Color.MARRON, Color.NEGRO);
-	Prenda prenda16 = new Prenda(TipoPrenda.MEDIAS, Material.POLAR, Color.VERDE, Color.AMARILLO);
+	Prenda prenda10 = new Prenda("PR0011", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda14 = new Prenda("PR0012", TipoPrenda.ZAPATILLAS, Material.CUERO, Color.AZUL, Color.ROJO);
+	Prenda prenda15 = new Prenda("PR0013", TipoPrenda.ZAPATOSDETACON, Material.CUERO, Color.MARRON, Color.NEGRO);
+	Prenda prenda16 = new Prenda("PR0014", TipoPrenda.MEDIAS, Material.POLAR, Color.VERDE, Color.AMARILLO);
 
-	Prenda prenda11 = new Prenda(TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
-	Prenda prenda12 = new Prenda(TipoPrenda.BUFANDA, Material.POLAR, Color.AZUL, Color.BLANCO);
-	Prenda prenda13 = new Prenda(TipoPrenda.GUANTES, Material.POLAR, Color.NEGRO, Color.GRIS);
-	Prenda prenda17 = new Prenda(TipoPrenda.BUFANDA, Material.LINO, Color.NEGRO, Color.BLANCO);
+	Prenda prenda11 = new Prenda("PR0015", TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
+	Prenda prenda12 = new Prenda("PR0016", TipoPrenda.BUFANDA, Material.POLAR, Color.AZUL, Color.BLANCO);
+	Prenda prenda13 = new Prenda("PR0017", TipoPrenda.GUANTES, Material.POLAR, Color.NEGRO, Color.GRIS);
+	Prenda prenda17 = new Prenda("PR0018", TipoPrenda.BUFANDA, Material.LINO, Color.NEGRO, Color.BLANCO);
 	
 	ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 	ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
@@ -58,8 +58,8 @@ public class UsuarioTest {
 	@Test
 	@DisplayName("Verificar la creacion de un usuario")
 	public void crearUsuarioCorrectamente() {
-		Guardarropas guardaRopa1 = new Guardarropas(new ArrayList<Prenda>());
-		Guardarropas guardaRopa2 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa1 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa1");
+		Guardarropas guardaRopa2 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa2");
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
@@ -95,8 +95,8 @@ public class UsuarioTest {
 		AdministrarProveedores admin = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(admin.obtenerTemperaturaActual()).thenReturn(22.0);
 		
-		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin);
-		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin);
+		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin, "Guardarropa3");
+		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin, "Guardarropa4");
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
@@ -119,14 +119,14 @@ public class UsuarioTest {
 	@Test
 	@DisplayName("Agregar mas prendas de la permitida por la suscripcion del usuario")
 	public void agregarPrendaAGuardaRopa() {
-		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa5");
 		guardaRopa3.addPrenda(prenda1);
 		guardaRopa3.addPrenda(prenda2);
 		guardaRopa3.addPrenda(prenda3);
 		guardaRopa3.addPrenda(prenda4);
 		guardaRopa3.addPrenda(prenda5);
 
-		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa6");
 		guardaRopa4.addPrenda(prenda6);
 		guardaRopa4.addPrenda(prenda7);
 		guardaRopa4.addPrenda(prenda8);
@@ -156,13 +156,13 @@ public class UsuarioTest {
 	@Test
 	@DisplayName("Agregar menos prendas de la permitida por la suscripcion del usuario")
 	public void agregarPrendaAGuardaRopa2() {
-		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa7");
 		guardaRopa3.addPrenda(prenda1);
 		guardaRopa3.addPrenda(prenda2);
 		guardaRopa3.addPrenda(prenda3);
 		guardaRopa3.addPrenda(prenda4);
 
-		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa4 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa8");
 		guardaRopa4.addPrenda(prenda6);
 		guardaRopa4.addPrenda(prenda7);
 		guardaRopa4.addPrenda(prenda8);
@@ -183,7 +183,7 @@ public class UsuarioTest {
 	@Test
 	@DisplayName("Dos usuarios agregan prendas al guardaropas")
 	public void agregarPrendaAGuardaRopaCompartido() {
-		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>());
+		Guardarropas guardaRopa3 = new Guardarropas(new ArrayList<Prenda>(), "Guardarropa9");
 		guardaRopa3.addPrenda(prenda1);
 		guardaRopa3.addPrenda(prenda2);
 		guardaRopa3.addPrenda(prenda3);
@@ -225,8 +225,8 @@ public class UsuarioTest {
 		AdministrarProveedores admin = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(admin.obtenerTemperatura(trabajo.getFechaEvento())).thenReturn(20.0);
 		
-		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin);
-		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin);
+		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin, "Guardarropa10");
+		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin, "Guardarropa11");
 		ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
