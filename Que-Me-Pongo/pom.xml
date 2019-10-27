@@ -20,12 +20,30 @@
 	<build>
 		<plugins>
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>main.Application</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -38,15 +56,15 @@
 			<artifactId>spark-core</artifactId>
 			<version>[2.7.2,)</version>
 		</dependency>
-		
+
 		<!-- Jersey to Manage the Weather service -->
 		<dependency>
-		    <groupId>com.sun.jersey</groupId>
-		    <artifactId>jersey-client</artifactId>
-		    <version>1.9.1</version>
-			</dependency>
-	
-			<!-- slf4j for logging -->
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.9.1</version>
+		</dependency>
+
+		<!-- slf4j for logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-jdk14</artifactId>
@@ -64,74 +82,74 @@
 			<artifactId>guava</artifactId>
 			<version>[28.0-jre,)</version>
 		</dependency>
-		
+
 		<!-- JavaxMail and SunMail for notifying the user -->
 		<dependency>
-		    <groupId>javax.mail</groupId>
-		    <artifactId>mail</artifactId>
-		    <version>1.5.0-b01</version>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.5.0-b01</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>smtp</artifactId>
-		    <version>1.4.5</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>smtp</artifactId>
+			<version>1.4.5</version>
 		</dependency>
-		
-        <!-- Jackson to Parse JSON -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>[2.9.9,)</version>
-	    </dependency>
+
+		<!-- Jackson to Parse JSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>[2.9.9,)</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
 		</dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>[2.9.9,)</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>[2.9.9,)</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jdk8</artifactId>
-            <version>[2.9.9,)</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>[2.9.9,)</version>
-        </dependency>
-        
-        <!-- driver jdbc -->
-	    <dependency>
-	        <groupId>mysql</groupId>
-	        <artifactId>mysql-connector-java</artifactId>
-	        <version>5.1.46</version>
-	    </dependency>
-	    
-	    <!-- JPA Persistence Dependencies -->
-        <dependency>
-            <groupId>org.uqbar-project</groupId>
-            <artifactId>jpa-java8-extras</artifactId>
-            <version>1.0-alpha-1</version>
-        </dependency>
-		
-        <!-- Testing -->
-        <!-- Mockito to mock Method/classes -->
-        <dependency>
-		    <groupId>org.mockito</groupId>
-		    <artifactId>mockito-all</artifactId>
-		    <version>[1.9.5,)</version>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>[2.9.9,)</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>[2.9.9,)</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jdk8</artifactId>
+			<version>[2.9.9,)</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>[2.9.9,)</version>
+		</dependency>
+
+		<!-- driver jdbc -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.46</version>
+		</dependency>
+
+		<!-- JPA Persistence Dependencies -->
+		<dependency>
+			<groupId>org.uqbar-project</groupId>
+			<artifactId>jpa-java8-extras</artifactId>
+			<version>1.0-alpha-1</version>
+		</dependency>
+
+		<!-- Testing -->
+		<!-- Mockito to mock Method/classes -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>[1.9.5,)</version>
+		</dependency>
+
 		<!-- Junit as principal testing method -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -139,7 +157,7 @@
 			<version>4.11 </version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- Junit as principal testing method -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
