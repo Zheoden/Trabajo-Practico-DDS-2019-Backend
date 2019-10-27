@@ -21,14 +21,13 @@ public interface Repository<T> extends WithGlobalEntityManager, TransactionalOps
 	default void delete(T entity) {
 		withTransaction(() -> entityManager().remove(entity));
 	}
-	
+
 	default void update(T entity) {
-		  beginTransaction();
-	  	  entityManager().flush();
-	  	  commitTransaction();
+		beginTransaction();
+		entityManager().flush();
+		commitTransaction();
 	}
 
-	
 	List<T> all();
 
 }

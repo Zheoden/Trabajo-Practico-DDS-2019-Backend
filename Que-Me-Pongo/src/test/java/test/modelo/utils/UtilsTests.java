@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 import java.util.Properties;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import junit.framework.Assert;
+import org.junit.Assert;
 import main.Application;
 import modelo.clases.Evento;
 import modelo.clases.Guardarropas;

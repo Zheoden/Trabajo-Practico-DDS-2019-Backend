@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import modelo.clases.AdministrarProveedores;
 import modelo.clases.Atuendo;
 import modelo.clases.Evento;
@@ -29,7 +29,7 @@ public class AtuendoTest {
 	static UsuarioRepository userRepo = new UsuarioRepository();
 	AtuendoRepository atuendoRepo = new AtuendoRepository();
 	EventoRepository eventoRepo = new EventoRepository();
-	
+
 	Usuario pepe;
 	static ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 	static ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
@@ -50,10 +50,10 @@ public class AtuendoTest {
 	static Prenda prenda9 = new Prenda("PR009", TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda10 = new Prenda("PR0010", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 	static Prenda prenda11 = new Prenda("PR0011", TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
-	
+
 	@BeforeClass
 	public static void setUp() {
-		
+
 		prendas.add(prenda1);
 		prendas.add(prenda2);
 		prendas.add(prenda3);
@@ -68,15 +68,16 @@ public class AtuendoTest {
 		prendas1.add(prenda9);
 		prendas1.add(prenda10);
 		prendas1.add(prenda11);
-		
+
 		AdministrarProveedores admin = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(admin.obtenerTemperatura(trabajo.getFechaEvento())).thenReturn(20.0);
 		
 		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin, "Guardarropa1");
 		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin, "Guardarropa2");
+
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
-		
+
 		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", 2);
 		pepe.setUsername("pepe");
 		pepe.setPassword("pepas");
@@ -84,7 +85,7 @@ public class AtuendoTest {
 		trabajo.setUsuario(pepe);
 		atuendosGenerados = pepe.todosPosiblesAtuendosPorGuardarropaParaEvento(trabajo);
 		atuendosGenerados.stream().forEach(atuendo -> atuendo.setEvento(trabajo));
-		
+
 		for (int i = 0; i < atuendosGenerados.size(); i++) {
 
 			if (i % 2 == 0) {
@@ -94,14 +95,13 @@ public class AtuendoTest {
 			}
 
 		}
-		
+
 		Optional<Usuario> usuario = userRepo.find("pepe");
-		if(!(usuario.isPresent())) {
+		if (!(usuario.isPresent())) {
 			userRepo.persist(pepe);
 		}
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	@Test
 	public void test() {
 		Usuario usuarioEncontrado = userRepo.find("pepe").get();

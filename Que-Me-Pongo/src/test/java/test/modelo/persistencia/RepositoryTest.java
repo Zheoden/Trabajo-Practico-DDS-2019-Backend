@@ -137,10 +137,25 @@ public class RepositoryTest {
 		Assert.assertEquals(guardarropas2.size(), 2);
 	}
 
-	
 //	@AfterClass
 //	public static void clearSetUp() {
 //		userRepo.delete(user1);
 //		userRepo.delete(user2);
 //	}
+
+	@Test
+	@DisplayName("Verifica la carga de eventos")
+	public void verificarCargaDeEventos() {
+		Optional<Usuario> user = userRepo.find(1);
+		Assert.assertEquals(user.get().getEventos().size(), 3);
+	}
+
+	@Test
+	@DisplayName("Eliminar eventos del calendario")
+	public void eliminarEventos() {
+		Optional<Usuario> user = userRepo.find(1);
+		List<Evento> listaDeEventos = user.get().getEventos();
+		listaDeEventos.remove(1);
+		Assert.assertEquals(listaDeEventos.size(), 2);
+	}
 }
