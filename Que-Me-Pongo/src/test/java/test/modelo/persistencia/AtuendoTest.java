@@ -8,7 +8,7 @@ import java.util.Optional;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-
+import org.junit.AfterClass;
 import org.junit.Assert;
 import modelo.clases.AdministrarProveedores;
 import modelo.clases.Atuendo;
@@ -30,7 +30,6 @@ public class AtuendoTest {
 	AtuendoRepository atuendoRepo = new AtuendoRepository();
 	EventoRepository eventoRepo = new EventoRepository();
 
-	Usuario pepe;
 	static ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 	static ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
 	static Guardarropas guardaRopa1;
@@ -38,6 +37,7 @@ public class AtuendoTest {
 	static ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
 	static Evento trabajo = new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance());
 	static List<Atuendo> atuendosGenerados;
+	static Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", 2);
 	
 	static Prenda prenda1 = new Prenda("PR001", TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda2 = new Prenda("PR002", TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
@@ -78,7 +78,6 @@ public class AtuendoTest {
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 
-		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", 2);
 		pepe.setUsername("pepe");
 		pepe.setPassword("pepas");
 		pepe.cargarEvento(trabajo);
@@ -96,10 +95,7 @@ public class AtuendoTest {
 
 		}
 
-		Optional<Usuario> usuario = userRepo.find("pepe");
-		if (!(usuario.isPresent())) {
 			userRepo.persist(pepe);
-		}
 	}
 
 	@Test
@@ -108,5 +104,9 @@ public class AtuendoTest {
 		List<Atuendo> atuendosAceptadosPorEvento = atuendoRepo.findSugerenciasAceptadasParaEvento("Ir a trabajar", usuarioEncontrado.getUsername());
 		Assert.assertEquals(atuendosAceptadosPorEvento.size(), 2);
 	}
-
+	
+	@AfterClass
+	public static void clearSetUp() {
+		userRepo.delete(pepe);
+	}
 }
