@@ -23,27 +23,34 @@ public class GuardarropaRepository implements Repository<Guardarropas> {
 	    return guardarropas;
 	}
 	
-	public Optional<Guardarropas> findWardrobeById(String username, long id){
-		String query = "SELECT g FROM Usuario u JOIN u.guardarropas g WHERE u.username = :username AND g.id = :id";
+	@SuppressWarnings("unchecked")
+	public List<Guardarropas> findByUserId(long id){
+		String query = "FROM Usuario u JOIN u.guardarropas  where u.id= :id ";
+	    List<Guardarropas> guardarropas = entityManager().createQuery(query).setParameter("id",id).getResultList();
+	    return guardarropas;
+	}
+	
+	public Optional<Guardarropas> findWardrobeById(long id, String nombre){
+		String query = "SELECT g FROM Usuario u JOIN u.guardarropas g WHERE u.id = :id AND g.nombre = :nombre";
 
 		try {
 		   return Optional.of((Guardarropas) entityManager()
 					.createQuery(query)
-					.setParameter("username", username)
-					.setParameter("id",id)
+					.setParameter("id", id)
+					.setParameter("nombre",nombre)
 					.getSingleResult());
 		} catch (NoResultException e) {
 			return Optional.empty();
 		}
 	}
 	
-	public Optional<Guardarropas> findWardrobeByName(String username, String nombre){
-		String query = "SELECT g FROM Usuario u JOIN u.guardarropas g WHERE u.username = :username AND g.nombre = :nombre";
+	public Optional<Guardarropas> findWardrobeByName(long id, String nombre){
+		String query = "SELECT g FROM Usuario u JOIN u.guardarropas g WHERE u.id = :id AND g.nombre = :nombre";
 
 		try {
 		   return Optional.of((Guardarropas) entityManager()
 					.createQuery(query)
-					.setParameter("username", username)
+					.setParameter("id", id)
 					.setParameter("nombre",nombre)
 					.getSingleResult());
 		} catch (NoResultException e) {

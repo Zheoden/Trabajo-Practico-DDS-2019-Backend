@@ -36,10 +36,10 @@ public class EventoRepository implements Repository<Evento> {
 		return eventos;
 	}
 
-	public Optional<Evento> find(String nombre, String evento) {
+	public Optional<Evento> find(long id, String evento) {
 		Query query = entityManager()
-				.createQuery("SELECT e FROM Evento e JOIN e.usuario u  WHERE e.nombre = :evento and u.username = :nombre")
-				.setParameter("nombre", nombre)
+				.createQuery("SELECT e FROM Evento e JOIN e.usuario u  WHERE e.nombre = :evento and u.id = :id")
+				.setParameter("id", id)
 				.setParameter("evento", evento)
 				.setMaxResults(1);
 
