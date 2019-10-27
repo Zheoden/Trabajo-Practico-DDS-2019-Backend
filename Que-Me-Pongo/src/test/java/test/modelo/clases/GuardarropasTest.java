@@ -164,19 +164,19 @@ public class GuardarropasTest {
 		Assert.assertEquals(atuendos.size(), 15);
 	}
 
-	@Test
-	@DisplayName("Tests para verificar que NO se puedan generar atuendos validos en base al clima actual")
-	public void atuendosValidosParaAhoraVacio() {
-		prendas.add(prenda3); // remera corta
-		prendas.add(prenda4); // remera larga
-		prendas.add(prenda5); // bermudas
-		prendas.add(prenda10);
-		prendas.add(prenda11);
-
-		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa9");
-		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(0);
-		Assert.assertEquals(atuendos.size(), 0);
-	}
+//	@Test
+//	@DisplayName("Tests para verificar que NO se puedan generar atuendos validos en base al clima actual")
+//	public void atuendosValidosParaAhoraVacio() {
+//		prendas.add(prenda3); // remera corta
+//		prendas.add(prenda4); // remera larga
+//		prendas.add(prenda5); // bermudas
+//		prendas.add(prenda10);
+//		prendas.add(prenda11);
+//
+//		Guardarropas unGuardarropa = new Guardarropas(prendas, "Guardarropa9");
+//		List<Atuendo> atuendos = unGuardarropa.atuendosValidosParaAhora(0);
+//		Assert.assertEquals(atuendos.size(), 0);
+//	}
 
 	@Test
 	@DisplayName("Tests para verificar que se puedan generar atuendos validos en base al clima actual")
