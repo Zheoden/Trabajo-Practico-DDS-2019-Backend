@@ -20,6 +20,7 @@ import modelo.clases.Usuario;
 import modelo.dtos.Color;
 import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
+import modelo.interfaces.Suscripcion;
 import repository.AtuendoRepository;
 import repository.EventoRepository;
 import repository.UsuarioRepository;
@@ -29,15 +30,8 @@ public class AtuendoTest {
 	static UsuarioRepository userRepo = new UsuarioRepository();
 	AtuendoRepository atuendoRepo = new AtuendoRepository();
 	EventoRepository eventoRepo = new EventoRepository();
-
-	static ArrayList<Prenda> prendas = new ArrayList<Prenda>();
-	static ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
-	static Guardarropas guardaRopa1;
-	static Guardarropas guardaRopa2;
-	static ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
-	static Evento trabajo = new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance());
-	static List<Atuendo> atuendosGenerados;
-	static Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", 2);
+	
+	static AdministrarProveedores admin = Mockito.mock(AdministrarProveedores.class);
 	
 	static Prenda prenda1 = new Prenda("PR001", TipoPrenda.BUZO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda2 = new Prenda("PR002", TipoPrenda.CAMISA, Material.ALGODON, Color.ROJO, Color.BLANCO);
@@ -50,6 +44,20 @@ public class AtuendoTest {
 	static Prenda prenda9 = new Prenda("PR009", TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda10 = new Prenda("PR0010", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 	static Prenda prenda11 = new Prenda("PR0011", TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
+
+	static ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+	static ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
+	
+	static Guardarropas guardaRopa1 = new Guardarropas(prendas, admin, "Guardarropa1");
+	static Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin, "Guardarropa2");
+
+	static ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
+	
+	static Suscripcion subs = new SuscripcionPremium();
+	
+	static Evento trabajo = new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance());
+	static List<Atuendo> atuendosGenerados;
+	static Usuario pepe = new Usuario(guardaRopas, subs, "test@test.com", "12341234", 2);
 
 	@BeforeClass
 	public static void setUp() {
@@ -69,12 +77,8 @@ public class AtuendoTest {
 		prendas1.add(prenda10);
 		prendas1.add(prenda11);
 
-		AdministrarProveedores admin = Mockito.mock(AdministrarProveedores.class);
 		Mockito.when(admin.obtenerTemperatura(trabajo.getFechaEvento())).thenReturn(20.0);
 		
-		Guardarropas guardaRopa1 = new Guardarropas(prendas, admin, "Guardarropa1");
-		Guardarropas guardaRopa2 = new Guardarropas(prendas1, admin, "Guardarropa2");
-
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 

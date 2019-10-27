@@ -73,10 +73,12 @@ public class EventoTest {
 		fecha1.set(Calendar.HOUR_OF_DAY, 21);
 		fecha1.set(Calendar.MINUTE, 30);
 		Evento irAlAlamo = new Evento("Ir al alamo", "Lanus", fecha1);
+		Evento developer = new Evento("Desarrollar software", "Azul", fecha1);
+		usuario1.cargarEvento(developer);
 		PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
 		usuario1.irAElEvento(irAlAlamo);
-		verify(out).println(startsWith("No estas invitado al evento Ir al alamo"));
+		verify(out).println(startsWith("No estas invitado al evento " + irAlAlamo.getNombre()));
 	}
 
 	@Test
