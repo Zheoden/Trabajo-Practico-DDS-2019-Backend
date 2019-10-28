@@ -16,7 +16,7 @@ public class Application {
 //		Usuario pepe = new Usuario();
 //		new JobScheduler(0, 5, TimeUnit.MINUTES).run(pepe::notifyUser);
 //
-		Spark.port(80);
+		Spark.port(7071);
 		Router.register();
 		CorsFilter.enableCORS("*", "*", "*");
 
