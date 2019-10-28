@@ -45,24 +45,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>com.microsoft.azure</groupId>
-				<artifactId>azure-webapp-maven-plugin</artifactId>
-				<version>1.6.0</version>
-				<configuration>
-					<schemaVersion>V2</schemaVersion>
-					<resourceGroup>que-me-pongo</resourceGroup>
-					<appName>que-me-pongo-api</appName>
-					<region>centralus</region>
-					<pricingTier>F1</pricingTier>
-					<appSettings>
-						<property>
-							<name>JAVA_OPTS</name>
-							<value>-Dserver.port=80</value>
-						</property>
-					</appSettings>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
