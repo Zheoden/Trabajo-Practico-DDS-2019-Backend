@@ -17,12 +17,13 @@ public class AtuendoRepository implements Repository<Atuendo> {
 	}
 
 	public Optional<Atuendo> find(long id) {
-		Atuendo atuendo = (Atuendo) entityManager().createQuery("SELECT a FROM Atuendo  WHERE a.id = :id").
+		Atuendo atuendo = (Atuendo) entityManager().createQuery("SELECT a FROM Atuendo a WHERE a.id = :id").
 				                    setParameter("id", id).
 				                    getSingleResult();
 
 		return Optional.ofNullable(atuendo);
 	}
+
 
 	@SuppressWarnings("unchecked")
 	public List<Atuendo> findSugerenciasAceptadasParaEvento(long idEvento, long idUsuario) {
