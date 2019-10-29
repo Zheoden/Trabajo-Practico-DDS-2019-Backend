@@ -30,32 +30,17 @@ public class GuardarropaRepository implements Repository<Guardarropas> {
 	    return guardarropas;
 	}
 	
-	public Optional<Guardarropas> findWardrobeById(long id, String nombre){
-		String query = "SELECT g FROM Usuario u JOIN u.guardarropas g WHERE u.id = :id AND g.nombre = :nombre";
+	public Optional<Guardarropas> findWardrobeById(long id, long idGuardarropa){
+		String query = "SELECT g FROM Usuario u JOIN u.guardarropas g WHERE u.id = :id AND g.id = :idGuardarropa";
 
 		try {
 		   return Optional.of((Guardarropas) entityManager()
 					.createQuery(query)
 					.setParameter("id", id)
-					.setParameter("nombre",nombre)
+					.setParameter("idGuardarropa",idGuardarropa)
 					.getSingleResult());
 		} catch (NoResultException e) {
 			return Optional.empty();
 		}
 	}
-	
-	public Optional<Guardarropas> findWardrobeByName(long id, String nombre){
-		String query = "SELECT g FROM Usuario u JOIN u.guardarropas g WHERE u.id = :id AND g.nombre = :nombre";
-
-		try {
-		   return Optional.of((Guardarropas) entityManager()
-					.createQuery(query)
-					.setParameter("id", id)
-					.setParameter("nombre",nombre)
-					.getSingleResult());
-		} catch (NoResultException e) {
-			return Optional.empty();
-		}
-	}
-
 }

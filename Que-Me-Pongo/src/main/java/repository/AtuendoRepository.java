@@ -25,12 +25,12 @@ public class AtuendoRepository implements Repository<Atuendo> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Atuendo> findSugerenciasAceptadasParaEvento(String nombreEvento, String nombreUsuario) {
-		String query = "SELECT a FROM Atuendo a JOIN a.evento e JOIN e.usuario u WHERE a.aceptado = true AND e.nombre = :nombreEvento AND u.username = :nombreUsuario";
-		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("nombreEvento", nombreEvento).setParameter("nombreUsuario", nombreUsuario).getResultList();
+	public List<Atuendo> findSugerenciasAceptadasParaEvento(long idEvento, long idUsuario) {
+		String query = "SELECT a FROM Atuendo a JOIN a.evento e JOIN e.usuario u WHERE a.aceptado = true AND e.id = :idEvento AND u.id = :idUsuario";
+		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("idEvento", idEvento).setParameter("idUsuario", idUsuario).getResultList();
 		return atuendosXEvento;
 	}
-	//		String query = "FROM Guardarropas g JOIN g.prendas p WHERE  g.id = :id";
+
 	@SuppressWarnings("unchecked")
 	public List<Atuendo> findSugerenciasAceptadas() {
 		String query = "SELECT a FROM Atuendo a JOIN a.evento WHERE a.aceptado = true";
@@ -40,9 +40,9 @@ public class AtuendoRepository implements Repository<Atuendo> {
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<Atuendo> findSugerenciasParaEvento(String nombreEvento, String nombreUsuario) {
-		String query = "SELECT a FROM Atuendo a JOIN a.evento e JOIN e.usuario u WHERE e.nombre = :nombreEvento AND u.username = :nombreUsuario";
-		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("nombreEvento", nombreEvento).setParameter("nombreUsuario", nombreUsuario).getResultList();
+	public List<Atuendo> findSugerenciasParaEvento(long idEvento, long idUsuario) {
+		String query = "SELECT a FROM Atuendo a JOIN a.evento e JOIN e.usuario u WHERE e.id = :idEvento AND u.id = :idUsuario";
+		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("idEvento", idEvento).setParameter("idUsuario", idUsuario).getResultList();
 		return atuendosXEvento;
 	}
 
