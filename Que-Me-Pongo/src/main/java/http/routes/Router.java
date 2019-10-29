@@ -168,7 +168,7 @@ public class Router {
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosSugeridos);
 		});
 		
-		post("/atuendo/:id/aceptarSugerencia", "application/json" ,(req, res) -> {
+		put("/atuendo/:id/aceptarSugerencia", "application/json" ,(req, res) -> {
 			
 			long id = Integer.parseInt(req.params(":id"));
 			Optional<Atuendo> atuendoBuscado = atuendoService.find(id);
@@ -183,7 +183,7 @@ public class Router {
 
 			atuendoService.update(atuendoEncontrado);
 			res.status(200);
-			return JsonParser.getObjectMapper().writeValueAsString("Se acepto el atuendo");		
+			return JsonParser.getObjectMapper().writeValueAsString(atuendoEncontrado);		
 		});
 		
 		
