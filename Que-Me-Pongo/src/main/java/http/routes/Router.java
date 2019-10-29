@@ -184,15 +184,7 @@ public class Router {
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosAceptados());
 
 		});
-		*/
-		
-		get("/user/create", (req, res) -> "Create User");
-		get("/user/sugerir-atuendo", (req, res) -> "Sugerir Atuendo");
-		get("/prenda", (req, res) -> "Get Prenda");
-		get("/guardarropas", (req, res) -> "Get Guardarropas");
-		get("/guardarropas/create", (req, res) -> "Create Guardarropas");
-		get("/Atuendos", (req, res) -> "Atuendos");
-	
+		*/	
 	}
 	
 }
