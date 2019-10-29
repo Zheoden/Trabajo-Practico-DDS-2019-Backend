@@ -202,7 +202,7 @@ public class Router {
 		});
 		*/
 		
-		put("/users/:userid/eventos/:id/calificarAtuendo/:calificacion", "application/json" ,(req, res) -> {
+		put("/users/:userid/atuendo/:id/calificarAtuendo/:calificacion", "application/json" ,(req, res) -> {
 
 			Integer numero = Integer.parseInt(req.params(":calificacion"));
 			long id = Integer.parseInt(req.params(":id"));
@@ -218,7 +218,7 @@ public class Router {
 
 			atuendoService.update(atuendoEncontrado);
 			res.status(200);
-			return JsonParser.getObjectMapper().writeValueAsString("Se acepto el atuendo");		
+			return JsonParser.getObjectMapper().writeValueAsString(atuendoEncontrado);		
 		});
 	}
 	
