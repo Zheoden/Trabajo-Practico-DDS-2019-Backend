@@ -202,7 +202,7 @@ public class Router {
 		});
 		*/
 		
-		post("/users/:userid/eventos/:id/calificarAtuendo/:calificacion", "application/json" ,(req, res) -> {
+		put("/users/:userid/eventos/:id/calificarAtuendo/:calificacion", "application/json" ,(req, res) -> {
 
 			Integer numero = Integer.parseInt(req.params(":calificacion"));
 			long id = Integer.parseInt(req.params(":id"));
