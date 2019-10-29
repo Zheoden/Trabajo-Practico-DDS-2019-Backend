@@ -200,7 +200,26 @@ public class Router {
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosAceptados());
 
 		});
-		*/	
+		*/
+		
+		post("/users/:userid/eventos/:id/calificarAtuendo/:calificacion", "application/json" ,(req, res) -> {
+
+			Integer numero = Integer.parseInt(req.params(":calificacion"));
+			long id = Integer.parseInt(req.params(":id"));
+			Optional<Atuendo> atuendoBuscado = atuendoService.find(id);
+
+			if(!atuendoBuscado.isPresent()) {
+				res.status(404);
+				return JsonParser.getObjectMapper().writeValueAsString("El atuendo no existe");
+			}
+
+			Atuendo atuendoEncontrado = atuendoBuscado.get();
+			atuendoEncontrado.setCalificacion(numero);
+
+			atuendoService.update(atuendoEncontrado);
+			res.status(200);
+			return JsonParser.getObjectMapper().writeValueAsString("Se acepto el atuendo");		
+		});
 	}
 	
 }

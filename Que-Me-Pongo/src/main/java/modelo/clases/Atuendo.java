@@ -33,6 +33,8 @@ public class Atuendo {
 	@JsonIgnore
 	Evento evento;
 	
+	Integer calificacion;
+	
 	public Atuendo() {}
 
 	public Atuendo(Prenda superior, Prenda inferior, Prenda calzado, Prenda accesorio) {
@@ -116,5 +118,13 @@ public class Atuendo {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public void setCalificacion(Integer numero) {
+		this.calificacion = numero;
+	}
+	
+	public Integer getCalificacion() {
+		return calificacion;
 	}
 }
