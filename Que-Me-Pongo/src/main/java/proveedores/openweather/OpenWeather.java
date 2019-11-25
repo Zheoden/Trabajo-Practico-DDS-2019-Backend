@@ -46,7 +46,7 @@ public class OpenWeather implements Proveedores {
 				key);
 		ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 		String output = response.getEntity(String.class);
-		return jsonParser.read(output, new TypeReference<OpenWeatherDTO>() {
+		return JsonParser.read(output, new TypeReference<OpenWeatherDTO>() {
 		});
 	}
 
@@ -57,7 +57,7 @@ public class OpenWeather implements Proveedores {
 				key);
 		ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 		String output = response.getEntity(String.class);
-		return jsonParser.read(output, new TypeReference<ExtendedOpenWeatherDTO>() {
+		return JsonParser.read(output, new TypeReference<ExtendedOpenWeatherDTO>() {
 		});
 	}
 

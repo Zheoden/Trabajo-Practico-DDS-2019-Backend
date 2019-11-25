@@ -14,7 +14,10 @@
      <class>modelo.clases.Evento</class>
      <class>modelo.clases.Guardarropas</class>
      <class>modelo.clases.Prenda</class>
-        <class>modelo.dtos.Categoria</class>
+     <class>modelo.ropa.Categoria</class>
+	 <class>modelo.ropa.Color</class>
+	 <class>modelo.ropa.Material</class>
+	 <class>modelo.ropa.TipoPrenda</class>
 
         <properties>
 <!--            <property name="hibernate.archive.autodetection" value="class"/>-->

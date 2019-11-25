@@ -110,19 +110,19 @@ public class RepositoryTest {
 		user1.setPassword("123");
 		user2.setPassword("456");
 
-//		userRepo.persist(user1);
-//		userRepo.persist(user2);
+		userRepo.persist(user1);
+		userRepo.persist(user2);
 
 	}
 
-//	@Test
-//	@DisplayName("Usuario crea guardarropas los persiste")
-//	public void A_guardarropasPersistidosPorElUsuario() {
-//		Optional<Usuario> user = userRepo.find("pepeCirco");
-//		List<Guardarropas> guardarropas1 = guardarropasRepo.findByUser(user.get().getUsername());
-//		Assert.assertEquals(guardarropas1.size(), 1);
-//
-//	}
+	@Test
+	@DisplayName("Usuario crea guardarropas los persiste")
+	public void A_guardarropasPersistidosPorElUsuario() {
+		Optional<Usuario> user = userRepo.find("pepeCirco");
+		List<Guardarropas> guardarropas1 = guardarropasRepo.findByUser(user.get().getUsername());
+		Assert.assertEquals(guardarropas1.size(), 1);
+
+	}
 //
 //	@Test
 //	@DisplayName("Usuario agrega guardarropa y los persiste")

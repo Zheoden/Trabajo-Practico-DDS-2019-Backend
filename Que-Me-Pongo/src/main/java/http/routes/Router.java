@@ -14,9 +14,10 @@ import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.Usuario;
-import modelo.dtos.Categoria;
-import modelo.dtos.Color;
-import modelo.dtos.Material;
+import modelo.ropa.TipoPrenda;
+import modelo.ropa.Categoria;
+import modelo.ropa.Color;
+import modelo.ropa.Material;
 import repository.AtuendoRepository;
 import repository.CategoriaRepository;
 import repository.ColorRepository;
@@ -24,6 +25,7 @@ import repository.EventoRepository;
 import repository.GuardarropaRepository;
 import repository.MaterialRepository;
 import repository.PrendaRepository;
+import repository.TipoPrendaRepository;
 import repository.UsuarioRepository;
 import utils.JsonParser;
 
@@ -39,6 +41,7 @@ public class Router {
 		ColorRepository colorService = new ColorRepository();
         CategoriaRepository categoriaService = new CategoriaRepository();
         MaterialRepository materialService = new MaterialRepository();
+        TipoPrendaRepository tipoPrendaService = new TipoPrendaRepository();
 
 		get("/", (req, res) -> "Home");
 		
@@ -281,6 +284,16 @@ public class Router {
 				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + eventoABuscar.get().getNombre() + "no existe");
 			}
 			
+			Evento eventoEncontrado = eventoABuscar.get();
+			Usuario userEncontrado = userABuscar.get();
+			
+			if(eventoEncontrado.getAtuendosMovimientos().isEmpty()) {
+				List<Atuendo> atuendosCreados = userEncontrado.todosPosiblesAtuendosPorGuardarropaParaEvento(eventoEncontrado);
+				userService.update(userEncontrado);
+				res.status(200);
+				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosCreados);
+			}
+			
 			List<Atuendo> atuendosSugeridos = atuendoService.findSugerenciasParaEvento(idEvento, id);
 			res.status(200);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosSugeridos);
@@ -304,23 +317,29 @@ public class Router {
 		
 // Controladores Sobre Enumeradores ----------------------------------------------------------------------------------------------
 		
-		get("/categorias)", (req, res) -> {
+		get("/categorias", "application/json", (req, res) -> {
 			List<Categoria> categorias = categoriaService.all();
 			res.status(200);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(categorias);
 		});
 
-        get("/colores)", (req, res) -> {
+        get("/colores", "application/json", (req, res) -> {
             List<Color> colores = colorService.all();
             res.status(200);
             return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(colores);
         });
 
 
-        get("/materiales)", (req, res) -> {
+        get("/materiales", "application/json" ,(req, res) -> {
             List<Material> materiales = materialService.all();
             res.status(200);
             return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(materiales);
+        });
+        
+        get("/tipoPrendas", "application/json" ,(req, res) -> {
+            List<TipoPrenda> prendas = tipoPrendaService.all();
+            res.status(200);
+            return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(prendas);
         });
 	}	
 }
