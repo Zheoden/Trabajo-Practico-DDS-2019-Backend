@@ -99,7 +99,7 @@ public class AtuendoTest {
 
 		}
 
-//			userRepo.persist(pepe);
+			userRepo.persist(pepe);
 	}
 
 //	@Test

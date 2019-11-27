@@ -18,7 +18,7 @@
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://que-me-pongo.cqjnhqhxiteg.us-east-1.rds.amazonaws.com:3306/QueMePongoDB" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://que-me-pongo-db.cnzqhwqxxppq.us-east-2.rds.amazonaws.com:3306/QueMePongoDB" />
             <property name="hibernate.connection.username" value="admin" />
             <property name="hibernate.connection.password" value="Admin1234"/>
             
