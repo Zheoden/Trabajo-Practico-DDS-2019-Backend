@@ -122,39 +122,41 @@ public class RepositoryTest {
 		Assert.assertEquals(guardarropas1.size(), 1);
 
 	}
-//
-//	@Test
-//	@DisplayName("Usuario agrega guardarropa y los persiste")
-//	public void B_guardarropasNuevosPersistidosPorElUsuario() {
-//		Optional<Usuario> user = userRepo.find("pepeCirco");
-//		listaGuardarropas1.add(guardaRopas3);
-//		user.get().setGuardarropas(listaGuardarropas1);
-//		userRepo.beginTransaction();
-//		userRepo.entityManager().flush();
-//		userRepo.commitTransaction();
-//		List<Guardarropas> guardarropas2 = guardarropasRepo.findByUser(user.get().getUsername());
-//		Assert.assertEquals(guardarropas2.size(), 2);
-//	}
-//
-//	@Test
-//	@DisplayName("Verifica la carga de eventos")
-//	public void verificarCargaDeEventos() {
-//		Optional<Usuario> user = userRepo.findById(1);
-//		Assert.assertEquals(user.get().getEventos().size(), 3);
-//	}
-//
-//	@Test
-//	@DisplayName("Eliminar eventos del calendario")
-//	public void eliminarEventos() {
-//		Optional<Usuario> user = userRepo.findById(1);
-//		List<Evento> listaDeEventos = user.get().getEventos();
-//		listaDeEventos.remove(1);
-//		Assert.assertEquals(listaDeEventos.size(), 2);
-//	}
-//	
-//	@AfterClass
-//	public static void clearSetUp() {
-//		userRepo.delete(user1);
-//		userRepo.delete(user2);
-//	}
+
+	@Test
+	@DisplayName("Usuario agrega guardarropa y los persiste")
+	public void B_guardarropasNuevosPersistidosPorElUsuario() {
+		Optional<Usuario> user = userRepo.find("pepeCirco");
+		listaGuardarropas1.add(guardaRopas3);
+		user.get().setGuardarropas(listaGuardarropas1);
+		userRepo.beginTransaction();
+		userRepo.entityManager().flush();
+		userRepo.commitTransaction();	
+		List<Guardarropas> guardarropas2 = guardarropasRepo.findByUser(user.get().getUsername());
+		Assert.assertEquals(guardarropas2.size(), 2);
+	}
+
+	@Test
+	@DisplayName("Verifica la carga de eventos")
+	public void verificarCargaDeEventos() {
+		Optional<Usuario> user = userRepo.findById(1);
+		Assert.assertEquals(user.get().getEventos().size(), 3);
+	}
+
+	@Test
+	@DisplayName("Eliminar eventos del calendario")
+	public void eliminarEventos() {
+		Usuario user = userRepo.findById(1).get();
+		List<Evento> eventos = user.getEventos();
+		Evento eventoARemover = user.getEventos().get(1);
+		eventos.remove(1);
+		eventoRepo.delete(eventoARemover);
+		Assert.assertEquals(eventos.size(), 2);
+	}
+	
+	@AfterClass
+	public static void clearSetUp() {
+		List<Usuario> usuariosABorrar = userRepo.all();
+		usuariosABorrar.stream().forEach(usuario -> userRepo.delete(usuario));
+	}
 }

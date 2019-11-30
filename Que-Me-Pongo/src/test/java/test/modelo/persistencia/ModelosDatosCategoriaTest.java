@@ -3,6 +3,7 @@ package test.modelo.persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -41,5 +42,10 @@ public class ModelosDatosCategoriaTest {
 	public void persistenciaDeCategorias() {
 		List<Categoria> categorias = repoCategorias.all();
 		Assert.assertEquals(4, categorias.size());	
+	}
+	
+	@AfterClass
+	public static void clearSetUp() {
+		listaCategorias.stream().forEach(categoria -> repoCategorias.delete(categoria));
 	}
 }

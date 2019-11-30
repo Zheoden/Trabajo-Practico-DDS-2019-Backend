@@ -2,6 +2,7 @@ package test.modelo.persistencia;
 
 import java.util.ArrayList;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -68,11 +69,11 @@ public class PruebasFinales {
 	
 	@BeforeClass
 	public static void setUp() {
-		
-		//Establecimiento de Atributos para Ale
+
+		// Establecimiento de Atributos para Ale
 		user1.setUsername("aroco");
 		user1.setPassword("123456");
-		
+
 		listaDePrendasUser1.add(prenda1Ale);
 		listaDePrendasUser1.add(prenda2Ale);
 		listaDePrendasUser1.add(prenda3Ale);
@@ -82,14 +83,14 @@ public class PruebasFinales {
 		listaDePrendasUser1.add(prenda7Ale);
 		listaDePrendasUser1.add(prenda8Ale);
 		listaDePrendasUser1.add(prenda9Ale);
-		
+
 		listaGuardarropasUser1.add(user1Guardarropa);
-		
-		//Establecimiento de Atributos para Juli
-		
+
+		// Establecimiento de Atributos para Juli
+
 		user2.setUsername("jazul");
 		user2.setPassword("123456");
-		
+
 		listaDePrendasUser2.add(prenda1Juli);
 		listaDePrendasUser2.add(prenda2Juli);
 		listaDePrendasUser2.add(prenda3Juli);
@@ -99,19 +100,24 @@ public class PruebasFinales {
 		listaDePrendasUser2.add(prenda7Juli);
 		listaDePrendasUser2.add(prenda8Juli);
 		listaDePrendasUser2.add(prenda9Juli);
-		
+
 		listaGuardarropasUser2.add(user2Guardarropa);
-		
-		if(userRepo.all().isEmpty()) {
-			userRepo.persist(user1);
-			userRepo.persist(user2);
-		}
+
+		userRepo.persist(user1);
+		userRepo.persist(user2);
+
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@DisplayName("Test Para Poder Persistir Los Datos De Entrega")
 	@Test
 	public void test() {
 		Assert.assertEquals(2, userRepo.all().size());
+	}
+
+	@AfterClass
+	public static void clearSetUp() {
+		userRepo.delete(user1);
+		userRepo.delete(user2);
 	}
 }

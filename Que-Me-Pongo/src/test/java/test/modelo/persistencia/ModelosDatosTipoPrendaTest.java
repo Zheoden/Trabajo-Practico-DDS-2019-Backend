@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.Test;
@@ -74,6 +75,7 @@ public class ModelosDatosTipoPrendaTest {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	@DisplayName("Persistencia de todos los tipos de prendas a disponer")
 	public void persistenciaDeTipoPrendas() {
@@ -81,4 +83,9 @@ public class ModelosDatosTipoPrendaTest {
 		Assert.assertEquals(23, prendas.size());	
 	}
 
+	@AfterClass
+	public static void clearSetUp() {
+		listaPrendas.stream().forEach(tipoPrenda -> repoPrendas.delete(tipoPrenda));
+	}
+	
 }

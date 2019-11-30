@@ -3,6 +3,7 @@ package test.modelo.persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.Test;
@@ -69,5 +70,10 @@ public class ModelosDatosColorTest {
 	public void persistenciaDeColores() {
 		List<Color> colores = repoColores.all();
 		Assert.assertEquals(18, colores.size());	
+	}
+	
+	@AfterClass
+	public static void clearSetUp() {
+		listaColores.stream().forEach(color -> repoColores.delete(color));
 	}
 }

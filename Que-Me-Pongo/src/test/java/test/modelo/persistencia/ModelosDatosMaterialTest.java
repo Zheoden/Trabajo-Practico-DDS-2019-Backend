@@ -3,6 +3,7 @@ package test.modelo.persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.Test;
@@ -45,10 +46,17 @@ public class ModelosDatosMaterialTest {
 			listaMateriales.stream().forEach(material -> repoMateriales.persist(material));
 		}
 	}
+	
+	@SuppressWarnings("deprecation")
 	@Test
 	@DisplayName("Persistencia de todos los materiales a disponer")
 	public void persistenciaDeMateriales() {
 		List<Material> materiales = repoMateriales.all();
 		Assert.assertEquals(10, materiales.size());	
+	}
+	
+	@AfterClass
+	public static void clearSetUp() {
+		listaMateriales.stream().forEach(material -> repoMateriales.delete(material));
 	}
 }
