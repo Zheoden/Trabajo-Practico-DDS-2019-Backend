@@ -6,7 +6,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -64,8 +63,8 @@ public class RepositoryTest {
 	static Suscripcion subs2 = new SuscripcionGratuita();
 
 	// Creacion de usuarios
-	static Usuario user1 = new Usuario(listaGuardarropas1, subs, "test@test.com", "12341234110", 0);
-	static Usuario user2 = new Usuario(listaGuardarropas2, subs2, "test2@test.com", "1122112209", 0);
+	static Usuario user1 = new Usuario("Pepe", "Circo", listaGuardarropas1, subs, "test@test.com", "12341234110", 0);
+	static Usuario user2 = new Usuario("Mama", "Kondo", listaGuardarropas2, subs2, "test2@test.com", "1122112209", 0);
 
 	// Creacion de eventos
 	static Calendar fecha1 = GregorianCalendar.getInstance();

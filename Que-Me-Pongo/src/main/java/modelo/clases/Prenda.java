@@ -49,8 +49,7 @@ public class Prenda {
 	List<Atuendo> atuendos = new ArrayList<>();
 	
 	public Prenda(String nombrePrenda, TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
-		this(tipo, material, colorPrimario);
-		this.setNombre(nombrePrenda);
+		this(nombrePrenda, tipo, material, colorPrimario);
 		this.setEnUso(false);
 		if (colorPrimario != colorSecundario) {
 			this.setColorSecundario(colorSecundario);
@@ -60,8 +59,8 @@ public class Prenda {
 		}
 	}
 
-	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario) {
-		this(tipo, colorPrimario);
+	public Prenda(String nombrePrenda, TipoPrenda tipo, Material material, Color colorPrimario) {
+		this(nombrePrenda, tipo, colorPrimario);
 		this.setEnUso(false);
 		if (this.esMaterialValido(tipo, material)) {
 			this.setMaterial(material);
@@ -71,7 +70,8 @@ public class Prenda {
 		}
 	}
 
-	public Prenda(TipoPrenda tipo, Color colorPrimario) {
+	public Prenda(String nombrePrenda, TipoPrenda tipo, Color colorPrimario) {
+		this.setNombre(nombrePrenda);
 		this.setTipo(tipo);
 		this.setColorPrimario(colorPrimario);
 		this.setEnUso(false);

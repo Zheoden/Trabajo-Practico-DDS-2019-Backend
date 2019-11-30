@@ -57,7 +57,7 @@ public class AtuendoTest {
 	
 	static Evento trabajo = new Evento("Ir a trabajar", "a la Ofi", GregorianCalendar.getInstance());
 	static List<Atuendo> atuendosGenerados;
-	static Usuario pepe = new Usuario(guardaRopas, subs, "test@test.com", "12341234", 2);
+	static Usuario pepe = new Usuario("Pepe", "Carlos", guardaRopas, subs, "test@test.com", "12341234", 2);
 
 	@BeforeClass
 	public static void setUp() {
