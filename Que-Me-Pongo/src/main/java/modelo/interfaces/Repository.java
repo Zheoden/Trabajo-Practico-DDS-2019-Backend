@@ -36,7 +36,7 @@ public interface Repository<T> extends WithGlobalEntityManager, TransactionalOps
 	List<T> all();
 
 	public static EntityManager getEntityManager() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("QueMePongoDB");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("db");
 	    return emf.createEntityManager();
 	}
 }
