@@ -38,9 +38,9 @@ public class UsuarioTest {
 
 	Prenda prenda5 = new Prenda("PR006", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda6 = new Prenda("PR007", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	Prenda prenda7 = new Prenda("PR008", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda7 = new Prenda("PR008", TipoPrenda.PANTALONLARGO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda8 = new Prenda("PR009", TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda9 = new Prenda("PR0010", TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda9 = new Prenda("PR0010", TipoPrenda.PANTALONCORTO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
 	Prenda prenda10 = new Prenda("PR0011", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 	Prenda prenda14 = new Prenda("PR0012", TipoPrenda.ZAPATILLAS, Material.CUERO, Color.AZUL, Color.ROJO);

@@ -12,9 +12,9 @@ import modelo.dtos.TipoPrenda;
 public class TipoInferiorTest {
 	TipoPrenda bermudas = TipoPrenda.BERMUDAS;
 	TipoPrenda calzas = TipoPrenda.CALZAS;
-	TipoPrenda pantalon = TipoPrenda.PANTALON;
+	TipoPrenda pantalon = TipoPrenda.PANTALONLARGO;
 	TipoPrenda pollera = TipoPrenda.POLLERA;
-	TipoPrenda shorts = TipoPrenda.SHORTS;
+	TipoPrenda shorts = TipoPrenda.PANTALONCORTO;
 
 	@Test
 	@DisplayName("Test para verificar que se agreguen prendas correctamente")

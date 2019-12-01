@@ -58,10 +58,7 @@ public class ModelosDatosColorTest {
 		listaColores.add(color17);
 		listaColores.add(color18);
 
-		if (repoColores.all().isEmpty()) {
-			listaColores.stream().forEach(color -> repoColores.persist(color));
-		}
-
+		listaColores.stream().forEach(color -> repoColores.persist(color));
 	}
 
 	@SuppressWarnings("deprecation")

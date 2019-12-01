@@ -39,6 +39,7 @@ public enum TipoPrenda {
 			return Categoria.PARTE_SUPERIOR;
 		}
 	},
+	
 	CAMPERA {
 		public boolean esMaterialValido(Material material) {
 			return true;
@@ -57,6 +58,27 @@ public enum TipoPrenda {
 		}
 	},
 
+	MUSCULOSA {
+		public boolean esMaterialValido(Material material) {
+			return !Arrays
+					.asList(Material.CUERO, Material.GABARDINA, Material.LINO, Material.OXFORD, Material.POLAR,
+							Material.SEDA, Material.TERCIOPELO, Material.POLIESTER, Material.NYLON, Material.JEAN)
+					.contains(material);
+		}
+		
+		public int nivelDeAbrigo() {
+			return 1;
+		}
+		
+		public int nivelDeCapa() {
+			return 0;
+		}
+		
+		public Categoria categoria() {
+			return Categoria.PARTE_SUPERIOR;
+		}	
+	},
+	
 	REMERACORTA {
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.TERCIOPELO, Material.JEAN).contains(material);
@@ -238,7 +260,7 @@ public enum TipoPrenda {
 			return Categoria.PARTE_INFERIOR;
 		}
 	},
-	PANTALON {
+	PANTALONLARGO {
 		public boolean esMaterialValido(Material material) {
 			return true;
 		}
@@ -272,7 +294,7 @@ public enum TipoPrenda {
 			return Categoria.PARTE_INFERIOR;
 		}
 	},
-	SHORTS {
+	PANTALONCORTO {
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.JEAN, Material.POLAR, Material.SEDA, Material.TERCIOPELO)
 					.contains(material);

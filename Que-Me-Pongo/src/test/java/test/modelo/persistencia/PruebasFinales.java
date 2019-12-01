@@ -33,13 +33,11 @@ public class PruebasFinales {
 	//Prendas Para Alejandro
 	static Prenda prenda1Ale = new Prenda("Remera cuello redondo manga corta", TipoPrenda.REMERACORTA, Material.ALGODON, Color.NEGRO);
 	static Prenda prenda2Ale = new Prenda("Remera escote V manga corta", TipoPrenda.REMERACORTA, Material.LYCRA, Color.BLANCO);
-	//Este tiene que ser Musculosa
-	static Prenda prenda3Ale = new Prenda("Musculosa", TipoPrenda.REMERACORTA, Material.ALGODON, Color.NEGRO);
+	static Prenda prenda3Ale = new Prenda("Musculosa", TipoPrenda.MUSCULOSA, Material.LYCRA, Color.AMARILLO);
 	static Prenda prenda4Ale = new Prenda("Campera", TipoPrenda.CAMPERA, Material.CUERO, Color.BLANCO);
 	static Prenda prenda5Ale = new Prenda("Sueter", TipoPrenda.SWEATER, Material.POLIESTER, Color.BLANCO);
 	static Prenda prenda6Ale = new Prenda("Bermuda", TipoPrenda.BERMUDAS, Material.JEAN, Color.CELESTE);
-	//Diferenciar entre Pantalon Largo y Corto
-	static Prenda prenda7Ale = new Prenda("Pantalon Largo", TipoPrenda.PANTALON, Material.NYLON, Color.GRIS);
+	static Prenda prenda7Ale = new Prenda("Pantalon Largo", TipoPrenda.PANTALONLARGO, Material.NYLON, Color.GRIS);
 	static Prenda prenda8Ale = new Prenda("Zapatillas", TipoPrenda.ZAPATILLAS, Material.NYLON, Color.BORDO);
 	static Prenda prenda9Ale = new Prenda("Zapatos", TipoPrenda.ZAPATOS, Material.CUERO, Color.NEGRO);
 
@@ -56,8 +54,7 @@ public class PruebasFinales {
 	//Prendas Para Alejandro
 	static Prenda prenda1Juli = new Prenda("Remera cuello redondo manga larga", TipoPrenda.REMERALARGA, Material.LYCRA, Color.AMARILLO);
 	static Prenda prenda2Juli = new Prenda("Remera escote V manga larga", TipoPrenda.REMERALARGA, Material.ALGODON, Color.BLANCO);
-	//Este tiene que ser Musculosa
-	static Prenda prenda3Juli = new Prenda("Musculosa", TipoPrenda.REMERACORTA, Material.ALGODON, Color.NEGRO);
+	static Prenda prenda3Juli = new Prenda("Musculosa", TipoPrenda.MUSCULOSA, Material.LYCRA, Color.VERDE);
 	static Prenda prenda4Juli = new Prenda("Sueter", TipoPrenda.SWEATER, Material.POLIESTER, Color.GRIS);
 	static Prenda prenda5Juli = new Prenda("Pollera", TipoPrenda.POLLERA, Material.SEDA, Color.NEGRO);
 	static Prenda prenda6Juli = new Prenda("Calza", TipoPrenda.CALZAS, Material.NYLON, Color.NEGRO);

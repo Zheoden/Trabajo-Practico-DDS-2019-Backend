@@ -25,7 +25,7 @@ public class EventoTest {
 	
 	Prenda camisaRojo = new Prenda("PR001", TipoPrenda.CAMISA, Color.ROJO);
 	Prenda bufandaAzul = new Prenda("PR002", TipoPrenda.BUFANDA, Color.AZUL);
-	Prenda pantalonVerde = new Prenda("PR003", TipoPrenda.PANTALON, Color.VERDE);
+	Prenda pantalonVerde = new Prenda("PR003", TipoPrenda.PANTALONLARGO, Color.VERDE);
 	ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
 	Guardarropas guardaropa1 = new Guardarropas(prendas1, "Guardarropa1");
 	ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();

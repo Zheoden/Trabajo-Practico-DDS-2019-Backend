@@ -33,9 +33,9 @@ public class GuardarropasTest {
 
 	Prenda prenda5 = new Prenda("PR006", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda6 = new Prenda("PR007", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	Prenda prenda7 = new Prenda("PR008", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda7 = new Prenda("PR008", TipoPrenda.PANTALONLARGO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda8 = new Prenda("PR009", TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda9 = new Prenda("PR0010", TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda9 = new Prenda("PR0010", TipoPrenda.PANTALONCORTO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
 	Prenda prenda10 = new Prenda("PR0011", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 
@@ -47,7 +47,7 @@ public class GuardarropasTest {
 	@DisplayName("Tests para el Constructor")
 	public void getPrenda() {
 		Prenda prenda = new Prenda("PR001", TipoPrenda.REMERACORTA, Material.ALGODON, Color.AZUL);
-		Prenda prenda1 = new Prenda("PR002", TipoPrenda.PANTALON, Material.ALGODON, Color.AZUL);
+		Prenda prenda1 = new Prenda("PR002", TipoPrenda.PANTALONLARGO, Material.ALGODON, Color.AZUL);
 		Prenda prenda2 = new Prenda("PR003",TipoPrenda.ZAPATILLAS, Material.ALGODON, Color.AZUL);
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		prendas.add(prenda);

@@ -41,7 +41,7 @@ public class RepositoryTest {
 	static Prenda prenda3 = new Prenda("PR022", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda4 = new Prenda("PR023", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda5 = new Prenda("PR024", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	static Prenda prenda6 = new Prenda("PR025", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda6 = new Prenda("PR025", TipoPrenda.PANTALONLARGO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda7 = new Prenda("PR026", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
 	// Lista de prendas

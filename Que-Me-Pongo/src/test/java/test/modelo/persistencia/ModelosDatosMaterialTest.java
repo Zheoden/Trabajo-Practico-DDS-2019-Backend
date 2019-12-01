@@ -27,6 +27,8 @@ public class ModelosDatosMaterialTest {
 	static Material material8 = new Material("POLAR");
 	static Material material9 = new Material("SEDA");
 	static Material material10 = new Material("TERCIOPELO");
+	static Material material11 = new Material("POLIESTER");
+	static Material material12 = new Material("NYLON");
 	
 	@BeforeClass
 	public static void setUp() {
@@ -41,10 +43,10 @@ public class ModelosDatosMaterialTest {
 		listaMateriales.add(material8);
 		listaMateriales.add(material9);
 		listaMateriales.add(material10);
+		listaMateriales.add(material11);
+		listaMateriales.add(material12);
 
-		if (repoMateriales.all().isEmpty()) {
-			listaMateriales.stream().forEach(material -> repoMateriales.persist(material));
-		}
+		listaMateriales.stream().forEach(material -> repoMateriales.persist(material));
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -52,7 +54,7 @@ public class ModelosDatosMaterialTest {
 	@DisplayName("Persistencia de todos los materiales a disponer")
 	public void persistenciaDeMateriales() {
 		List<Material> materiales = repoMateriales.all();
-		Assert.assertEquals(10, materiales.size());	
+		Assert.assertEquals(12, materiales.size());	
 	}
 	
 	@AfterClass

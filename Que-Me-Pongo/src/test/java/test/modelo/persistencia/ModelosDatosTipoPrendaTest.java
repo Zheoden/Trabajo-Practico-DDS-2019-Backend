@@ -22,26 +22,27 @@ public class ModelosDatosTipoPrendaTest {
 	static TipoPrenda prenda1 = new TipoPrenda("BUZO");
 	static TipoPrenda prenda2 = new TipoPrenda("CAMISA");
 	static TipoPrenda prenda3 = new TipoPrenda("CAMPERA");
-	static TipoPrenda prenda4 = new TipoPrenda("REMERACORTA");
-	static TipoPrenda prenda5 = new TipoPrenda("REMERALARGA");
-	static TipoPrenda prenda6 = new TipoPrenda("SWEATER");
-	static TipoPrenda prenda7 = new TipoPrenda("ZAPATILLAS");
-	static TipoPrenda prenda8 = new TipoPrenda("ZAPATOS");
-	static TipoPrenda prenda9 = new TipoPrenda("ZAPATOSDETACON");
-	static TipoPrenda prenda10 = new TipoPrenda("OJOTAS");
-	static TipoPrenda prenda11 = new TipoPrenda("BERMUDAS");
-	static TipoPrenda prenda12 = new TipoPrenda("MEDIAS");
-	static TipoPrenda prenda13 = new TipoPrenda("CALZAS");
-	static TipoPrenda prenda14 = new TipoPrenda("PANTALON");
-	static TipoPrenda prenda15 = new TipoPrenda("POLLERA");
-	static TipoPrenda prenda16 = new TipoPrenda("SHORTS");
-	static TipoPrenda prenda17 = new TipoPrenda("ANTEOJOS");
-	static TipoPrenda prenda18 = new TipoPrenda("BUFANDA");
-	static TipoPrenda prenda19 = new TipoPrenda("GORRA");
-	static TipoPrenda prenda20 = new TipoPrenda("GUANTES");
-	static TipoPrenda prenda21 = new TipoPrenda("COLLAR");
-	static TipoPrenda prenda22 = new TipoPrenda("LENTES");
-	static TipoPrenda prenda23 = new TipoPrenda("AROS");
+	static TipoPrenda prenda4 = new TipoPrenda("MUSCULOSA");
+	static TipoPrenda prenda5 = new TipoPrenda("REMERACORTA");
+	static TipoPrenda prenda6 = new TipoPrenda("REMERALARGA");
+	static TipoPrenda prenda7 = new TipoPrenda("SWEATER");
+	static TipoPrenda prenda8 = new TipoPrenda("ZAPATILLAS");
+	static TipoPrenda prenda9 = new TipoPrenda("ZAPATOS");
+	static TipoPrenda prenda10 = new TipoPrenda("ZAPATOSDETACON");
+	static TipoPrenda prenda11 = new TipoPrenda("OJOTAS");
+	static TipoPrenda prenda12 = new TipoPrenda("BERMUDAS");
+	static TipoPrenda prenda13 = new TipoPrenda("MEDIAS");
+	static TipoPrenda prenda14 = new TipoPrenda("CALZAS");
+	static TipoPrenda prenda15 = new TipoPrenda("PANTALONLARGO");
+	static TipoPrenda prenda16 = new TipoPrenda("POLLERA");
+	static TipoPrenda prenda17 = new TipoPrenda("PANTALONCORTO");
+	static TipoPrenda prenda18 = new TipoPrenda("ANTEOJOS");
+	static TipoPrenda prenda19 = new TipoPrenda("BUFANDA");
+	static TipoPrenda prenda20 = new TipoPrenda("GORRA");
+	static TipoPrenda prenda21 = new TipoPrenda("GUANTES");
+	static TipoPrenda prenda22 = new TipoPrenda("COLLAR");
+	static TipoPrenda prenda23 = new TipoPrenda("LENTES");
+	static TipoPrenda prenda24 = new TipoPrenda("AROS");
 	
 	@BeforeClass
 	public static void setUp() {
@@ -69,10 +70,9 @@ public class ModelosDatosTipoPrendaTest {
 		listaPrendas.add(prenda21);
 		listaPrendas.add(prenda22);
 		listaPrendas.add(prenda23);
+		listaPrendas.add(prenda24);
 		
-		if (repoPrendas.all().isEmpty()) {
-			listaPrendas.stream().forEach(tipoPrenda -> repoPrendas.persist(tipoPrenda));
-		}
+		listaPrendas.stream().forEach(tipoPrenda -> repoPrendas.persist(tipoPrenda));
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -80,7 +80,7 @@ public class ModelosDatosTipoPrendaTest {
 	@DisplayName("Persistencia de todos los tipos de prendas a disponer")
 	public void persistenciaDeTipoPrendas() {
 		List<TipoPrenda> prendas = repoPrendas.all();
-		Assert.assertEquals(23, prendas.size());	
+		Assert.assertEquals(24, prendas.size());	
 	}
 
 	@AfterClass

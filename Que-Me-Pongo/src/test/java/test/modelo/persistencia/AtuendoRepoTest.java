@@ -40,7 +40,7 @@ public class AtuendoRepoTest {
 	static Prenda prenda5 = new Prenda("PR005", TipoPrenda.REMERALARGA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda6 = new Prenda("PR006", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda7 = new Prenda("PR007", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	static Prenda prenda8 = new Prenda("PR008", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda8 = new Prenda("PR008", TipoPrenda.PANTALONLARGO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda9 = new Prenda("PR009", TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda10 = new Prenda("PR0010", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 	static Prenda prenda11 = new Prenda("PR0011", TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);

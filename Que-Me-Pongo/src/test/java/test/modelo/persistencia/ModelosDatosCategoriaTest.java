@@ -31,9 +31,7 @@ public class ModelosDatosCategoriaTest {
 		listaCategorias.add(categoria3);
 		listaCategorias.add(categoria4);
 		
-		if (repoCategorias.all().isEmpty()) {
-			listaCategorias.stream().forEach(categoria -> repoCategorias.persist(categoria));
-		}	
+		listaCategorias.stream().forEach(categoria -> repoCategorias.persist(categoria));
 	}
 	
 	@SuppressWarnings("deprecation")
