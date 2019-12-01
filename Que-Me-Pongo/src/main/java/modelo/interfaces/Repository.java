@@ -1,5 +1,6 @@
 package modelo.interfaces;
 
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
@@ -7,8 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 
 public interface Repository<T> extends WithGlobalEntityManager, TransactionalOps {
@@ -36,7 +35,6 @@ public interface Repository<T> extends WithGlobalEntityManager, TransactionalOps
 	List<T> all();
 
 	public static EntityManager getEntityManager() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("db");
-	    return emf.createEntityManager();
+	    return PerThreadEntityManagers.getEntityManager();
 	}
 }
