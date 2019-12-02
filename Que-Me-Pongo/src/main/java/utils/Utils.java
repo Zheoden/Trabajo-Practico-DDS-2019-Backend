@@ -64,10 +64,8 @@ public class Utils {
 	public static Properties getProyectProperties() throws Exception {
 		Properties prop = new Properties();
 		InputStream input = null;
-		try {
-			input = new FileInputStream("system.properties");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		input = ClassLoader.getSystemClassLoader().getResourceAsStream("system.properties");
+		if (input == null) {
 			throw new Exception("No se encuentra el archivo de properties.");
 		}
 
