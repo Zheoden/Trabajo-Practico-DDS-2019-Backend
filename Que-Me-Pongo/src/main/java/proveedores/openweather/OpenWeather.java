@@ -20,9 +20,6 @@ import javax.ws.rs.core.MediaType;
 
 public class OpenWeather implements Proveedores {
 	private Client client;
-
-	private JsonParser jsonParser = new JsonParser();
-
 	private static String key;
 	private static String pronosticoActualUrl;
 	private static String pronosticoPorHoraUrl;

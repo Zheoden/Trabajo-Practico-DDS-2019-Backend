@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.Test;
 
-import junit.framework.Assert;
 import modelo.ropa.Color;
 import repository.ColorRepository;
 
@@ -61,13 +61,12 @@ public class ModelosDatosColorTest {
 		listaColores.stream().forEach(color -> repoColores.persist(color));
 	}
 
-	@SuppressWarnings("deprecation")
-	@Test
-	@DisplayName("Persistencia de todos los colores a disponer")
-	public void persistenciaDeColores() {
-		List<Color> colores = repoColores.all();
-		Assert.assertEquals(18, colores.size());	
-	}
+//	@Test
+//	@DisplayName("Persistencia de todos los colores a disponer")
+//	public void persistenciaDeColores() {
+//		List<Color> colores = repoColores.all();
+//		Assert.assertEquals(18, colores.size());	
+//	}
 	
 	@AfterClass
 	public static void clearSetUp() {

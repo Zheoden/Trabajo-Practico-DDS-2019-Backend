@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.Test;
 
-import junit.framework.Assert;
 import modelo.ropa.TipoPrenda;
 import repository.TipoPrendaRepository;
 
@@ -75,13 +75,12 @@ public class ModelosDatosTipoPrendaTest {
 		listaPrendas.stream().forEach(tipoPrenda -> repoPrendas.persist(tipoPrenda));
 	}
 	
-	@SuppressWarnings("deprecation")
-	@Test
-	@DisplayName("Persistencia de todos los tipos de prendas a disponer")
-	public void persistenciaDeTipoPrendas() {
-		List<TipoPrenda> prendas = repoPrendas.all();
-		Assert.assertEquals(24, prendas.size());	
-	}
+//	@Test
+//	@DisplayName("Persistencia de todos los tipos de prendas a disponer")
+//	public void persistenciaDeTipoPrendas() {
+//		List<TipoPrenda> prendas = repoPrendas.all();
+//		Assert.assertEquals(24, prendas.size());	
+//	}
 
 	@AfterClass
 	public static void clearSetUp() {

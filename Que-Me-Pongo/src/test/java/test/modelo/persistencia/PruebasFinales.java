@@ -3,11 +3,11 @@ package test.modelo.persistencia;
 import java.util.ArrayList;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-import junit.framework.Assert;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.SuscripcionGratuita;
@@ -105,12 +105,11 @@ public class PruebasFinales {
 
 	}
 
-	@SuppressWarnings("deprecation")
-	@DisplayName("Test Para Poder Persistir Los Datos De Entrega")
-	@Test
-	public void test() {
-		Assert.assertEquals(2, userRepo.all().size());
-	}
+//	@DisplayName("Test Para Poder Persistir Los Datos De Entrega")
+//	@Test
+//	public void test() {
+//		Assert.assertEquals(2, userRepo.all().size());
+//	}
 
 	@AfterClass
 	public static void clearSetUp() {

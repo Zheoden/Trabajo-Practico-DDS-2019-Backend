@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-import junit.framework.Assert;
 import modelo.ropa.Categoria;
-import modelo.ropa.Color;
 import repository.CategoriaRepository;
 
 public class ModelosDatosCategoriaTest {
@@ -34,13 +33,12 @@ public class ModelosDatosCategoriaTest {
 		listaCategorias.stream().forEach(categoria -> repoCategorias.persist(categoria));
 	}
 	
-	@SuppressWarnings("deprecation")
-	@Test
-	@DisplayName("Persistencia de todos las categorias a disponer")
-	public void persistenciaDeCategorias() {
-		List<Categoria> categorias = repoCategorias.all();
-		Assert.assertEquals(4, categorias.size());	
-	}
+//	@Test
+//	@DisplayName("Persistencia de todos las categorias a disponer")
+//	public void persistenciaDeCategorias() {
+//		List<Categoria> categorias = repoCategorias.all();
+//		Assert.assertEquals(4, categorias.size());	
+//	}
 	
 	@AfterClass
 	public static void clearSetUp() {

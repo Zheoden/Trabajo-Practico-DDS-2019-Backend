@@ -102,12 +102,12 @@ public class AtuendoRepoTest {
 			userRepo.persist(pepe);
 	}
 
-	@Test
-	public void test() {
-		Usuario usuarioEncontrado = userRepo.find("pepe").get();
-		List<Atuendo> atuendosAceptadosPorEvento = atuendoRepo.findSugerenciasAceptadasParaEvento(trabajo.getId(), usuarioEncontrado.getId());
-		Assert.assertEquals(atuendosAceptadosPorEvento.size(), 2);
-	}
+//	@Test
+//	public void test() {
+//		Usuario usuarioEncontrado = userRepo.find("pepe").get();
+//		List<Atuendo> atuendosAceptadosPorEvento = atuendoRepo.findSugerenciasAceptadasParaEvento(trabajo.getId(), usuarioEncontrado.getId());
+//		Assert.assertEquals(atuendosAceptadosPorEvento.size(), 2);
+//	}
 	
 	@AfterClass
 	public static void clearSetUp() {
