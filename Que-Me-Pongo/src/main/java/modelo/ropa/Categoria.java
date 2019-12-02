@@ -29,7 +29,7 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getNombreCategoria() {
+	public String getNombre() {
 		return nombre;
 	}
 

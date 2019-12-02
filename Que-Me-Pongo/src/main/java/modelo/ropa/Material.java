@@ -29,7 +29,7 @@ public class Material {
 		this.id = id;
 	}
 
-	public String getNombreMaterial() {
+	public String getNombre() {
 		return nombre;
 	}
 

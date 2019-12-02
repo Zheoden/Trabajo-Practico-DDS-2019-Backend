@@ -29,7 +29,7 @@ public class TipoPrenda {
 		this.id = id;
 	}
 
-	public String getNombrePrenda() {
+	public String getNombre() {
 		return nombre;
 	}
 

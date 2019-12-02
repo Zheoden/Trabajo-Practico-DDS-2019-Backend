@@ -29,7 +29,7 @@ public class Color {
 		this.id = id;
 	}
 
-	public String getNombreColor() {
+	public String getNombre() {
 		return nombre;
 	}
 
