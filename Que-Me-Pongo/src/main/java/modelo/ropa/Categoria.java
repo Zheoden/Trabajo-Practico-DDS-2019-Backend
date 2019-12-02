@@ -13,12 +13,12 @@ public class Categoria {
 	@GeneratedValue
 	private Long id;
 	
-	private String nombreCategoria;
+	private String nombre;
 	
 	public Categoria() {}
 	
 	public Categoria(String unaCategoria) {
-		this.nombreCategoria = unaCategoria;
+		this.nombre = unaCategoria;
 	}
 
 	public Long getId() {
@@ -30,10 +30,10 @@ public class Categoria {
 	}
 
 	public String getNombreCategoria() {
-		return nombreCategoria;
+		return nombre;
 	}
 
 	public void setNombreCategoria(String nombreCategoria) {
-		this.nombreCategoria = nombreCategoria;
+		this.nombre = nombreCategoria;
 	}
 }

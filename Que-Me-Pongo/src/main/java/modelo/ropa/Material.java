@@ -13,12 +13,12 @@ public class Material {
 	@GeneratedValue
 	private Long id;
 	
-	private String nombreMaterial;
+	private String nombre;
 	
 	public Material() {}
 	
 	public Material(String unMaterial) {
-		this.nombreMaterial = unMaterial;
+		this.nombre = unMaterial;
 	}
 
 	public Long getId() {
@@ -30,10 +30,10 @@ public class Material {
 	}
 
 	public String getNombreMaterial() {
-		return nombreMaterial;
+		return nombre;
 	}
 
 	public void setNombreMaterial(String nombreMaterial) {
-		this.nombreMaterial = nombreMaterial;
+		this.nombre = nombreMaterial;
 	}
 }

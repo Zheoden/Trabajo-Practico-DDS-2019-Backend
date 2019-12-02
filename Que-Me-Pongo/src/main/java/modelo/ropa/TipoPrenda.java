@@ -13,12 +13,12 @@ public class TipoPrenda {
 	@GeneratedValue
 	private Long id;
 	
-	private String nombrePrenda;
+	private String nombre;
 	
 	public TipoPrenda() {}
 	
 	public TipoPrenda(String tipoPrenda) {
-		this.nombrePrenda = tipoPrenda;
+		this.nombre = tipoPrenda;
 	}
 
 	public Long getId() {
@@ -30,10 +30,10 @@ public class TipoPrenda {
 	}
 
 	public String getNombrePrenda() {
-		return nombrePrenda;
+		return nombre;
 	}
 
 	public void setNombrePrenda(String nombrePrenda) {
-		this.nombrePrenda = nombrePrenda;
+		this.nombre = nombrePrenda;
 	}
 }

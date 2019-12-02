@@ -13,12 +13,12 @@ public class Color {
 	@GeneratedValue
 	private Long id;
 	
-	private String nombreColor;
+	private String nombre;
 	
 	public Color() {}
 	
 	public Color(String unColor) {
-		this.nombreColor = unColor;
+		this.nombre = unColor;
 	}
 
 	public Long getId() {
@@ -30,10 +30,10 @@ public class Color {
 	}
 
 	public String getNombreColor() {
-		return nombreColor;
+		return nombre;
 	}
 
 	public void setNombreColor(String nombreColor) {
-		this.nombreColor = nombreColor;
+		this.nombre = nombreColor;
 	}
 }
