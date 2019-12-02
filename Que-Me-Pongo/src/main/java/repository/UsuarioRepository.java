@@ -43,7 +43,7 @@ public class UsuarioRepository implements Repository<Usuario> {
 	public Optional<Usuario> findUserByLogin(String username, String hashPassword) {
 
 		Query query = entityManager()
-				.createQuery("SELECT u FROM Usuario u WHERE u.username = :username AND u.password = :password")
+				.createQuery("SELECT u FROM Usuario u WHERE u.username = :username OR u.email = :username AND u.password = :password")
 				.setParameter("username", username).setParameter("password", hashPassword);
 
 		try {

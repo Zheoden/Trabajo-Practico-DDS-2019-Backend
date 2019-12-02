@@ -1,6 +1,9 @@
 package modelo.dtos;
 
 public enum Color {
+
 	BLANCO, NEGRO, AZUL, ROJO, VERDE, AMARILLO, VIOLETA, ROSA, SALMON, MARRON, GRIS, NARANJA, CELESTE, BORDO, BEIGE,
 	CAQUI, CARMESI, TURQUESA, NULL;
+
+	Color(){}
 }

@@ -1,12 +1,8 @@
 package main;
 
-import java.util.concurrent.TimeUnit;
-
 import http.routes.Router;
-import modelo.clases.Usuario;
 import spark.Spark;
 import utils.CorsFilter;
-import utils.JobScheduler;
 
 public class Application {
 	public static void main(String[] args) {

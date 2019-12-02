@@ -32,8 +32,10 @@ public class Usuario {
 	private Long id;
 
 	String username;
-
 	String password;
+	
+	String nombre;
+	String apellido;
 
 	int rangoDeSensibilidad; // Numero negativo es friolento (transforma de 20 grados a 15 grados por
 								// ejemplo). Numero positivo es caruloso (transfroma de 15 grados a 20 grados
@@ -50,12 +52,12 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Evento> eventos;
 	
-	String NumeroTelefono;
+	String numeroTelefono;
 
 	public Usuario() {
 	}
 
-	public Usuario(ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email,
+	public Usuario(String nombre, String apellido, ArrayList<Guardarropas> guardarropas, Suscripcion unaSuscripcion, String email,
 			String numeroTelefono, int rangoDeSensibilidad) {
 
 		if (guardarropas.stream()
@@ -66,6 +68,8 @@ public class Usuario {
 					"No se puede asignar esta lista de guardarropas porque no es compatible con la subscripcion seleccionada.");
 		}
 
+		this.setNombre(nombre);
+		this.setApellido(apellido);
 		this.setSuscripcion(unaSuscripcion);
 		this.setSensibilidadCuerpo(rangoDeSensibilidad);
 		this.setEmail(email);
@@ -153,6 +157,22 @@ public class Usuario {
 		this.password = Utils.generarHash256(password);
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
 	public void cargarEvento(Evento unEvento) {
 		if (eventos == null) {
 			eventos = new ArrayList<Evento>();
@@ -225,11 +245,11 @@ public class Usuario {
 	}
 
 	public String getNumeroTelefono() {
-		return NumeroTelefono;
+		return numeroTelefono;
 	}
 
 	public void setNumeroTelefono(String numeroTelefono) {
-		NumeroTelefono = numeroTelefono;
+		this.numeroTelefono = numeroTelefono;
 	}
 
 	public List<Guardarropas> getGuardarropas() {

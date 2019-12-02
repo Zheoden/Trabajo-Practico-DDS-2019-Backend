@@ -6,7 +6,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -42,7 +41,7 @@ public class RepositoryTest {
 	static Prenda prenda3 = new Prenda("PR022", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda4 = new Prenda("PR023", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda5 = new Prenda("PR024", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	static Prenda prenda6 = new Prenda("PR025", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	static Prenda prenda6 = new Prenda("PR025", TipoPrenda.PANTALONLARGO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	static Prenda prenda7 = new Prenda("PR026", TipoPrenda.CAMPERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
 	// Lista de prendas
@@ -64,8 +63,8 @@ public class RepositoryTest {
 	static Suscripcion subs2 = new SuscripcionGratuita();
 
 	// Creacion de usuarios
-	static Usuario user1 = new Usuario(listaGuardarropas1, subs, "test@test.com", "12341234110", 0);
-	static Usuario user2 = new Usuario(listaGuardarropas2, subs2, "test2@test.com", "1122112209", 0);
+	static Usuario user1 = new Usuario("Pepe", "Circo", listaGuardarropas1, subs, "test@test.com", "12341234110", 0);
+	static Usuario user2 = new Usuario("Mama", "Kondo", listaGuardarropas2, subs2, "test2@test.com", "1122112209", 0);
 
 	// Creacion de eventos
 	static Calendar fecha1 = GregorianCalendar.getInstance();
@@ -110,8 +109,8 @@ public class RepositoryTest {
 		user1.setPassword("123");
 		user2.setPassword("456");
 
-//		userRepo.persist(user1);
-//		userRepo.persist(user2);
+		userRepo.persist(user1);
+		userRepo.persist(user2);
 
 	}
 
@@ -132,7 +131,7 @@ public class RepositoryTest {
 //		user.get().setGuardarropas(listaGuardarropas1);
 //		userRepo.beginTransaction();
 //		userRepo.entityManager().flush();
-//		userRepo.commitTransaction();
+//		userRepo.commitTransaction();	
 //		List<Guardarropas> guardarropas2 = guardarropasRepo.findByUser(user.get().getUsername());
 //		Assert.assertEquals(guardarropas2.size(), 2);
 //	}
@@ -147,15 +146,17 @@ public class RepositoryTest {
 //	@Test
 //	@DisplayName("Eliminar eventos del calendario")
 //	public void eliminarEventos() {
-//		Optional<Usuario> user = userRepo.findById(1);
-//		List<Evento> listaDeEventos = user.get().getEventos();
-//		listaDeEventos.remove(1);
-//		Assert.assertEquals(listaDeEventos.size(), 2);
+//		Usuario user = userRepo.findById(1).get();
+//		List<Evento> eventos = user.getEventos();
+//		Evento eventoARemover = user.getEventos().get(1);
+//		eventos.remove(1);
+//		eventoRepo.delete(eventoARemover);
+//		Assert.assertEquals(eventos.size(), 2);
 //	}
-//	
-//	@AfterClass
-//	public static void clearSetUp() {
-//		userRepo.delete(user1);
-//		userRepo.delete(user2);
-//	}
+	
+	@AfterClass
+	public static void clearSetUp() {
+		List<Usuario> usuariosABorrar = userRepo.all();
+		usuariosABorrar.stream().forEach(usuario -> userRepo.delete(usuario));
+	}
 }

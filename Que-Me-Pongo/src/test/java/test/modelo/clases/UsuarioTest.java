@@ -38,9 +38,9 @@ public class UsuarioTest {
 
 	Prenda prenda5 = new Prenda("PR006", TipoPrenda.BERMUDAS, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda6 = new Prenda("PR007", TipoPrenda.CALZAS, Material.LYCRA, Color.ROJO, Color.BLANCO);
-	Prenda prenda7 = new Prenda("PR008", TipoPrenda.PANTALON, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda7 = new Prenda("PR008", TipoPrenda.PANTALONLARGO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 	Prenda prenda8 = new Prenda("PR009", TipoPrenda.POLLERA, Material.ALGODON, Color.ROJO, Color.BLANCO);
-	Prenda prenda9 = new Prenda("PR0010", TipoPrenda.SHORTS, Material.ALGODON, Color.ROJO, Color.BLANCO);
+	Prenda prenda9 = new Prenda("PR0010", TipoPrenda.PANTALONCORTO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
 	Prenda prenda10 = new Prenda("PR0011", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
 	Prenda prenda14 = new Prenda("PR0012", TipoPrenda.ZAPATILLAS, Material.CUERO, Color.AZUL, Color.ROJO);
@@ -65,7 +65,7 @@ public class UsuarioTest {
 		guardaRopas.add(guardaRopa2);
 		Suscripcion subs = new SuscripcionPremium();
     
-		Usuario pepe = new Usuario(guardaRopas, subs, "test@test.com", "12341234", 0);
+		Usuario pepe = new Usuario("Pepe", "Carlos", guardaRopas, subs, "test@test.com", "12341234", 0);
     
 		Assert.assertEquals(pepe.getClass(), Usuario.class);
 		Assert.assertEquals(pepe.getGuardarropas(), guardaRopas);
@@ -101,7 +101,7 @@ public class UsuarioTest {
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 
-		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", 0);
+		Usuario pepe = new Usuario("Pepe", "Carlos", guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", 0);
 		
 		Calendar fecha1 = GregorianCalendar.getInstance();
 		fecha1.set(2019, 10, 12);
@@ -137,7 +137,7 @@ public class UsuarioTest {
 
 		SuscripcionGratuita subs2 = new SuscripcionGratuita();
 
-		Usuario santi = new Usuario(ropero, subs2, "test@test.com", "12341234", 0);
+		Usuario santi = new Usuario("Santiago", "Morales", ropero, subs2, "test@test.com", "12341234", 0);
 
 		PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
@@ -173,7 +173,7 @@ public class UsuarioTest {
 
 		SuscripcionGratuita subs4 = new SuscripcionGratuita();
 
-		Usuario santi = new Usuario(ropero2, subs4, "test@test.com", "12341234", 0);
+		Usuario santi = new Usuario("Santiago", "Morales", ropero2, subs4, "test@test.com", "12341234", 0);
     
 		santi.agregarPrendaAGuardaRopas(prenda5, guardaRopa3);
 
@@ -192,8 +192,8 @@ public class UsuarioTest {
 		ArrayList<Guardarropas> ropero2 = new ArrayList<Guardarropas>();
 		ropero2.add(guardaRopa3);
 		
-		Usuario santi = new Usuario(ropero2, new SuscripcionPremium(), "test@test.com", "12341234", 0);
-		Usuario fede = new Usuario(ropero2, new SuscripcionPremium(), "test@test.com", "12341234", 0);
+		Usuario santi = new Usuario("Santiago", "Morales", ropero2, new SuscripcionPremium(), "test@test.com", "12341234", 0);
+		Usuario fede = new Usuario("Federico", "Esparto", ropero2, new SuscripcionPremium(), "test@test.com", "12341234", 0);
 		
 		santi.agregarPrendaAGuardaRopas(prenda5, guardaRopa3);
 		fede.agregarPrendaAGuardaRopas(prenda6, guardaRopa3);
@@ -231,7 +231,7 @@ public class UsuarioTest {
 		guardaRopas.add(guardaRopa1);
 		guardaRopas.add(guardaRopa2);
 
-		Usuario pepe = new Usuario(guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", 2);
+		Usuario pepe = new Usuario("Pepe", "Suarez", guardaRopas, new SuscripcionPremium(), "test@test.com", "12341234", 2);
 		pepe.cargarEvento(trabajo);
 		pepe.cargarEvento(trabajo);
 		trabajo.setAtuendosAceptados(new ArrayList<Atuendo>(pepe.todosPosiblesAtuendosPorGuardarropaParaEvento(trabajo)));

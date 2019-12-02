@@ -1,21 +1,32 @@
 package http.routes;
 
-import static spark.Spark.*;
+import static spark.Spark.delete;
+import static spark.Spark.get;
+import static spark.Spark.post;
 
 import java.util.List;
 import java.util.Optional;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import modelo.clases.Atuendo;
 import modelo.clases.Evento;
 import modelo.clases.Guardarropas;
 import modelo.clases.Prenda;
 import modelo.clases.Usuario;
-import modelo.clases.Atuendo;
+import modelo.ropa.TipoPrenda;
+import modelo.ropa.Categoria;
+import modelo.ropa.Color;
+import modelo.ropa.Material;
+import repository.AtuendoRepository;
+import repository.CategoriaRepository;
+import repository.ColorRepository;
 import repository.EventoRepository;
 import repository.GuardarropaRepository;
+import repository.MaterialRepository;
+import repository.PrendaRepository;
+import repository.TipoPrendaRepository;
 import repository.UsuarioRepository;
-import repository.AtuendoRepository;
 import utils.JsonParser;
 
 public class Router {
@@ -26,14 +37,25 @@ public class Router {
 		GuardarropaRepository guardarropaService = new GuardarropaRepository();
 		EventoRepository eventoService = new EventoRepository();
 		AtuendoRepository atuendoService = new AtuendoRepository();
+		PrendaRepository prendaService = new PrendaRepository();
+		ColorRepository colorService = new ColorRepository();
+        CategoriaRepository categoriaService = new CategoriaRepository();
+        MaterialRepository materialService = new MaterialRepository();
+        TipoPrendaRepository tipoPrendaService = new TipoPrendaRepository();
 
 		get("/", (req, res) -> "Home");
+		
+// Controladores Sobre Usuarios ----------------------------------------------------------------------------------------------	
+		
+		get("/users", "application/json", (req, res) -> {
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(userService.all());
+		});
 		
 		post("/login" ,"application/json",(req, res) -> {
 
 			Usuario userFind = JsonParser.read(req.body(), new TypeReference<Usuario>(){}); 
 			Optional<Usuario> usuarioLogin = userService.findUserByLogin(userFind.getUsername(), userFind.getPassword());
-			
+		
 			if(usuarioLogin.isPresent()) {
 				res.status(200);
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(usuarioLogin.get());
@@ -42,12 +64,7 @@ public class Router {
 			res.status(400);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(null);		
 		});
-		
-		get("/users", "application/json", (req, res) -> {
-			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(userService.all());
-		});
 
-		//Lo mas probable es que cambie a buscarse por medio del nombre de Usuario
 		get("/users/:id", "application/json" ,(req, res) -> {
 			String id = req.params(":id");
 			Optional<Usuario> usuarioBuscado = userService.findById(Integer.parseInt(id));
@@ -58,6 +75,23 @@ public class Router {
 			res.status(400);
 			return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Usuario con id: " + id);
 		});
+		
+		delete("/users/:id/eliminarUsuario", "application/json", (req, res) -> {
+			
+			long id = Integer.parseInt(req.params(":id"));
+			Optional<Usuario> userABuscar = userService.findById(id);
+			
+			if(!userABuscar.isPresent()) {
+				res.status(400);
+				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString("No existe el usuario con id: " + id);
+			}
+			
+				userService.delete(userABuscar.get());
+				res.status(200);
+				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString("Se elimino el usuario con id: " + id);		
+		});	
+		
+// Controladores Sobre Guardarropas ----------------------------------------------------------------------------------------------				
 		
 		post("/users/:id/crearGuardarropa", "application/json", (req, res) -> {
 			long id = Integer.parseInt(req.params(":id"));
@@ -74,6 +108,33 @@ public class Router {
 			res.status(400);
 			return JsonParser.getObjectMapper().writeValueAsString("Solo puede tener como maximo 2 Guardarropas");
 		});
+		
+		delete("/users/:id/guardarropas/:idGuardarropa/eliminarGuardarropa", "application/json", (req, res) -> {
+			
+			long id = Integer.parseInt(req.params(":id"));
+			Optional<Usuario> userABuscar = userService.findById(id);
+			
+			if(!userABuscar.isPresent()) {
+				res.status(400);
+				return JsonParser.getObjectMapper().writeValueAsString("El Usuario No Existe");
+			}
+			
+			long idGuardarropa = Integer.parseInt(req.params("idGuardarropa"));
+			Optional<Guardarropas> guardarropaBuscado = guardarropaService.findWardrobeById(id, idGuardarropa);
+			
+			if(!guardarropaBuscado.isPresent()) {
+				res.status(400);
+				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Guardarropa con el id: " + guardarropaBuscado.get().getId());
+			}
+			
+			guardarropaService.delete(guardarropaBuscado.get());
+
+			Usuario userActualizado = userService.findById(id).get();
+			res.status(200);
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(userActualizado.getGuardarropas());
+		});
+		
+// Controladores Sobre Prendas ----------------------------------------------------------------------------------------------		
 		
 		post("/users/:id/guardarropas/:idGuarda/createPrenda", "application/json" ,(req, res) -> {
 			
@@ -103,6 +164,40 @@ public class Router {
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(guardarropaActualizado);		
 		});
 		
+		delete("/users/:id/guardarropas/:idGuardarropa/prendas/:idPrenda/eliminarPrenda", "application/json", (req, res) -> {
+			
+			long id = Integer.parseInt(req.params(":id"));
+			Optional<Usuario> userABuscar = userService.findById(id);
+			
+			if(!userABuscar.isPresent()) {
+				res.status(400);
+				return JsonParser.getObjectMapper().writeValueAsString("El Usuario No Existe");
+			}
+			
+			long idGuardarropa = Integer.parseInt(req.params("idGuardarropa"));
+			Optional<Guardarropas> guardarropaBuscado = guardarropaService.findWardrobeById(id, idGuardarropa);
+			
+			if(!guardarropaBuscado.isPresent()) {
+				res.status(400);
+				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Guardarropa con el id: " + guardarropaBuscado.get().getId());
+			}
+			
+			long idPrenda = Integer.parseInt(req.params("idPrenda"));
+			Optional<Prenda> prendaABuscar = prendaService.findPrendaInGuardarropaById(idGuardarropa, idPrenda);
+			
+			if(!prendaABuscar.isPresent()) {
+				res.status(400);
+				return JsonParser.getObjectMapper().writeValueAsString("No se encontro la Prenda con el id: " + prendaABuscar.get().getId());
+			}
+			
+			prendaService.delete(prendaABuscar.get());
+			Guardarropas guardarropaActualizado = guardarropaService.findWardrobeById(id, idGuardarropa).get();
+			res.status(200);
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(guardarropaActualizado.getPrendas());	
+		});
+		
+// Controladores Sobre Eventos ----------------------------------------------------------------------------------------------		
+		
 		post("/users/:id/eventos/crearEvento", "application/json", (req, res) ->{
 			
 			long id = Integer.parseInt(req.params(":id"));
@@ -122,6 +217,32 @@ public class Router {
 			res.status(200);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(userActualizado.getEventos());	
 		});
+		
+		delete("/users/:id/eventos/:idEvento/eliminarEvento", "application/json", (req, res) -> {
+			
+			long id = Integer.parseInt(req.params(":id"));
+			Optional<Usuario> userABuscar = userService.findById(id);
+			
+			if(!userABuscar.isPresent()) {
+				res.status(400);
+				return JsonParser.getObjectMapper().writeValueAsString("El Usuario No Existe");
+			}
+			
+			long idEvento = Integer.parseInt(req.params("idEvento"));
+			Optional<Evento> eventoBuscado = eventoService.find(id, idEvento);
+			
+			if(!eventoBuscado.isPresent()) {
+				res.status(400);
+				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Evento con el id: " + eventoBuscado.get().getId());
+			}
+			
+			eventoService.delete(eventoBuscado.get());
+			Usuario usuarioActualizado = userService.findById(id).get();
+			res.status(200);
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(usuarioActualizado.getEventos());	
+		});
+		
+// Controladores Sobre Atuendos ----------------------------------------------------------------------------------------------
 		
 		get("/users/:id/eventos/:idEvento/sugerenciasAceptadas",(req,res) -> {
 			
@@ -163,27 +284,19 @@ public class Router {
 				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + eventoABuscar.get().getNombre() + "no existe");
 			}
 			
+			Evento eventoEncontrado = eventoABuscar.get();
+			Usuario userEncontrado = userABuscar.get();
+			
+			if(eventoEncontrado.getAtuendosMovimientos().isEmpty()) {
+				List<Atuendo> atuendosCreados = userEncontrado.todosPosiblesAtuendosPorGuardarropaParaEvento(eventoEncontrado);
+				userService.update(userEncontrado);
+				res.status(200);
+				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosCreados);
+			}
+			
 			List<Atuendo> atuendosSugeridos = atuendoService.findSugerenciasParaEvento(idEvento, id);
 			res.status(200);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosSugeridos);
-		});
-		
-		put("/atuendo/:id/aceptarSugerencia", "application/json" ,(req, res) -> {
-			
-			long id = Integer.parseInt(req.params(":id"));
-			Optional<Atuendo> atuendoBuscado = atuendoService.find(id);
-			
-			if(!atuendoBuscado.isPresent()) {
-				res.status(404);
-				return JsonParser.getObjectMapper().writeValueAsString("El atuendo no existe");
-			}
-			
-			Atuendo atuendoEncontrado = atuendoBuscado.get();
-			atuendoEncontrado.aceptar();
-
-			atuendoService.update(atuendoEncontrado);
-			res.status(200);
-			return JsonParser.getObjectMapper().writeValueAsString(atuendoEncontrado);		
 		});
 		
 		
@@ -202,24 +315,31 @@ public class Router {
 		});
 		*/
 		
-		put("/users/:userid/atuendo/:id/calificarAtuendo/:calificacion", "application/json" ,(req, res) -> {
-
-			Integer numero = Integer.parseInt(req.params(":calificacion"));
-			long id = Integer.parseInt(req.params(":id"));
-			Optional<Atuendo> atuendoBuscado = atuendoService.find(id);
-
-			if(!atuendoBuscado.isPresent()) {
-				res.status(404);
-				return JsonParser.getObjectMapper().writeValueAsString("El atuendo no existe");
-			}
-
-			Atuendo atuendoEncontrado = atuendoBuscado.get();
-			atuendoEncontrado.setCalificacion(numero);
-
-			atuendoService.update(atuendoEncontrado);
+// Controladores Sobre Enumeradores ----------------------------------------------------------------------------------------------
+		
+		get("/categorias", "application/json", (req, res) -> {
+			List<Categoria> categorias = categoriaService.all();
 			res.status(200);
-			return JsonParser.getObjectMapper().writeValueAsString(atuendoEncontrado);		
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(categorias);
 		});
-	}
-	
+
+        get("/colores", "application/json", (req, res) -> {
+            List<Color> colores = colorService.all();
+            res.status(200);
+            return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(colores);
+        });
+
+
+        get("/materiales", "application/json" ,(req, res) -> {
+            List<Material> materiales = materialService.all();
+            res.status(200);
+            return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(materiales);
+        });
+        
+        get("/tipoPrendas", "application/json" ,(req, res) -> {
+            List<TipoPrenda> prendas = tipoPrendaService.all();
+            res.status(200);
+            return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(prendas);
+        });
+	}	
 }

@@ -17,7 +17,7 @@ public class PrendasTest {
 	@Test
 	@DisplayName("Test para validar la creacion de prendas con mismo color primario y secundario")
 	public void validarPrendasConMismoColorPrimarioYSecundario() {
-		Prenda prenda = new Prenda("PR001", TipoPrenda.PANTALON, Material.JEAN, Color.AMARILLO, Color.AMARILLO);
+		Prenda prenda = new Prenda("PR001", TipoPrenda.PANTALONLARGO, Material.JEAN, Color.AMARILLO, Color.AMARILLO);
 		Assert.assertEquals(prenda.getColorPrimario(), Color.AMARILLO);
 		Assert.assertEquals(prenda.getMaterial(), Material.JEAN);
 		Assert.assertEquals(prenda.Categoria(), Categoria.PARTE_INFERIOR);
@@ -49,7 +49,7 @@ public class PrendasTest {
 	public void renderizarImagen() {
 		Imagen objetoImagen = new Imagen();
 
-		Prenda prenda = new Prenda("PR004", TipoPrenda.PANTALON, Material.JEAN, Color.AZUL, Color.CELESTE);
+		Prenda prenda = new Prenda("PR004", TipoPrenda.PANTALONLARGO, Material.JEAN, Color.AZUL, Color.CELESTE);
 		prenda.setDireccionImagen("ImgPrendas/jeans.jpg");
 		objetoImagen.normalizarImagen(prenda.getDireccionImagen());
 		Assert.assertEquals(objetoImagen.getImagenRenderizada().getHeight(), 800);

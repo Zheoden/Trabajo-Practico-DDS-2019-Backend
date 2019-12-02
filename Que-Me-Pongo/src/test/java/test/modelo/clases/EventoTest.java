@@ -23,9 +23,9 @@ import modelo.interfaces.Suscripcion;
 
 public class EventoTest {
 	
-	Prenda camisaRojo = new Prenda(TipoPrenda.CAMISA, Color.ROJO);
-	Prenda bufandaAzul = new Prenda(TipoPrenda.BUFANDA, Color.AZUL);
-	Prenda pantalonVerde = new Prenda(TipoPrenda.PANTALON, Color.VERDE);
+	Prenda camisaRojo = new Prenda("PR001", TipoPrenda.CAMISA, Color.ROJO);
+	Prenda bufandaAzul = new Prenda("PR002", TipoPrenda.BUFANDA, Color.AZUL);
+	Prenda pantalonVerde = new Prenda("PR003", TipoPrenda.PANTALONLARGO, Color.VERDE);
 	ArrayList<Prenda> prendas1 = new ArrayList<Prenda>();
 	Guardarropas guardaropa1 = new Guardarropas(prendas1, "Guardarropa1");
 	ArrayList<Guardarropas> guardaRopas = new ArrayList<Guardarropas>();
@@ -37,7 +37,7 @@ public class EventoTest {
 	@DisplayName("Avisa al Usuario de cada Evento el cual asiste")
 	public void usuarioAsisteASusEventos() throws Exception {
     
-		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", 0);
+		Usuario usuario1 = new Usuario("Rodrigo", "Nicola", guardaRopas, premium, "test@test.com", "12341234", 0);
 
 		prendas1.add(camisaRojo);
 		prendas1.add(bufandaAzul);
@@ -68,7 +68,7 @@ public class EventoTest {
 		prendas1.add(pantalonVerde);
 		guardaRopas.add(guardaropa1);
 
-		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", 0);
+		Usuario usuario1 = new Usuario("Juan", "Verde", guardaRopas, premium, "test@test.com", "12341234", 0);
 		fecha1.set(2019, 10, 12);
 		fecha1.set(Calendar.HOUR_OF_DAY, 21);
 		fecha1.set(Calendar.MINUTE, 30);
@@ -88,7 +88,7 @@ public class EventoTest {
 		prendas1.add(pantalonVerde);
 		guardaRopas.add(guardaropa1);
 
-		Usuario usuario1 = new Usuario(guardaRopas, premium, "test@test.com", "12341234", 0);
+		Usuario usuario1 = new Usuario("Matias", "People", guardaRopas, premium, "test@test.com", "12341234", 0);
     
 		usuario1.setGuardarropas(guardaRopas);
 		fecha1.set(2019, 8, 2);
@@ -130,8 +130,8 @@ public class EventoTest {
 		fecha1.set(Calendar.SECOND, 00);
 		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
 		
-		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
-		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
+		Prenda prenda1 = new Prenda("PR001", TipoPrenda.AROS, Color.AMARILLO);
+		Prenda prenda2 = new Prenda("PR002", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		prendas.add(prenda1);
 		prendas.add(prenda2);
@@ -152,8 +152,8 @@ public class EventoTest {
 		fecha1.set(Calendar.SECOND, 00);
 		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
 		
-		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
-		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
+		Prenda prenda1 = new Prenda("PR001", TipoPrenda.AROS, Color.AMARILLO);
+		Prenda prenda2 = new Prenda("PR002",TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		prendas.add(prenda1);
 		prendas.add(prenda2);
@@ -173,23 +173,23 @@ public class EventoTest {
 		fecha1.set(Calendar.SECOND, 00);
 		Evento irAlAlamo = new Evento("Ir al alamo", "Bueno Aires", fecha1);
 		
-		Prenda prenda1 = new Prenda(TipoPrenda.AROS, Color.AMARILLO);
-		Prenda prenda2 = new Prenda(TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
+		Prenda prenda1 = new Prenda("PR001", TipoPrenda.AROS, Color.AMARILLO);
+		Prenda prenda2 = new Prenda("PR002", TipoPrenda.REMERACORTA, Material.ALGODON, Color.ROSA);
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		prendas.add(prenda1);
 		prendas.add(prenda2);
 		Atuendo atuendo = new Atuendo(prendas);
 		
-		Prenda prenda3 = new Prenda(TipoPrenda.BERMUDAS, Color.AMARILLO);
-		Prenda prenda4 = new Prenda(TipoPrenda.BUZO, Material.ALGODON, Color.ROSA);
-		Prenda prenda5 = new Prenda(TipoPrenda.AROS, Material.ALGODON, Color.ROSA);
+		Prenda prenda3 = new Prenda("PR001", TipoPrenda.BERMUDAS, Color.AMARILLO);
+		Prenda prenda4 = new Prenda("PR002", TipoPrenda.BUZO, Material.ALGODON, Color.ROSA);
+		Prenda prenda5 = new Prenda("PR003", TipoPrenda.AROS, Material.ALGODON, Color.ROSA);
 		ArrayList<Prenda> prendas2 = new ArrayList<Prenda>();
 		prendas2.add(prenda3);
 		prendas2.add(prenda4);
 		prendas2.add(prenda5);
 		Atuendo atuendo2 = new Atuendo(prendas2);		
 		
-		Prenda prenda6 = new Prenda(TipoPrenda.CAMPERA, Color.AZUL);
+		Prenda prenda6 = new Prenda("PR006", TipoPrenda.CAMPERA, Color.AZUL);
 		ArrayList<Prenda> prendas3 = new ArrayList<Prenda>();
 		prendas3.add(prenda6);
 		Atuendo atuendo3 = new Atuendo(prendas3);		
