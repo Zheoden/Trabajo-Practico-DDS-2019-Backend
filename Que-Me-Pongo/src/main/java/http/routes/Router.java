@@ -233,7 +233,7 @@ public class Router {
 			long idEvento = Integer.parseInt(req.params("idEvento"));
 			Optional<Evento> eventoBuscado = eventoService.find(id, idEvento);
 
-			if(eventoBuscado.isEmpty()) {
+			if(!eventoBuscado.isPresent()) {
 				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Evento con el id: " + idEvento);
 			}
