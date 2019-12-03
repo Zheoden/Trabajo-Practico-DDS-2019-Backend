@@ -124,10 +124,12 @@ public class Router {
 			
 			if(!guardarropaBuscado.isPresent()) {
 				res.status(400);
-				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Guardarropa con el id: " + guardarropaBuscado.get().getId());
+				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Guardarropa con el id: " + idGuardarropa);
 			}
 			
-			guardarropaService.delete(guardarropaBuscado.get());
+			Guardarropas guardarropaEncontrado = guardarropaBuscado.get();
+			
+			guardarropaService.delete(guardarropaEncontrado);
 
 			Usuario userActualizado = userService.findById(id).get();
 			res.status(200);
@@ -187,7 +189,7 @@ public class Router {
 			
 			if(!prendaABuscar.isPresent()) {
 				res.status(400);
-				return JsonParser.getObjectMapper().writeValueAsString("No se encontro la Prenda con el id: " + prendaABuscar.get().getId());
+				return JsonParser.getObjectMapper().writeValueAsString("No se encontro la Prenda con el id: " + idPrenda);
 			}
 			
 			prendaService.delete(prendaABuscar.get());
@@ -227,15 +229,15 @@ public class Router {
 				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("El Usuario No Existe");
 			}
-			
+
 			long idEvento = Integer.parseInt(req.params("idEvento"));
 			Optional<Evento> eventoBuscado = eventoService.find(id, idEvento);
-			
-			if(!eventoBuscado.isPresent()) {
+
+			if(eventoBuscado.isEmpty()) {
 				res.status(400);
-				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Evento con el id: " + eventoBuscado.get().getId());
+				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Evento con el id: " + idEvento);
 			}
-			
+
 			eventoService.delete(eventoBuscado.get());
 			Usuario usuarioActualizado = userService.findById(id).get();
 			res.status(200);
