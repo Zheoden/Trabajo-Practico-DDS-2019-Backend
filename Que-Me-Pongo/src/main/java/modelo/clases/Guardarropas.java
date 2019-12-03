@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import modelo.dtos.Categoria;
 
 @Entity
-@Table (name="guardarropas")
+@Table (name="Guardarropa")
 public class Guardarropas {
 	@Id
 	@GeneratedValue

@@ -24,7 +24,7 @@ import modelo.dtos.Material;
 import modelo.dtos.TipoPrenda;
 
 @Entity
-@Table(name = "prenda")
+@Table(name = "Prenda")
 public class Prenda {
 	@Id
 	@GeneratedValue
