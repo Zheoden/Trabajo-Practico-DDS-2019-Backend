@@ -49,7 +49,7 @@ public class Usuario {
 	@JoinTable(name = "GuardarropaPorUsuario", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "guardarropa_id"))
 	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	private List<Evento> eventos;
 	
 	String numeroTelefono;

@@ -34,7 +34,6 @@ public class Evento {
 	
 	String ciudad;
 	
-	@JsonIgnore
 	Calendar fecha;
 
 	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
@@ -42,7 +41,7 @@ public class Evento {
 	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
 	List<Atuendo> atuendosMovimientos = new ArrayList<>();
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	@JsonIgnore
 	private Usuario usuario;
