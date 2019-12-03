@@ -82,9 +82,9 @@ public class ModelosDatosTipoPrendaTest {
 //		Assert.assertEquals(24, prendas.size());	
 //	}
 
-	@AfterClass
-	public static void clearSetUp() {
-		listaPrendas.stream().forEach(tipoPrenda -> repoPrendas.delete(tipoPrenda));
-	}
+//	@AfterClass
+//	public static void clearSetUp() {
+//		listaPrendas.stream().forEach(tipoPrenda -> repoPrendas.delete(tipoPrenda));
+//	}
 	
 }

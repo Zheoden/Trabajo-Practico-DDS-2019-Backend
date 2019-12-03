@@ -56,8 +56,8 @@ public class ModelosDatosMaterialTest {
 //		Assert.assertEquals(12, materiales.size());	
 //	}
 	
-	@AfterClass
-	public static void clearSetUp() {
-		listaMateriales.stream().forEach(material -> repoMateriales.delete(material));
-	}
+//	@AfterClass
+//	public static void clearSetUp() {
+//		listaMateriales.stream().forEach(material -> repoMateriales.delete(material));
+//	}
 }

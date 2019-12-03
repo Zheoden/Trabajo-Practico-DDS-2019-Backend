@@ -68,8 +68,8 @@ public class ModelosDatosColorTest {
 //		Assert.assertEquals(18, colores.size());	
 //	}
 	
-	@AfterClass
-	public static void clearSetUp() {
-		listaColores.stream().forEach(color -> repoColores.delete(color));
-	}
+//	@AfterClass
+//	public static void clearSetUp() {
+//		listaColores.stream().forEach(color -> repoColores.delete(color));
+//	}
 }

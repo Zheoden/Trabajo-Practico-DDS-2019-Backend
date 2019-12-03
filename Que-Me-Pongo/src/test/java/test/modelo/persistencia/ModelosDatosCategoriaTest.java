@@ -40,8 +40,8 @@ public class ModelosDatosCategoriaTest {
 //		Assert.assertEquals(4, categorias.size());	
 //	}
 	
-	@AfterClass
-	public static void clearSetUp() {
-		listaCategorias.stream().forEach(categoria -> repoCategorias.delete(categoria));
-	}
+//	@AfterClass
+//	public static void clearSetUp() {
+//		listaCategorias.stream().forEach(categoria -> repoCategorias.delete(categoria));
+//	}
 }

@@ -111,9 +111,9 @@ public class PruebasFinales {
 //		Assert.assertEquals(2, userRepo.all().size());
 //	}
 
-	@AfterClass
-	public static void clearSetUp() {
-		userRepo.delete(user1);
-		userRepo.delete(user2);
-	}
+//	@AfterClass
+//	public static void clearSetUp() {
+//		userRepo.delete(user1);
+//		userRepo.delete(user2);
+//	}
 }
