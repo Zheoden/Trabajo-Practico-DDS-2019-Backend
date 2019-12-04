@@ -296,6 +296,7 @@ public class Router {
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosCreados);
 			}
 			
+			
 			List<Atuendo> atuendosSugeridos = atuendoService.findSugerenciasParaEvento(idEvento, id);
 			res.status(200);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosSugeridos);
