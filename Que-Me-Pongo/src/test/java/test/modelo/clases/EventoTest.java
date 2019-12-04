@@ -179,6 +179,7 @@ public class EventoTest {
 		prendas.add(prenda1);
 		prendas.add(prenda2);
 		Atuendo atuendo = new Atuendo(prendas);
+		irAlAlamo.getAtuendosMovimientos().add(atuendo);
 		
 		Prenda prenda3 = new Prenda("PR001", TipoPrenda.BERMUDAS, Color.AMARILLO);
 		Prenda prenda4 = new Prenda("PR002", TipoPrenda.BUZO, Material.ALGODON, Color.ROSA);
@@ -187,12 +188,14 @@ public class EventoTest {
 		prendas2.add(prenda3);
 		prendas2.add(prenda4);
 		prendas2.add(prenda5);
-		Atuendo atuendo2 = new Atuendo(prendas2);		
+		Atuendo atuendo2 = new Atuendo(prendas2);	
+		irAlAlamo.getAtuendosMovimientos().add(atuendo2);
 		
 		Prenda prenda6 = new Prenda("PR006", TipoPrenda.CAMPERA, Color.AZUL);
 		ArrayList<Prenda> prendas3 = new ArrayList<Prenda>();
 		prendas3.add(prenda6);
 		Atuendo atuendo3 = new Atuendo(prendas3);		
+		irAlAlamo.getAtuendosMovimientos().add(atuendo3);
 	
 		irAlAlamo.aceptarAtuendo(atuendo);	
 		irAlAlamo.rechazarAtuendo(atuendo2);

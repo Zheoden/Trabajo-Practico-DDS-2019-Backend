@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,6 +34,11 @@ public class Atuendo {
 	@JoinColumn(name = "evento_id")
 	@JsonIgnore
 	Evento evento;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "eventoAA_id")
+	@JsonIgnore
+	Evento eventoAA;
 	
 	Integer calificacion;
 	
@@ -94,6 +101,14 @@ public class Atuendo {
 
 	public void setEvento(Evento evento) {
 		this.evento = evento;
+	}
+
+	public Evento getEventoAA() {
+		return eventoAA;
+	}
+
+	public void setEventoAA(Evento eventoAA) {
+		this.eventoAA = eventoAA;
 	}
 
 	public Boolean getAceptado() {
