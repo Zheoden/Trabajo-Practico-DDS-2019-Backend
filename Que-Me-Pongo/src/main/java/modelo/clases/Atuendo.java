@@ -42,6 +42,8 @@ public class Atuendo {
 		this.addPrenda(inferior);
 		this.addPrenda(calzado);
 		this.addPrenda(accesorio);
+		this.setAceptado(false);
+		this.setCalificacion(-1);
 	}
 
 	public Atuendo(Prenda superior, Prenda inferior, Prenda calzado, Prenda accesorio, Evento evento) {
@@ -54,6 +56,8 @@ public class Atuendo {
 		this.addListPrenda(Lists.newArrayList(inferior));
 		this.addListPrenda(Lists.newArrayList(calzado));
 		this.addListPrenda(Lists.newArrayList(accesorio));
+		this.setAceptado(false);
+		this.setCalificacion(-1);
 	}
 
 	public Atuendo(Set<Prenda> superior, Set<Prenda> inferior, Set<Prenda> calzado, Set<Prenda> accesorio,
