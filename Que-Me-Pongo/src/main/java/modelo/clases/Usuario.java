@@ -49,7 +49,7 @@ public class Usuario {
 	@JoinTable(name = "GuardarropaPorUsuario", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "guardarropa_id"))
 	List<Guardarropas> guardarropas = new ArrayList<Guardarropas>();
 
-	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private List<Evento> eventos;
 	
 	String numeroTelefono;
@@ -117,6 +117,7 @@ public class Usuario {
 		this.guardarropas.forEach(guardarropa -> atuendosValidos
 				.addAll(guardarropa.atuendosValidosParaEvento(evento, this.rangoDeSensibilidad)));
 		atuendosValidos.stream().forEach(atuendo -> atuendo.getPrendas().stream().forEach(prenda -> prenda.agregarseAlAtuendo(atuendo)));
+		atuendosValidos.stream().forEach(atuendo -> atuendo.setEvento(evento));
 		return atuendosValidos;
 	}
 

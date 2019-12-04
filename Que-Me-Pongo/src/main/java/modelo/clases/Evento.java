@@ -41,7 +41,7 @@ public class Evento {
 	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
 	List<Atuendo> atuendosMovimientos = new ArrayList<>();
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	@JsonIgnore
 	private Usuario usuario;

@@ -302,21 +302,21 @@ public class Router {
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosSugeridos);
 		});
 		
-		
-		/*
-		post("/users/:username/eventos/:evento/calificarAtuendo", (req,res) -> {
+		post("/users/:idUsuario/eventos/:idEvento/calificarAtuendo", (req,res) -> {
 			
-			Optional <Evento> nuevoEvento = eventoService.find(username,evento);
+			long id = Integer.parseInt(req.params(":idUsuario"));
+			long idEvento = Integer.parseInt(req.params(":idEvento"));
+			
+			Optional <Evento> nuevoEvento = eventoService.find(id,idEvento);
 			if(!nuevoEvento.isPresent()) {
 				res.status(404);
-				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + evento + "no existe");
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento con id: " + idEvento + "no existe");
 			}
 			Evento eventoEncontrado = nuevoEvento.get(); 
 			res.status(203);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosAceptados());
 
 		});
-		*/
 		
 // Controladores Sobre Enumeradores ----------------------------------------------------------------------------------------------
 		

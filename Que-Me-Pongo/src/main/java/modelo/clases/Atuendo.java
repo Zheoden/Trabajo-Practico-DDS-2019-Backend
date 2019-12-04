@@ -24,7 +24,7 @@ public class Atuendo {
 	@GeneratedValue
 	private Long id;
 	
-	@ManyToMany (mappedBy = "atuendos")
+	@ManyToMany (mappedBy = "atuendos", cascade = CascadeType.ALL)
 	List<Prenda> prendas = new ArrayList<>();
 	Boolean aceptado;
 	

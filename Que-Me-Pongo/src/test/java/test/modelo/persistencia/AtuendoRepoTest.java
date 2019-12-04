@@ -87,7 +87,7 @@ public class AtuendoRepoTest {
 		pepe.cargarEvento(trabajo);
 		trabajo.setUsuario(pepe);
 		atuendosGenerados = pepe.todosPosiblesAtuendosPorGuardarropaParaEvento(trabajo);
-		atuendosGenerados.stream().forEach(atuendo -> atuendo.setEvento(trabajo));
+		//atuendosGenerados.stream().forEach(atuendo -> atuendo.setEvento(trabajo));
 
 		for (int i = 0; i < atuendosGenerados.size(); i++) {
 
@@ -102,6 +102,11 @@ public class AtuendoRepoTest {
 			userRepo.persist(pepe);
 	}
 
+	@Test
+	public void test() {
+		Assert.assertTrue(true);
+	}
+	
 //	@Test
 //	public void test() {
 //		Usuario usuarioEncontrado = userRepo.find("pepe").get();
@@ -109,8 +114,8 @@ public class AtuendoRepoTest {
 //		Assert.assertEquals(atuendosAceptadosPorEvento.size(), 2);
 //	}
 	
-	@AfterClass
-	public static void clearSetUp() {
-		userRepo.delete(pepe);
-	}
+//	@AfterClass
+//	public static void clearSetUp() {
+//		userRepo.delete(pepe);
+//	}
 }
