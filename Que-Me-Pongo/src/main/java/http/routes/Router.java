@@ -263,7 +263,7 @@ public class Router {
 				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + nuevoEvento.get().getNombre() + "no existe");
 			}
 
-			List<Atuendo> atuendosAceptados = atuendoService.findSugerenciasAceptadasParaEvento(idEvento, id);
+			List<Atuendo> atuendosAceptados = atuendoService.findSugerenciasAceptadasParaEventoPuntaje(idEvento, id);
 			res.status(200);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosAceptados);
 		});

@@ -31,6 +31,13 @@ public class AtuendoRepository implements Repository<Atuendo> {
 		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("idEvento", idEvento).setParameter("idUsuario", idUsuario).getResultList();
 		return atuendosXEvento;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Atuendo> findSugerenciasAceptadasParaEventoPuntaje(long idEvento, long idUsuario) {
+		String query = "SELECT a FROM Atuendo a JOIN a.evento e JOIN e.usuario u WHERE a.aceptado = true AND e.id = :idEvento AND u.id = :idUsuario AND (a.calificacion is null OR a.calificacion = 0)";
+		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("idEvento", idEvento).setParameter("idUsuario", idUsuario).getResultList();
+		return atuendosXEvento;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Atuendo> findSugerenciasAceptadas() {
@@ -42,7 +49,7 @@ public class AtuendoRepository implements Repository<Atuendo> {
 	
 	@SuppressWarnings("unchecked")
 	public List<Atuendo> findSugerenciasParaEvento(long idEvento, long idUsuario) {
-		String query = "SELECT a FROM Atuendo a JOIN a.evento e JOIN e.usuario u WHERE e.id = :idEvento AND u.id = :idUsuario AND (a.calificacion IS NULL OR a.calificacion = 0)";
+		String query = "SELECT a FROM Atuendo a JOIN a.evento e JOIN e.usuario u WHERE e.id = :idEvento AND u.id = :idUsuario";
 		List<Atuendo> atuendosXEvento = entityManager().createQuery(query).setParameter("idEvento", idEvento).setParameter("idUsuario", idUsuario).getResultList();
 		return atuendosXEvento;
 	}
