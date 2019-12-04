@@ -44,7 +44,7 @@ public class Prenda {
 	@ManyToMany(mappedBy="prendas")
 	@JsonIgnore
 	List<Guardarropas> guardarropas = new ArrayList<>();
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "AtuendoPorPrenda", joinColumns = @JoinColumn(name = "prenda_id"), inverseJoinColumns = @JoinColumn(name = "atuendo_id"))
 	@JsonIgnore
 	List<Atuendo> atuendos = new ArrayList<>();
