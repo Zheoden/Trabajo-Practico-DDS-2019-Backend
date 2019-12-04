@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.mockito.Mockito;
-import org.junit.AfterClass;
-import org.junit.Assert;
 import modelo.clases.AdministrarProveedores;
 import modelo.clases.Atuendo;
 import modelo.clases.Evento;
@@ -100,11 +97,6 @@ public class AtuendoRepoTest {
 		}
 
 			userRepo.persist(pepe);
-	}
-
-	@Test
-	public void test() {
-		Assert.assertTrue(true);
 	}
 	
 //	@Test
