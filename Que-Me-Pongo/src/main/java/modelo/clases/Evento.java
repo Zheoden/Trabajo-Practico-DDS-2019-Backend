@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -36,12 +37,13 @@ public class Evento {
 	
 	Calendar fecha;
 
-	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "eventoAA", cascade = CascadeType.ALL)
 	List<Atuendo> atuendosAceptados = new ArrayList<>();
+	
 	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
 	List<Atuendo> atuendosMovimientos = new ArrayList<>();
-
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	@JsonIgnore
 	private Usuario usuario;
@@ -77,12 +79,13 @@ public class Evento {
 	public void aceptarAtuendo(Atuendo unAtuendo) {
 		unAtuendo.aceptar();
 		this.atuendosAceptados.add(unAtuendo);
-		this.atuendosMovimientos.add(unAtuendo);
 	}
 
 	public void rechazarAtuendo(Atuendo unAtuendo) {
 		unAtuendo.rechazar();
+		if(!this.atuendosMovimientos.contains(unAtuendo)) {
 		this.atuendosMovimientos.add(unAtuendo);
+		}
 	}
 
 	public void deshacer() {

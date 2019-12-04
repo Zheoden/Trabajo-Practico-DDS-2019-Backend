@@ -260,7 +260,7 @@ public class Router {
 			Optional <Evento> nuevoEvento = eventoService.find(id,idEvento);
 			if(!nuevoEvento.isPresent()) {
 				res.status(400);
-				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + nuevoEvento.get().getNombre() + "no existe");
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + idEvento + "no existe");
 			}
 
 			List<Atuendo> atuendosAceptados = atuendoService.findSugerenciasAceptadasParaEventoPuntaje(idEvento, id);
@@ -283,40 +283,41 @@ public class Router {
 			
 			if(!eventoABuscar.isPresent()) {
 				res.status(404);
-				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + eventoABuscar.get().getNombre() + "no existe");
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento con el id:" + idEvento + "no existe");
 			}
 			
 			Evento eventoEncontrado = eventoABuscar.get();
 			Usuario userEncontrado = userABuscar.get();
 			
 			if(eventoEncontrado.getAtuendosMovimientos().isEmpty()) {
-				List<Atuendo> atuendosCreados = userEncontrado.todosPosiblesAtuendosPorGuardarropaParaEvento(eventoEncontrado);
+				List<Atuendo> atuendosSugeridos = userEncontrado.todosPosiblesAtuendosPorGuardarropaParaEvento(eventoEncontrado);
+				atuendosSugeridos.stream().forEach(atuendo -> atuendoService.persist(atuendo));
 				userService.update(userEncontrado);
+				Evento eventoActualizado = eventoService.find(id,idEvento).get();
 				res.status(200);
-				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosCreados);
+				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoActualizado);
 			}
-			
-			
+				
 			List<Atuendo> atuendosSugeridos = atuendoService.findSugerenciasParaEvento(idEvento, id);
 			res.status(200);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosSugeridos);
 		});
 		
-		
-		/*
-		post("/users/:username/eventos/:evento/calificarAtuendo", (req,res) -> {
+		post("/users/:idUsuario/eventos/:idEvento/calificarAtuendo", (req,res) -> {
 			
-			Optional <Evento> nuevoEvento = eventoService.find(username,evento);
+			long id = Integer.parseInt(req.params(":idUsuario"));
+			long idEvento = Integer.parseInt(req.params(":idEvento"));
+			
+			Optional <Evento> nuevoEvento = eventoService.find(id,idEvento);
 			if(!nuevoEvento.isPresent()) {
 				res.status(404);
-				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + evento + "no existe");
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento con id: " + idEvento + "no existe");
 			}
 			Evento eventoEncontrado = nuevoEvento.get(); 
 			res.status(203);
 			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosAceptados());
 
 		});
-		*/
 		
 // Controladores Sobre Enumeradores ----------------------------------------------------------------------------------------------
 		
