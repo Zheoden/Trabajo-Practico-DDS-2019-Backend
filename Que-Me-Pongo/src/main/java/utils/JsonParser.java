@@ -24,7 +24,8 @@ public class JsonParser {
 			.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 			.configure(SerializationFeature.FLUSH_AFTER_WRITE_VALUE, true)
 			.setSerializationInclusion(JsonInclude.Include.NON_ABSENT)
-			.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+			.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
+			.setPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CAMEL_CASE);
 
 	public static <T> T read(String text, TypeReference<T> type) {
 		try {

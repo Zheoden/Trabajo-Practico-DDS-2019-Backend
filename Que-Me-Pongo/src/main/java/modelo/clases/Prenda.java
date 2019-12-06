@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,8 +30,8 @@ public class Prenda {
 	@GeneratedValue
 	long id;
 	private String nombre;
-	@Transient
-	String direccionImagen;
+	@Column(columnDefinition="varchar(21000)")
+	String imagen;
 	@Enumerated(EnumType.STRING)
 	TipoPrenda tipo;
 	@Enumerated(EnumType.STRING)
@@ -71,6 +71,11 @@ public class Prenda {
 		}
 	}
 
+	public Prenda(String nombrePrenda, TipoPrenda tipo, Color colorPrimario, String imagen) {
+		this(nombrePrenda, tipo, colorPrimario);
+		this.setImagen(imagen);
+	}
+	
 	public Prenda(String nombrePrenda, TipoPrenda tipo, Color colorPrimario) {
 		this.setNombre(nombrePrenda);
 		this.setTipo(tipo);
@@ -119,8 +124,8 @@ public class Prenda {
 		return this.enUso;
 	}
 
-	public void setEnUso(Boolean valor) {
-		this.enUso = valor;
+	public void setEnUso(Boolean enUso) {
+		this.enUso = enUso;
 	}
 
 	public Material getMaterial() {
@@ -131,12 +136,12 @@ public class Prenda {
 		this.material = material;
 	}
 
-	public String getDireccionImagen() {
-		return direccionImagen;
+	public String getImagen() {
+		return imagen;
 	}
 
-	public void setDireccionImagen(String direccionImagen) {
-		this.direccionImagen = direccionImagen;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public List<Guardarropas> getGuardarropas(){

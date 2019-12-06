@@ -50,13 +50,13 @@ public class PrendasTest {
 		Imagen objetoImagen = new Imagen();
 
 		Prenda prenda = new Prenda("PR004", TipoPrenda.PANTALONLARGO, Material.JEAN, Color.AZUL, Color.CELESTE);
-		prenda.setDireccionImagen("ImgPrendas/jeans.jpg");
-		objetoImagen.normalizarImagen(prenda.getDireccionImagen());
+		prenda.setImagen("ImgPrendas/jeans.jpg");
+		objetoImagen.normalizarImagen(prenda.getImagen());
 		Assert.assertEquals(objetoImagen.getImagenRenderizada().getHeight(), 800);
 
 		Prenda otraPrenda = new Prenda("PR005", TipoPrenda.REMERACORTA, Material.ALGODON, Color.BLANCO, Color.AZUL);
-		otraPrenda.setDireccionImagen("ImgPrendas/remeraCorta.jpg");
-		objetoImagen.normalizarImagen(otraPrenda.getDireccionImagen());
+		otraPrenda.setImagen("ImgPrendas/remeraCorta.jpg");
+		objetoImagen.normalizarImagen(otraPrenda.getImagen());
 		Assert.assertEquals(objetoImagen.getImagenRenderizada().getWidth(), 600);
 	}
 }

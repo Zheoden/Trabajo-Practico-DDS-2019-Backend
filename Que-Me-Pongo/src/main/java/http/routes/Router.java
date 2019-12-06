@@ -62,7 +62,7 @@ public class Router {
 			}
 			
 			res.status(400);
-			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(null);		
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString("Usuario/Contraseña incorrectos");		
 		});
 
 		get("/users/:id", "application/json" ,(req, res) -> {
@@ -260,7 +260,7 @@ public class Router {
 			Optional <Evento> nuevoEvento = eventoService.find(id,idEvento);
 			if(!nuevoEvento.isPresent()) {
 				res.status(400);
-				return JsonParser.getObjectMapper().writeValueAsString("El Evento:" + idEvento + "no existe");
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento: " + idEvento + " no existe");
 			}
 
 			List<Atuendo> atuendosAceptados = atuendoService.findSugerenciasAceptadasParaEventoPuntaje(idEvento, id);
@@ -283,7 +283,7 @@ public class Router {
 			
 			if(!eventoABuscar.isPresent()) {
 				res.status(404);
-				return JsonParser.getObjectMapper().writeValueAsString("El Evento con el id:" + idEvento + "no existe");
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento con el id: " + idEvento + " no existe");
 			}
 			
 			Evento eventoEncontrado = eventoABuscar.get();
@@ -311,7 +311,7 @@ public class Router {
 			Optional <Evento> nuevoEvento = eventoService.find(id,idEvento);
 			if(!nuevoEvento.isPresent()) {
 				res.status(404);
-				return JsonParser.getObjectMapper().writeValueAsString("El Evento con id: " + idEvento + "no existe");
+				return JsonParser.getObjectMapper().writeValueAsString("El Evento con id: " + idEvento + " no existe");
 			}
 			Evento eventoEncontrado = nuevoEvento.get(); 
 			res.status(203);
