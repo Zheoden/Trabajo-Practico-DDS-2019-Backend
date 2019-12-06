@@ -28,7 +28,7 @@ import modelo.dtos.Categoria;
 @Table (name="Guardarropa")
 public class Guardarropas {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	long id;
 	
 	private String nombre;

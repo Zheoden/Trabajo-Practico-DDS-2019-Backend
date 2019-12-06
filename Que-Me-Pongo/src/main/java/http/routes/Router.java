@@ -159,6 +159,7 @@ public class Router {
 			
 			Guardarropas guardarropaEncontrado = guardarropaBuscado.get();
 			Prenda prendaCreada = JsonParser.read(req.body(), new TypeReference<Prenda>(){}); 
+			prendaCreada.setGuardarropas(guardarropaEncontrado);
 			guardarropaEncontrado.getPrendas().add(prendaCreada);
 			userService.update(userEncontrado);
 			Guardarropas guardarropaActualizado = guardarropaService.findWardrobeById(id, idGuardarropa).get();
