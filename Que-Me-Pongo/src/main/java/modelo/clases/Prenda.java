@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,9 +43,10 @@ public class Prenda {
 	@Enumerated(EnumType.STRING)
 	Color colorSecundario;
 	Boolean enUso;
-	@ManyToMany(mappedBy="prendas")
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@JoinColumn(name = "guardarropas_id", referencedColumnName = "id")
 	@JsonIgnore
-	List<Guardarropas> guardarropas = new ArrayList<>();
+	Guardarropas guardarropas;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "AtuendoPorPrenda", joinColumns = @JoinColumn(name = "prenda_id"), inverseJoinColumns = @JoinColumn(name = "atuendo_id"))
 	@JsonIgnore
@@ -145,11 +147,11 @@ public class Prenda {
 		this.imagen = imagen;
 	}
 
-	public List<Guardarropas> getGuardarropas(){
+	public Guardarropas getGuardarropas(){
 		return guardarropas;
 	}
 	
-	public void setGuardarropas(List<Guardarropas> guardarropas) {
+	public void setGuardarropas(Guardarropas guardarropas) {
 		this.guardarropas = guardarropas;
 	}
 	
