@@ -13,6 +13,7 @@ import javax.annotation.Nullable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -28,14 +29,12 @@ import modelo.dtos.Categoria;
 @Table (name="Guardarropa")
 public class Guardarropas {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
 	
 	private String nombre;
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "GuardarropaPorPrenda",
-    joinColumns = @JoinColumn (name = "guardarropa_id"),
-    inverseJoinColumns = @JoinColumn(name = "prenda_id" ))
+	@JoinTable(name = "GuardarropaPorPrenda", joinColumns = @JoinColumn (name = "guardarropa_id"), inverseJoinColumns = @JoinColumn(name = "prenda_id" ))
 	private List<Prenda> prendas = new ArrayList<>();
 	@Transient
 	@JsonIgnore
