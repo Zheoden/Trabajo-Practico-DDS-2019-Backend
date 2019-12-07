@@ -27,13 +27,9 @@ public class Evento {
 
 	@Id
 	@GeneratedValue
-	
 	private Long id;
-	
 	String nombre;
-	
 	String ciudad;
-	
 	Calendar fecha;
 
 	@OneToMany(mappedBy = "eventoAA", cascade = CascadeType.ALL)

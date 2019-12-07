@@ -4,6 +4,9 @@ import static spark.Spark.delete;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -289,36 +292,44 @@ public class Router {
 			
 			Evento eventoEncontrado = eventoABuscar.get();
 			Usuario userEncontrado = userABuscar.get();
+			int diferenciaDeDias = eventoEncontrado.getFecha().get(Calendar.DAY_OF_YEAR) - Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
 			
+			if (diferenciaDeDias >= 7) {
+				res.status(404);
+				return JsonParser.getObjectMapper().writeValueAsString("Falta mas de una semana para el evento seleccionado. Vuelva mas tarde para obtener sus sugerencias.");
+			}
+				
 			if(eventoEncontrado.getAtuendosMovimientos().isEmpty()) {
 				List<Atuendo> atuendosSugeridos = userEncontrado.todosPosiblesAtuendosPorGuardarropaParaEvento(eventoEncontrado);
+				eventoEncontrado.setAtuendosMovimientos(atuendosSugeridos);
 				atuendosSugeridos.stream().forEach(atuendo -> atuendoService.persist(atuendo));
+				eventoService.update(eventoEncontrado);
 				userService.update(userEncontrado);
 				Evento eventoActualizado = eventoService.find(id,idEvento).get();
 				res.status(200);
-				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoActualizado);
+				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoActualizado.getAtuendosMovimientos());
 			}
-				
-			List<Atuendo> atuendosSugeridos = atuendoService.findSugerenciasParaEvento(idEvento, id);
 			res.status(200);
-			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosSugeridos);
+			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosMovimientos());
 		});
 		
-		post("/users/:idUsuario/eventos/:idEvento/calificarAtuendo", (req,res) -> {
-			
-			long id = Integer.parseInt(req.params(":idUsuario"));
-			long idEvento = Integer.parseInt(req.params(":idEvento"));
-			
-			Optional <Evento> nuevoEvento = eventoService.find(id,idEvento);
-			if(!nuevoEvento.isPresent()) {
-				res.status(404);
-				return JsonParser.getObjectMapper().writeValueAsString("El Evento con id: " + idEvento + " no existe");
-			}
-			Evento eventoEncontrado = nuevoEvento.get(); 
-			res.status(203);
-			return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosAceptados());
+		post("/users/:userid/atuendo/:id/calificarAtuendo/:calificacion", "application/json", (req, res) -> {
+            Integer numero = Integer.parseInt(req.params(":calificacion"));	
+            long id = Integer.parseInt(req.params(":id"));	
+            Optional<Atuendo> atuendoBuscado = atuendoService.find(id);	
 
-		});
+            if (!atuendoBuscado.isPresent()) {	
+                res.status(404);	
+                return JsonParser.getObjectMapper().writeValueAsString("El atuendo no existe");	
+            }	
+
+            Atuendo atuendoEncontrado = atuendoBuscado.get();	
+            atuendoEncontrado.setCalificacion(numero);	
+
+            atuendoService.update(atuendoEncontrado);	
+            res.status(200);	
+            return JsonParser.getObjectMapper().writeValueAsString(atuendoEncontrado);	
+        });
 		
 		post("/atuendo/:id/aceptarSugerencia", "application/json", (req, res) -> {
 
