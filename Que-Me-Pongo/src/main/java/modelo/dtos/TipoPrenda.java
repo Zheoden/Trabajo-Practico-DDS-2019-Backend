@@ -139,7 +139,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeCapa() {
-			return 1;
+			return 0;
 		}
 
 		public int nivelDeAbrigo() {
@@ -157,7 +157,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeCapa() {
-			return 1;
+			return 0;
 		}
 
 		public int nivelDeAbrigo() {
@@ -175,7 +175,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeCapa() {
-			return 1;
+			return 0;
 		}
 
 		public int nivelDeAbrigo() {
@@ -193,7 +193,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeCapa() {
-			return 1;
+			return 0;
 		}
 
 		public int nivelDeAbrigo() {

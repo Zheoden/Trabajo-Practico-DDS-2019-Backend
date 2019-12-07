@@ -38,7 +38,6 @@ public class GuardarropasTest {
 	Prenda prenda9 = new Prenda("PR0010", TipoPrenda.PANTALONCORTO, Material.ALGODON, Color.ROJO, Color.BLANCO);
 
 	Prenda prenda10 = new Prenda("PR0011", TipoPrenda.OJOTAS, Material.CUERO, Color.ROJO, Color.BLANCO);
-
 	Prenda prenda11 = new Prenda("PR0012", TipoPrenda.ANTEOJOS, Material.CUERO, Color.ROJO, Color.BLANCO);
 	Prenda prenda12 = new Prenda("PR0013", TipoPrenda.ZAPATILLAS, Material.CUERO, Color.NEGRO, Color.ROJO);
 	Prenda prenda13 = new Prenda("PR0014", TipoPrenda.ZAPATOS, Material.CUERO, Color.NEGRO, Color.MARRON);
