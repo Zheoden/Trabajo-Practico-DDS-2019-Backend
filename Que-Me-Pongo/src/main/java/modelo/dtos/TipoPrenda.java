@@ -39,7 +39,6 @@ public enum TipoPrenda {
 			return Categoria.PARTE_SUPERIOR;
 		}
 	},
-	
 	CAMPERA {
 		public boolean esMaterialValido(Material material) {
 			return true;
@@ -57,7 +56,6 @@ public enum TipoPrenda {
 			return Categoria.PARTE_SUPERIOR;
 		}
 	},
-
 	MUSCULOSA {
 		public boolean esMaterialValido(Material material) {
 			return !Arrays
@@ -77,8 +75,7 @@ public enum TipoPrenda {
 		public Categoria categoria() {
 			return Categoria.PARTE_SUPERIOR;
 		}	
-	},
-	
+	},	
 	REMERACORTA {
 		public boolean esMaterialValido(Material material) {
 			return !Arrays.asList(Material.CUERO, Material.TERCIOPELO, Material.JEAN).contains(material);

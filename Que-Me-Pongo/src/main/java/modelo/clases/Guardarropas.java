@@ -93,16 +93,27 @@ public class Guardarropas {
 				sensibilidad);
 		Set<Set<Prenda>> accesorios = obtenerCombinacionesNoVacias(obtenerAccesorios(), temperatura, sensibilidad);
 
-		if (evento != null) {
-			return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
-					.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3), evento))
-					.collect(Collectors.toList());
+		if(accesorios.isEmpty()) {
+			if (evento != null) {
+				return cartesianProduct(prendasSuperiores, prendasInferiores, calzados).stream()
+						.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), evento))
+						.collect(Collectors.toList());
+			} else {
+				return cartesianProduct(prendasSuperiores, prendasInferiores, calzados).stream()
+						.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2)))
+						.collect(Collectors.toList());
+			}
 		} else {
-			return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
-					.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3)))
-					.collect(Collectors.toList());
+			if (evento != null) {
+				return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
+						.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3), evento))
+						.collect(Collectors.toList());
+			} else {
+				return cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios).stream()
+						.map(lista -> new Atuendo(lista.get(0), lista.get(1), lista.get(2), lista.get(3)))
+						.collect(Collectors.toList());
+			}
 		}
-
 	}
 
 	public List<Atuendo> atuendosValidosParaEvento(Evento evento, int sensibilidad) {

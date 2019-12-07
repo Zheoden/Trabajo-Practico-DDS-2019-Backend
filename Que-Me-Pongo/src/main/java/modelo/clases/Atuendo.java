@@ -72,6 +72,20 @@ public class Atuendo {
 		this(superior, inferior, calzado, accesorio);
 		this.setEvento(evento);
 	}
+	
+	public Atuendo(Set<Prenda> superior, Set<Prenda> inferior, Set<Prenda> calzado) {
+		this.addListPrenda(Lists.newArrayList(superior));
+		this.addListPrenda(Lists.newArrayList(inferior));
+		this.addListPrenda(Lists.newArrayList(calzado));
+		this.setAceptado(false);
+		this.setCalificacion(-1);
+	}
+
+	public Atuendo(Set<Prenda> superior, Set<Prenda> inferior, Set<Prenda> calzado,
+			Evento evento) {
+		this(superior, inferior, calzado);
+		this.setEvento(evento);
+	}
 
 	public void modificarEstadoDePrendas(Boolean nuevoEstado) {
 		prendas.forEach(elemento -> elemento.setEnUso(nuevoEstado));
