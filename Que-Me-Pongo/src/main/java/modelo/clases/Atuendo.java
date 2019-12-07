@@ -22,7 +22,7 @@ import com.google.common.collect.Lists;
 public class Atuendo {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToMany (mappedBy = "atuendos", cascade = CascadeType.ALL)

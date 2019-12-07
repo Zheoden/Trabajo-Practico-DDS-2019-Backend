@@ -29,7 +29,7 @@ import modelo.dtos.TipoPrenda;
 @Table(name = "Prenda")
 public class Prenda {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 	private String nombre;
 	@Column(columnDefinition="varchar(21000)")
