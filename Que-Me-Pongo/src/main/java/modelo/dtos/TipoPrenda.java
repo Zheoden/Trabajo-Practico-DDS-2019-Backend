@@ -193,7 +193,7 @@ public enum TipoPrenda {
 		}
 
 		public int nivelDeCapa() {
-			return 0;
+			return 1;
 		}
 
 		public int nivelDeAbrigo() {
