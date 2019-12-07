@@ -54,6 +54,7 @@ public class Router {
 			try {
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(userService.all());
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -71,6 +72,7 @@ public class Router {
 				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Usuario/Contraseña incorrectos");
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -86,6 +88,7 @@ public class Router {
 				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("No se encontro el Usuario con id: " + id);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -104,6 +107,7 @@ public class Router {
 					res.status(200);
 					return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString("Se elimino el usuario con id: " + id);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});	
@@ -126,6 +130,7 @@ public class Router {
 				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Solo puede tener como maximo 2 Guardarropas");
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -156,6 +161,7 @@ public class Router {
 				res.status(200);
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(userActualizado.getGuardarropas());
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -190,6 +196,7 @@ public class Router {
 				res.status(200);
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(guardarropaActualizado);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -225,6 +232,7 @@ public class Router {
 				res.status(200);
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(guardarropaActualizado.getPrendas());
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -250,6 +258,7 @@ public class Router {
 				res.status(200);
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(userActualizado.getEventos());
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -277,6 +286,7 @@ public class Router {
 				res.status(200);
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(usuarioActualizado.getEventos());
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -304,6 +314,7 @@ public class Router {
 				res.status(200);
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(atuendosAceptados);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -348,6 +359,7 @@ public class Router {
 				res.status(200);
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(eventoEncontrado.getAtuendosMovimientos());
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -370,6 +382,7 @@ public class Router {
 	            res.status(200);	
 	            return JsonParser.getObjectMapper().writeValueAsString(atuendoEncontrado);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
         });
@@ -391,6 +404,7 @@ public class Router {
 	            res.status(200);
 	            return JsonParser.getObjectMapper().writeValueAsString(atuendoEncontrado);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
         });
@@ -403,6 +417,7 @@ public class Router {
 				res.status(200);
 				return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(categorias);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
 		});
@@ -413,6 +428,7 @@ public class Router {
 	            res.status(200);
 	            return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(colores);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
         });
@@ -424,6 +440,7 @@ public class Router {
 	            res.status(200);
 	            return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(materiales);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
         });
@@ -434,6 +451,7 @@ public class Router {
 	            res.status(200);
 	            return JsonParser.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(prendas);
 			} catch(NoResultException  e) {
+				res.status(400);
 				return JsonParser.getObjectMapper().writeValueAsString("Ups! Algo salio mal en el backend! Intenta en un ratito mientras solucionamos los problemas de persistencia!");
 			}
         });
