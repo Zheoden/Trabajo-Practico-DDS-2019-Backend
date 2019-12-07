@@ -32,7 +32,7 @@ public class Guardarropas {
 	long id;
 	
 	private String nombre;
-	@OneToMany(mappedBy = "guardarropas", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@OneToMany(mappedBy = "guardarropas", cascade = CascadeType.ALL)
 	private List<Prenda> prendas = new ArrayList<>();
 	@Transient
 	@JsonIgnore

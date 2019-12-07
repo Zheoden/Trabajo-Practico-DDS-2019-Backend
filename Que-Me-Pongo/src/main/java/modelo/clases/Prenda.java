@@ -43,7 +43,7 @@ public class Prenda {
 	@Enumerated(EnumType.STRING)
 	Color colorSecundario;
 	Boolean enUso;
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "guardarropas_id", referencedColumnName = "id")
 	@JsonIgnore
 	Guardarropas guardarropas;
